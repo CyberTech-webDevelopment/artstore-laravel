@@ -1,0 +1,111 @@
+
+@php
+    //include "config/config.php";
+    //include "lng.php";
+    $arr_lng=array('am', 'ru', 'en');
+    //
+    //$sql="SELECT id, menu_name_$lng AS 'menu_name' FROM menu";
+    //$result=mysqli_query($con, $sql);
+@endphp
+
+    <section class="nav-group">
+        <section class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index') }}"><img
+                                src="{{asset('assets\images\logo.png')}}"></a></div>
+                    </a>
+                    <div class="align-self-end col-md-7">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control"
+                                   aria-label="Dollar amount (with dot and two decimal places)" id="search">
+                            <div class="input-group-append">
+                            <span class="input-group-text" id="icon-search">
+                            	<img src="{{asset('assets\icons\vector-search.png')}}">
+                            </span>
+                                <span class="input-group-text" id="icon-camera">
+                            	<img src="{{asset('assets\icons\vector-camera.png')}}">
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="align-self-end col-md-3">
+                        <div class="d-flex hrader-left">
+                            <div class="flex-fill orange">Sell on Artstore</div>
+                            <div class="flex-fill">About Us</div>
+                            <div class="flex-fill">Contact Us</div>
+                            <div class="flex-fill">Help</div>
+                            <div class="flex-fill ">
+                                <div class="flags-nav">
+
+                                    <img src="{{asset('assets\images\flags\en.png')}}" class='flg-nav-img active-nav-lng' name='en'>
+                                    <div class='hide hide-flags'>
+                                        @foreach ($arr_lng as $value)
+
+                                            <img src="{{asset('assets\images\flags/'. $value . '.png')}}" class='flg-nav-img mt-1' name='{{ $value }}'>
+                                            <br>
+
+                                        @endforeach
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
+                            <div class="btn-group">
+
+                                @if (!empty($_COOKIE['remember_token_cookie']) || isset($_SESSION['user']))
+                                    <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Log In
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item text-strong" href="#"></a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Messages</a>
+                                        <a class="dropdown-item" href="#">Purchases</a>
+                                        <a class="dropdown-item" href="#">Account Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item sign-out" href="?logout">Sign Out</a>
+                                    </div>
+
+                                @else
+                                    <button id="nav-sign-in" type="button" class="btn" data-toggle="modal"
+                                            data-target="#signIn">
+                                        <img src="{{asset('assets\icons\vector.png')}}">
+                                    </button>
+
+                                @endif
+
+                            </div>
+                            <div class="btn-group ">
+                                <button type="button" class="btn">
+                                    <img src="{{asset('assets\icons\vector-heart.png')}}">
+                                </button>
+                                <div>12</div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn">
+                                    <img src="{{asset('assets\icons\vector-cart.png')}}">
+                                </button>
+                                <div>0</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <?php
+        //    include "new-menu.php";
+        // include "subnav.php"; ?>
+    </section>
+    <section id="hidden">
+        <div class="row h-100">
+            <div class="w-100 h-100 back-hidden"></div>
+        </div>
+    </section>
+
+
