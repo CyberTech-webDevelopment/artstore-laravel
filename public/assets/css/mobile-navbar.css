@@ -1,0 +1,115 @@
+.mobile-navbar{
+	display: none;
+	position: fixed;
+	z-index: 500
+}
+.mobile-favorites-point, .mobile-cart-point{
+	position: absolute;
+	top: 10px;
+	padding-left: 3%;
+	color: #DF5700;
+}
+@media (max-width: 768px) {
+	.mobile-navbar{
+	   display: block;
+    }
+    .nav-group, #hidden{
+    	display: none;
+    }
+}
+.mobile-navbar nav{
+	background: #fff !important
+}
+.logo{
+	width: 70px
+}
+.mobile-collapse{
+	background: #FFF0DD;
+}
+.mobile-input-group input{
+	height: 36px
+}
+.mobile-input-group span{
+	height: 36px
+}
+#list-tab-mob>a{
+	font-family: 'Sedan SC 400';
+	text-transform: uppercase;
+	text-align: center;
+	font-size: 16px;
+	background: #E1DBDB;
+	outline: none;
+	border: none;
+}
+#list-tab-mob>a:focus{
+	outline: none;
+}
+
+#list-tab-mob .active{
+   background: #DD8A28;
+   color: #fff;
+   outline: none;
+   border: none;
+}
+.border-bot{
+	border-bottom: 1px solid  rgba(61, 32, 6, 0.6);
+}
+/*---------------mobile-nav-list---------------------------*/
+.dropdown-menu{
+    border: none;
+    background: #fff0dd;
+}
+.dropdown-item{
+    background: #fff0dd;
+}
+.dropdown-item>div{
+    color: #3D2006;
+    background: #fff0dd
+}
+.dropdown-item i{
+	color: #3D2006;
+	font-size: 14px
+}
+.dropdown-item:hover{
+	background: none
+}
+.mobile-nav, .dropdown-second-item{
+	border-bottom: 1px solid rgba(61, 32, 6, 0.6);
+}
+.border-bot-right, .dropdown-second-item{
+	border-right: 1px solid rgba(61, 32, 6, 0.6);
+}
+.pr-rem{
+   padding-right: 2.5rem;
+}
+
+
+@media (max-width: 425px) {
+.mobile-favorites-point, .mobile-cart-point{
+	top: 14px;
+	padding-left: 4%;
+	font-size: 14px
+}
+	.modal-dialog{
+		margin: 0;
+	}
+	.modal-content{
+		height: 100vh
+	}
+	.modal-content .row{
+		display: unset;
+		margin: 0;
+	}
+	.mobile-right-div img{
+		width: 100%
+	}
+}
+
+
+@media (max-width: 375px) {
+   .mobile-favorites-point, .mobile-cart-point{
+       top: 17px;
+       padding-left: 4%;
+       font-size: 12px;
+    }
+}

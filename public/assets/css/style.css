@@ -1,0 +1,118 @@
+*{
+	margin: 0;
+	padding: 0;
+	/*color: rgba(61, 32, 6, 0.5);*/
+}
+@font-face {
+    font-family: 'Sedan SC 400';
+    font-style: normal;
+    font-weight: normal;
+    src: local('../fonts/Sedan SC 400'), url('../fonts/Sedan SC 400.ttf') format('ttf');
+  }
+body{
+	font-family: 'Roboto', sans-serif;
+}
+a:hover{
+	text-decoration: none;
+}
+button{
+	outline: none;
+}
+button:focus{
+	outline: none;
+}
+input:focus{
+	outline: none;
+}
+.nav-group{
+	width: 100%;
+	position: fixed;
+	z-index: 999
+}
+.header{
+	width: 100%;
+	padding-top: 10px;
+    background: #E2D6C6;
+}
+.row{
+	width: 100%;
+	padding: 0 7%;
+	margin: 0;
+}
+.logo img{
+     width: 80%;
+}
+.header .container, .header .row{
+	height: 100%
+}
+.form-control{
+    height: 48px;
+    border-radius: 12px;
+    border: none;
+}
+#icon-camera{
+	border-bottom-right-radius: 12px;
+	border-top-right-radius: 12px;
+	border-left: 1px solid rgba(61, 32, 6, 0.5);
+}
+.input-group-text{
+	background: #fff;
+	border: none;
+	color: rgba(61, 32, 6, 0.5);
+}
+.hrader-left>div{
+	font-weight: 600;
+	font-size: 12px;
+	text-align: center;
+	padding: 0 5px;
+	cursor: pointer;
+	border-right: 1px solid rgba(61, 32, 6, 0.5);
+}
+.hrader-left>div:not(.orange){
+	color: #3D2006;
+}
+.hrader-left>div:nth-last-child(1){
+	border-right: none;
+}
+.flags img:not(.active-lng){
+	display: none;
+}
+.active-lng{
+	display: block;
+}
+.flags{
+	position: absolute;
+}
+.flags:hover img:not(.active-lng){
+	display: block;
+	margin: 5px 0
+}
+.icons .btn{
+	padding-right: 0
+}
+.icons .btn>img{
+	width: 26px
+}
+.icons .btn-group div{
+	font-size: 20px;
+	font-weight: bold;
+    position: relative;
+    top: -10px;
+    color: #E64500;
+}
+#hidden{
+	height: 197px;
+	padding: 0 16.5px;
+}
+.back-hidden{
+	background: #E2D6C6
+}
+.orange{
+    color: #E64500
+}
+
+
+
+
+
+

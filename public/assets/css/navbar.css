@@ -1,0 +1,50 @@
+.navbar{
+	padding: 0 
+}
+#navbar{
+	width: 100%;
+	/*height: 66px;*/
+    background: #FFF0DD;
+    padding: 0;
+}
+nav{
+	width: 100%;
+	background: #FFF0DD
+}
+#navbar ul{
+	width: 100%
+}
+#navbar ul li{
+     font-weight: 600;
+     color: #3D2006;
+}
+#navbar ul li a{
+	color: #3D2006;
+}
+.btn{
+	outline: none;
+}
+.flags-nav{
+	position: absolute;
+}
+.flags-nav-mobile{
+	position: relative;
+}
+.nav-pills .nav-link.active{
+	background: none !important
+}
+.active-item{
+	background: #f1cdcd;
+}
+.tab-content-sub-menu{
+	width: 100%
+}
+.tab-content-sub-menu>div{
+	position: absolute;
+	
+}
+.sub-categories{
+	background: #fff;
+	padding: 20px;
+	position: absolute;
+}

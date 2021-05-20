@@ -1,0 +1,242 @@
+#testimonials .testimonial-item {
+  box-sizing: content-box;
+  margin: 5px 10px;
+}
+
+@media (max-width: 767px) {
+  #testimonials .testimonial-item {
+    margin: 30px 10px;
+  }
+}
+
+#testimonials .testimonial-item .testimonial-img {
+  width: 90px;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  margin: 0 auto;
+}
+
+#testimonials .testimonial-item h3 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0 5px 0;
+  color: #111;
+}
+
+#testimonials .testimonial-item h4 {
+  font-size: 14px;
+  color: #999;
+  margin: 0;
+}
+
+#testimonials .testimonial-item .quote-sign-left {
+  margin-top: -15px;
+  padding-right: 10px;
+  display: inline-block;
+  width: 37px;
+}
+
+#testimonials .testimonial-item .quote-sign-right {
+  margin-bottom: -15px;
+  padding-left: 10px;
+  display: inline-block;
+  max-width: 100%;
+  width: 37px;
+}
+
+#testimonials .owl-nav, #testimonials .owl-dots {
+  margin-top: 5px;
+  text-align: center;
+}
+
+#testimonials .owl-dot {
+  display: inline-block;
+  margin: 0 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: #756454;
+}
+
+#testimonials .owl-dot.active {
+  background-color:#3D2006;
+}
+
+/* -------------------my style-------------- */
+@font-face {
+    font-family: 'Aniyah Personal Use Regular';
+font-style: normal;
+font-weight: normal;
+src: local('../../fonts/Aniyah Personal Use Regular'), url('../../fonts/AniyahPersonalUse-1G9m2.woff') format('woff');
+  }
+#testimonials{
+  /*padding-top: 196px;*/
+}
+#testimonials .row{
+  padding: 0 7%;
+
+}
+.container-carusel{
+  width: 100%;
+  background: #E2D6C6;
+  padding: 60px 0 20px;
+
+}
+h3{
+  font-family: "Aniyah Personal Use Regular"; 
+  font-weight: normal;
+  color: #3D2006;
+}
+.p{
+  color: #3D2006;
+  font-weight: 700;
+  padding: 0 34%;
+}
+.owl-carousel{
+  width: 86% !important;
+  margin: 0 auto;
+}
+.owl-stage-outer{
+  width: 92%;
+  margin: 0 auto
+}
+  
+/*-----------------------------------------------------*/
+#testimonials .owl-nav{
+    position: absolute;
+    font-size:64px;
+    top: 18%;
+    width: 100%;
+    display: block;
+}
+
+.owl-prev{
+  display: block !important;
+  position: absolute;
+    left: 0;
+  outline: none !important;
+}
+.owl-next{
+  display: block !important;
+  right: 0;
+    position: absolute;
+  outline: none !important;
+}
+.owl-prev>span, .owl-next>span{
+  color: #6C491C;
+  font-family: none !important;
+}
+.transparent-div{
+  width: 89%;
+  height: 95%;
+  position: absolute;
+  background: #0000007a;
+  display: none;
+}
+.transparent-div>div{
+  width: 100%;
+  height: 100%
+}
+.row-icon-div{
+  height: 50px;
+  width: 100%;
+  background: rgba(226, 214, 198, 0.71);
+  font-variant: small-caps;
+  font-size: 22px;
+  font-family: 'Sedan SC 400'
+}
+.row-icon-div>div>img{
+  width: 18px !important;
+  height: 18px !important
+}
+.testimonial-item:hover .transparent-div{
+  display: block;
+}
+/*.owl-dots{
+  display: none;
+}*/
+/*@media (max-width:2560px) and (min-width:1440px){
+	#testimonials .owl-nav{
+	    top: 96px;
+		width: 106%;
+		left: -34px;
+	}
+
+}
+@media (max-width:1440px) and (min-width:1240px){
+	#testimonials .owl-nav{
+	    top: 96px;
+		width: 106%;
+		left: -32px;
+	}
+}
+@media (max-width:768px) and (min-width:425px){
+	#testimonials .owl-nav{
+	     top: 142px;
+		width: 105%;
+		left: -17px;
+	}
+}
+@media (max-width:425px){
+	#testimonials .owl-nav{
+	     top: 142px;
+		width: 108%;
+		left: -4%;
+	}
+}
+@media (max-width:425px) and (min-width: 375px){
+	#testimonials .owl-nav{
+	     top: 176px;
+		width: 108%;
+		left: -4%;
+	}
+}*/
+
+
+/*#testimonials11 div.owl-carousel .owl-nav .owl-prev, div.owl-carousel .owl-nav .owl-next{
+    font-size:36px;
+    top:unset;
+    bottom: 15px; 
+}*/
+@media (max-width:1024px) and (min-width: 768px){
+    .owl-nav{
+       top: -4% !important
+    }
+}
+@media (max-width: 768px){
+    .owl-nav{
+       top: 18% !important
+    }
+}
+@media (max-width:425px){
+  #testimonials .container-fluid{
+     padding: 0 !important;
+     margin: 0 !important;
+  }
+  #testimonials .row{
+     padding: 0 !important;
+     margin: 0 !important;
+  }
+ #testimonials .container-carusel{
+  padding-top: 30px
+ }
+ #testimonials h3{
+  font-size: 28px !important
+ }
+  #testimonials p{
+    padding: 0 6%;
+  font-size: 14px !important
+ }
+ .owl-carousel{
+    width: 93% !important
+  }
+  #testimonials .owl-nav{
+    top: 10%
+  }
+ .owl-stage-outer{
+     width: 100%
+ }
+ .owl-nav{
+  display: none !important;
+ }
+}
