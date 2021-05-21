@@ -19,7 +19,10 @@ class VerificationController extends Controller
     |
     */
 
-    use VerifiesEmails;
+    use VerifiesEmails {
+        verify as originalVerify;
+    }
+    // use VerifiesEmails;
 
     /**
      * Where to redirect users after verification.
@@ -39,4 +42,19 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+   /** Mark the authenticated user's email address as verified.
+    *
+    * @param Request $request
+    * @return Response
+    *
+    * @throws AuthorizationException
+    */
+   public function verify(Request $request)
+   {
+       $request->setUserResolver(function () use ($request) {
+           return User::findOrFail($request->route('id'));
+       });
+       return $this->originalVerify($request);
+   }
 }

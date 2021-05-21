@@ -10,7 +10,7 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 
-
+{{-- @dd(Auth::user()); --}}
 @section('content')
     {{--    <div class="container">--}}
     {{--        <div class="row justify-content-center">--}}
