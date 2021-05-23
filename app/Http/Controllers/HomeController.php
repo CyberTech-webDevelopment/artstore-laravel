@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Users;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,7 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
-        $this->middleware('auth','verified');
+        $this->middleware('auth');
     }
 
     /**
@@ -22,8 +23,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        $verification_code = $request->get('code');
+        $user = Users::where(['verification_code' => $verification_code])->first();
+        if ($user != null) {
+            $user->is_verified = 1;
+            $user->save();
+
+            return view('index')->with('modal_type', ['success_email']);
+        }
+        return view('index')->with('modal_type', ['check_email'], session()->flash('reg_error', 'Something Wrong'));
     }
 }
