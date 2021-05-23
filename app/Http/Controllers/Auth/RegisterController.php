@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
+use App\Http\Controllers\MailController;
 use App\Providers\RouteServiceProvider;
 use App\Models\Users;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\VerifiesEmails;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 
 class RegisterController extends Controller
 {
@@ -24,7 +26,7 @@ class RegisterController extends Controller
     |
     */
 
-    use RegistersUsers,VerifiesEmails;
+    use RegistersUsers, VerifiesEmails;
 
     /**
      * Where to redirect users after registration.
@@ -46,7 +48,7 @@ class RegisterController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -63,28 +65,32 @@ class RegisterController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param array $data
      * @return \App\Models\Users
      */
 
-     public function register(Request $request)
-     {
+    public function register(Request $request)
+    {
 
-         $user = new Users();
-         $user->name = $request->post('name');
-         $user->email = $request->post('email');
-         $user->password = Hash::make($request->post('password'));
-         $user->verification_code = sha1(time());
-         $user->save();
-         if($user == null)
-         {
+        $user = new Users();
+        $user->name = $request->post('name');
+        $user->email = $request->post('email');
+        $user->password = Hash::make($request->post('password'));
+        $user->verification_code = sha1(time());
+        $user->save();
+        if ($user != null) {
+//          Send Email and Show Message
+            MailController::SendSignUpEmail($user->name, $user->email, $user->verification_code);
+//            $active_modal_type = "check_email";
+//            dd($active_modal_type);
+            return redirect()->back()->with('modal_type', ['check_email']);
 
+        }
+//         Show error message
+//        $active_modal_type = "sign_up";
+        return redirect()->back()->with('modal_type', ['check_email'], session()->flash('reg_error', 'Something Wrong'));
 
-
-         }
-
-
-     }
+    }
     // protected function create(array $data)
     // {
     //     // dd($data);

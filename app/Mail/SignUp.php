@@ -28,6 +28,6 @@ class SignUp extends Mailable
      */
     public function build()
     {
-        return $this->view('mail.signup-mail',['email_data'=>$this->email_data]);
+        return $this->from(env("MAIL_USERNAME"),'Artstore')->subject("Welcome to Artstore!")->markdown('mail.signup-mail',['email_data'=>$this->email_data]);
     }
 }

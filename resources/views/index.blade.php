@@ -10,27 +10,27 @@
     <script src='https://www.google.com/recaptcha/api.js'></script>
 @endsection
 
-{{-- @dd(Auth::user()); --}}
 @section('content')
-    {{--    <div class="container">--}}
-    {{--        <div class="row justify-content-center">--}}
-    {{--            <div class="col-md-8">--}}
-    {{--                <div class="card">--}}
-    {{--                    <div class="card-header">{{ __('Dashboard') }}</div>--}}
+    {{--    Modals Checking --}}
+    @if(session()->has('modal_type'))
+        @if(session('modal_type')[0] == 'check_email')
 
-    {{--                    <div class="card-body">--}}
-    {{--                        @if (session('status'))--}}
-    {{--                            <div class="alert alert-success" role="alert">--}}
-    {{--                                {{ session('status') }}--}}
-    {{--                            </div>--}}
-    {{--                        @endif--}}
+            <script>
+                setTimeout(function(){
 
-    {{--                        {{ __('You are logged in!') }}--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            </div>--}}
-    {{--        </div>--}}
-    {{--    </div>--}}
+                    $(document).ready(function () {
+                        $('#s12').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
+        @elseif(session('modal_type')[0] == 'success_email')
+            @dd(session('modal_type')[0])
+        @endif
+{{--        @dd(session('modal_type')[0]);--}}
+    @endif
+    {{--    End Modal checking--}}
 @endsection
 
 @section('scripts')
