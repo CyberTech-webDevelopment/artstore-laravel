@@ -56,7 +56,7 @@
                         <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
                             <div class="btn-group">
 
-                                @if (!empty($_COOKIE['remember_token_cookie']) || isset($_SESSION['user']))
+                                @if (Auth::check())
                                     <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         Log In
@@ -68,7 +68,17 @@
                                         <a class="dropdown-item" href="#">Purchases</a>
                                         <a class="dropdown-item" href="#">Account Settings</a>
                                         <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item sign-out" href="?logout">Sign Out</a>
+                                        <a class="dropdown-item header_logo_menu"
+                                           href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Sign Out
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            @csrf
+                                        </form>
+{{--                                        <a class="dropdown-item sign-out" href="{{ route('logout') }}">Sign Out</a>--}}
                                     </div>
 
                                 @else

@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\MailController;
+use App\Models\Users;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -36,5 +40,46 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        $errors = [$this->username() => trans('auth.failed')];
+        $user = Users::where('email', $request->email)->first();
+        // Check if user was successfully loaded, that the password matches
+        // and active is not 1. If so, override the default error message.
+        if ($user && \Hash::check($request->password, $user->password) && $user->is_verified != 1) {
+            $errors = [$this->username() => trans('auth.notactivated')];
+        }
+//        if ($user->is_verified == 0) {
+//            MailController::SendSignUpEmail($user->first_name, $user->email, $user->verification_code);
+//            $errors = ['no_verify' => trans('auth.notactivated')];
+//
+//        }
+        if ($request->expectsJson()) {
+            return response()->json($errors, 422);
+        }
+        return redirect()->back()
+            ->withInput($request->only($this->username(), 'remember'))
+            ->withErrors($errors);
+
+//        return redirect()->back();
+    }
+
+    /**
+     * The user has been authenticated.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @param mixed $user
+     * @return mixed
+     */
+    protected function authenticated(Request $request, $user)
+    {
+//          dd($user);
+    }
+
+    public function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username(), 'password'), ['is_verified' => 1]);
     }
 }

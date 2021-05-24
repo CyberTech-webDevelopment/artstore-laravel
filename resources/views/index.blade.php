@@ -11,12 +11,28 @@
 @endsection
 
 @section('content')
+    @if ($errors->has('email'))
+
+        <script>
+
+            setTimeout(function () {
+
+                $(document).ready(function () {
+                    $('#nav-sign-in').trigger('click');
+                });
+
+            }, 500);
+
+        </script>
+
+    @endif
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
+
         @if(session('modal_type')[0] == 'check_email')
 
             <script>
-                setTimeout(function(){
+                setTimeout(function () {
 
                     $(document).ready(function () {
                         $('#s12').trigger('click');
@@ -26,9 +42,32 @@
 
             </script>
         @elseif(session('modal_type')[0] == 'success_email')
-            @dd(session('modal_type')[0])
+            {{--            @dd(session('modal_type')[0]);--}}
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#nav-sign-in').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
+        @elseif(session('modal_type')[0] == 'time_end')
+            {{--@dump(session('modal_type')[0]);--}}
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#s12_time').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
+
         @endif
-{{--        @dd(session('modal_type')[0]);--}}
+        {{--        @dd(session('modal_type')[0]);--}}
     @endif
     {{--    End Modal checking--}}
 @endsection
