@@ -25,14 +25,7 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $verification_code = $request->get('code');
-        $user = Users::where(['verification_code' => $verification_code])->first();
-        if ($user != null) {
-            $user->is_verified = 1;
-            $user->save();
+        return view('index');
 
-            return view('index')->with('modal_type', ['success_email']);
-        }
-        return view('index')->with('modal_type', ['check_email'], session()->flash('reg_error', 'Something Wrong'));
     }
 }

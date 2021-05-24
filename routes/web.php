@@ -16,6 +16,8 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
+Route::post('/reset_password',[App\Http\Controllers\IndexController::class, 'send_reset_mail'])->name('reset');
+Route::get('/verify', [App\Http\Controllers\IndexController::class, 'index_login'])->name('index.login');
 
 Auth::routes(['verify' => true]);
 

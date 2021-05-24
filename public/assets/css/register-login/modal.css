@@ -1,5 +1,5 @@
 .modal-content{
-	background: #EDE4D9 
+	background: #EDE4D9
 }
 .close{
 	opacity: 1
@@ -75,6 +75,13 @@ hr{
 	color: red;
 	font-size: 14px
 }
+.success_message{
+
+    text-align: center;
+    color: darkgoldenrod;
+    font-size: 17px;
+}
+
 /*.agree a*/
 #successfully-registered .modal-content{
 	background: #EDE4D9
@@ -88,6 +95,6 @@ hr{
 	color:  #DD8A28;
 	background: #EDE4D9
 }
-#s11, #s12, #timelmtd{
+#s11, #s12, #timelmtd,#s12_time{
 	display: none;
 }

@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
 
 class Users extends Authenticatable implements MustVerifyEmail
 {
@@ -40,4 +41,9 @@ class Users extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function OlderThanOneDay($verification_code)
+    {
+        return self::where('created_at', '>', Carbon::yesterday())->where(['verification_code' => $verification_code]);
+    }
 }

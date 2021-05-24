@@ -37,6 +37,7 @@
 </head>
 <body>
 <div id="app">
+{{--    @dump(Auth::user()->id)--}}
     @include('nav.nav-group')
 {{--   *****  Modals *****  --}}
     @include('register-login.register-login-modals')
