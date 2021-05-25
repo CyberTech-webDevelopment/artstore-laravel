@@ -28,7 +28,7 @@
     @endif
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
-
+        @dump(session('modal_type'))
         @if(session('modal_type')[0] == 'check_email')
 
             <script>
@@ -42,7 +42,7 @@
 
             </script>
         @elseif(session('modal_type')[0] == 'success_email')
-            {{--            @dd(session('modal_type')[0]);--}}
+
             <script>
                 setTimeout(function () {
 
@@ -54,7 +54,19 @@
 
             </script>
         @elseif(session('modal_type')[0] == 'time_end')
-            {{--@dump(session('modal_type')[0]);--}}
+
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#s12_time').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
+        @elseif(session('modal_type')[0] == 'time_end_reset')
+
             <script>
                 setTimeout(function () {
 
@@ -66,8 +78,33 @@
 
             </script>
 
+        @elseif(session('modal_type')[0] == 'send_password')
+
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#forgot-password').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
+
+        @elseif(session('modal_type')[0] == 'success_reset')
+
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#s11').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
         @endif
-        {{--        @dd(session('modal_type')[0]);--}}
+
     @endif
     {{--    End Modal checking--}}
 @endsection
