@@ -1,3 +1,6 @@
+{{--@dump(session('modal_type'))--}}
+{{--@dump(session('email'))--}}
+
 <div class="modal fade" id="forgotPassword" tabindex="-1" aria-labelledby="exampleModalLabel3" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -13,9 +16,20 @@
             </div>
             <div class="row">
                 <div class="modal-body text-center">
-                    <form action="" method="POST">
-                         @csrf
-                        <div>Enter Your E-mail and we will send you a reset.</div>
+                    <form action="{{ route('reset') }}" method="POST">
+                        @csrf
+                        @if(session()->has('error_reset'))
+
+                            <div class="reset_error">{{ session('error_reset')}}</div>
+
+                        @elseif(session()->has('modal_type'))
+
+                            @if(session('modal_type')[0] == 'send_password')
+                                <div class="success_message">Successfuly sending reset link in your email</div>
+                            @endif
+
+                        @endif
+
                         <div class="mt-3 mb-3 pt-4 pb-4">
                             <div class="form-group parent">
                                 <div class="text-left">
@@ -25,7 +39,8 @@
                                 </div>
                                 <div class="invalid-inp invalid-mail"></div>
                             </div>
-                            <button type="submit" class="btn sign-in mt-2 text-strong text-uppercase" id="for-got-pass">Send
+                            <button type="submit" class="btn sign-in mt-2 text-strong text-uppercase" id="for-got-pass">
+                                Send
                                 Request
                             </button>
                         </div>
