@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 
 class ResetPasswordController extends Controller
@@ -57,7 +58,42 @@ class ResetPasswordController extends Controller
 
     public function change_password(Request $request)
     {
-       dd($request->all());
+        $validated = $request->validate([
+            'password' => 'required|min:8',
+            'password_confirm' => 'required',
+        ]);
+        $password = $request->password;
+        $password_conf = $request->password_confirm;
+        if ($password != $password_conf)
+        {
+
+            return redirect()->back()->with('modal_type','confirm_no_match')->with('no_confirm','Passwords doesnt not match');
+
+        }
+        else{
+
+            $email = $request->changing_email;
+            $user = Users::where('email',$email)->first();
+            if ($user != null)
+            {
+                $user->password = Hash::make($password);
+                $user->save();
+//                @dump($user->password);
+                return redirect()->back()->with('modal_type','success_pass_change')->with('pass_change','Password changes successfuly');
+
+            }
+            else{
+
+                return redirect()->back()->with('modal_type','no_reset_email');
+
+
+            }
+
+        }
+
+
+
+//       dd($request->all());
 
     }
 }

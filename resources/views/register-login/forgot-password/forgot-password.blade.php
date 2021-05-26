@@ -24,9 +24,12 @@
 
                         @elseif(session()->has('modal_type'))
 
-                            @if(session('modal_type')[0] == 'send_password')
-                                <div class="success_message">Successfuly sending reset link in your email</div>
+                            @if(session('modal_type')[0] == 'no_reset_email')
+                                <div class="success_message">Inncorect email please send new reset link</div>
+{{--                            @elseif(session('modal_type')[0] == 'no_reset_email')--}}
+
                             @endif
+
 
                         @endif
 

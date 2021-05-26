@@ -16,20 +16,23 @@
                             <p class="text-center text-danger email_pass_error">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </p>
-                            {{--                        @else--}}
+                        @elseif($errors->has('password'))
 
-                            {{--                            @if ($errors->has('no_verify'))--}}
-                            {{--                                @dump('else')--}}
-                            {{--                                <p class="text-center text-danger email_pass_error">--}}
-                            {{--                                    <strong>{{ $errors->first('no_verify') }}</strong>--}}
-                            {{--                                </p>--}}
-                            {{--                            @endif--}}
+                            <p class="text-center text-danger email_pass_error">
+                                <strong>{{ $errors->first('password') }}</strong>
+                            </p>
+                        @else
                         @endif
                         <div class="mb-4 success_message">
                             @if(session()->has('modal_type'))
                                 @if(session('modal_type')[0] == 'success_email')
 
                                     Your email is confirmed
+
+                                @endif
+                                @if(session()->has('pass_change'))
+
+                                    {{ session('pass_change') }}
 
                                 @endif
                             @endif
@@ -63,7 +66,7 @@
                                     password?</small>
                             </div>
                             <div class="custom-control custom-checkbox my-1 mr-sm-2">
-                                <input type="checkbox" class="custom-control-input" id="remember-inp">
+                                <input type="checkbox" class="custom-control-input" name="remember" id="remember-inp">
                                 <label class="custom-control-label text-strong" for="remember-inp" id="remember">Remember
                                     me </label>
                             </div>
