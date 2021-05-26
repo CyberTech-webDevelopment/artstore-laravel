@@ -47,7 +47,7 @@
                                 <div class="invalid-inp invalid-pass float-left"></div>
                             </div>
                             @if(session()->has('email'))
-                                @dump(session('email'))
+{{--                                @dump(session('email'))--}}
                                 <input type="hidden" name="changing_email" value="{{ session('email') }}" id="hidden-inp">
                             @endif
                             <button type="submit" class="btn sign-in mt-2 text-strong text-uppercase"
@@ -58,7 +58,11 @@
 
                     </form>
 
-                    <div class="password-changed"></div>
+                    <div class="text-center text-danger password-changed">
+                        @if(session()->has('no_confirm'))
+                            {{ session('no_confirm') }}
+                        @endif
+                    </div>
                 </div>
             </div>
 

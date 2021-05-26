@@ -14,7 +14,7 @@
                     <p>Dear User, Congratulations, You have successfully registered on our
                         miracle platform. In Artstor, you will find handmade
                         products made by real craftsmen for you and your loved ones.</p>
-                    <p>Please click here to confirm your Email.</p>
+                    <p>Please check and confirm confirm your Email.</p>
 {{--                    <a rel='modal:open' href='http://localhost/project/index.php?email_mail=$email&token=$token'></a>--}}
                     <p>If you don’t use this link within 24 hours, it will expire.</p>
                     <p>Thanks,<br>

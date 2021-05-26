@@ -4,6 +4,8 @@
 @include('register-login.confirm_email_timeout')
 @include('register-login.forgot-password.forgot-password')
 @include('register-login.forgot-password.change-password')
+@include('register-login.forgot-password.reset_email_timeout')
+@include('register-login.forgot-password.reset_success_send')
 
 
 

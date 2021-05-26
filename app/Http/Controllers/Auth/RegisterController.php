@@ -54,24 +54,40 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         // dd($data);
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
+            'privacy' =>  ['required']
+
             // 'g-recaptcha-response' => ['required','captcha'],
         ]);
+
     }
 
     /**
      * Create a new user instance after a valid registration.
      *
      * @param array $data
-     * @return \App\Models\Users
+     * @return \Illuminate\Http\RedirectResponse
      */
 
     public function register(Request $request)
     {
+//        dd($request->all());
 
+        $validator = $this->validator($request->all());
+        $messages = [
+            'email.unique:users' => 'This email is already exists',
+        ];
+        if (isset($validator) && $validator->fails()) {
+            return redirect()->back()
+                ->with('modal_type', ['register_failed'])
+                ->with('reg_failed',"Please fill all fields")
+                ->with('unique_email',$messages);
+
+        }
         $user = new Users();
         $user->name = $request->post('name');
         $user->email = $request->post('email');

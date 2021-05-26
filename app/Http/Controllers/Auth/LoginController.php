@@ -44,13 +44,19 @@ class LoginController extends Controller
 
     protected function sendFailedLoginResponse(Request $request)
     {
-        $errors = [$this->username() => trans('auth.failed')];
+        $errors = [$this->username() => trans('auth.failed'),trans('auth.password')];
+//        $errors_pass = ['password' => trans('auth.password')];
         $user = Users::where('email', $request->email)->first();
         // Check if user was successfully loaded, that the password matches
         // and active is not 1. If so, override the default error message.
         if ($user && \Hash::check($request->password, $user->password) && $user->is_verified != 1) {
             $errors = [$this->username() => trans('auth.notactivated')];
         }
+//        elseif ($user && \Hash::check($request->password, $user->password)){
+//
+//
+//
+//        }
 //        if ($user->is_verified == 0) {
 //            MailController::SendSignUpEmail($user->first_name, $user->email, $user->verification_code);
 //            $errors = ['no_verify' => trans('auth.notactivated')];

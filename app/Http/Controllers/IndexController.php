@@ -34,11 +34,14 @@ class IndexController extends Controller
 //            ->where('created_at', '>', Carbon::yesterday())->first();
 
             if ($tokenData != null) {
+                DB::table('password_resets')->where('token',$tokenData->token)->delete();
 
                 return redirect()->route('index')->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
-//                ->with('email', $request->email)
+
+
+                //                ->with('email', $request->email)
             } else {
-                @dump($reset_token);
+//                @dump($reset_token);
                 return redirect()->route('index')->with('modal_type', ['time_end_reset']);
 
             }

@@ -96,6 +96,6 @@ hr{
 	color:  #DD8A28;
 	background: #EDE4D9
 }
-#s11, #s12, #timelmtd,#s12_time{
+#s11, #s12, #timelmtd,#s12_time,#s12_reset,#s12_time_reset{
 	display: none;
 }
