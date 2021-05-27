@@ -12,7 +12,7 @@ class IndexController extends Controller
     public function index(Request $request)
     {
         if ($request->has('code')) {
-//            $this->check_verify_link($request);
+
             $verification_code = $request->get('code');
             $user = Users::OlderThanOneDay($verification_code)->first();
             if ($user != null) {
@@ -27,21 +27,18 @@ class IndexController extends Controller
         }
         if ($request->has('code_reset')) {
 
-//            $this->check_reset_token($request);
             $reset_token = $request->get('code_reset');
             $tokenData = DB::table('password_resets')
                 ->where('token', $reset_token)->where('created_at', '>', Carbon::yesterday())->first();
 //            ->where('created_at', '>', Carbon::yesterday())->first();
 
             if ($tokenData != null) {
-                DB::table('password_resets')->where('token',$tokenData->token)->delete();
+                DB::table('password_resets')->where('token', $tokenData->token)->delete();
 
                 return redirect()->route('index')->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
 
-
-                //                ->with('email', $request->email)
             } else {
-//                @dump($reset_token);
+
                 return redirect()->route('index')->with('modal_type', ['time_end_reset']);
 
             }

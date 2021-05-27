@@ -53,13 +53,13 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        // dd($data);
+
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8'],
-            'privacy' =>  ['required']
+            'privacy' => ['required']
 
             // 'g-recaptcha-response' => ['required','captcha'],
         ]);
@@ -75,17 +75,27 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-//        dd($request->all());
 
         $validator = $this->validator($request->all());
-        $messages = [
-            'email.unique:users' => 'This email is already exists',
-        ];
+//        $messages = [
+//            'email.unique:users' => 'This email is already exists',
+//        ];
         if (isset($validator) && $validator->fails()) {
-            return redirect()->back()
-                ->with('modal_type', ['register_failed'])
-                ->with('reg_failed',"Please fill all fields")
-                ->with('unique_email',$messages);
+            $failedRules = $validator->failed();
+            if (isset($failedRules['email']['Unique'])) {
+
+                return redirect()->back()
+                    ->with('modal_type', ['register_failed'])
+                    ->with('reg_failed', "This email is already exists");
+
+            } else {
+                return redirect()->back()
+                    ->with('modal_type', ['register_failed'])
+                    ->with('reg_failed', "Please fill all fields");
+
+
+            }
+
 
         }
         $user = new Users();

@@ -8,6 +8,7 @@ use App\Models\Users;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
@@ -52,16 +53,7 @@ class LoginController extends Controller
         if ($user && \Hash::check($request->password, $user->password) && $user->is_verified != 1) {
             $errors = [$this->username() => trans('auth.notactivated')];
         }
-//        elseif ($user && \Hash::check($request->password, $user->password)){
-//
-//
-//
-//        }
-//        if ($user->is_verified == 0) {
-//            MailController::SendSignUpEmail($user->first_name, $user->email, $user->verification_code);
-//            $errors = ['no_verify' => trans('auth.notactivated')];
-//
-//        }
+
         if ($request->expectsJson()) {
             return response()->json($errors, 422);
         }
@@ -81,11 +73,13 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
-//          dd($user);
+
     }
 
     public function credentials(Request $request)
     {
+//        dd($request->all());
+
         return array_merge($request->only($this->username(), 'password'), ['is_verified' => 1]);
     }
 }

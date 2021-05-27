@@ -72,15 +72,17 @@
                             </div>
                             @if(session()->has('reg_failed'))
 
-                                <p class="text-center text-danger result reg_failed">{{ session('reg_failed') }}</p>
+                                <p class="text-center text-danger result reg_failed">
+                                    <strong>{{ session('reg_failed') }}</strong>
+                                </p>
 
                             @endif
-                            @if(session()->has('unique_email'))
+{{--                            @if(session()->has('unique_email'))--}}
 
 
-                                <p class="text-center text-danger result reg_failed">{{ session('unique_email')['email.unique:users'] }}</p>
+{{--                                <p class="text-center text-danger result reg_failed">{{ session('unique_email')['email.unique:users'] }}</p>--}}
 
-                            @endif
+{{--                            @endif--}}
 
 
                             <button type="submit" class="btn sign-in mt-2 text-strong" id="registration">SIGN UP
