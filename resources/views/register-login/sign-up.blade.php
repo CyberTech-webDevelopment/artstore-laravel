@@ -10,7 +10,7 @@
             <div class="row">
 
                 <div class="modal-body" id="newSignUP">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register',app()->getLocale()) }}">
                         @csrf
                         <div>
                             <div class="form-group parent">

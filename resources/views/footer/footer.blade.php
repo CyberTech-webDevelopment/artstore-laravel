@@ -70,7 +70,7 @@
 					<div class="text-strong newsletter mb-2">Sign Up For Our Newsletter</div>
 
                         <input type="text" name="" class="email-inp pl-2" placeholder="Enter your E-Mail">
-                        <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
+                        <input type="hidden" value="{{ route('subscribe.email',app()->getLocale()) }}" class='subscribe'>
                         <button class="news-submit text-strong ml-2" >Sign Up</button>
 
                     <div class="email-message mt-2"></div>
@@ -128,7 +128,7 @@
         	    <div class="text-strong newsletter mb-2">Sign Up For Our Newsletter</div>
 
 					<input type="text" name="" class="email-inp pl-2" placeholder="Enter your E-Mail">
-                    <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
+                    <input type="hidden" value="{{ route('subscribe.email',app()->getLocale()) }}" class='subscribe'>
 					<button class="news-submit text-strong ml-2" >Sign Up</button>
 
                 <div class="email-message mt-2"></div>
