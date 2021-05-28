@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use App\Models\Users;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Foundation\Auth\VerifiesEmails;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -86,12 +87,12 @@ class RegisterController extends Controller
 
                 return redirect()->back()
                     ->with('modal_type', ['register_failed'])
-                    ->with('reg_failed', "This email is already exists");
+                    ->with('reg_failed', trans('auth.reg_email_exists',[],App::getLocale()));
 
             } else {
                 return redirect()->back()
                     ->with('modal_type', ['register_failed'])
-                    ->with('reg_failed', "Please fill all fields");
+                    ->with('reg_failed', trans('auth.reg_empty_field',[],App::getLocale()));
 
 
             }

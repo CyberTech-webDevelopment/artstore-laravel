@@ -15,16 +15,16 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
-Route::post('/reset_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'send_reset_mail'])->name('reset');
-Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
+Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () {
+    Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
+    Auth::routes(['verify' => true]);
+    Route::post('/reset_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'send_reset_mail'])->name('reset');
+    Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
+    Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
+    Route::post('/subscribe',[App\Http\Controllers\SubscribeController::class,'subscribe'])->name('subscribe.email');
 
-Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
 
-Route::post('/subscribe',[App\Http\Controllers\SubscribeController::class,'subscribe'])->name('subscribe.email');
-
-
-Auth::routes(['verify' => true]);
+});
 
 Route::middleware(['auth'])->group(function () {
 
@@ -32,4 +32,5 @@ Route::middleware(['auth'])->group(function () {
 
 
 });
+
 

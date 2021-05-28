@@ -16,17 +16,19 @@
             </div>
             <div class="row">
                 <div class="modal-body text-center">
-                    <form action="{{ route('reset') }}" method="POST">
+                    <form action="{{ route('reset',app()->getLocale()) }}" method="POST">
                         @csrf
                         @if(session()->has('error_reset'))
 
-                            <div class="reset_error">{{ session('error_reset')}}</div>
+                            <p class="reset_error text-center text-danger">
+                                <strong>{{ session('error_reset')}}</strong>
+                            </p>
 
                         @elseif(session()->has('modal_type'))
 
                             @if(session('modal_type')[0] == 'no_reset_email')
                                 <div class="success_message">Inncorect email please send new reset link</div>
-{{--                            @elseif(session('modal_type')[0] == 'no_reset_email')--}}
+                                {{--                            @elseif(session('modal_type')[0] == 'no_reset_email')--}}
 
                             @endif
 

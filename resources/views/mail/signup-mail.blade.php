@@ -2,7 +2,7 @@
     Artstore
     Hello {{$email_data['name']}}
 
-    @component('mail::button', ['url' => route('index').'?code='.$email_data['verification_code']])
+    @component('mail::button', ['url' => route('index',app()->getLocale()).'?code='.$email_data['verification_code']])
         Please click here
     @endcomponent
 
