@@ -94,7 +94,6 @@ class RegisterController extends Controller
                     ->with('modal_type', ['register_failed'])
                     ->with('reg_failed', trans('auth.reg_empty_field',[],App::getLocale()));
 
-
             }
 
 

@@ -18,6 +18,7 @@ use Illuminate\Http\Request;
 Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () {
     Route::get('/', [App\Http\Controllers\IndexController::class, 'index'])->name('index');
     Auth::routes(['verify' => true]);
+
     Route::post('/reset_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'send_reset_mail'])->name('reset');
     Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
     Route::post('/change_password',[App\Http\Controllers\Auth\ResetPasswordController::class,'change_password'])->name('change.password');
@@ -26,11 +27,9 @@ Route::group(['prefix' => '{locale}', 'middleware' => 'setLocale'], function () 
 
 });
 
+
 Route::middleware(['auth'])->group(function () {
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 });
-
 

@@ -2,23 +2,24 @@
     //include "config/config.php";
     //include "lng.php";
     $arr_lng=array('am', 'ru', 'en');
-    $locale = app()->getLocale();
 
-
+    $locale=app()->getLocale();
+    
 @endphp
 
-<section class="nav-group">
-    <section class="header">
-        <div class="container-fluid">
-            <div class="row">
-                <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index',$locale) }}"><img
-                            src="{{asset('assets\images\logo.png')}}"></a></div>
+    <section class="nav-group">
+        <section class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index', $locale) }}"><img
+                                src="{{asset('assets\images\logo.png')}}"></a></div>
+                    </a>
+                    <div class="align-self-end col-md-7">
+                        <div class="input-group mb-4">
+                            <input type="text" class="form-control"
+                                   aria-label="Dollar amount (with dot and two decimal places)" id="search">
+                            <div class="input-group-append">
 
-                <div class="align-self-end col-md-7">
-                    <div class="input-group mb-4">
-                        <input type="text" class="form-control"
-                               aria-label="Dollar amount (with dot and two decimal places)" id="search">
-                        <div class="input-group-append">
                             <span class="input-group-text" id="icon-search">
                             	<img src="{{asset('assets\icons\vector-search.png')}}">
                             </span>
@@ -27,27 +28,24 @@
                             </span>
                         </div>
                     </div>
-                </div>
-                <div class="align-self-end col-md-3">
-                    <div class="d-flex hrader-left">
-                        <div class="flex-fill orange">@lang('nav.nav.artstore')</div>
-                        <div class="flex-fill">@lang('nav.nav.about')</div>
-                        <div class="flex-fill">@lang('nav.nav.contact')</div>
-                        <div class="flex-fill">@lang('nav.nav.help')</div>
-                        <div class="flex-fill ">
-                            <div class="flags-nav">
 
-                                 <img src="{{asset('assets\images\flags/'.$locale.'.png')}}"
-                                         class='flg-nav-img active-nav-lng' name='en'>
-                                <div class='hide hide-flags'>
-                                    @foreach ($arr_lng as $value)
-                                        @if($value != $locale)
-                                        <a href="{{ url($value) }}">
-                                            <img src="{{asset('assets\images\flags/'. $value . '.png')}}"
-                                                 class='flg-nav-img mt-1' name='{{ $value }}'>
-                                            <br>
-                                        </a>
-                                        @endif
+                    <div class="align-self-end col-md-3">
+                        <div class="d-flex hrader-left">
+                            <div class="flex-fill orange">@lang('nav.nav.artstore')</div>
+                            <div class="flex-fill">@lang('nav.nav.about')</div>
+                            <div class="flex-fill">@lang('nav.nav.contact')</div>
+                            <div class="flex-fill">@lang('nav.nav.help')</div>
+                            <div class="flex-fill ">
+                                <div class="flags-nav">
+                                    <img src="{{asset('assets\images\flags/' .$locale.'.png')}}" class='flg-nav-img active-nav-lng' name='en'>
+                                    <div class='hide hide-flags'>
+                                        @foreach ($arr_lng as $value)
+                                          @if ($value!=$locale)
+                                             <a href={{ url($value) }}><img src="{{asset('assets\images\flags/'. $value.'.png')}}" class='flg-nav-img mt-1' name='{{ $value }}'></a>
+                                             <br>
+                                             @endif
+                                        @endforeach
+
 
                                     @endforeach
 

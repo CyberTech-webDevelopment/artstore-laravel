@@ -37,4 +37,5 @@ return [
     'email_not_exists'=> 'Электронная почта не существует',
     'pass_successfuly'=> 'Пароль успешно меняется',
     'no_confirm_pass' => 'Пароли не совпадают',
+
 ];
