@@ -1,6 +1,7 @@
 <?php
 
 return [
+
     'nav'=> [
        'artstore' => 'Վաճառվում է Artstore',
        'about' => 'Մեր մասին',
@@ -8,3 +9,6 @@ return [
        'help' => 'Օգնություն'
     ]
 ];
+
+
+

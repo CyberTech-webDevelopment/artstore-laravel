@@ -1,9 +1,18 @@
 <?php
+
 return [
-     'nav'=> [
+
+    'nav' => [
+
         'artstore' => 'Продам в Artstore',
         'about' => 'О нас',
         'contact' => 'Контакт',
-        'help' => 'Помощь'
-     ]
+        'help' => 'Помощь',
+
+    ]
+
 ];
+
+
+?>
+

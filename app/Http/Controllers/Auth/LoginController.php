@@ -8,6 +8,7 @@ use App\Models\Users;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\App;
@@ -42,16 +43,20 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
-     /**
+
+
+    /**
      * Validate the user login request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+
      * @return void
      *
      * @throws \Illuminate\Validation\ValidationException
      */
     protected function validateLogin(Request $request)
     {
+
         $messages=[
             'email.required' => trans('auth.failed', [], App::getLocale()),
             'password.required' => trans('auth.password', [], App::getLocale()),
@@ -61,15 +66,19 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
+   
     protected function sendFailedLoginResponse(Request $request)
     {
-        $errors = [$this->username() => trans('auth.failed', [], App::getLocale()),trans('auth.password', [], App::getLocale())];
+        $errors = [$this->username() => trans('auth.failed',[],App::getLocale()), 'password' => 'auth.password',[],App::getLocale()];
+
 //        $errors_pass = ['password' => trans('auth.password')];
         $user = Users::where('email', $request->email)->first();
         // Check if user was successfully loaded, that the password matches
         // and active is not 1. If so, override the default error message.
         if ($user && \Hash::check($request->password, $user->password) && $user->is_verified != 1) {
-            $errors = [$this->username() => trans('auth.notactivated', [], App::getLocale())];
+
+            $errors = [$this->username() => trans('auth.notactivated',[],App::getLocale())];
+
         }
 
         if ($request->expectsJson()) {

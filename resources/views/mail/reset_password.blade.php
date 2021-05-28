@@ -2,7 +2,7 @@
     Artstore
     Hello {{$email_data['name']}}
 
-    @component('mail::button', ['url' => route('index').'?code_reset='.$email_data['reset_token'].'&email='.$email_data['email']])
+    @component('mail::button', ['url' => route('index',app()->getLocale()).'?code_reset='.$email_data['reset_token'].'&email='.$email_data['email']])
        If you want change your password please click here
     @endcomponent
 

@@ -11,17 +11,19 @@
             </div>
             <div class="row">
                 <div class="modal-body">
-                    <form method="POST" action="{{ route('login', app()->getLocale()) }}">
+
+                    <form method="POST" action="{{ route('login',app()->getLocale()) }}">
+
                         @csrf
                         @if ($errors->has('email'))
-
+{{--                              @dump($errors->first('email'))--}}
                             <p class="text-center text-danger email_pass_error">
                                 <strong>{{ $errors->first('email') }}</strong>
                             </p>
                         @elseif($errors->has('password'))
 
-                            <p class="text-center text-danger email_pass_error">
-                                <strong>{{ $errors->first('password') }}</strong>
+                            <p class="text-center text-danger password_pass_error">
+                                <strong>@lang( $errors->first('password') )</strong>
                             </p>
                         @else
                         @endif
@@ -29,7 +31,7 @@
                             @if(session()->has('modal_type'))
                                 @if(session('modal_type')[0] == 'success_email')
 
-                                    Your email is confirmed
+                                    @lang('auth.success_confirmed')
 
                                 @endif
                                 @if(session()->has('pass_change'))

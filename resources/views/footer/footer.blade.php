@@ -69,9 +69,12 @@
 				<div class="mt-4">
 					<div class="text-strong newsletter mb-2">{{ app()->getLocale()=='en' ? 'Sign Up For Our Newsletter' : ( app()->getLocale()=='ru' ? 'Подпишитесь на нашу рассылку' : ( app()->getLocale()=='am' ? ' Գրանցվեք մեր նորությունների համար' : 'Sign Up For Our Newsletter')) }}</div>
 
+
                         <input type="text" name="" class="email-inp pl-2" placeholder="{{ app()->getLocale()=='en' ? 'Enter your E-Mail' : ( app()->getLocale()=='ru' ? 'Введите адрес эл․ почты' : ( app()->getLocale()=='am' ? ' Մուտքագրեք ձեր էլ․փոստը' : 'Enter your E-Mail')) }}">
-                        <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
+                        <input type="hidden" value="{{ route('subscribe.email',app()->getLocale()) ) }}" class='subscribe'>
                         <button class="news-submit text-strong ml-2" >{{ app()->getLocale()=='en' ? 'Sign Up' : ( app()->getLocale()=='ru' ? 'Зарегистрироваться' : ( app()->getLocale()=='am' ? 'Գրանցվել' : 'Sign Up')) }}</button>
+
+                      
 
                     <div class="email-message mt-2"></div>
 				</div>
@@ -127,9 +130,11 @@
         <div class="text-center footer-m-form">
         	    <div class="text-strong newsletter mb-2">{{ app()->getLocale()=='en' ? 'Sign Up For Our Newsletter' : ( app()->getLocale()=='ru' ? 'Подпишитесь на нашу рассылку' : ( app()->getLocale()=='am' ? ' Գրանցվեք մեր նորությունների համար' : 'Sign Up For Our Newsletter')) }}</div>
 
+
 					<input type="text" name="" class="email-inp pl-2" placeholder="{{ app()->getLocale()=='en' ? 'Enter your E-Mail' : ( app()->getLocale()=='ru' ? 'Введите адрес эл․ почты' : ( app()->getLocale()=='am' ? ' Մուտքագրեք ձեր էլ․փոստը' : 'Enter your E-Mail')) }}">
-                    <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
+                    <input type="hidden" value="{{ route('subscribe.email',app()->getLocale()) }}" class='subscribe'>
 					<button class="news-submit text-strong ml-2" >{{ app()->getLocale()=='en' ? 'Sign Up' : ( app()->getLocale()=='ru' ? 'Зарегистрироваться' : ( app()->getLocale()=='am' ? 'Գրանցվել' : 'Sign Up')) }}</button>
+
 
                 <div class="email-message mt-2"></div>
         </div>

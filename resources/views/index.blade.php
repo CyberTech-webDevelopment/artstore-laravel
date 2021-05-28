@@ -28,7 +28,7 @@
     @endif
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
-{{--        @dump(session('modal_type'))--}}
+        @dump(session('modal_type'))
         @if(session('modal_type')[0] == 'check_email')
 
             <script>
@@ -128,7 +128,7 @@
 
             </script>
         @endif
-     @elseif(session('modal_type') == 'no_reset_email')
+     @elseif(session('modal_type') == 'no_reset_email' || session()->has('error_reset'))
 
         <script>
             setTimeout(function () {

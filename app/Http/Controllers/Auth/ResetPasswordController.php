@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -41,8 +42,8 @@ class ResetPasswordController extends Controller
         $user = Users::where('email', $request->email)->first();
         if ($user == null || $user->is_verified == 0) {
 
-            return redirect()->back()->with(['error_reset' => 'Email not exists']);
-
+            return redirect()->back()
+                ->with('error_reset', trans('auth.email_not_exists',[],App::getLocale()));
         }
         $reset_token = bin2hex(random_bytes(64));
         MailController::ResetPasswordEmail($user->name, $user->email, $reset_token);
@@ -67,7 +68,7 @@ class ResetPasswordController extends Controller
         if ($password != $password_conf)
         {
 
-            return redirect()->back()->with('modal_type','confirm_no_match')->with('no_confirm','Passwords doesnt not match');
+            return redirect()->back()->with('modal_type','confirm_no_match')->with('no_confirm',trans('auth.no_confirm_pass',[],App::getLocale()));
 
         }
         else{
@@ -79,7 +80,7 @@ class ResetPasswordController extends Controller
                 $user->password = Hash::make($password);
                 $user->save();
 //                @dump($user->password);
-                return redirect()->back()->with('modal_type','success_pass_change')->with('pass_change','Password changes successfuly');
+                return redirect()->back()->with('modal_type','success_pass_change')->with('pass_change',trans('auth.pass_successfuly',[],App::getLocale()));
 
             }
             else{

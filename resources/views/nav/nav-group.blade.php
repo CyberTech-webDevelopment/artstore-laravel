@@ -1,12 +1,10 @@
-
 @php
     //include "config/config.php";
     //include "lng.php";
     $arr_lng=array('am', 'ru', 'en');
+
     $locale=app()->getLocale();
-    //
-    //$sql="SELECT id, menu_name_$lng AS 'menu_name' FROM menu";
-    //$result=mysqli_query($con, $sql);
+    
 @endphp
 
     <section class="nav-group">
@@ -21,15 +19,16 @@
                             <input type="text" class="form-control"
                                    aria-label="Dollar amount (with dot and two decimal places)" id="search">
                             <div class="input-group-append">
+
                             <span class="input-group-text" id="icon-search">
                             	<img src="{{asset('assets\icons\vector-search.png')}}">
                             </span>
-                                <span class="input-group-text" id="icon-camera">
+                            <span class="input-group-text" id="icon-camera">
                             	<img src="{{asset('assets\icons\vector-camera.png')}}">
                             </span>
-                            </div>
                         </div>
                     </div>
+
                     <div class="align-self-end col-md-3">
                         <div class="d-flex hrader-left">
                             <div class="flex-fill orange">@lang('nav.nav.artstore')</div>
@@ -48,74 +47,77 @@
                                         @endforeach
 
 
-                                    </div>
+                                    @endforeach
+
 
                                 </div>
+
                             </div>
                         </div>
-                        <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
-                            <div class="btn-group">
+                    </div>
+                    <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
+                        <div class="btn-group">
 
-                                @if (Auth::check())
-                                    <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
-                                            aria-haspopup="true" aria-expanded="false">
-                                        Log In
-                                    </button>
-                                    <div class="dropdown-menu">
-                                        <a class="dropdown-item text-strong" href="#"></a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Messages</a>
-                                        <a class="dropdown-item" href="#">Purchases</a>
-                                        <a class="dropdown-item" href="#">Account Settings</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item header_logo_menu"
-                                           href="{{ route('logout') }}"
-                                           onclick="event.preventDefault();
+                            @if (Auth::check())
+                                <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                    Log In
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text-strong" href="#"></a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">Messages</a>
+                                    <a class="dropdown-item" href="#">Purchases</a>
+                                    <a class="dropdown-item" href="#">Account Settings</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item header_logo_menu"
+                                       href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                            Sign Out
-                                        </a>
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                              style="display: none;">
-                                            @csrf
-                                        </form>
-{{--                                        <a class="dropdown-item sign-out" href="{{ route('logout') }}">Sign Out</a>--}}
-                                    </div>
+                                        Sign Out
+                                    </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                          style="display: none;">
+                                        @csrf
+                                    </form>
+                                    {{--                                        <a class="dropdown-item sign-out" href="{{ route('logout') }}">Sign Out</a>--}}
+                                </div>
 
-                                @else
-                                    <button id="nav-sign-in" type="button" class="btn" data-toggle="modal"
-                                            data-target="#signIn">
-                                        <img src="{{asset('assets\icons\vector.png')}}">
-                                    </button>
-
-                                @endif
-
-                            </div>
-                            <div class="btn-group ">
-                                <button type="button" class="btn">
-                                    <img src="{{asset('assets\icons\vector-heart.png')}}">
+                            @else
+                                <button id="nav-sign-in" type="button" class="btn" data-toggle="modal"
+                                        data-target="#signIn">
+                                    <img src="{{asset('assets\icons\vector.png')}}">
                                 </button>
-                                <div>12</div>
-                            </div>
-                            <div class="btn-group">
-                                <button type="button" class="btn">
-                                    <img src="{{asset('assets\icons\vector-cart.png')}}">
-                                </button>
-                                <div>0</div>
-                            </div>
+
+                            @endif
+
+                        </div>
+                        <div class="btn-group ">
+                            <button type="button" class="btn">
+                                <img src="{{asset('assets\icons\vector-heart.png')}}">
+                            </button>
+                            <div>12</div>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn">
+                                <img src="{{asset('assets\icons\vector-cart.png')}}">
+                            </button>
+                            <div>0</div>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <?php
-        //    include "new-menu.php";
-        // include "subnav.php"; ?>
-    </section>
-    <section id="hidden">
-        <div class="row h-100">
-            <div class="w-100 h-100 back-hidden"></div>
         </div>
     </section>
+
+    <?php
+    //    include "new-menu.php";
+    // include "subnav.php"; ?>
+</section>
+<section id="hidden">
+    <div class="row h-100">
+        <div class="w-100 h-100 back-hidden"></div>
+    </div>
+</section>
 
 

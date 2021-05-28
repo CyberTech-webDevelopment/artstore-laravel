@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 
 class IndexController extends Controller
@@ -19,9 +20,9 @@ class IndexController extends Controller
                 $user->is_verified = 1;
                 $user->save();
 
-                return redirect()->route('index')->with('modal_type', ['success_email']);
+                return redirect()->route('index',App::getLocale())->with('modal_type', ['success_email']);
             } else {
-                return redirect()->route('index')->with('modal_type', ['time_end']);
+                return redirect()->route('index',App::getLocale())->with('modal_type', ['time_end']);
 
             }
         }
@@ -35,11 +36,11 @@ class IndexController extends Controller
             if ($tokenData != null) {
                 DB::table('password_resets')->where('token', $tokenData->token)->delete();
 
-                return redirect()->route('index')->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
+                return redirect()->route('index',App::getLocale())->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
 
             } else {
 
-                return redirect()->route('index')->with('modal_type', ['time_end_reset']);
+                return redirect()->route('index',App::getLocale())->with('modal_type', ['time_end_reset']);
 
             }
         }

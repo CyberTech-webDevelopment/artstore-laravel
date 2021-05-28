@@ -17,7 +17,7 @@
             </div>
             <div class="row">
                 <div class="modal-body" id="new-password-changed">
-                    <form action="{{ route('change.password') }}" method="POST">
+                    <form action="{{ route('change.password',app()->getLocale()) }}" method="POST">
                         @csrf
                         <div class="mt-3 mb-3 pt-4 pb-4">
 
