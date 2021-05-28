@@ -9,7 +9,7 @@ $('.check').on('change', function(){
             $(this).val('')
             $(this).attr('data-name', 0)
       }
-})  
+})
 
 $('#recaptcha-anchor').on('change', function(){
       if($(this).is(':checked')){
@@ -18,20 +18,20 @@ $('#recaptcha-anchor').on('change', function(){
       else{
             $('#captcha-parent').find('.required').removeClass('hide');
       }
-})  
+})
 // -------lock------------------
 $('#icon-lock').click( function(){
       let inp=$(this).parent().parent().find('input')
       if (inp.attr('type') == 'password'){
-            $(this).find('img').attr('src','icons/icon-look.png');
+            $(this).find('img').attr('src','assets/icons/icon-look.png');
             $(inp).attr('type', 'text');
             console.log('inp')
       } else {
-            $(this).find('img').attr('src','icons/icon-lock.png');
+            $(this).find('img').attr('src','assets/icons/icon-lock.png');
            $(inp).attr('type', 'password');
       }
       return false;
-});  
+});
  function ValidateEmail(email) {
       var expr = /^([\w-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/;
       return expr.test(email);
@@ -41,15 +41,32 @@ $('#icon-lock').click( function(){
             let valLngt=$(this).val().length
             let min=$(this).attr('min')
             let max=$(this).attr('max')
-
+            let lng=$(this).attr('data-lng')
+            let errorEmail, errorPass;
+            if(lng=='en'){
+               errorEmail='Please enter the valid e-mail.'
+               errorPass='Pleases enter '+min+' - '+max+' characters.'
+            }
+            else if(lng=='ru'){
+                errorEmail='Пожалуйста, введите действующий e-mail.'
+                errorPass='Пожалуйста, введите '+min+' - '+max+' символ.'
+            }
+            else if(lng=='am'){
+                errorEmail='Խնդրում ենք մուտքագրել վավեր էլ.փոստ'
+                errorPass='Խնդրում ենք մուտքագրել '+min+' - '+max+' նիշ'
+            }
+            else{
+                errorEmail='Please enter the valid e-mail.'
+                errorPass='Pleases enter '+min+' - '+max+' characters.'
+            }
             if($(this).attr('type')=='email'){
                   let mail=$('#reg-mail').val()
                   if(!ValidateEmail(mail)){
-                        $('.invalid-mail').html('Please enter the valid e-mail.')
-                        $(this).attr('data-name', 0) 
+                        $('.invalid-mail').html(errorEmail)
+                        $(this).attr('data-name', 0)
                   }
                   else{
-                       $('.invalid-mail').html('')  
+                       $('.invalid-mail').html('')
                        $(this).attr('data-name', 1)
                   }
             }
@@ -57,7 +74,7 @@ $('#icon-lock').click( function(){
                 if(valLngt<min || valLngt>max || valLngt===0){
                       console.log('error')
                       $(this).parent().parent().find('.required').addClass('hide');
-                      $(this).parent().parent().find('.invalid-inp').html('Pleases enter '+min+' - '+max+' characters.')
+                      $(this).parent().parent().find('.invalid-inp').html(errorPass)
                       $(this).attr('data-name', 0)
                 }
                 else{
@@ -74,7 +91,7 @@ $('#registration').click(function(){
     console.log(response);
     if (response.length === 0) {
         $('#required-captcha').removeClass('hide');
-     } 
+     }
      else{
         $('#required-captcha').addClass('hide');
       }
@@ -106,7 +123,7 @@ $('#registration').click(function(){
                         let mail=$('#reg-mail').val()
                         let pass=$('#reg-pass').val()
                         let agree=$('.check').attr('data-name')
-             
+
                        $.ajax({
                          type: "post",
                          url: "register-login/form.php",

@@ -14,21 +14,21 @@
 						</div>
 					</div>
 					<div class="">
-						<div class="text-strong ft-br-1">Information</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Information' : ( app()->getLocale()=='ru' ? 'Информация' : ( app()->getLocale()=='am' ? 'Տեղեկատվություն' : 'Information')) }}</div>
 						<div>
 							<ul>
-								<li><a href="">About Us</a></li>
-								<li><a href="">Contact Us</a></li>
-								<li><a href="">Rules & Policies</a></li>
-								<li><a href="">Blog</a></li>
-								<li><a href="">Help</a></li>
-								<li><a href="">Career</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'About Us' : ( app()->getLocale()=='ru' ? 'О нас' : ( app()->getLocale()=='am' ? 'Մեր մասին' : 'About Us')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Contact Us' : ( app()->getLocale()=='ru' ? 'Контакт' : ( app()->getLocale()=='am' ? 'Կապ մեզ հետ' : 'Contact Us')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Rules & Policies' : ( app()->getLocale()=='ru' ? 'Правила и политика' : ( app()->getLocale()=='am' ? 'Կանոններ և քաղաքականություն' : 'Rules & Policies')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Blog' : ( app()->getLocale()=='ru' ? 'Блог' : ( app()->getLocale()=='am' ? 'Բլոգ' : 'Blog')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Help' : ( app()->getLocale()=='ru' ? 'Помощь' : ( app()->getLocale()=='am' ? 'Օգնություն' : 'Help')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Career' : ( app()->getLocale()=='ru' ? 'Карьера' : ( app()->getLocale()=='am' ? 'Կարիերա' : 'Career')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'FAQ' : ( app()->getLocale()=='ru' ? 'ЧЗВ' : ( app()->getLocale()=='am' ? 'ՀՏՀ' : 'FAQ')) }}</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class=" ">
-						<div class="text-strong ft-br-1">Shop</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Shop' : ( app()->getLocale()=='ru' ? 'Магазин' : ( app()->getLocale()=='am' ? 'Խանութ' : 'Shop')) }}</div>
 						<div>
 							<ul>
 								<li><a href="">Jewelry</a></li>
@@ -45,11 +45,11 @@
 						</div>
 					</div>
 					<div class=" ">
-						<div class="text-strong ft-br-1">Customer Care</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Customer Care' : ( app()->getLocale()=='ru' ? 'Обслуживание клиентов' : ( app()->getLocale()=='am' ? 'Սպասարկման կենտրոն' : 'Customer Care')) }}</div>
 						<div>
 							<ul>
-								<li><a href="">My account</a></li>
-								<li><a href="">Wish List</a></li>
+								<li><a href="">{{ app()->getLocale()=='en' ? 'My account' : ( app()->getLocale()=='ru' ? 'Мой аккаунт' : ( app()->getLocale()=='am' ? 'Անձնական էջ' : 'My account')) }}</a></li>
+								<li><a href="">{{ app()->getLocale()=='en' ? 'Wish List' : ( app()->getLocale()=='ru' ? 'Список желаний' : ( app()->getLocale()=='am' ? ' ցուցակ' : 'Wish List')) }}</a></li>
 							</ul>
 						</div>
 					</div>
@@ -59,7 +59,7 @@
 			</div>
 			<div class="mr-auto ml-auto col-lg-4 col-md-5 col-sm-6 d-flex footer-right flex-column justify-content-start text-center">
 				<div class=" mb-4">
-					<div class="text-strong tuch pb-3 mt-0">Get In Tuch</div>
+					<div class="text-strong tuch pb-3 mt-0"> {{ app()->getLocale()=='en' ? 'Get In Tuch' : ( app()->getLocale()=='ru' ? 'tuch' : ( app()->getLocale()=='am' ? 'tuch' : 'Get In Tuch')) }}</div>
 					<div class="soc-icons d-flex text-center justify-content-center">
 						<div class="linkdin ml-3 mr-3"><a href=""><img src="{{ asset('assets\icons\linkedin.png') }}"></i></a></div>
 						<div class="instagram ml-3 mr-3 "><a href=""><img src="{{ asset('assets\icons\instagram.png') }}"></a></div>
@@ -67,11 +67,11 @@
 					</div>
 				</div>
 				<div class="mt-4">
-					<div class="text-strong newsletter mb-2">Sign Up For Our Newsletter</div>
+					<div class="text-strong newsletter mb-2">{{ app()->getLocale()=='en' ? 'Sign Up For Our Newsletter' : ( app()->getLocale()=='ru' ? 'Подпишитесь на нашу рассылку' : ( app()->getLocale()=='am' ? ' Գրանցվեք մեր նորությունների համար' : 'Sign Up For Our Newsletter')) }}</div>
 
-                        <input type="text" name="" class="email-inp pl-2" placeholder="Enter your E-Mail">
+                        <input type="text" name="" class="email-inp pl-2" placeholder="{{ app()->getLocale()=='en' ? 'Enter your E-Mail' : ( app()->getLocale()=='ru' ? 'Введите адрес эл․ почты' : ( app()->getLocale()=='am' ? ' Մուտքագրեք ձեր էլ․փոստը' : 'Enter your E-Mail')) }}">
                         <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
-                        <button class="news-submit text-strong ml-2" >Sign Up</button>
+                        <button class="news-submit text-strong ml-2" >{{ app()->getLocale()=='en' ? 'Sign Up' : ( app()->getLocale()=='ru' ? 'Зарегистрироваться' : ( app()->getLocale()=='am' ? 'Գրանցվել' : 'Sign Up')) }}</button>
 
                     <div class="email-message mt-2"></div>
 				</div>
@@ -83,7 +83,7 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-7 col-sm-6 footer-bottom-left d-flex pt-3 justify-content-around">
-				<div class=" accept text-strong pl-0">We Accept></div>
+				<div class=" accept text-strong pl-0"> {{ app()->getLocale()=='en' ? 'We Accept' : ( app()->getLocale()=='ru' ? 'Мы принимаем' : ( app()->getLocale()=='am' ? 'Մենք ընդունում ենք' : 'We Accept')) }}</div>
 				<div class=""><img src="{{ asset('assets\images\cards\visa.png') }}" alt="visa" title="visa"></div>
 				<div class=""><img src="{{ asset('assets\images\cards\MasterCard.png') }}" alt="MasterCard" title="MasterCard"></div>
 				<div class=""><img src="{{ asset('assets\images\cards\paypal.png') }}" alt="paypal" title="paypal"></div>
@@ -116,7 +116,7 @@
 					</div>
             </div>
             <div class="text-center pt-3 pl-3 pr-3 footer-social-icons">
-            	<div class="text-strong tuch pb-3 mt-0">Get In Tuch</div>
+            	<div class="text-strong tuch pb-3 mt-0">{{ app()->getLocale()=='en' ? 'Get In Tuch' : ( app()->getLocale()=='ru' ? 'tuch' : ( app()->getLocale()=='am' ? 'tuch' : 'Get In Tuch')) }}</div>
 					<div class="soc-icons d-flex text-center justify-content-center">
 						<div class="linkdin ml-2 mr-2 "><a href=""><img src="{{ asset('assets\icons\linkedin.png') }}"></a></div>
 						<div class="instagram ml-2 mr-2 "><a href=""><img src="{{ asset('assets\icons\instagram.png') }}"></a></div>
@@ -125,31 +125,31 @@
             </div>
         </div>
         <div class="text-center footer-m-form">
-        	    <div class="text-strong newsletter mb-2">Sign Up For Our Newsletter</div>
+        	    <div class="text-strong newsletter mb-2">{{ app()->getLocale()=='en' ? 'Sign Up For Our Newsletter' : ( app()->getLocale()=='ru' ? 'Подпишитесь на нашу рассылку' : ( app()->getLocale()=='am' ? ' Գրանցվեք մեր նորությունների համար' : 'Sign Up For Our Newsletter')) }}</div>
 
-					<input type="text" name="" class="email-inp pl-2" placeholder="Enter your E-Mail">
+					<input type="text" name="" class="email-inp pl-2" placeholder="{{ app()->getLocale()=='en' ? 'Enter your E-Mail' : ( app()->getLocale()=='ru' ? 'Введите адрес эл․ почты' : ( app()->getLocale()=='am' ? ' Մուտքագրեք ձեր էլ․փոստը' : 'Enter your E-Mail')) }}">
                     <input type="hidden" value="{{ route('subscribe.email') }}" class='subscribe'>
-					<button class="news-submit text-strong ml-2" >Sign Up</button>
+					<button class="news-submit text-strong ml-2" >{{ app()->getLocale()=='en' ? 'Sign Up' : ( app()->getLocale()=='ru' ? 'Зарегистрироваться' : ( app()->getLocale()=='am' ? 'Գրանցվել' : 'Sign Up')) }}</button>
 
                 <div class="email-message mt-2"></div>
         </div>
         <div class="w-100 d-flex justify-content-between pl-0 pr-0 mt-5">
         	      <div class="pr-3 footer-m-ul-li">
-						<div class="text-strong ft-br-1">Information</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Information' : ( app()->getLocale()=='ru' ? 'Информация' : ( app()->getLocale()=='am' ? 'Տեղեկատվություն' : 'Information')) }}</div>
 						<div>
 							<ul>
-								<li><a href="">About Us</a></li>
-								<li><a href="">Contact Us</a></li>
-								<li><a href="">Rules & Policies</a></li>
-								<li><a href="">Blog</a></li>
-								<li><a href="">Help</a></li>
-								<li><a href="">Career</a></li>
-								<li><a href="">FAQ</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'About Us' : ( app()->getLocale()=='ru' ? 'О нас' : ( app()->getLocale()=='am' ? 'Մեր մասին' : 'About Us')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Contact Us' : ( app()->getLocale()=='ru' ? 'Контакт' : ( app()->getLocale()=='am' ? 'Կապ մեզ հետ' : 'Contact Us')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Rules & Policies' : ( app()->getLocale()=='ru' ? 'Правила и политика' : ( app()->getLocale()=='am' ? 'Կանոններ և քաղաքականություն' : 'Rules & Policies')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Blog' : ( app()->getLocale()=='ru' ? 'Блог' : ( app()->getLocale()=='am' ? 'Բլոգ' : 'Blog')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Help' : ( app()->getLocale()=='ru' ? 'Помощь' : ( app()->getLocale()=='am' ? 'Օգնություն' : 'Help')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'Career' : ( app()->getLocale()=='ru' ? 'Карьера' : ( app()->getLocale()=='am' ? 'Կարիերա' : 'Career')) }}</a></li>
+								<li><a href=""> {{ app()->getLocale()=='en' ? 'FAQ' : ( app()->getLocale()=='ru' ? 'ЧЗВ' : ( app()->getLocale()=='am' ? 'ՀՏՀ' : 'FAQ')) }}</a></li>
 							</ul>
 						</div>
 					</div>
 					<div class="pr-3 footer-m-ul-li">
-						<div class="text-strong ft-br-1">Shop</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Shop' : ( app()->getLocale()=='ru' ? 'Магазин' : ( app()->getLocale()=='am' ? 'Խանութ' : 'Shop')) }}</div>
 						<div>
 							<ul>
 								<li><a href="">Jewelry</a></li>
@@ -166,17 +166,17 @@
 						</div>
 					</div>
 					<div class="pr-3 footer-m-ul-li">
-						<div class="text-strong ft-br-1">Customer Care</div>
+						<div class="text-strong ft-br-1">{{ app()->getLocale()=='en' ? 'Customer Care' : ( app()->getLocale()=='ru' ? 'Обслуживание клиентов' : ( app()->getLocale()=='am' ? 'Սպասարկման կենտրոն' : 'Customer Care')) }}</div>
 						<div>
 							<ul>
-								<li><a href="">My account</a></li>
-								<li><a href="">Wish List</a></li>
+								<li><a href="">{{ app()->getLocale()=='en' ? 'My account' : ( app()->getLocale()=='ru' ? 'Мой аккаунт' : ( app()->getLocale()=='am' ? 'Անձնական էջ' : 'My account')) }}</a></li>
+								<li><a href="">{{ app()->getLocale()=='en' ? 'Wish List' : ( app()->getLocale()=='ru' ? 'Список желаний' : ( app()->getLocale()=='am' ? ' ցուցակ' : 'Wish List')) }}</a></li>
 							</ul>
 						</div>
 					</div>
             </div>
             <div class="w-100 mt-2">
-				<div class="accept text-strong text-center ">We Accept</div>
+				<div class="accept text-strong text-center ">{{ app()->getLocale()=='en' ? 'We Accept' : ( app()->getLocale()=='ru' ? 'Мы принимаем' : ( app()->getLocale()=='am' ? 'Մենք ընդունում ենք' : 'We Accept')) }}</div>
 				<div class=" w-100 d-flex justify-content-between pr-0 mt-3">
 					<div class="col-3 pl-0"><img src="{{ asset('assets\images\cards\visa.png') }}" alt="visa" title="visa"></div>
 					<div class="col-3"><img src="{{ asset('assets\images\cards\MasterCard.png') }}" alt="MasterCard" title="MasterCard"></div>

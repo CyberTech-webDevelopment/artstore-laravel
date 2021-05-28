@@ -91,7 +91,7 @@ class RegisterController extends Controller
             } else {
                 return redirect()->back()
                     ->with('modal_type', ['register_failed'])
-                    ->with('reg_failed', "Please fill all fields");
+                    ->with('reg_failed', trans('auth.failed',[], 'ru'));
 
 
             }

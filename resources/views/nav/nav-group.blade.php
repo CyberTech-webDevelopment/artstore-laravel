@@ -3,6 +3,7 @@
     //include "config/config.php";
     //include "lng.php";
     $arr_lng=array('am', 'ru', 'en');
+    $locale=app()->getLocale();
     //
     //$sql="SELECT id, menu_name_$lng AS 'menu_name' FROM menu";
     //$result=mysqli_query($con, $sql);
@@ -12,7 +13,7 @@
         <section class="header">
             <div class="container-fluid">
                 <div class="row">
-                    <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index') }}"><img
+                    <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index', $locale) }}"><img
                                 src="{{asset('assets\images\logo.png')}}"></a></div>
                     </a>
                     <div class="align-self-end col-md-7">
@@ -31,20 +32,19 @@
                     </div>
                     <div class="align-self-end col-md-3">
                         <div class="d-flex hrader-left">
-                            <div class="flex-fill orange">Sell on Artstore</div>
-                            <div class="flex-fill">About Us</div>
-                            <div class="flex-fill">Contact Us</div>
-                            <div class="flex-fill">Help</div>
+                            <div class="flex-fill orange">@lang('nav.nav.artstore')</div>
+                            <div class="flex-fill">@lang('nav.nav.about')</div>
+                            <div class="flex-fill">@lang('nav.nav.contact')</div>
+                            <div class="flex-fill">@lang('nav.nav.help')</div>
                             <div class="flex-fill ">
                                 <div class="flags-nav">
-
-                                    <img src="{{asset('assets\images\flags\en.png')}}" class='flg-nav-img active-nav-lng' name='en'>
+                                    <img src="{{asset('assets\images\flags/' .$locale.'.png')}}" class='flg-nav-img active-nav-lng' name='en'>
                                     <div class='hide hide-flags'>
                                         @foreach ($arr_lng as $value)
-
-                                            <img src="{{asset('assets\images\flags/'. $value . '.png')}}" class='flg-nav-img mt-1' name='{{ $value }}'>
-                                            <br>
-
+                                          @if ($value!=$locale)
+                                             <a href={{ url($value) }}><img src="{{asset('assets\images\flags/'. $value.'.png')}}" class='flg-nav-img mt-1' name='{{ $value }}'></a>
+                                             <br>
+                                             @endif
                                         @endforeach
 
 
