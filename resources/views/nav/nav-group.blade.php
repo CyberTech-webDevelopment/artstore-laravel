@@ -4,21 +4,22 @@
     $arr_lng=array('am', 'ru', 'en');
 
     $locale=app()->getLocale();
-    
+
 @endphp
 
-    <section class="nav-group">
-        <section class="header">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a href="{{ route('index', $locale) }}"><img
-                                src="{{asset('assets\images\logo.png')}}"></a></div>
-                    </a>
-                    <div class="align-self-end col-md-7">
-                        <div class="input-group mb-4">
-                            <input type="text" class="form-control"
-                                   aria-label="Dollar amount (with dot and two decimal places)" id="search">
-                            <div class="input-group-append">
+<section class="nav-group">
+    <section class="header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class=" align-self-stretch  align-items-stretch col-md-2 logo"><a
+                        href="{{ route('index', $locale) }}"><img
+                            src="{{asset('assets\images\logo.png')}}"></a></div>
+                </a>
+                <div class="align-self-end col-md-7">
+                    <div class="input-group mb-4">
+                        <input type="text" class="form-control"
+                               aria-label="Dollar amount (with dot and two decimal places)" id="search">
+                        <div class="input-group-append">
 
                             <span class="input-group-text" id="icon-search">
                             	<img src="{{asset('assets\icons\vector-search.png')}}">
@@ -37,77 +38,77 @@
                             <div class="flex-fill">@lang('nav.nav.help')</div>
                             <div class="flex-fill ">
                                 <div class="flags-nav">
-                                    <img src="{{asset('assets\images\flags/' .$locale.'.png')}}" class='flg-nav-img active-nav-lng' name='en'>
+                                    <img src="{{asset('assets\images\flags/' .$locale.'.png')}}"
+                                         class='flg-nav-img active-nav-lng' name='en'>
                                     <div class='hide hide-flags'>
                                         @foreach ($arr_lng as $value)
-                                          @if ($value!=$locale)
-                                             <a href={{ url($value) }}><img src="{{asset('assets\images\flags/'. $value.'.png')}}" class='flg-nav-img mt-1' name='{{ $value }}'></a>
-                                             <br>
-                                             @endif
+                                            @if ($value!=$locale)
+                                                <a href={{ url($value) }}><img
+                                                        src="{{asset('assets\images\flags/'. $value.'.png')}}"
+                                                        class='flg-nav-img mt-1' name='{{ $value }}'></a>
+                                                <br>
+                                            @endif
                                         @endforeach
 
 
-                                    @endforeach
-
+                                    </div>
 
                                 </div>
-
                             </div>
                         </div>
-                    </div>
-                    <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
-                        <div class="btn-group">
+                        <div class='d-flex d-flex justify-content-center align-self-end mb-4 mt-4 icons '>
+                            <div class="btn-group">
 
-                            @if (Auth::check())
-                                <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
-                                        aria-haspopup="true" aria-expanded="false">
-                                    Log In
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item text-strong" href="#"></a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Messages</a>
-                                    <a class="dropdown-item" href="#">Purchases</a>
-                                    <a class="dropdown-item" href="#">Account Settings</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item header_logo_menu"
-                                       href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
+                                @if (Auth::check())
+                                    <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Log In
+                                    </button>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item text-strong" href="#"></a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">Messages</a>
+                                        <a class="dropdown-item" href="#">Purchases</a>
+                                        <a class="dropdown-item" href="#">Account Settings</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item header_logo_menu"
+                                           href="{{ route('logout') }}"
+                                           onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Sign Out
-                                    </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                          style="display: none;">
-                                        @csrf
-                                    </form>
-                                    {{--                                        <a class="dropdown-item sign-out" href="{{ route('logout') }}">Sign Out</a>--}}
-                                </div>
+                                            Sign Out
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                              style="display: none;">
+                                            @csrf
+                                        </form>
+                                        {{--                                        <a class="dropdown-item sign-out" href="{{ route('logout') }}">Sign Out</a>--}}
+                                    </div>
 
-                            @else
-                                <button id="nav-sign-in" type="button" class="btn" data-toggle="modal"
-                                        data-target="#signIn">
-                                    <img src="{{asset('assets\icons\vector.png')}}">
+                                @else
+                                    <button id="nav-sign-in" type="button" class="btn" data-toggle="modal"
+                                            data-target="#signIn">
+                                        <img src="{{asset('assets\icons\vector.png')}}">
+                                    </button>
+
+                                @endif
+
+                            </div>
+                            <div class="btn-group ">
+                                <button type="button" class="btn">
+                                    <img src="{{asset('assets\icons\vector-heart.png')}}">
                                 </button>
-
-                            @endif
-
-                        </div>
-                        <div class="btn-group ">
-                            <button type="button" class="btn">
-                                <img src="{{asset('assets\icons\vector-heart.png')}}">
-                            </button>
-                            <div>12</div>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn">
-                                <img src="{{asset('assets\icons\vector-cart.png')}}">
-                            </button>
-                            <div>0</div>
+                                <div>12</div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn">
+                                    <img src="{{asset('assets\icons\vector-cart.png')}}">
+                                </button>
+                                <div>0</div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
     <?php
