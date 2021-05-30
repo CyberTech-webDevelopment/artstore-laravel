@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\App;
+
 class LoginController extends Controller
 {
     /*
@@ -25,7 +25,10 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;
+//    use AuthenticatesUsers;
+      use AuthenticatesUsers {
+          logout as performLogout;
+      }
 
     /**
      * Where to redirect users after login.
@@ -66,12 +69,11 @@ class LoginController extends Controller
             'password' => 'required|string',
         ]);
     }
-   
+
     protected function sendFailedLoginResponse(Request $request)
     {
         $errors = [$this->username() => trans('auth.failed',[],App::getLocale()), 'password' => 'auth.password',[],App::getLocale()];
 
-//        $errors_pass = ['password' => trans('auth.password')];
         $user = Users::where('email', $request->email)->first();
         // Check if user was successfully loaded, that the password matches
         // and active is not 1. If so, override the default error message.
@@ -108,5 +110,16 @@ class LoginController extends Controller
 //        dd($request->all());
 
         return array_merge($request->only($this->username(), 'password'), ['is_verified' => 1]);
+    }
+
+    public function redirectTo()
+    {
+        return app()->getLocale() . '/home';
+    }
+    public function logout(Request $request)
+    {
+      $this->performLogout($request);
+      return redirect(app()->getLocale() . '/');
+
     }
 }

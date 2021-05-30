@@ -87,12 +87,12 @@ class RegisterController extends Controller
 
                 return redirect()->back()
                     ->with('modal_type', ['register_failed'])
-                    ->with('reg_failed', trans('auth.reg_email_exists',[],App::getLocale()));
+                    ->with('reg_failed', trans('auth.reg_email_exists', [], App::getLocale()));
 
             } else {
                 return redirect()->back()
                     ->with('modal_type', ['register_failed'])
-                    ->with('reg_failed', trans('auth.reg_empty_field',[],App::getLocale()));
+                    ->with('reg_failed', trans('auth.reg_empty_field', [], App::getLocale()));
 
             }
 
@@ -107,13 +107,12 @@ class RegisterController extends Controller
         if ($user != null) {
 //          Send Email and Show Message
             MailController::SendSignUpEmail($user->name, $user->email, $user->verification_code);
-//            $active_modal_type = "check_email";
-//            dd($active_modal_type);
+
             return redirect()->back()->with('modal_type', ['check_email']);
 
         }
 //         Show error message
-//        $active_modal_type = "sign_up";
+
         return redirect()->back()->with('modal_type', ['check_email'], session()->flash('reg_error', 'Something Wrong'));
 
     }
