@@ -28,7 +28,7 @@
     @endif
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
-        @dump(session('modal_type'))
+{{--        @dump(session('modal_type'))--}}
         @if(session('modal_type')[0] == 'check_email')
 
             <script>

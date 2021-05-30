@@ -63,17 +63,19 @@ class ResetPasswordController extends Controller
             'password' => 'required|min:8',
             'password_confirm' => 'required',
         ]);
+        //ete validate failed bacel change passwordi modal@ u error@ emaili het uxarkel et modalin
         $password = $request->password;
         $password_conf = $request->password_confirm;
+        $email = $request->changing_email;
         if ($password != $password_conf)
         {
 
-            return redirect()->back()->with('modal_type','confirm_no_match')->with('no_confirm',trans('auth.no_confirm_pass',[],App::getLocale()));
+            return redirect()->back()->with('modal_type','confirm_no_match')->with('no_confirm',trans('auth.no_confirm_pass',[],App::getLocale()))->with('email', $email);
 
         }
         else{
 
-            $email = $request->changing_email;
+
             $user = Users::where('email',$email)->first();
             if ($user != null)
             {
