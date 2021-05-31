@@ -29,7 +29,8 @@
                                 </label>
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
-                                    <input type="password" class="form-control change-inp" name="password" id="change-pass"
+                                    <input type="password" class="form-control change-inp" name="password"
+                                           id="change-pass"
                                            class="password"
                                            min="8" max="16" data-name='0' data-lng='{{ app()->getLocale() }}'>
                                     <div class="input-group-append">
@@ -47,14 +48,17 @@
                                 </label>
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
+
                                     <input type="password" class="form-control change-inp" name="password_confirm"  id="confirm-change-pass"
                                            class="password" min="8" max="16" data-name='0' data-lng='{{ app()->getLocale() }}'>
+
                                 </div>
                                 <div class="invalid-inp invalid-pass float-left"></div>
                             </div>
                             @if(session()->has('email'))
-{{--                                @dump(session('email'))--}}
-                                <input type="hidden" name="changing_email" value="{{ session('email') }}" id="hidden-inp">
+
+                                <input type="hidden" name="changing_email" value="{{ session('email') }}"
+                                       id="hidden-inp">
                             @endif
                             <button type="submit" class="btn sign-in mt-2 text-strong text-uppercase"
                                     id="change-password">
@@ -67,6 +71,9 @@
                     <div class="text-center text-danger password-changed">
                         @if(session()->has('no_confirm'))
                             {{ session('no_confirm') }}
+                        @endif
+                        @if(session()->has('changing_validation'))
+                            {{ session('changing_validation') }}
                         @endif
                     </div>
                 </div>
