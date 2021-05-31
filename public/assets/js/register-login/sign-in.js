@@ -71,13 +71,15 @@ $('#login-icon-lock').on('click', function(){
             }
       })
 
-  $(document).bind('keypress', function(e) {
-            if(e.keyCode==13){
-                 $('#log-in').trigger('click');
-             }
-        });
+  $(document).on('bind', 'keypress', function(e) {
+      if($('#signIn').hasClass('show')){
+        if(e.which==13){
+            $('#log-in').trigger('click');
+        }
+      }
+    });
 
- $('#log-in').click(function(){
+ $('#log-in').on('click', function(){
       let countFilds=0
 
       $('.log-inp').each(function(){

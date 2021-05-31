@@ -20,7 +20,7 @@ $('#recaptcha-anchor').on('change', function(){
       }
 })
 // -------lock------------------
-$('#icon-lock').click( function(){
+$('#icon-lock').on('click', function(){
       let inp=$(this).parent().parent().find('input')
       if (inp.attr('type') == 'password'){
             $(this).find('img').attr('src','assets/icons/icon-look.png');
