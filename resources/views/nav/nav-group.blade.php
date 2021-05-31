@@ -111,7 +111,7 @@
             </div>
         </div>
     </section>
-
+@include('nav.nav_menu')
 </section>
 <section id="hidden">
     <div class="row h-100">
