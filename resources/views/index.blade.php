@@ -143,6 +143,13 @@
 
     @endif
     {{--    End Modal checking--}}
+    @include('carusel.carusel')
+    @include('sections.section-new-arrivals')
+    @include('sections.section-hot-offers')
+    @include('sections.bestseller')
+    @include('sections.gifts')
+    @include('sections.latest-products')
+    @include('sections.from-our-blog')
 @endsection
 
 @section('scripts')

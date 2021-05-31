@@ -132,7 +132,7 @@
 
 
 					<input type="text" name="" class="email-inp pl-2" placeholder="{{ app()->getLocale()=='en' ? 'Enter your E-Mail' : ( app()->getLocale()=='ru' ? 'Введите адрес эл․ почты' : ( app()->getLocale()=='am' ? ' Մուտքագրեք ձեր էլ․փոստը' : 'Enter your E-Mail')) }}">
-                    <input type="hidden" value="{{ route('subscribe.email',app()->getLocale()) }}" class='subscribe'>
+                    <input type="hidden" value="{{ route('subscribe.email', app()->getLocale()) }}" class='subscribe'>
 					<button class="news-submit text-strong ml-2" >{{ app()->getLocale()=='en' ? 'Sign Up' : ( app()->getLocale()=='ru' ? 'Зарегистрироваться' : ( app()->getLocale()=='am' ? 'Գրանցվել' : 'Sign Up')) }}</button>
 
 
