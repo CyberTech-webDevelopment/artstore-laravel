@@ -12,6 +12,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 
 class ResetPasswordController extends Controller
@@ -59,10 +60,24 @@ class ResetPasswordController extends Controller
 
     public function change_password(Request $request)
     {
-        $validated = $request->validate([
-            'password' => 'required|min:8',
-            'password_confirm' => 'required',
+
+        $validated = Validator::make($request->all(), [
+            'changing_email' => ['required', 'email', 'max:255'],
+            'password' => ['required','min:8'],
+            'password_confirm' => ['required','min:8']
+
+            // 'g-recaptcha-response' => ['required','captcha'],
         ]);
+        if (isset($validated) && $validated->fails()) {
+            $failedRules = $validated->failed();
+
+            return redirect()->back()
+                    ->with('modal_type','confirm_no_match')
+                    ->with('changing_validation', trans('auth.change_pass_error', [], App::getLocale()));
+
+        }
+        dd($validated);
+
         //ete validate failed bacel change passwordi modal@ u error@ emaili het uxarkel et modalin
         $password = $request->password;
         $password_conf = $request->password_confirm;
