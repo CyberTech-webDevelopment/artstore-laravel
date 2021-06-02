@@ -13,7 +13,7 @@
                         @foreach($menu as $elem)
                             {{--                            @dd($elem->sub_menues)--}}
                             <li class='d-flex nav-item justify-content-center align-items-center'><a
-                                    class='nav-link first-nav-link' id=list-{{$elem['id']}}-list data-toggle='list'
+                                    class='nav-link first-nav-link' id="list-{{$elem['id']}}-list" data-toggle='list'
                                     href='#list-{{ $elem['id'] }}'
                                     role='tab' aria-controls='home'>
                                     {{ $elem['menu_name_' . app()->getLocale()]   }}
@@ -37,7 +37,7 @@
 
                                         <li class='d-flex nav-item nav-second-li justify-content-center align-items-center'>
                                             <a
-                                                class='nav-link' id=list-sub-{{ $sub_el['id'] }}-list data-toggle='list'
+                                                class='nav-link' id="list-sub-{{ $sub_el['id'] }}-list" data-toggle='list'
                                                 href='#list-sub-{{$sub_el['id']}}'
                                                 role='tab'
                                                 aria-controls='home'>{{ $sub_el['sub_menu_name_' . app()->getLocale()] }}</a>
@@ -49,7 +49,7 @@
                         </nav>
 
 
-                        <div class="tab-content tab-content-sub-menu" id="nav-tabContent">
+                        <div class="tab-content tab-content-sub-menu ovverhidden-sub-menu" id="nav-tabContent">
                             @php
                                 $left = 0;
                             @endphp
