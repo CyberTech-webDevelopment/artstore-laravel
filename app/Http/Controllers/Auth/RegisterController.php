@@ -113,7 +113,7 @@ class RegisterController extends Controller
         }
 //         Show error message
 
-        return redirect()->back()->with('modal_type', ['check_email'], session()->flash('reg_error', 'Something Wrong'));
+        return redirect()->back()->with('modal_type', ['conn_error']);
 
     }
     // protected function create(array $data)

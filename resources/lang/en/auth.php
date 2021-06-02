@@ -38,5 +38,6 @@ return [
     'pass_successfuly'=>'Password changes successfuly',
     'no_confirm_pass' => 'Passwords doesnt not match',
     'change_pass_error'=>'Passwords must be at least 8 characters long',
+    'wrong_reg'=>'Something wrong',
 
 ];
