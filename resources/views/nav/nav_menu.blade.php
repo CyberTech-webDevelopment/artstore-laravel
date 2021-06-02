@@ -47,8 +47,6 @@
                                 </ul>
                             </div>
                         </nav>
-
-
                         <div class="tab-content tab-content-sub-menu overhidden-sub-menu" id="nav-tabContent">
                             @php
                                 $left = 0;

@@ -76,7 +76,7 @@ class ResetPasswordController extends Controller
                     ->with('changing_validation', trans('auth.change_pass_error', [], App::getLocale()));
 
         }
-        dd($validated);
+//        dd($validated);
 
         //ete validate failed bacel change passwordi modal@ u error@ emaili het uxarkel et modalin
         $password = $request->password;

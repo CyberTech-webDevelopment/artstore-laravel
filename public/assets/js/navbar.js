@@ -45,8 +45,7 @@ $('.nav-second-li a').on('click', function(){
    $(this).parent().addClass('active-border')
    let left=$(this).offset().left-130
    let th_id=$(this).attr('href')
-   console.log(left+'--left')
-
+//    console.log(left+'--left')
    if(left>860){
       $(''+th_id+'').css({'left': 'unset','right': 0})
    }
@@ -56,14 +55,10 @@ $('.nav-second-li a').on('click', function(){
    if($( window ).width()<1050 && left>600){
     $(''+th_id+'').css({'left': 'unset','right': 0})
    }
-   console.log($( window ).width()+' -=-=-=-=-')
   })
 
   $( ".scroll-div" ).on('scroll', function() {
-    // $('.sub-categories').removeClass('show')
-    // $('.sub-categories').removeClass('active')
      let scroll_active_border_left=$('.active-border').offset().left-130
      let th_id=$('.active-border').find('a').attr('href')
          $(''+th_id+'').css('left', scroll_active_border_left+'px')
-    console.log($('.active-border').offset().left)
   })
