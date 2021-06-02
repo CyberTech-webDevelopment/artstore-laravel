@@ -1,5 +1,5 @@
 .navbar{
-	padding: 0 
+	padding: 0
 }
 #navbar{
 	width: 100%;
@@ -37,14 +37,25 @@ nav{
 	background: #f1cdcd;
 }
 .tab-content-sub-menu{
-	width: 100%
+	width: 100%;
+
+}
+.overhidden-sub-menu{
+  overflow: hidden;
+    height: 188px;
+    position: absolute;
 }
 .tab-content-sub-menu>div{
 	position: absolute;
-	
+
 }
 .sub-categories{
 	background: #fff;
 	padding: 20px;
 	position: absolute;
+}
+@media (max-width: 1050px) and (min-width: 768px){
+    #navbar ul{
+        font-size: 12px
+    }
 }
