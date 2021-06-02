@@ -52,7 +52,7 @@
                                 $left = 0;
                             @endphp
                             @foreach($el->sub_menues as $sub_el)
-                                <div style="left: {{$left . '%'}}" class="tab-pane fade sub-categories"
+                                <div style="left: {{$left . '%'}}" class="tab-pane fade sub-categories sub-categories-div"
                                      id="list-sub-{{$sub_el['id']}}" role="tabpanel"
                                      aria-labelledby="list-sub-{{$sub_el['id']}}-list">
                                     <div class="" id="navbarNavDropdown1">
