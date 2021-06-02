@@ -14,21 +14,22 @@ $('.news-submit').on('click', function(){
                  dataType: 'json',
                  success: function(res){
                      if(res.insert){
-                        message.html(res.insert)
-                         setTimeout(function(){$('.email-message').html('')},1000)
+                        message.html('<span class="text-center text-success"> '+ res.insert + '</span>')
+                         setTimeout(function(){$('.email-message').html('')},2000)
                      }
                      else if(res.isset){
-                        message.html(res.isset)
+
+                        message.html('<span class="text-center text-danger">' + res.isset + '</span>')
                      }
                      else{
-                        message.html(res.no)
+                        message.html('<span class="text-center text-danger">' + res.no + '</span>')
                      }
                  }
              })
-             : message.html('Invalid email')
+             : message.html('<span class="text-center text-danger">Invalid email</span>')
     }
     else{
-        message.html('Please fill fild')
+        message.html('<span class="text-center text-danger">Please fill fild</span>')
     }
 
 })

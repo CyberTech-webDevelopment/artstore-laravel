@@ -101,6 +101,18 @@
                 }, 500);
 
             </script>
+        @elseif(session('modal_type') == 'conn_error')
+
+            <script>
+                setTimeout(function () {
+
+                    $(document).ready(function () {
+                        $('#s12_con').trigger('click');
+                    });
+
+                }, 500);
+
+            </script>
 
         @elseif(session('modal_type')[0] == 'success_reset')
 
