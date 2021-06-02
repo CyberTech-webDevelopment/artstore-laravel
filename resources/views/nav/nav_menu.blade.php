@@ -14,7 +14,7 @@
                             {{--                            @dd($elem->sub_menues)--}}
                             <li class='d-flex nav-item justify-content-center align-items-center'><a
                                     class='nav-link first-nav-link' id=list-{{$elem['id']}}-list data-toggle='list'
-                                    href=''
+                                    href='#list-{{ $elem['id'] }}'
                                     role='tab' aria-controls='home'>
                                     {{ $elem['menu_name_' . app()->getLocale()]   }}
                                 </a></li>
@@ -31,13 +31,17 @@
                             <div class="collapse navbar-collapse scroll-div" id="navbarNavDropdown">
                                 <ul class="d-flex flex-nowrap nav nav-pills nav-justified navbar-nav align-self-stretch list-group"
                                     id="list-tab" role="tablist">
+
                                     @foreach($el->sub_menues as $sub_el)
 
 
                                         <li class='d-flex nav-item nav-second-li justify-content-center align-items-center'>
                                             <a
-                                                class='nav-link' id=list-sub-{{ $sub_el['id'] }}-list data-toggle='list' href=''
-                                                role='tab' aria-controls='home'>{{ $sub_el['sub_menu_name_' . app()->getLocale()] }}</a></li>
+                                                class='nav-link' id=list-sub-{{ $sub_el['id'] }}-list data-toggle='list'
+                                                href='#list-sub-{{$sub_el['id']}}'
+                                                role='tab'
+                                                aria-controls='home'>{{ $sub_el['sub_menu_name_' . app()->getLocale()] }}</a>
+                                        </li>
                                     @endforeach
 
                                 </ul>
@@ -46,29 +50,52 @@
 
 
                         <div class="tab-content tab-content-sub-menu" id="nav-tabContent">
+                            @php
+                                $left = 0;
+                            @endphp
+                            @foreach($el->sub_menues as $sub_el)
+                                <div style="left: {{$left . '%'}}" class="tab-pane fade sub-categories"
+                                     id="list-sub-{{$sub_el['id']}}" role="tabpanel"
+                                     aria-labelledby="list-sub-{{$sub_el['id']}}-list">
+                                    <div class="" id="navbarNavDropdown1">
+                                        <div
+                                            class="nav nav-pills nav-justified navbar-nav align-self-stretch list-group"
+                                            id="list-tab1" role="tablist">
 
-                            <div class="tab-pane fade sub-categories"
-                                 id="list-sub-" role="tabpanel"
-                                 aria-labelledby="list-sub--list">
-                                <div class="" id="navbarNavDropdown1">
-                                    <div class="nav nav-pills nav-justified navbar-nav align-self-stretch list-group"
-                                         id="list-tab1" role="tablist">
+                                            <div class="d-flex">
+                                                <div>
+                                                    @php
+                                                        $count = 0;
+                                                    @endphp
+                                                    @foreach($sub_el->sub_categories as $sub_cat)
+                                                        @php
+                                                            $count++;
+                                                        @endphp
+                                                        <div
+                                                            class="mt-1 mb-1 text-strong">{{$sub_cat['name_category_' . app()->getLocale()]}}
+                                                        </div>
 
-                                        <div class="d-flex">
-                                            <div>
+                                                        @if($count == 6)
+                                                </div>
+                                                <div class="ml-5">
+                                                    @endif
 
 
-                                                <div class="mt-1 mb-1 text-strong"></div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="ml-5">
 
-                                            </div>
-                                            <div class="ml-5">
-
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
+                                    @php
+                                        $left+=10;
 
+                                    @endphp
+                                </div>
+
+                            @endforeach
                         </div>
                     </div>
                 @endforeach
