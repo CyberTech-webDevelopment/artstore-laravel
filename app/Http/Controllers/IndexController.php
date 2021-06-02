@@ -16,13 +16,14 @@ class IndexController extends Controller
 
             $verification_code = $request->get('code');
             $user = Users::OlderThanOneDay($verification_code)->first();
+
             if ($user != null) {
                 $user->is_verified = 1;
                 $user->save();
 
-                return redirect()->route('index',App::getLocale())->with('modal_type', ['success_email']);
+                return redirect()->route('index', App::getLocale())->with('modal_type', ['success_email']);
             } else {
-                return redirect()->route('index',App::getLocale())->with('modal_type', ['time_end']);
+                return redirect()->route('index', App::getLocale())->with('modal_type', ['time_end']);
 
             }
         }
@@ -36,11 +37,11 @@ class IndexController extends Controller
             if ($tokenData != null) {
                 DB::table('password_resets')->where('token', $tokenData->token)->delete();
 
-                return redirect()->route('index',App::getLocale())->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
+                return redirect()->route('index', App::getLocale())->with('modal_type', ['success_reset'])->with('email', $request->get('email'));
 
             } else {
 
-                return redirect()->route('index',App::getLocale())->with('modal_type', ['time_end_reset']);
+                return redirect()->route('index', App::getLocale())->with('modal_type', ['time_end_reset']);
 
             }
         }
