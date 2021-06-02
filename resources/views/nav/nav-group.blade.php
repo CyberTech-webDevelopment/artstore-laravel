@@ -38,7 +38,7 @@
                         <div class="flex-fill ">
                             <div class="flags-nav">
                                 <img src="{{asset('assets\images\flags/' .$locale.'.png')}}"
-                                     class='flg-nav-img active-nav-lng' name='en'>
+                                     class='flg-nav-img active-nav-lng'>
                                 <div class='hide hide-flags'>
                                     @foreach ($arr_lng as $value)
                                         @if ($value!=$locale)
@@ -61,20 +61,20 @@
                             @if (Auth::check())
                                 <button type="button" class="btn dropdown-toggle text-strong" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
-                                    Log In
+                                    @lang('nav.nav.login')
                                 </button>
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item text-strong" href="#"></a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="#">Messages</a>
-                                    <a class="dropdown-item" href="#">Purchases</a>
-                                    <a class="dropdown-item" href="#">Account Settings</a>
+                                    <a class="dropdown-item" href="#">@lang('nav.nav.message')</a>
+                                    <a class="dropdown-item" href="#">@lang('nav.nav.purchas')</a>
+                                    <a class="dropdown-item" href="#">@lang('nav.nav.account_setting')</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item header_logo_menu"
                                        href="{{ route('logout',app()->getLocale()) }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        Sign Out
+                                        @lang('nav.nav.sign_out')
                                     </a>
                                     <form id="logout-form" action="{{ route('logout',app()->getLocale()) }}"
                                           method="POST"

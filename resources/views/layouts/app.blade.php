@@ -39,6 +39,7 @@
 <div id="app">
 {{--    @dump(Auth::user()->id)--}}
     @include('nav.nav-group')
+    @include('nav.mobile-navbar')
 {{--   *****  Modals *****  --}}
     @include('register-login.register-login-modals')
 {{--    @yield('nav-group')--}}
@@ -96,7 +97,7 @@
     {{--            </div>--}}
     {{--        </nav> --}}
 
-    <main class="py-4">
+    <main>
         @yield('content')
     </main>
 

@@ -47,7 +47,7 @@ $('.nav-second-li').click(function(){
    let th_id=$(this).find('a').attr('href')
    console.log(left)
 
-   if(left>1000){
+   if(left>860){
       $(''+th_id+'').css({'left': 'unset','right': 0})
    }
    else{

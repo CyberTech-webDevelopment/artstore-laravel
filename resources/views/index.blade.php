@@ -11,24 +11,11 @@
 @endsection
 
 @section('content')
-    @if ($errors->has('email') || $errors->has('password'))
 
-        <script>
 
-            setTimeout(function () {
-
-                $(document).ready(function () {
-                    $('#nav-sign-in').trigger('click');
-                });
-
-            }, 500);
-
-        </script>
-
-    @endif
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
-{{--        @dump(session('modal_type'))--}}
+        {{--        @dump(session('modal_type'))--}}
         @if(session('modal_type')[0] == 'check_email')
 
             <script>
@@ -42,7 +29,7 @@
 
             </script>
         @elseif(session('modal_type')[0] == 'register_failed')
-{{--@dump('register_failed')--}}
+            {{--@dump('register_failed')--}}
             <script>
                 setTimeout(function () {
 
@@ -128,7 +115,7 @@
 
             </script>
         @endif
-     @elseif(session('modal_type') == 'no_reset_email' || session()->has('error_reset'))
+    @elseif(session('modal_type') == 'no_reset_email' || session()->has('error_reset'))
 
         <script>
             setTimeout(function () {
@@ -143,6 +130,7 @@
 
     @endif
     {{--    End Modal checking--}}
+
     @include('carusel.carusel')
     @include('sections.section-new-arrivals')
     @include('sections.section-hot-offers')
