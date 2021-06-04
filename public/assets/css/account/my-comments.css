@@ -1,0 +1,32 @@
+.font-size-16{
+	font-size: 16px
+}
+.edit-comment, .delete-comment{
+	width: 84px;
+	height: 26px;
+	border-radius: 8px;
+	border: none;
+	outline: none;
+}
+.edit-comment{
+   background: #E2D6C6;
+}
+.delete-comment{
+   background: #fff;
+   border: 1px solid #E2D6C6;
+}
+#comment-pages{
+	background: none;
+	width: 40%;
+	margin: 0 auto
+}
+#comment-pages ul li a{
+	color: #764D10;
+	font-size: 20px;
+	font-weight: 700
+}
+.page-row{
+	position: relative;
+	bottom: 0;
+}
+

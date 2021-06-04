@@ -68,7 +68,7 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">@lang('nav.nav.message')</a>
                                     <a class="dropdown-item" href="#">@lang('nav.nav.purchas')</a>
-                                    <a class="dropdown-item" href="#">@lang('nav.nav.account_setting')</a>
+                                    <a class="dropdown-item" href="{{ route('account',app()->getLocale()) }}">@lang('nav.nav.account_setting')</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item header_logo_menu"
                                        href="{{ route('logout',app()->getLocale()) }}"

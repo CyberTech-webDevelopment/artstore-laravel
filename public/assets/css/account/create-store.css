@@ -1,0 +1,96 @@
+.font-size-12{
+	font-size: 12px;
+}
+.font-size-14{
+	font-size: 14px;
+	color: #383838;
+}
+.store-inp{
+	width: 40%;
+	height: 30px;
+	background: #FFFFFF;
+	border: 1px solid #959595;
+	box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+}
+.store-inp:focus{
+    border: 1px solid #959595;
+	box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+.border-bottom{
+   border-bottom: 1px solid #C2C2C2;
+   width: 100%
+}
+.drag-photo{
+	background: #F0F0F0;
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+}
+.browse{
+	margin: 0 auto;
+	width: 82px;
+	height: 22px;
+	background: #F0F0F0;
+	border: 1px solid #E54500;
+	border-radius: 8px;
+	color: #E54500;
+	cursor: pointer;
+}
+input[type="file"] {
+    display: none;
+}
+.text-underline{
+   text-decoration: underline;
+   color: #E54500;
+}
+textarea{
+	border: 1px solid #959595;
+	box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+	border-radius: 8px;
+	width: 46%;
+	height: 100px
+}
+textarea:focus{
+	outline: none;
+}
+.style-group-img{
+	width: 98%
+}
+.h5-click, .edit-h5-click{
+	cursor: pointer;
+}
+.create-store-btn{
+	width: 184px;
+	height: 40px;
+	background: #DF5700;
+	border-radius: 8px;
+	color: #fff;
+	border: none;
+}
+.hide-style{
+	display: none;
+}
+.style-group-cont>div{
+ width: 32%
+}
+
+.success-text{
+	color: #f97a29;
+}
+.lets-sell{
+	width: 190px;
+	height: 40px;
+	background: #DD8A28;
+	border-radius: 8px;
+	color: #fff;
+	border: none;
+}
+.go-to-product{
+	width: 150px;
+	color: #000;
+	margin: 0 auto 
+}
+.go-to-product:hover{
+	color: #DF5700
+}

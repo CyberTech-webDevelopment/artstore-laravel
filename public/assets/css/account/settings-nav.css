@@ -1,0 +1,67 @@
+.account-settings{
+	background: #FFF7EC;
+	height: 100vh
+}
+.border-bottom{
+	border-bottom: 1px solid #B8B8B8;
+
+}
+.settings-nav a{
+	color: #000 !important;
+	font-size: 20px;
+
+}
+.settings-nav .active{
+	background: #FFF7EC !important;
+	color: #000 !important
+}
+.avatar img{
+	width: 80px;
+	height: 80px;
+	border-radius: 50%
+}
+.upload{
+	color: #E54500;
+	border-radius: 8px;
+	width: 92px;
+	height: 30px;
+	outline: none;
+	background: none;
+	border: 1px solid #8D8D8D;
+}
+.remove{
+	color: #2D5131;
+	border-radius: 8px;
+	width: 92px;
+	height: 30px;
+	outline: none;
+	background: none;
+	border: 1px solid #8D8D8D;
+}
+.account-change-inp, .delete-account-sel{
+   height: 36px;
+   border: 1px solid  #959595 !important;
+   border-radius: 10px
+}
+#account-change-pass{
+  border-bottom-right-radius: 10px;
+  border-top-right-radius: 10px
+}
+.save-account-change{
+	width: 180px;
+	height: 36px;
+	background: #DF5700;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+	color: #fff;
+}
+.delete-account{
+	width: 180px;
+	height: 36px;
+	background: #D6D6D6;
+	border-radius: 10px;
+	border: none;
+	outline: none;
+	color: #5C5C5C;
+}

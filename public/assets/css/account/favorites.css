@@ -1,0 +1,88 @@
+.ps-abs-image{
+	position: relative;
+	width: 100%;
+	z-index: -2
+}
+.transparent-bg-div{
+	/*height: 218px;*/
+	width: 100%;
+}
+.description{
+	font-family: 'Roboto';
+
+}
+.description p:nth-child(1){
+	padding: 0;
+	font-weight: 600;
+	font-size: 16px
+}
+.description p:nth-child(2){
+	font-size: 14px
+}
+.price{
+	font-weight: bold;
+}
+.add-cart{
+	font-size: 14px;
+	color: #7d4e23;
+	font-weight: bold
+}
+.br-1:not(:last-child){
+	border-right: 1px solid #E2D6C6;
+}
+.hover-icons{
+	width: 90%;
+	position: absolute;
+	display: none;
+}
+.transparent-bg-div:hover{
+   background: #000000b8;
+}
+.transparent-bg-div:hover .hover-icons{
+	display: block;
+}
+.transparent-bg-div:hover .div-icons span{
+	display: block;
+}
+.transparent-bg-div:hover .div-icons p{
+	display: block;
+}
+.div-icons{
+	margin: 44% auto;
+}
+.div-icons span, .div-icons p{
+    display: none;
+}
+.icon-heart-red{
+	position: absolute;
+	right: 18px;
+	top: 5px
+}
+.icon-heart-red img{
+	width: 40px;
+}
+/*------------------------------------------*/
+.sort{
+	width: 120px;
+	border: 1px solid #764D10;
+}
+.sort-span{
+	font-size: 18px
+}
+.border-bottom{
+	border-bottom: 1px solid #E2D6C6;
+}
+#favorites-pages{
+	background: none;
+	width: 40%;
+	margin: 0 auto
+}
+#favorites-pages ul li a{
+	color: #764D10;
+	font-size: 20px;
+	font-weight: 700
+}
+.page-row{
+	position: relative;
+	bottom: 0;
+}

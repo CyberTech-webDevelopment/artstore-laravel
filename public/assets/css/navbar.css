@@ -21,6 +21,11 @@ nav{
 #navbar ul li a{
 	color: #3D2006;
 }
+#navbar #list-tab li .active{
+
+    color: unset!important;
+
+}
 .btn{
 	outline: none;
 }
