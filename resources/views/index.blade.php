@@ -12,10 +12,21 @@
 
 @section('content')
 
+    @if ($errors->has('email') || $errors->has('password'))
+
+        <script>
+            setTimeout(function () {
+                $(document).ready(function () {
+                    $('#nav-sign-in').trigger('click');
+                });
+            }, 500);
+        </script>
+
+    @endif
 
     {{--    Modals Checking --}}
     @if(session()->has('modal_type'))
-        {{--        @dump(session('modal_type'))--}}
+{{--        @dump(session('modal_type'))--}}
         @if(session('modal_type')[0] == 'check_email')
 
             <script>
@@ -40,7 +51,7 @@
                 }, 500);
 
             </script>
-        @elseif(session('modal_type')[0] == 'success_email' || session('modal_type') == 'success_pass_change')
+        @elseif(session('modal_type')[0] == 'success_email' || session('modal_type') == 'success_pass_change' )
 
             <script>
                 setTimeout(function () {
@@ -158,9 +169,6 @@
     <script src="{{asset('assets\js\carusel\owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets\js\carusel\main.js')}}"></script>
     <script src="{{asset('assets\js\carusel-vertical\carusel-vertical.js')}}"></script>
-    <script src="{{asset('assets\js\register-login\sign-up.js')}}"></script>
-    <script src="{{asset('assets\js\register-login\sign-in.js')}}"></script>
-    <script src="{{asset('assets\js\forgot-password\forgot-password.js')}}"></script>
-    <script src="{{asset('assets\js\forgot-password\change-password.js')}}"></script>
+
 
 @endsection

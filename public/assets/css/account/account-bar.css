@@ -1,0 +1,180 @@
+.font-size-16{
+	font-size: 16px
+}
+.font-size-20{
+	font-size: 18px
+}
+.font-size-24{
+	font-size: 20px
+}
+.acount-nav{
+	background: #FFF7EC;
+}
+.border-top{
+	border-top: 1px solid #b1adad !important;
+}
+.edit-profile>a>span{
+	margin-top: -5px
+}
+.user-info{
+    padding-left: 1.5rem;
+}
+.star-cont img{
+  width: 1vw;
+  height: 1vw
+}
+.account-open-bar{
+	width: 70px;
+	height: 44px;
+	background: #FFF7EC;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+	text-align: center;
+	display: none;
+}
+.acount-user-img img{
+   border-radius: 50%;
+   width: 100%;
+}
+.nav-link.active{
+	color: #DF5700 !important;
+	background: none !important
+}
+.new-int{
+	color: #DF5700 !important;
+	font-weight: bold
+}
+.acount-type{
+	width: 130px;
+	font-size: 1.2vw;
+	border-radius: 8px;
+	border: none;
+	outline: none;
+	color: #fff;
+	background: #C4C4C4;
+}
+.acount-type:focus{
+	outline: none;
+}
+.acount-type-active{
+	background: #DF5700;
+}
+
+#v-pills-tab a, .acount-sign-out{
+	font-size: 18px;
+	font-weight: 700;
+	color: #000;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}
+#add-product-a{
+	cursor: pointer;
+}
+.hidden-nav{
+	display: none;
+}
+.show-nav{
+	display: block !important;
+}
+/*------------------media 1024---------------------*/
+@media (max-width: 1024px) {
+	.font-size-20 {
+	    font-size: 15px;
+	}
+}
+/*------------------media 768---------------------*/
+@media (max-width: 768px) {
+	.row{
+		padding: 0
+	}
+	.account-open-bar-row{
+		position: absolute;
+		z-index: 100;
+		left: 0;
+		padding: 0
+	}
+	
+	.acount-nav{
+		position: absolute;
+		z-index: 200;
+		left: 0;
+		display: none;
+	}
+	.account-open-bar{
+		display: block;
+		cursor: pointer;
+	}
+	.welcome {
+	    width: 60%;
+	    margin: 8vh;
+	    color: #df5700f2;
+    }
+    .account-mobile-contents{
+    	margin-top: 60px;
+    	padding: 0
+    }
+    .font-size-24{
+    	font-size: 28px
+    }
+    .font-size-20{
+    	font-size: 24px
+    }
+    .star-cont img{
+	  width: 30px;
+	  height: 30px;
+    }
+    .star-cont span{
+    	font-size: 30px
+    }
+    .acount-type {
+	    width: 234px;
+	    font-size: 22px;
+    }
+}
+
+/*------------------media 425---------------------*/
+@media (max-width: 425px) {
+     .font-size-24{
+    	font-size: 24px
+    }
+    .font-size-20{
+    	font-size: 20px
+    }
+    .star-cont img{
+	  width: 20px;
+	  height: 20px;
+    }
+    .star-cont span{
+    	font-size: 20px
+    }
+    .acount-user-img img {
+	    width: 56%;
+    }
+	    border-radius: 50%;
+	.user-info{
+	    padding-left: 0
+	}
+	.acount-type {
+	    width: 180px;
+	    font-size: 18px;
+    }
+}
+/*------------------media 375---------------------*/
+@media (max-width: 375px) {
+     .font-size-24{
+    	font-size: 20px
+    }
+    .font-size-20{
+    	font-size: 18px
+    }
+    .star-cont img{
+	  width: 18px;
+	  height: 18px;
+    }
+    .star-cont span{
+    	font-size: 18px
+    }
+}

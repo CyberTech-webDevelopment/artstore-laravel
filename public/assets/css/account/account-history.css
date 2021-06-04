@@ -1,0 +1,26 @@
+.account-history{
+	background: #FFF7EC;
+	height: 100vh;
+}
+.account-history thead tr th{
+	border-bottom: 1px solid #E54500 !important;
+}
+.account-history th{
+  color: #E54500;
+  font-size: 16px
+}
+.account-history td{
+	font-size: 14px;
+	font-weight: 700
+
+}
+#delete-history{
+	width: 90px;
+	height: 30px;
+	background: #FFFFFF;
+	border: 1px solid #676767;
+	border-radius: 6px;
+}
+/*.product-info-history p{
+	font-size: 16px
+}*/
