@@ -49,7 +49,7 @@
                             <label>Category</label>
                             <select id="select-menu">
                                 <option class="add_product_menu">Select Category</option>
-                                <input type="hidden" id="sel_cat_route" value="{{route('menu.submenu')}}">
+                                <input type="hidden" id="sel_cat_route" value="{{route('menu.submenu',app()->getLocale())}}">
                             @foreach($menu as $m)
                                     <option name="menu" class="add_product_menu" data-menu-id='{{ $m['id'] }}'>{{ $m['menu_name_' . app()->getLocale()] }}</option>
                                 @endforeach
