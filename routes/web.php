@@ -32,7 +32,9 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
 
 
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    Route::get('/shop-first', [App\Http\Controllers\ShopFirstController::class, 'shop_first'])->name('shop-first');
+    Route::get('/shop-second', [App\Http\Controllers\ShopSecondController::class, 'shop_second'])->name('shop-second');
+    Route::get('/shop-third', [App\Http\Controllers\ShopThirdController::class, 'shop_third'])->name('shop-third');
 
 });
 

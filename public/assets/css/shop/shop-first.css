@@ -1,0 +1,350 @@
+.baner{
+	width: 100%;
+	height: 400px;
+}
+.baner-container{
+	height: 50%;
+	margin-top: 8%;
+	padding-top: 4%
+}
+.baner-container p{
+	font-size: 14px
+}
+.baner-container>div:first-child{
+	width: 140px
+}
+.baner-container>div:nth-child(2){
+	width: 80%
+}
+.baner-container>div:nth-child(3){
+	width: 80%;
+}
+.user-avatar-div{
+	width: 140px;
+	height: 140px;
+	border-radius: 50%;
+}
+.contact-seller{
+	color: #7D4747;
+	border-radius: 8px;
+	font-size: 14px;
+	padding-bottom: 0;
+	border: 1px solid #8D5E5E;;
+}
+.social-icons{
+    align-self: center;
+}
+.social-icons img:not(.share){
+	width: 26px
+}
+.share{
+  width: 20px
+}
+.shop-menu{
+	height: 14%;
+	overflow-x: auto;
+	background: rgba(255, 240, 221, 0.8);
+}
+.shop-menu div{
+	font-variant: small-caps;
+	font-family: 'Sedan SC 400';
+	font-size: 18px;
+	font-weight: bold
+}
+.white-starts-cont img{
+	width: 16px;
+	height: 16px
+}
+.contact-seller img{
+	height: 10px
+}
+.shop-search{
+  border-radius: 14px;
+  border: 1px solid #764D10;
+  height: 40px
+}
+.shop-search>div{
+	height: 40px
+}
+#shop-search-inp{
+  outline: none;
+  height: 38px
+}
+#shop-search-inp:focus{
+  outline: none;
+}
+.div-absolute{
+	background: #FFF0DD;;
+	height: 120px;
+	width: 84%;
+	z-index: -2;
+	position: absolute;
+}
+h3{
+     font-variant: small-caps;
+	font-family: 'Sedan SC 400';
+	/*font-weight: bold;*/
+	color:  #3D2006;
+	font-size: 34px
+}
+.transparent-bg-div{
+	height: 176px;
+	width: 176px
+}
+.sort-by-divs .transparent-bg-div{
+	width: 210px;
+	height: 210px
+}
+.sort-by-sel{
+	border: 1px solid #764D10;
+	outline: none;
+}
+.sort-by-sel:focus{
+	outline: none;
+}
+.sort-by-sel option{
+	font-size: 16px;
+	padding: 5px
+}
+.width-inherit{
+	width: inherit;
+}
+.filter{
+	display: none;
+}
+.sort-and-filter{
+	justify-content: flex-end;
+}
+.right-div-item:nth-child(3) .hot{
+		top: -10px;
+}
+.right-div-item:nth-child(4) .hot{
+		top: -10px;
+}
+.soty-by .pagination-cont{
+	border-bottom: 1px solid #E2D6C6;
+}
+.soty-by nav{
+	margin-bottom: 50px
+
+}
+.pagination-cont nav{
+	background: #fff
+}
+.pagination{
+	width: min-content;
+	margin: 0 auto;
+}
+.page-link{
+	color: #764D10;
+	font-size: 20px;
+	font-weight: bold;
+}
+.reviews{
+	font-size: 20px
+}
+.reviews input{
+	border-radius: 8px;
+	border: 1px solid #B1B1B1;
+	font-size: 16px;
+	height: 40px;
+	width: 80%;
+	outline: none;
+}
+.reviews input:focus{
+	outline: none;
+}
+/*.reviews input{
+	border-radius: 8px;
+	outline: none;
+}*/
+
+/*--------------------------------max-width 1440px----------------------------*/
+@media (max-width: 1440px) {
+	.sort-by-divs .transparent-bg-div{
+	    width: 200px;
+	    height: 200px
+    }
+}
+/*--------------------------------max-width 1024px----------------------------*/
+@media (max-width: 1240px) {
+	.baner-container>div:nth-child(2){
+	     width: 74%
+     }
+     .baner-container>div:nth-child(3){
+	    width: 74%;
+     }
+	.sort-by-divs .transparent-bg-div{
+	    width: 168px;
+	    height: 168px
+    }
+    .transparent-bg-div {
+        height: 110px;
+        width: 110px
+    }
+}
+
+/*--------------------------------max-width 768px----------------------------*/
+@media (max-width: 768px) {
+	.container-mobile-menu{
+		padding: 0
+	}
+	.container-mobile-menu .row{
+		padding: 0
+	}
+	.shop-search-cont{
+		width: 80% !important
+	}
+	.sort-by-divs .transparent-bg-div {
+        width: 142px;
+        height: 142px;
+    }
+    .container-fluid{
+    	padding: 0
+    }
+    .nowrap-cont{
+    	overflow-x: auto;
+    }
+    .div-absolute{
+    	width: 100%;
+    	height: 100px
+    }
+    .right-div-item:nth-child(4) {
+        padding-top: unset;
+    }
+    .right-div-item:nth-child(3) {
+        padding-top: unset;
+    }
+     .transparent-bg-div {
+        height: 158px;
+        width: 158px
+    }
+    .right-div-item{
+    	border: none !important;
+    }
+
+}
+
+/*--------------------------------max-width 425px----------------------------*/
+@media (max-width: 425px) {
+	.baner{
+      height: 284px;
+     }
+	.baner-container{
+       margin-top: 0;
+       height: 75%;
+       align-self: unset !important;
+	}
+	.baner-container>div:first-child{
+	    width: 120px
+    }
+	.user-avatar-div{
+		width: 120px;
+		height: 120px;
+	}
+	.baner-container>div:nth-child(2){
+	     width: 63%
+     }
+     .baner-container>div p{
+	     font-size: 16px
+     }
+     .baner-container>div:nth-child(3){
+	    width: 92%;
+	    margin-top: 28%;
+        margin-left: -96%;
+        height: 120px
+     }
+     .social-icons{
+     	align-self: flex-end;
+     }
+     .social-icons img:not(.share) {
+         width: 20px;
+    }
+    .shop-menu div{
+	    font-size: 16px;
+    }
+    .hidden-span{
+    	display: none;
+    }
+    .scroll-cont{
+    	overflow: scroll;
+    }
+    .nowrap-cont{
+    	width: max-content;
+    	overflow: unset;
+    }
+    .sort-by-divs .transparent-bg-div {
+        width: 170px;
+        height: 170px;
+    }
+    .filter{
+    	display: block;
+    }
+    .sort{
+    	display: none;
+    }
+    .sort-and-filter{
+    	justify-content: unset;
+    }
+}
+
+
+/*--------------------------------max-width 375px----------------------------*/
+@media (max-width: 375px) {
+   .baner-container>div:nth-child(1){
+      margin-left: 0.5rem !important
+   }
+   .baner-container>div:nth-child(3){
+	    margin-top: 35%;
+     }
+     .sort-by-divs .transparent-bg-div {
+        width: 142px;
+        height: 142px;
+    }
+}
+
+/*--------------------------------max-width 320px----------------------------*/
+@media (max-width: 325px) {
+	.baner {
+       height: 256px;
+     }
+	.baner-container{
+		height: 70%
+	}
+   .baner-container>div:first-child{
+	    width: 100px
+    }
+	.user-avatar-div{
+		width: 100px;
+		height: 100px;
+	}
+	.contact-seller img{
+		width: 12px
+	}
+	.contact-seller{
+		font-size: 12px
+	}
+	.baner-container>div p {
+       font-size: 14px;
+    }
+    .container>div:nth-child(3) {
+       margin-top: 40% !important;
+    }
+    .baner-container>div:nth-child(3) p{
+    	font-size: 12px
+    }
+	.white-starts-cont img{
+		width: 12px;
+		height: 12px
+	}
+	.social-icons img:not(.share) {
+        width: 17px;
+     }
+     .sort-by-divs>div{
+     	width: 147px;
+     }
+     .sort-by-divs .transparent-bg-div {
+        width: 116px;
+        height: 116px;
+    }
+}
