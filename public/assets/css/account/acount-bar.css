@@ -1,0 +1,61 @@
+.font-size-16{
+	font-size: 16px
+}
+.font-size-20{
+	font-size: 1vw
+}
+.font-size-24{
+	font-size: 1.1vw
+}
+.acount-nav{
+	background: #FFF7EC;
+}
+.border-top{
+	border-top: 1px solid #b1adad !important;
+}
+.edit-profile>a>span{
+	margin-top: -5px
+}
+.star-cont img{
+  width: 1vw;
+  height: 1vw
+}
+.acount-user-img img{
+   border-radius: 50%;
+   width: 100%;
+}
+.nav-link.active{
+	color: #DF5700 !important;
+	background: none !important
+}
+.new-int{
+	color: #DF5700 !important;
+	font-weight: bold
+}
+.acount-type{
+	width: 130px;
+	font-size: 1.2vw;
+	border-radius: 8px;
+	border: none;
+	outline: none;
+	color: #fff;
+	background: #C4C4C4;
+}
+.acount-type:focus{
+	outline: none;
+}
+.acount-type-active{
+	background: #DF5700;
+}
+
+#v-pills-tab a, .acount-sign-out{
+	font-size: 18px;
+	font-weight: 700;
+	color: #000;
+}
+.hide{
+	display: none;
+}
+.show{
+	display: block;
+}

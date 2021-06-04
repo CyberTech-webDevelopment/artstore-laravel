@@ -12,12 +12,12 @@
     <!-- Scripts -->
 {{--    <script src="{{ asset('js/app.js') }}" defer></script>--}}
 
-    <!-- Fonts -->
+<!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-{{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
+    {{--    <link href="{{ asset('css/app.css') }}" rel="stylesheet">--}}
     <link rel="icon" href="{{ asset('assets\images\logo.png') }}">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
           integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
@@ -37,13 +37,13 @@
 </head>
 <body>
 <div id="app">
-{{--    @dump(Auth::user()->id)--}}
+    {{--    @dump(Auth::user()->id)--}}
     @include('nav.nav-group')
     @include('nav.mobile-navbar')
-{{--   *****  Modals *****  --}}
+    {{--   *****  Modals *****  --}}
     @include('register-login.register-login-modals')
-{{--    @yield('nav-group')--}}
-           {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
+    {{--    @yield('nav-group')--}}
+    {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
     {{--            <div class="container">--}}
     {{--                <a class="navbar-brand" href="{{ url('/') }}">--}}
     {{--                    {{ config('app.name', 'Laravel') }}--}}
@@ -102,7 +102,6 @@
     </main>
 
 
-
     @include('footer.footer')
 
 </div>
@@ -123,6 +122,10 @@
 <script src="{{asset('assets\js\navbar.js')}}"></script>
 <script src="{{asset('assets\js\mobile-navbar.js')}}"></script>
 <script src="{{asset('assets\js\footer.js')}}"></script>
+<script src="{{asset('assets\js\register-login\sign-up.js')}}"></script>
+<script src="{{asset('assets\js\register-login\sign-in.js')}}"></script>
+<script src="{{asset('assets\js\forgot-password\forgot-password.js')}}"></script>
+<script src="{{asset('assets\js\forgot-password\change-password.js')}}"></script>
 
 @yield('scripts')
 </body>

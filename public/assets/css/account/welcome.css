@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Sedan SC 400';
+    font-style: normal;
+    font-weight: normal;
+    src: local('fonts/Sedan SC 400'), url('fonts/Sedan SC 400.ttf') format('ttf');
+  }
+.welcome{
+	width: 60%;
+	margin-top: 16vh;
+	color: #df5700f2
+}
+h2{
+	font-weight: 700;
+	font-family: Sansita One;
+}
+.create-store{
+	font-family: Roboto;
+	font-size: 20px;
+    color: #FFFFFF;
+	width: 190px;
+	height: 40px;
+	background: #DF5700;
+	border-radius: 8px;
+	border: none;
+}

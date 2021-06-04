@@ -1,0 +1,82 @@
+thead{
+	background: #FFF4E6;
+}
+thead tr th{
+	border: none !important;
+
+}
+th{
+	border: none !important;
+	font-size: 20px;
+	font-weight: 700
+
+}
+tr{
+	border-bottom: 1px solid  #F1E1D2;
+}
+td{
+	
+	vertical-align: middle !important;
+}
+.product-img{
+	width: 64px;
+	height: 64px
+}
+.product-img img{
+	width: 100%
+}
+.product-info{
+	/*width: 70%*/
+}
+.product-info p{
+  font-family: 'Sedan SC 400';
+  font-size: 18px
+}
+.product-info div{
+    height: 46px;
+    width: 310px;
+    font-size: 14px;
+   /* 
+    text-overflow: ellipsis;
+  white-space: nowrap;*/
+  overflow: hidden;
+}
+.sml-caps{
+	font-variant: small-caps;
+}
+.minus, .plus{
+	width: 20px;
+	height: 24px;
+	font-weight: 700;
+	border: 1px solid #000;
+	border-radius: 2px;
+	background: none;
+	outline: none;
+}
+.total-cont{
+	width: 100%
+}
+.total-cont>div{
+	font-size: 18px;
+	font-weight: 700;
+	position: relative;
+	right: 0
+}
+#select-pay{
+	width: 150px;
+    height: 22px;
+    text-align: end;
+    border-radius: 10px;
+    border: 1px solid #000;
+    color: #000
+}
+.p-checkout{
+	width: 240px;
+	height: 40px;
+	color: #fff;
+	border-radius: 10px;
+	font-weight: 700;
+	border: none;
+	font-size: 20px;
+	background: #E0763B;
+}

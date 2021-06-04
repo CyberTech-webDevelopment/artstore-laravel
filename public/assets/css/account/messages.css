@@ -1,0 +1,155 @@
+.users-bar, .message{
+	background: #EEEEEE;
+	height: 100vh;
+}
+.messages{
+	background: #F7F7F7;
+	height: 100vh;
+}
+.users-cont{
+	overflow-x: hidden;
+	height: 92%;
+}
+.message-container{
+	overflow-x: hidden;
+	height: 83%;
+}
+.artstore-messages{
+	background: #fff;
+}
+.artstore-messages p:first-child{
+	color: #DF5700;
+	font-variant: small-caps;
+	font-family: 'Sedan SC 400';
+}
+.artstore-messages img{
+	width: 56px;
+	height: 56px
+}
+.users-messages{
+border-bottom: 1px solid #E1DADA;
+
+}
+.users-messages img{
+	width: 56px;
+	height: 56px;
+	border-radius: 50%
+}
+.font-size-18 {
+	font-size: 18px
+}
+.font-size-16 {
+	font-size: 16px
+}
+.font-size-14 {
+	font-size: 14px
+}
+.font-size-12 {
+	font-size: 12px
+}
+.user-search{
+	height: 24px !important;
+	box-shadow: unset;
+}
+.form-control:focus{
+	box-shadow: unset;
+	border: unset;
+}
+#user-search-span{
+	height: 24px !important;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px
+	
+}
+#user-search-span img{
+	height: 100%
+}
+.active-user{
+	background: #FFF7EC;
+}
+.input-group-search{
+	width: 90% !important;
+	margin: 0 auto !important
+}
+.shadow-1{
+	box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.25);
+}
+
+.messages-head{
+	height: 42px;
+	background: #FFF0DD;
+	width: 100%
+}
+.messages-head img{
+	width: 36px;
+	border-radius: 50%
+}
+.messages-head p:last-child{
+	line-height: 10px
+}
+.message-container{
+	width: 100%
+}
+.message-container>div{
+	width: 100%
+}
+.another-user img{
+	width: 62px;
+	border-radius: 50%
+}
+.this-user img{
+	width: 62px;
+	border-radius: 50%
+}
+/*----------arrow popover------------------*/
+.bs-popover-left > .arrow::after, .bs-popover-auto[x-placement^="left"] > .arrow::after {
+	border-left-color: #fff;
+}
+
+.bs-popover-right > .arrow::after, .bs-popover-auto[x-placement^="right"] > .arrow::after {
+	border-right-color: #fff;
+}
+
+.arrow {
+	top: 40%;
+}
+.popover-body{
+	border-radius: 10px;
+}
+/* demo styles so they just appear normally, don't typically use these! */
+.popover {
+	position: relative;
+	margin-bottom: 0.5rem;
+	max-width: 380px !important;
+	z-index: 1 !important
+}
+.message-time{
+	text-align: end;
+}
+.date{
+	color: #666666
+}
+.new-message{
+	width: 100%;
+	height: 80px;
+	position: relative;
+	bottom: 0;
+	border: 1px solid #B08F8F;;
+}
+.add-text{
+	width: 10%
+}
+.write-text{
+   width: 80%;
+   height: 90%;
+	overflow-x: hidden;
+}
+.write-text:focus {
+	outline: 1px solid #E1DADA;
+}
+.write-text:active {
+	outline: 1px solid #E1DADA;
+}
+.send-message{
+	width: 10%
+}

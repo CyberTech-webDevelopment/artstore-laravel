@@ -1,0 +1,22 @@
+.delete-all-products{
+	color: #916363 !important;
+    cursor: pointer;
+}
+.cancel{
+	width: 100px;
+	height: 34px;
+	border: 1px solid #E54500;
+	border-radius: 8px;
+	color: #E54500;
+}
+.delete{
+    width: 100px;
+	height: 34px;
+	background: #E54500;
+	border-radius: 8px;
+	color: #fff;
+	border: none;
+}
+.img-delete{
+	width: 60px
+}
