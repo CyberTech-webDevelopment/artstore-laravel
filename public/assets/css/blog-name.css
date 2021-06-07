@@ -1,0 +1,276 @@
+.bold-caption{
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 26px;
+}
+.main-image{
+    width: 650px;
+}
+.caps{
+	font-variant: small-caps;
+    font-family: 'Sedan SC 400';
+    text-transform: capitalize;
+    font-size: 25px;
+    line-height: 29px;
+    margin-bottom:45px;
+}
+.f-flex-item2{
+    padding-left: 25px;
+    font-weight: 500;
+}
+.plain-text{
+    margin-top: 20px;
+}
+.s-image{
+    width: 500px;
+}
+.hr1{
+    width: 80%;
+    margin: auto;
+    margin-bottom: 15px;
+}
+.comments{
+    border-right: 1px solid rgb(196, 195, 195);
+    font-size: 13px;
+    font-weight: 600;
+    /* padding-right: 15px; */
+}
+
+.comment-last{
+    font-size: 13px;
+    font-weight: 600;
+}
+.act-style{
+    width: 20px;
+    height: 20px;
+}
+.act-style1{
+    width: 20px;
+}
+.div-comment{
+    margin-left: 32%;
+}
+.share{
+    margin-right: 0;
+}
+
+.share-img{
+    width: 22px;
+}
+.span-share{
+    margin-right: 10px;
+}
+.soc-img{
+    width: 30px;
+    padding: 3px;
+}
+
+.user-icon{
+    width: 100px;
+}
+.user-message{
+    display: table;
+    margin-top: 40px;
+
+}
+.img-user{
+    display:table-cell;
+    width:9%
+
+
+}
+.input-user{
+    display:table-cell;
+    width:86%
+}
+.input-user input{
+    width: 100%;
+    margin-top: 4px;
+    padding: 3%;
+    border: 1px solid #c1c1c1;
+    border-radius: 6px;
+}
+.send{
+    display:table-cell;
+    width:5%;
+    position: relative;
+}
+.send img{
+    width: 25px;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+}
+.hr2{
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+.star{
+    width: 22px;
+    margin-right: 3px;
+}
+.mess-text{
+    font-size: 13px;
+    margin-top: 22px;
+}
+.user-name{
+    font-size: 15px;
+    font-weight: bolder;
+}
+.user-name span{
+    margin-left: 155px;
+    font-weight: 500;
+}
+@media (max-width: 1199px) {
+    .main-image {
+        width: 430px;
+    }
+    .caps{
+        margin-bottom: 14px;
+    }
+    .f-flex-text, .plain-text, .s-flex-item{
+        font-size: 13px;
+    }
+    .s-image {
+        width: 390px;
+    }
+    .img-user {
+        width: 11%;
+    }
+    .input-user input {
+        padding: 3.5%;
+    }
+}
+@media (max-width: 991px) {
+    .f-flex{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .s-flex-item{
+        width: 80%;
+        margin: auto;
+        align-self: center;
+    }
+    .f-flex-item2{
+        padding-left: 0;
+        margin-top: 25px;
+    }
+    .bold-caption{
+        text-align: center;
+    }
+    .s-flex-item {
+
+        justify-self: start;
+        margin-top: 0;
+    }
+
+    .div-comment {
+        margin-left: 0%;
+    }
+    .img-user {
+        width: 17%;
+    }
+    .input-user input {
+        padding: 5%;
+    }
+    .mess-text {
+        margin-top: 6px;
+    }
+    .f-flex-item2 {
+        text-align: center;
+    }
+    .plain-text{
+        text-align: center;
+    }
+}
+@media (max-width: 767px) {
+    .main-image {
+        width: 393px;
+    }
+    .s-flex{
+        flex-wrap: wrap;
+    }
+    .s-flex-item{
+        width: 100%;
+        text-align: center;
+    }
+    .div-comment{
+        flex-wrap: wrap;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+    .img-user {
+        width: 23%;
+    }
+    .input-user input {
+        padding: 7.1%;
+    }
+    .send img {
+        right: -11px;
+    }
+}
+@media (max-width: 425px) {
+    .main-image {
+        width: 393px;
+    }
+    .caps{
+        font-size: 17px;
+        text-align: left;
+    }
+    .f-flex-text{
+        text-align: left;
+    }
+    .plain-text{
+        text-align: left;
+    }
+    .s-flex-item{
+        text-align: left;
+    }
+    .img-user {
+        width: 25%;
+    }
+    .input-user input {
+        padding: 0;
+        height: 82px;
+        width: 270px;
+    }
+    .send img {
+        right: -5px;
+    }
+    .user-name span {
+        margin-left: 43px;
+    }
+
+}
+@media (max-width: 375px) {
+    .main-image {
+        width: 358px;
+
+    }
+    .s-image {
+    width: 342px;
+    }
+    .user-icon {
+        width: 87px;
+    }
+    .input-user input {
+        height: 71px;
+        width: 230px;
+}
+}
+@media (max-width: 320px) {
+    .main-image {
+        width: 300px;
+
+    }
+    .s-image {
+    width: 260px;
+    }
+    .img-user {
+        width: 31%;
+    }
+    .input-user input {
+        width: 176px;
+    }
+}
