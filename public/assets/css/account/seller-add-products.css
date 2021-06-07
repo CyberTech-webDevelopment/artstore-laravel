@@ -272,10 +272,19 @@ button:active {
     color: unset!important;
 
 }
-#single_size_group{
+.single_size_group{
 
     padding: 0;
+    width: 120px;
+    color: #000;
 
+}
+.sizes .dropdown-menu{
+    width: 7rem;
+    min-width: 7rem
+}
+.sizes_content{
+    width: 120px
 }
 .single_key{
 

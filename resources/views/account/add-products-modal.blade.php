@@ -151,17 +151,17 @@
                                     <div class="w-100 mr-1" id="sizes_opening">Sizes</div>
                                     <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                 </div>
-                                <div class="w-100 dropdown-menu hide menu-first-item pt-0 pb-0"
+                                <div class=" dropdown-menu hide menu-first-item pt-0 pb-0 sizes"
                                      style="position: relative;">
                                     @foreach($all_sizes as $k => $v)
-                                        <div class="dropdown-item" id="single_size_group">
+                                        <div class="dropdown-item single_size_group">
                                             <div
-                                                class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-2 pb-2 pl-3 pr-1" id="size_second_item">
+                                                class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0" id="size_second_item">
                                                 <div class="single_key">{{ $k }}</div>
                                                 <div class="single_key"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                             </div>
-                                            <div class="w-100 dropdown-menu hide menu-second-item"
-                                                 style="position: relative;"  id="sizes_content">
+                                            <div class=" dropdown-menu hide menu-second-item sizes_content"
+                                                 style="position: relative;" >
                                                 @foreach($v as $el)
                                                     <li class="mr-1 small sizes_small" data-table-name="{{ $k }}" tabIndex="-1">
                                                         <input type="checkbox"/>{{ $el['size'] }}</li>
