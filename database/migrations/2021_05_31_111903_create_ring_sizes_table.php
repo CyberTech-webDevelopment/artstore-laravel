@@ -15,7 +15,7 @@ class CreateRingSizesTable extends Migration
     {
         Schema::create('ring_sizes', function (Blueprint $table) {
             $table->id();
-            $table->float('r_size');
+            $table->float('size');
             $table->timestamps();
         });
     }

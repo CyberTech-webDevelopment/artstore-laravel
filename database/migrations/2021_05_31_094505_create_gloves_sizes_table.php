@@ -15,7 +15,7 @@ class CreateGlovesSizesTable extends Migration
     {
         Schema::create('gloves_sizes', function (Blueprint $table) {
             $table->id();
-            $table->float('g_size');
+            $table->float('size');
             $table->timestamps();
         });
     }

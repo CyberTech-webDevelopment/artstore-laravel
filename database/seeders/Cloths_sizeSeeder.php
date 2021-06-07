@@ -20,71 +20,71 @@ class Cloths_sizeSeeder extends Seeder
             0 =>
                 array (
                     'id'=>1,
-                    'c_size'=>'XXS'
+                    'size'=>'XXS'
 
                 ),
             1 =>
                 array (
                     'id'=>2,
-                    'c_size'=>'XS'
+                    'size'=>'XS'
 
                 ),
             2 =>
                 array (
                     'id'=>3,
-                    'c_size'=>'SM'
+                    'size'=>'SM'
 
                 ),
             3 =>
                 array (
                     'id'=>4,
-                    'c_size'=>'MD'
+                    'size'=>'MD'
 
                 ),
             4 =>
                 array (
                     'id'=>5,
-                    'c_size'=>'LG'
+                    'size'=>'LG'
 
                 ),
             5 =>
                 array (
                     'id'=>6,
-                    'c_size'=>'XL'
+                    'size'=>'XL'
 
                 ),
             6 =>
                 array (
                     'id'=>7,
-                    'c_size'=>'2XL'
+                    'size'=>'2XL'
                 ),
             7 =>
                 array (
                     'id'=>8,
-                    'c_size'=>'3XL'
+                    'size'=>'3XL'
 
                 ),
             8 =>
                 array (
                     'id'=>9,
-                    'c_size'=>'4XL'
+                    'size'=>'4XL'
 
                 ),
             9 =>
                 array (
                     'id'=>10,
-                    'c_size'=>'5XL'
+                    'size'=>'5XL'
                 ),
             10 =>
                 array (
                     'id'=>11,
-                    'c_size'=>'6XL'
+                    'size'=>'6XL'
 
                 ),
             11 =>
                 array (
                     'id'=>12,
-                    'c_size'=>'OS'
+                    'size'=>'OS'
 
                 ),
 
