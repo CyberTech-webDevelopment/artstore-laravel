@@ -20,156 +20,156 @@ class Shoes_materialsSeeder extends Seeder
             0 =>
                 array(
                     'id'=>1,
-                    'shoes_material_am'=>'Կաշի',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Leather'
+                    'material_am'=>'Կաշի',
+                    'material_ru'=>'',
+                    'material_en'=>'Leather'
                 ),
             1 =>
                 array(
                     'id'=>2,
-                    'shoes_material_am'=>'Լաքապատ կաշի',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Patent Leather'
+                    'material_am'=>'Լաքապատ կաշի',
+                    'material_ru'=>'',
+                    'material_en'=>'Patent Leather'
                 ),
             2 =>
                 array(
                     'id'=>3,
-                    'shoes_material_am'=>'Արհեստական կաշվե',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Faux Leather'
+                    'material_am'=>'Արհեստական կաշվե',
+                    'material_ru'=>'',
+                    'material_en'=>'Faux Leather'
                 ),
             3 =>
                 array(
                     'id'=>4,
-                    'shoes_material_am'=>'Ձեռագործ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Manmade'
+                    'material_am'=>'Ձեռագործ',
+                    'material_ru'=>'',
+                    'material_en'=>'Manmade'
                 ),
             4 =>
                 array(
                     'id'=>5,
-                    'shoes_material_am'=>'Գործվածք',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Fabric'
+                    'material_am'=>'Գործվածք',
+                    'material_ru'=>'',
+                    'material_en'=>'Fabric'
                 ),
             5 =>
                 array(
                     'id'=>6,
-                    'shoes_material_am'=>'Թավշակաշի',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Suede'
+                    'material_am'=>'Թավշակաշի',
+                    'material_ru'=>'',
+                    'material_en'=>'Suede'
                 ),
             6 =>
                 array(
                     'id'=>7,
-                    'shoes_material_am'=>'Քաթանե',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Canvas'
+                    'material_am'=>'Քաթանե',
+                    'material_ru'=>'',
+                    'material_en'=>'Canvas'
                 ),
             7 =>
                 array(
                     'id'=>8,
-                    'shoes_material_am'=>'Նուբուկ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Nubuck'
+                    'material_am'=>'Նուբուկ',
+                    'material_ru'=>'',
+                    'material_en'=>'Nubuck'
                 ),
             8 =>
                 array(
                     'id'=>9,
-                    'shoes_material_am'=>'Ռետինե',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Rubber'
+                    'material_am'=>'Ռետինե',
+                    'material_ru'=>'',
+                    'material_en'=>'Rubber'
                 ),
             9 =>
                 array(
                     'id'=>10,
-                    'shoes_material_am'=>'Կերպասե',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Satin'
+                    'material_am'=>'Կերպասե',
+                    'material_ru'=>'',
+                    'material_en'=>'Satin'
                 ),
             10 =>
                 array(
                     'id'=>11,
-                    'shoes_material_am'=>'Բուրդ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Wool'
+                    'material_am'=>'Բուրդ',
+                    'material_ru'=>'',
+                    'material_en'=>'Wool'
                 ),
             11 =>
                 array(
                     'id'=>12,
-                    'shoes_material_am'=>'Թավիշ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Velvet'
+                    'material_am'=>'Թավիշ',
+                    'material_ru'=>'',
+                    'material_en'=>'Velvet'
                 ),
             12 =>
                 array(
                     'id'=>13,
-                    'shoes_material_am'=>'Ցանց',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Mesh'
+                    'material_am'=>'Ցանց',
+                    'material_ru'=>'',
+                    'material_en'=>'Mesh'
                 ),
             13 =>
                 array(
                     'id'=>14,
-                    'shoes_material_am'=>'Բամբակ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Cotton'
+                    'material_am'=>'Բամբակ',
+                    'material_ru'=>'',
+                    'material_en'=>'Cotton'
                 ),
             14 =>
                 array(
                     'id'=>15,
-                    'shoes_material_am'=>'Միկրոֆիբր',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Microfiber'
+                    'material_am'=>'Միկրոֆիբր',
+                    'material_ru'=>'',
+                    'material_en'=>'Microfiber'
                 ),
             15 =>
                 array(
                     'id'=>16,
-                    'shoes_material_am'=>'Վինիլային',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Vinyl'
+                    'material_am'=>'Վինիլային',
+                    'material_ru'=>'',
+                    'material_en'=>'Vinyl'
                 ),
             16 =>
                 array(
                     'id'=>17,
-                    'shoes_material_am'=>'Լատեքս',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Latex'
+                    'material_am'=>'Լատեքս',
+                    'material_ru'=>'',
+                    'material_en'=>'Latex'
                 ),
             17 =>
                 array(
                     'id'=>18,
-                    'shoes_material_am'=>'Պոլիեսթեր',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Polyester'
+                    'material_am'=>'Պոլիեսթեր',
+                    'material_ru'=>'',
+                    'material_en'=>'Polyester'
                 ),
             18 =>
                 array(
                     'id'=>19,
-                    'shoes_material_am'=>'Վուշ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Linen'
+                    'material_am'=>'Վուշ',
+                    'material_ru'=>'',
+                    'material_en'=>'Linen'
                 ),
             19 =>
                 array(
                     'id'=>20,
-                    'shoes_material_am'=>'Նեյլոն',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Nylon'
+                    'material_am'=>'Նեյլոն',
+                    'material_ru'=>'',
+                    'material_en'=>'Nylon'
                 ),
             20 =>
                 array(
                     'id'=>21,
-                    'shoes_material_am'=>'Դենիմ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>'Denim'
+                    'material_am'=>'Դենիմ',
+                    'material_ru'=>'',
+                    'material_en'=>'Denim'
                 ),
             21 =>
                 array(
                     'id'=>22,
-                    'shoes_material_am'=>'Այլ',
-                    'shoes_material_ru'=>'',
-                    'shoes_material_en'=>''
+                    'material_am'=>'Այլ',
+                    'material_ru'=>'',
+                    'material_en'=>''
                 ),
 
 

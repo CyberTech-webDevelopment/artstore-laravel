@@ -15,9 +15,9 @@ class CreateBagMaterialsTable extends Migration
     {
         Schema::create('bag_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('bag_material_am');
-            $table->string('bag_material_ru');
-            $table->string('bag_material_en');
+            $table->string('material_am');
+            $table->string('material_ru');
+            $table->string('material_en');
             $table->timestamps();
         });
     }

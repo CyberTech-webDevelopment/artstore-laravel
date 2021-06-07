@@ -15,9 +15,9 @@ class CreateClothMaterialsTable extends Migration
     {
         Schema::create('cloth_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('cloth_material_am');
-            $table->string('cloth_material_ru');
-            $table->string('cloth_material_en');
+            $table->string('material_am');
+            $table->string('material_ru');
+            $table->string('material_en');
             $table->timestamps();
         });
     }
