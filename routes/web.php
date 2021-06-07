@@ -33,6 +33,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/shop-third', [App\Http\Controllers\ShopThirdController::class, 'shop_third'])->name('shop-third');
     Route::get('/account',[App\Http\Controllers\AccountController::class, 'index'])->name('account');
     Route::post('/get_menu', [App\Http\Controllers\CategoryController::class, 'menu_in_sub_menu'])->name('menu.submenu');
+    Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
+    Route::get('/blog-name', [App\Http\Controllers\BlogNameController::class, 'blog_name'])->name('blog-name');
 
 
 });
