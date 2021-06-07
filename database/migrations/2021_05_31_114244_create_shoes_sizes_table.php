@@ -15,7 +15,7 @@ class CreateShoesSizesTable extends Migration
     {
         Schema::create('shoes_sizes', function (Blueprint $table) {
             $table->id();
-            $table->float('shoes_size');
+            $table->float('size');
             $table->timestamps();
         });
     }

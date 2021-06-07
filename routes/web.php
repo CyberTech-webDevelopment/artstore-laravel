@@ -33,6 +33,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/shop-third', [App\Http\Controllers\ShopThirdController::class, 'shop_third'])->name('shop-third');
     Route::get('/account',[App\Http\Controllers\AccountController::class, 'index'])->name('account');
     Route::post('/get_menu', [App\Http\Controllers\CategoryController::class, 'menu_in_sub_menu'])->name('menu.submenu');
+    Route::post('/get_sub_cat', [App\Http\Controllers\CategoryController::class, 'sub_menu_in_sub_cat'])->name('sub_menu.sub_cat');
 
 
 });

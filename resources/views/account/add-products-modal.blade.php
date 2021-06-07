@@ -1,5 +1,5 @@
 <!-- ----------------------modal add product------------------------------ -->
-
+{{--@dump($all_sizes)--}}
 <div class="modal fade add-product-modal" tabindex="-1" id="add-product-modal" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -38,34 +38,61 @@
                 </div>
                 <div class="row pl-3 pr-0 mt-3">
                     <div class="inputs-group pl-0 pr-0">
-                        <input type="" name="" placeholder="Product Name" class="pt-3">
-                        <input type="" name="" placeholder="Description" class="pt-3">
-                        <input type="" name="" placeholder="Product Details" class="pt-3">
-                        <input type="" name="" placeholder="Detail 2" class="pt-3">
-                        <input type="" name="" placeholder="Detail 3" class="pt-3">
+                        <input type="" name="name_en" placeholder="Product Name_English" class="pt-3">
+                        <input type="" name="desc_en" placeholder="Description_English" class="pt-3">
+                        <input type="" name="detail_en" placeholder="Product Details_English" class="pt-3">
+                        <input type="" name="name_ru" placeholder="Product Name_Russian" class="pt-3">
+                        <input type="" name="desc_ru" placeholder="Description_Russian" class="pt-3">
+                        <input type="" name="detail_ru" placeholder="Product Details_Russian" class="pt-3">
+                        <input type="" name="name_am" placeholder="Product Name_Armenian" class="pt-3">
+                        <input type="" name="desc_am" placeholder="Description_Armenian" class="pt-3">
+                        <input type="" name="detail_am" placeholder="Product Details_Armenian" class="pt-3">
+                        {{--                        <input type="" name="" placeholder="Detail 2" class="pt-3">--}}
+                        {{--                        <input type="" name="" placeholder="Detail 3" class="pt-3">--}}
                     </div>
                     <div class="row pl-0 pr-0 mt-3 select-group-1">
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                             <label>Category</label>
+                            <input type="hidden" id="sel_cat_route"
+                                   value="{{route('menu.submenu',app()->getLocale())}}">
+                            <input type="hidden" id="sel_sub_cat_route"
+                                   value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
+                            <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
+
+
                             <select id="select-menu">
                                 <option class="add_product_menu">Select Category</option>
-                                <input type="hidden" id="sel_cat_route" value="{{route('menu.submenu',app()->getLocale())}}">
-                            @foreach($menu as $m)
-                                    <option name="menu" class="add_product_menu" data-menu-id='{{ $m['id'] }}'>{{ $m['menu_name_' . app()->getLocale()] }}</option>
+                                @foreach($menu as $m)
+                                    <option name="menu" class="add_product_menu"
+                                            data-menu-id='{{ $m['id'] }}'>{{ $m['menu_name_' . app()->getLocale()] }}</option>
                                 @endforeach
                             </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                             <label>Subcategory</label>
-                            <select id="select-sub-menu">
+                            <div class="button-group">
+                                <button class="dropdown-toggle" data-toggle="dropdown"><span
+                                        class="caret">Select Sub_menu</span></button>
+                                <ul class="dropdown-menu" id="list_sub_menu">
 
-                            </select>
+                                    {{--                                    @foreach($menu[0]->sub_menues as $sub)--}}
+                                    {{--                                        <li class="small" data-menu-id="{{ $sub['id'] }}" tabIndex="-1"><input--}}
+                                    {{--                                               name="sub_menu[]" type="checkbox"/>{{ $sub['sub_menu_name_' . app()->getLocale()] }}</li>--}}
+
+                                    {{--                                    @endforeach--}}
+                                </ul>
+                            </div>
+
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                             <label>Type</label>
-                            <select>
-                                <option></option>
-                                <option></option>
+
+                            <select id="select_sub_category">
+                                <option class="add_product_menu">Select Type</option>
+                                {{--                                @foreach($menu->sub_categories as $cat)--}}
+                                {{--                                    <option name="sub_category" class="add_product_menu"--}}
+                                {{--                                            data-menu-id='{{ $cat['id'] }}'>{{ $cat['name_category' . app()->getLocale()] }}</option>--}}
+                                {{--                                @endforeach--}}
                             </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
@@ -84,23 +111,17 @@
                             <label>Price</label>
                             <div class="d-flex">
                                 <span class="pr-2">$</span>
-                                <select>
-                                    <option></option>
-                                    <option></option>
-                                </select>
+                                <input type="text" id="price_product" name="price">
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                        <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
                             <label>Sale Price</label>
                             <div class="d-flex">
-                                <span class="pr-2">$</span>
+                                <span class="pr-2">%</span>
                                 <div>
-                                    <select>
-                                        <option></option>
-                                        <option></option>
-                                    </select>
-                                    <div><input type="radio" name=""><label class="pl-2">Hot Offer</label></div>
-                                    <div><input type="radio" name=""><label class="pl-2">Spetial Offer</label></div>
+                                    <input type="text" id="price_product" name="percent">
+                                    {{--                                    <div><input type="radio" name=""><label class="pl-2">Hot Offer</label></div>--}}
+                                    {{--                                    <div><input type="radio" name=""><label class="pl-2">Spetial Offer</label></div>--}}
                                 </div>
                             </div>
                         </div>
@@ -129,26 +150,78 @@
               </div> -->
 
 
-                            <div class="">
-                                <div class="button-group">
-                                    <button class="dropdown-toggle" data-toggle="dropdown"></span> <span
-                                            class="caret"></span></button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="small" data-value="option1" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 1</a></li>
-                                        <li><a href="#" class="small" data-value="option2" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 2</a></li>
-                                        <li><a href="#" class="small" data-value="option3" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 3</a></li>
-                                        <li><a href="#" class="small" data-value="option4" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 4</a></li>
-                                        <li><a href="#" class="small" data-value="option5" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 5</a></li>
-                                        <li><a href="#" class="small" data-value="option6" tabIndex="-1"><input
-                                                    type="checkbox"/>&nbsp;Option 6</a></li>
-                                    </ul>
+                            <div class="dropdown">
+                                <div
+                                    class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0" id="size_all_content">
+                                    <div class="w-100 mr-1" id="sizes_opening">Sizes</div>
+                                    <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="w-100 dropdown-menu hide menu-first-item pt-0 pb-0"
+                                     style="position: relative;">
+                                    @foreach($all_sizes as $k => $v)
+                                        <div class="dropdown-item" id="single_size_group">
+                                            <div
+                                                class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-2 pb-2 pl-3 pr-1" id="size_second_item">
+                                                <div class="single_key">{{ $k }}</div>
+                                                <div class="single_key"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                            </div>
+                                            <div class="w-100 dropdown-menu hide menu-second-item"
+                                                 style="position: relative;"  id="sizes_content">
+                                                @foreach($v as $el)
+                                                    <li class="mr-1 small sizes_small" data-table-name="{{ $k }}" tabIndex="-1">
+                                                        <input type="checkbox"/>{{ $el['size'] }}</li>
+
+
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+
                                 </div>
                             </div>
+
+
+                            {{--                            <div class="">--}}
+                            {{--                                <div class="button-group">--}}
+                            {{--                                    <button class="dropdown-toggle" data-toggle="dropdown"></span> <span--}}
+                            {{--                                            class="caret">Sizes</span></button>--}}
+                            {{--                                    <ul class="dropdown-menu">--}}
+                            {{--                                        @foreach($all_sizes as $k => $v)--}}
+                            {{--                                            --}}
+                            {{--                                            --}}
+                            {{--                                            <div class="accordion" id="accordionExample">--}}
+                            {{--                                                <div class="accordion-item">--}}
+                            {{--                                                    <h2 class="accordion-header" id="headingOne">--}}
+                            {{--                                                        <button class="accordion-button" type="button"--}}
+                            {{--                                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"--}}
+                            {{--                                                                aria-expanded="true" aria-controls="collapseOne">--}}
+                            {{--                                                            {{ $k }}--}}
+                            {{--                                                        </button>--}}
+                            {{--                                                    </h2>--}}
+                            {{--                                                    <div id="collapseOne" class="accordion-collapse collapse show"--}}
+                            {{--                                                         aria-labelledby="headingOne"--}}
+                            {{--                                                         data-bs-parent="#accordionExample">--}}
+                            {{--                                                        <div class="accordion-body">--}}
+                            {{--                                                            @foreach($v as $el)--}}
+                            {{--                                                            <li class="small" data-value="option1" tabIndex="-1">--}}
+                            {{--                                                                <input type="checkbox"/>{{ $el['size'] }}</li>--}}
+
+
+                            {{--                                                            @endforeach--}}
+
+                            {{--                                                        </div>--}}
+                            {{--                                                    </div>--}}
+                            {{--                                                </div>--}}
+
+
+                            {{--                                            </div>--}}
+                            {{--                                        @endforeach--}}
+
+                            {{--                                    </ul>--}}
+                            {{--                                </div>--}}
+                            {{--                            </div>--}}
 
 
                         </div>
