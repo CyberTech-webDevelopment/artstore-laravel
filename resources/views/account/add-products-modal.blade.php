@@ -1,5 +1,5 @@
 <!-- ----------------------modal add product------------------------------ -->
-{{--@dump($all_sizes)--}}
+{{--@dump($all_materials)--}}
 <div class="modal fade add-product-modal" tabindex="-1" id="add-product-modal" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -75,11 +75,6 @@
                                         class="caret">Select Sub_menu</span></button>
                                 <ul class="dropdown-menu" id="list_sub_menu">
 
-                                    {{--                                    @foreach($menu[0]->sub_menues as $sub)--}}
-                                    {{--                                        <li class="small" data-menu-id="{{ $sub['id'] }}" tabIndex="-1"><input--}}
-                                    {{--                                               name="sub_menu[]" type="checkbox"/>{{ $sub['sub_menu_name_' . app()->getLocale()] }}</li>--}}
-
-                                    {{--                                    @endforeach--}}
                                 </ul>
                             </div>
 
@@ -183,62 +178,52 @@
                             </div>
 
 
-                            {{--                            <div class="">--}}
-                            {{--                                <div class="button-group">--}}
-                            {{--                                    <button class="dropdown-toggle" data-toggle="dropdown"></span> <span--}}
-                            {{--                                            class="caret">Sizes</span></button>--}}
-                            {{--                                    <ul class="dropdown-menu">--}}
-                            {{--                                        @foreach($all_sizes as $k => $v)--}}
-                            {{--                                            --}}
-                            {{--                                            --}}
-                            {{--                                            <div class="accordion" id="accordionExample">--}}
-                            {{--                                                <div class="accordion-item">--}}
-                            {{--                                                    <h2 class="accordion-header" id="headingOne">--}}
-                            {{--                                                        <button class="accordion-button" type="button"--}}
-                            {{--                                                                data-bs-toggle="collapse" data-bs-target="#collapseOne"--}}
-                            {{--                                                                aria-expanded="true" aria-controls="collapseOne">--}}
-                            {{--                                                            {{ $k }}--}}
-                            {{--                                                        </button>--}}
-                            {{--                                                    </h2>--}}
-                            {{--                                                    <div id="collapseOne" class="accordion-collapse collapse show"--}}
-                            {{--                                                         aria-labelledby="headingOne"--}}
-                            {{--                                                         data-bs-parent="#accordionExample">--}}
-                            {{--                                                        <div class="accordion-body">--}}
-                            {{--                                                            @foreach($v as $el)--}}
-                            {{--                                                            <li class="small" data-value="option1" tabIndex="-1">--}}
-                            {{--                                                                <input type="checkbox"/>{{ $el['size'] }}</li>--}}
-
-
-                            {{--                                                            @endforeach--}}
-
-                            {{--                                                        </div>--}}
-                            {{--                                                    </div>--}}
-                            {{--                                                </div>--}}
-
-
-                            {{--                                            </div>--}}
-                            {{--                                        @endforeach--}}
-
-                            {{--                                    </ul>--}}
-                            {{--                                </div>--}}
-                            {{--                            </div>--}}
-
 
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
                             <label>Color</label>
-                            <select>
-                                <option></option>
-                                <option></option>
+                            <select id="select-color">
+                                <option class="add_product_color">Select Color</option>
+                                @foreach($all_colors as $c)
+                                    <option name="menu" class="add_product_menu"
+                                            data-color-id='{{ $c['id'] }}'>{{ $c['color_name_' . app()->getLocale()] }}</option>
+                                @endforeach
                             </select>
 
                         </div>
                         <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
                             <label>Material</label>
-                            <select>
-                                <option></option>
-                                <option></option>
-                            </select>
+                            <div class="dropdown">
+                                <div
+                                    class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0" id="size_all_content">
+                                    <div class="w-100 mr-1" id="sizes_opening">Materials</div>
+                                    <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                </div>
+                                <div class="w-100 dropdown-menu hide menu-first-item pt-0 pb-0"
+                                     style="position: relative;">
+                                    @foreach($all_materials as $k => $v)
+                                        <div class="dropdown-item" id="single_size_group">
+                                            <div
+                                                class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-2 pb-2 pl-3 pr-1" id="size_second_item">
+                                                <div class="single_key">{{ $k }}</div>
+                                                <div class="single_key"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                            </div>
+                                            <div class="w-100 dropdown-menu hide menu-second-item"
+                                                 style="position: relative;"  id="sizes_content">
+                                                @foreach($v as $el)
+                                                    <li class="mr-1 small sizes_small" data-table-name="{{ $k }}" tabIndex="-1">
+                                                        <input type="checkbox"/>{{ $el['material_'. app()->getLocale()] }}</li>
+
+
+                                                @endforeach
+
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+
+                                </div>
+                            </div>
                         </div>
                     </div>
 

@@ -15,9 +15,9 @@ class CreateShoesMaterialsTable extends Migration
     {
         Schema::create('shoes_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('shoes_material_am');
-            $table->string('shoes_material_ru');
-            $table->string('shoes_material_en');
+            $table->string('material_am');
+            $table->string('material_ru');
+            $table->string('material_en');
             $table->timestamps();
         });
     }

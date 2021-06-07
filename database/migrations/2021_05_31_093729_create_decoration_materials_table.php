@@ -15,9 +15,9 @@ class CreateDecorationMaterialsTable extends Migration
     {
         Schema::create('decoration_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('dec_material_am');
-            $table->string('dec_material_ru');
-            $table->string('dec_material_en');
+            $table->string('material_am');
+            $table->string('material_ru');
+            $table->string('material_en');
             $table->timestamps();
         });
     }

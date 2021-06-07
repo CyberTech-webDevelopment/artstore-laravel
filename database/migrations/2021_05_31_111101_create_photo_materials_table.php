@@ -15,9 +15,9 @@ class CreatePhotoMaterialsTable extends Migration
     {
         Schema::create('photo_materials', function (Blueprint $table) {
             $table->id();
-            $table->string('photo_material_am');
-            $table->string('photo_material_ru');
-            $table->string('photo_material_en');
+            $table->string('material_am');
+            $table->string('material_ru');
+            $table->string('material_en');
             $table->timestamps();
         });
     }
