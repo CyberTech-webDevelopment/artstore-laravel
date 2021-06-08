@@ -1,4 +1,6 @@
 // -------------drag drop image-----------------------
+var image
+let array_images = []
 $(".input-file-trigger").on('dragenter', function (e) {
     e.preventDefault();
     $(this).css('background', '#BBD5B8');
@@ -37,6 +39,7 @@ function readURL(file) {
                 if (array_images.length < 3) {
                     $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                     array_images.push(e.target.result)
+                    $('#product_form').append('<input type="hidden" name="files[]" value="' + e.target.result + '">');
                 }
                 if (array_images.length == 3) {
                     $('.uploade-image').css('display', 'none')
@@ -81,7 +84,9 @@ function Edit(data, height, width, image) {
 }
 
 // ------------------CROP IMAGE----------------
-$('#crop-image').click(function () {
+$('#crop-image').click(function (e) {
+    // alert()
+    e.preventDefault()
     let cropWidth = canvas.getWidth()
     let cropHeight = canvas.getHeight()
     let cropped = new Image();
@@ -94,6 +99,8 @@ $('#crop-image').click(function () {
     if (array_images.length < 3) {
         $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + cropped.src + '"></div>')
         array_images.push(cropped.src)
+        $('#product_form').append('<input type="hidden" name="files[]" value="' + cropped.src + '">');
+
         $('.canvas-cont').addClass('hide')
         $('.canvas-cont').removeClass('d-flex')
     }
@@ -110,8 +117,7 @@ $('.delete-image').click(function () {
     $('.canvas-cont').removeClass('d-flex')
 })
 
-var image
-let array_images = []
+
 // -------------------browse image-----------------------------
 $('#fileupload').on("input", function (e) {
     if (array_images.length < 3) {
@@ -136,23 +142,18 @@ $('#select-menu').change(function () {
         data: {menu_id: select_menu_id},
         dataType: 'json',
         success: function (res) {
-            // $('#select-sub-menu').html(res)
+
             $lang_name_menu = "sub_menu_name_" + $('#cur_lang').val();
-            // $lang_name_cat = "name_category_" + $('#cur_lang').val();
+
             $('#list_sub_menu').empty();
-            // $('#select_sub_category').empty();
+
             for ($i = 0; $i < res.sub_menu.length; $i++) {
 
                 $('#list_sub_menu').append(`<li class="small" tabIndex="-1"><input  data-menu-id="` + res.sub_menu[$i].id + `"
                     name="sub_menu[]" class="sub_menu_check" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
 
             }
-            // for ($i = 0; $i < res.sub_cat.length; $i++) {
-            //
-            //     $('#select_sub_category').append(` <option name="sub_category" class="add_product_menu"
-            //         data-menu-id="`+ res.sub_cat[$i].id +`">`+ res.sub_cat[$i][$lang_name_cat] + `</option>`)
-            //
-            // }
+
             console.log(res)
         }
     })
@@ -181,14 +182,14 @@ $(document).on('click', '.sub_menu_check', function () {
             success: function (res) {
                 $lang_name_cat = "name_category_" + $('#cur_lang').val();
                 console.log(res.sub_cat)
-                // $('#select-sub-menu').html(res)
+
                 let options_text = '';
                 $('#select_sub_category').empty();
                 $('#select_sub_category').prepend('<option>Select Type</option>');
                 for (let $i in res.sub_cat) {
                     // console.log($i)
                     options_text += "<optgroup label='" + $i + "'>"
-                    // $('#select_sub_category').append(options_text);
+
 
                     for (let key in res.sub_cat[$i]) {
                         console.log(res.sub_cat[$i][key][$lang_name_cat])
@@ -197,20 +198,48 @@ $(document).on('click', '.sub_menu_check', function () {
                     options_text += "</optgroup>"
                 }
                 $('#select_sub_category').append(options_text);
-                // $lang_name_cat = "name_category_" + $('#cur_lang').val();
-                // $('#list_sub_menu').empty();
-                // $('#select_sub_category').empty();
-                // for ($i = 0; $i < res.sub_menu.length; $i++) {
-                //
-                //     $('#list_sub_menu').append(`<li class="small" data-menu-id="`+ res.sub_menu[$i].id + `" tabIndex="-1"><input
-                //         name="sub_menu[]" class="sub_menu_check" type="checkbox"/>`+ res.sub_menu[$i][$lang_name_menu] + `</li>`)
-                //
-                // }
+
 
             }
         })
 
     }
 
+
+})
+
+
+// add product
+
+
+$('#add-product').on('click',function (e){
+    e.preventDefault()
+  let url = $('#add_product_url').val();
+    // form_data = new FormData();
+    //
+
+    //
+    // array_images.forEach(function (image) {
+    //     form_data.append("image[]", image);
+    // })
+
+    var data = $('#product_form').serialize();
+console.log(array_images)
+
+    $.ajax({
+        method: 'post',
+        url: url,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: data,
+        dataType: 'json',
+        cache : false,
+        processData: false,
+        // contentType: false,
+        success: function (res) {
+
+            console.log(res)
+
+        }
+    })
 
 })
