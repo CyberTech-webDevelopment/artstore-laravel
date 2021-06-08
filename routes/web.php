@@ -36,6 +36,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
     Route::get('/blog-name', [App\Http\Controllers\BlogNameController::class, 'blog_name'])->name('blog-name');
     Route::post('/get_sub_cat', [App\Http\Controllers\CategoryController::class, 'sub_menu_in_sub_cat'])->name('sub_menu.sub_cat');
+    Route::post('/add_product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('add.product');
 
 
 });
