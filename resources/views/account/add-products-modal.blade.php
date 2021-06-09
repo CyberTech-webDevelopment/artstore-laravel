@@ -11,7 +11,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('add.product',app()->getLocale()) }}" method="post" enctype="multipart/form-data" id="product_form">
+                <form action="{{ route('add.product',app()->getLocale()) }}" method="post" enctype="multipart/form-data"
+                      id="product_form">
                     @csrf
                     <div class="row pl-1 pr-0">
                         <div class="canvas-cont hide ml-auto mr-auto" tabindex="3">
@@ -87,21 +88,19 @@
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                                 <label>Type</label>
 
-                                <select id="select_sub_category">
+                                <select id="select_sub_category" name="type">
                                     <option class="add_product_menu">Select Type</option>
-                                    {{--                                @foreach($menu->sub_categories as $cat)--}}
-                                    {{--                                    <option name="sub_category" class="add_product_menu"--}}
-                                    {{--                                            data-menu-id='{{ $cat['id'] }}'>{{ $cat['name_category' . app()->getLocale()] }}</option>--}}
-                                    {{--                                @endforeach--}}
+
                                 </select>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
                                 <label>Quantity</label>
                                 <div class="d-flex text-center">
-                                    <div class="ml-auto mr-auto">
-                                        <button class="minus">-</button>
+                                    <div class="ml-auto d-flex mr-auto">
+                                        <div class="minus_p">-</div>
                                         <span class="pl-2 pr-2 quantity">1</span>
-                                        <button class="plus">+</button>
+                                        <div class="plus_p">+</div>
+                                        <input type="hidden" name="count" value="1" id="product_count">
                                     </div>
                                 </div>
                             </div>
@@ -111,19 +110,21 @@
                                 <label>Price</label>
                                 <div class="d-flex">
                                     <span class="pr-2">$</span>
-                                    <input type="text" id="price_product" name="price">
+                                    <input type="text" id="price_product" name="price" class="price">
                                 </div>
+
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
                                 <label>Sale Price</label>
                                 <div class="d-flex">
                                     <span class="pr-2">%</span>
                                     <div>
-                                        <input type="text" id="price_product" name="percent">
+                                        <input type="text" id="price_product" name="percent" class="percent">
                                         {{--                                    <div><input type="radio" name=""><label class="pl-2">Hot Offer</label></div>--}}
                                         {{--                                    <div><input type="radio" name=""><label class="pl-2">Spetial Offer</label></div>--}}
                                     </div>
                                 </div>
+                                <span class="prices_cost"></span>
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
                                 <label>Size</label>
@@ -154,7 +155,8 @@
                                                     @foreach($v as $el)
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
                                                             tabIndex="-1">
-                                                            <input type="checkbox"/>{{ $el['size'] }}</li>
+                                                            <input type="checkbox" name="size[{{$k}}][]"
+                                                                   value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
 
 
                                                     @endforeach
@@ -171,13 +173,20 @@
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
                                 <label>Color</label>
-                                <select id="select-color">
-                                    <option class="add_product_color">Select Color</option>
-                                    @foreach($all_colors as $c)
-                                        <option name="menu" class="add_product_menu"
-                                                data-color-id='{{ $c['id'] }}'>{{ $c['color_name_' . app()->getLocale()] }}</option>
-                                    @endforeach
-                                </select>
+                                <div class="button-group">
+                                    <button class="dropdown-toggle" data-toggle="dropdown"><span
+                                            class="caret">Select Colors</span></button>
+                                    <ul class="dropdown-menu" id="list_colors">
+                                        @foreach($all_colors as $c)
+                                            <li class="small" tabIndex="-1"><input value="{{ $c['id'] }}"
+                                                                                   name="color[]" class="color_check"
+                                                                                   type="checkbox"/>
+                                                {{ $c['color_name_' . app()->getLocale()] }}
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
 
                             </div>
                             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
@@ -206,7 +215,8 @@
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
                                                             tabIndex="-1">
                                                             <input
-                                                                type="checkbox"/>{{ $el['material_'. app()->getLocale()] }}
+                                                                type="checkbox" name="material[{{$k}}][]"
+                                                                value="{{ $el['id'] }}"/>{{ $el['material_'. app()->getLocale()] }}
                                                         </li>
 
 
@@ -216,9 +226,12 @@
                                             </div>
                                         @endforeach
 
-
                                     </div>
                                 </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                                <label>Custom Material</label>
+                                <input type="text" id="custom_material" name="custom_material">
                             </div>
                         </div>
 

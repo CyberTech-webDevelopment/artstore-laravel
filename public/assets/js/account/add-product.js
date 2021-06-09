@@ -18,6 +18,23 @@ $(".input-file-trigger").on('drop', function (e) {
     readURL(file);
 });
 
+$('.plus_p').click(function () {
+    let quantity = $(this).parent().find('.quantity').html() * 1
+    quantity++
+    $(this).parent().find('.quantity').html(quantity)
+    $('#product_count').val(quantity);
+
+})
+$('.minus_p').click(function () {
+    let quantity = $(this).parent().find('.quantity').html() * 1
+    quantity--
+    if (quantity < 1) {
+        quantity = 1
+    }
+    $(this).parent().find('.quantity').html(quantity)
+    $('#product_count').val(quantity);
+
+})
 
 function readURL(file) {
     var reader = new FileReader();
@@ -149,7 +166,7 @@ $('#select-menu').change(function () {
 
             for ($i = 0; $i < res.sub_menu.length; $i++) {
 
-                $('#list_sub_menu').append(`<li class="small" tabIndex="-1"><input  data-menu-id="` + res.sub_menu[$i].id + `"
+                $('#list_sub_menu').append(`<li class="small" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
                     name="sub_menu[]" class="sub_menu_check" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
 
             }
@@ -193,7 +210,7 @@ $(document).on('click', '.sub_menu_check', function () {
 
                     for (let key in res.sub_cat[$i]) {
                         console.log(res.sub_cat[$i][key][$lang_name_cat])
-                        options_text += "<option>" + res.sub_cat[$i][key][$lang_name_cat] + "</option>"
+                        options_text += "<option value='" + res.sub_cat[$i][key]['id'] + "'>" + res.sub_cat[$i][key][$lang_name_cat] + "</option>"
                     }
                     options_text += "</optgroup>"
                 }
@@ -212,9 +229,9 @@ $(document).on('click', '.sub_menu_check', function () {
 // add product
 
 
-$('#add-product').on('click',function (e){
+$('#add-product').on('click', function (e) {
     e.preventDefault()
-  let url = $('#add_product_url').val();
+    let url = $('#add_product_url').val();
     // form_data = new FormData();
     //
 
@@ -224,7 +241,7 @@ $('#add-product').on('click',function (e){
     // })
 
     var data = $('#product_form').serialize();
-console.log(array_images)
+    console.log(array_images)
 
     $.ajax({
         method: 'post',
@@ -232,7 +249,7 @@ console.log(array_images)
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
         data: data,
         dataType: 'json',
-        cache : false,
+        cache: false,
         processData: false,
         // contentType: false,
         success: function (res) {
@@ -241,5 +258,47 @@ console.log(array_images)
 
         }
     })
+
+})
+$('.percent').on('input',function () {
+    $price = $('.price').val();
+    $percent = $(this).val();
+    if ($price != '')
+    {
+        $sale_percent = ($price * $percent)/100;
+        $sale_price = $price - $sale_percent;
+        $('.prices_cost').text($sale_price);
+        if ($sale_price < 0)
+        {
+            $('.prices_cost').text(0);
+
+        }
+    }
+    if ($percent == "")
+    {
+        $('.prices_cost').empty();
+
+    }
+
+})
+$('.price').on('input',function () {
+    $price = $(this).val();
+    $percent = $('.percent').val();
+    if ($percent != '')
+    {
+        $sale_percent = ($price * $percent)/100;
+        $sale_price = $price - $sale_percent;
+        $('.prices_cost').text($sale_price);
+        if ($sale_price < 0)
+        {
+            $('.prices_cost').text(0);
+
+        }
+    }
+    if ($price == "" )
+    {
+        $('.prices_cost').empty();
+
+    }
 
 })
