@@ -250,7 +250,22 @@ input:active {
 button:active {
     outline: none;
 }
+.minus_p, .plus_p{
+    width: 20px;
+    height: 24px;
+    font-weight: 700;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+#custom_material{
 
+    width: 75%;
+    height: 25px;
+
+}
 /* Dropdown*/
 
 

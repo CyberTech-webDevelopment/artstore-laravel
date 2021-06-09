@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         $all_sizes = [];
         $all_materials = [];
 
-        $array_models = ['App\Models\Cloths_size', 'App\Models\Gloves_size', 'App\Models\Ring_size', 'App\Models\Shoes_sizes'];
+        $array_models = ['App\Models\Cloths_sizes', 'App\Models\Gloves_sizes', 'App\Models\Ring_sizes', 'App\Models\Shoes_sizes'];
         $array_models_material = ['App\Models\Bag_materials', 'App\Models\Cloth_materials', 'App\Models\Decoration_materials', 'App\Models\Photo_materials', 'App\Models\Sculpture_materials', 'App\Models\Shoes_materials',];
         foreach ($array_models as $model) {
             $size = $model::all();
