@@ -24,7 +24,6 @@ class ProductController extends Controller
             'detail_en' => 'required|min:6|max:255',
             'detail_ru' => 'required|min:6|max:255',
             'detail_am' => 'required|min:6|max:255',
-            'sub_menu' => 'required',
             'type' => 'required',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
@@ -32,13 +31,45 @@ class ProductController extends Controller
             'size' => 'required',
             'color' => 'required',
             'material' => 'required',
-            'custom_material' => 'string',
             'files' => 'required',
 
         ]);
         if ($validator->fails()) {
+            $errors = $validator->failed();
+//            dump($errors);
+            $fields_array = [];
+             foreach ($errors as $err => $value)
+            {
+                foreach ($value as $key => $v)
+                {
+                    if ($key == 'Required')
+                    {
+                        return response()->json(['product_error' => 'Please fill all required fields']);
+                    }
+                    if ($key == 'Numeric')
+                    {
 
-            return response()->json(['product_error' => 'Please fill all required fields']);
+                        $message_error = "Invalid value in the numeric field (s)";
+                        return response()->json(['product_error' => $message_error]);
+
+                    }
+                    if ($key == 'Min')
+                    {
+
+                        array_push($fields_array,$err);
+                        $message_error = "field length " . $key;
+                        foreach ($v as $el)
+                        {
+                            $message_error = $message_error . ":" .$el;
+
+                        }
+
+                    }
+                }
+
+            }
+            return response()->json(['product_error' => $message_error,'field'=>$fields_array]);
+
         }
         $sizes = [];
         $materials = [];
@@ -57,15 +88,16 @@ class ProductController extends Controller
             foreach ($request->size as $key => $value) {
                 $size_table = strtolower($key);
                 $find_model_size = $this->getModels($path, $key);
+                if (!$find_model_size) {
+                    return response()->json(['model_found' => 'Model not found']);
+                }
                 foreach ($value as $el) {
                     array_push($sizes, $el);
 
                 }
 
             }
-            if (!$find_model_size) {
-                return response()->json(['model_found' => 'Model not found']);
-            }
+
 
         }
         if ($material_length > 1) {
@@ -76,15 +108,17 @@ class ProductController extends Controller
             foreach ($request->material as $key => $value) {
                 $material_table = strtolower($key);
                 $find_model_material = $this->getModels($path, $key);
+                if (!$find_model_material) {
+                    return response()->json(['model_found' => 'Model not found']);
+                }
                 foreach ($value as $el) {
+
                     array_push($materials, $el);
 
                 }
 
             }
-            if (!$find_model_material) {
-                return response()->json(['model_found' => 'Model not found']);
-            }
+
 
         }
 //        dump($request->all());
@@ -113,8 +147,8 @@ class ProductController extends Controller
         $product->user_id = Auth::user()->id;
         $product->save();
 //        dump($request->all());
-        dump($sizes);
-        dump($materials);
+//        dump($sizes);
+//        dump($materials);
         foreach ($sizes as $s) {
 
             DB::table('products_' . $size_table)->insert([

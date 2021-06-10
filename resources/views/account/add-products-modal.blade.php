@@ -1,5 +1,5 @@
 <!-- ----------------------modal add product------------------------------ -->
-{{--@dump($all_materials)--}}
+
 <div class="modal fade add-product-modal" tabindex="-1" id="add-product-modal" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
@@ -32,7 +32,7 @@
                                        tabindex="0">
                                     Browse
                                     <input class="input-file" id="fileupload" name="file" type="file" multiple>
-                                    {{--                                <input class="input-file" id="uploaded" name="file[]" type="file" multiple>--}}
+
                                 </label>
                                 <div id='divHabilitSelectors'
                                      class="input-file-container text-center pt-2 input-file-trigger"></div>
@@ -234,12 +234,24 @@
                                 <input type="text" id="custom_material" name="custom_material">
                             </div>
                         </div>
+                        {{-- aria-label="Close"        data-toggle="modal"                                     value="Add Product" data-dismiss="modal"
+                                  data-target=".product-successfully-aded"--}}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-12 col-lg-12 col-12 d-flex justify-content-center">
+                            <div
+                                class="col-sm-6 col-md-6 col-lg-6 col-6 d-flex justify-content-center font-weight-bold font-size-16 text-danger product_errors">
+
+
+                            </div>
+
+                        </div>
+
 
                     </div>
                     <div class="d-flex justify-content-center mt-4 mb-5">
-                        <input type="submit" id="add-product" class="text-strong" data-toggle="modal"
-                               data-target=".product-successfully-aded" value="Add Product" data-dismiss="modal"
-                               aria-label="Close">
+                        <input type="submit" id="add-product" class="text-strong">
+
 
                     </div>
                 </form>
