@@ -27,7 +27,7 @@ class ProductController extends Controller
             'type' => 'required',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
-            'percent' => 'required|numeric',
+            'percent' => 'numeric',
             'size' => 'required',
             'color' => 'required',
             'material' => 'required',
@@ -195,7 +195,7 @@ class ProductController extends Controller
 
         }
 
-        return response()->json(['img' => 'upload']);
+        return response()->json(['ok']);
     }
 
     function getModels($path, $condition)

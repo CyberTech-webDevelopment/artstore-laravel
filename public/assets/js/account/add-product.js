@@ -1,6 +1,7 @@
 // -------------drag drop image-----------------------
 var image
 let array_images = []
+let c = 0;
 $(".input-file-trigger").on('dragenter', function (e) {
     e.preventDefault();
     $(this).css('background', '#BBD5B8');
@@ -54,19 +55,14 @@ function readURL(file) {
                 Edit(data, height, width, image)
             } else {
                 if (array_images.length < 3) {
+                    c++;
                     $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                     $src_icon = $('.delete-image').find('img').attr('src');
-                    $('#image-cont').append('<div class="drop-image"><img src="' + $src_icon +'"></div>')
+                    $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
                     array_images.push(e.target.result)
-                    $('#product_form').append('<input type="hidden" name="files[]" value="' + e.target.result + '">');
-                    $img_values = $("[name='files[]']")
+                    $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files[]" value="' + e.target.result + '">');
 
-                    for (let l=0;l<$img_values.length; l++ )
-                    {
-                        console.log($img_values[l])
-
-                    }
-
+                    console.log(c);
                 }
                 if (array_images.length == 3) {
                     $('.uploade-image').css('display', 'none')
@@ -124,13 +120,16 @@ $('#crop-image').click(function (e) {
     // console.log(cropped.src)
 
     if (array_images.length < 3) {
+        c++;
         $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + cropped.src + '"></div>')
         array_images.push(cropped.src)
-        $('#product_form').append('<input type="hidden" name="files[]" value="' + cropped.src + '">');
+        $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '" name="files[]" value="' + cropped.src + '">');
+
         $src_icon = $('.delete-image').find('img').attr('src');
-        $('#image-cont').append('<div class="drop-image"><img src="' + $src_icon +'"></div>')
+        $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
         $img_values = $("[name='files[]']")
-        console.log($img_values.length)
+        console.log(c);
+        // console.log($img_values.length)
         $('.canvas-cont').addClass('hide')
         $('.canvas-cont').removeClass('d-flex')
     }
@@ -155,19 +154,27 @@ $('#fileupload').on("input", function (e) {
         readURL(file);
     }
 });
- $(document).on('click','.drop-image',function (){
+$(document).on('click', '.drop-image', function () {
 // alert()
-     $(this).prev().remove();
+    $data_img_id = $(this).attr('data-img-id');
+
+    // $('.img_inp').attr('data-inp-id',$data_img_id).remove();
+    $("[data-inp-id='" + $data_img_id + "']").remove();
+    array_images.pop();
+    console.log(array_images.length)
+    $img_values = $("[name='files[]']")
+    console.log($img_values.length);
+
+    $(this).prev().remove();
 //      console.log($(this).parent())
-     $(this).remove();
-      if ($('.uploade-image').css('display') == 'none')
-      {
-          $('.uploade-image').show();
+    $(this).remove();
+    if ($('.uploade-image').css('display') == 'none') {
+        $('.uploade-image').show();
 
-      }
+    }
 
 
- })
+})
 
 // -----------select categories--------------------------
 $('#select-menu').change(function () {
@@ -191,8 +198,8 @@ $('#select-menu').change(function () {
 
             for ($i = 0; $i < res.sub_menu.length; $i++) {
 
-                $('#list_sub_menu').append(`<li class="small" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
-                    name="sub_menu[]" class="sub_menu_check" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
+                $('#list_sub_menu').append(`<li class="small d-flex align-items-center" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
+                    name="sub_menu[]" class="mr-1 sub_menu_check" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
 
             }
 
@@ -249,7 +256,30 @@ $(document).on('click', '.sub_menu_check', function () {
 
 
 })
+$('#add-product-a').on('click',function () {
 
+    $('.acount-bar-item').each(function () {
+        // alert()
+        console.log($(this))
+
+            // alert()
+            $active_image = $(this).find('img');
+            $active_image_src = $(this).find('img').attr('src');
+            $new_src = $active_image_src.split('-active');
+            if ($new_src.length > 1)
+            {
+                console.log($new_src);
+                $set_source = $new_src[0]+$new_src[1];
+                console.log($set_source);
+                $active_image.attr('src',$set_source);
+
+            }
+            // console.log($new_src);
+
+
+    })
+
+})
 
 // add product
 
@@ -291,6 +321,15 @@ $('#add-product').on('click', function (e) {
 
                 }
 
+
+            }
+            if (res == "ok")
+            {
+
+                // $('#add-product').attr('data-target','.product-successfully-aded');
+                $('#close_add_model').trigger('click');
+                $('#open_success_modal').trigger('click');
+                // $('.product-successfully-aded').addClass('show');
 
             }
 

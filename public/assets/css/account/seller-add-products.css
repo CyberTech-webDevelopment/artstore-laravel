@@ -34,12 +34,13 @@ tbody > tr > td:not(:second-child) {
 .product-info div {
     width: 206px
 }
-.drop-image{
+
+.drop-image {
 
     height: fit-content;
     cursor: pointer;
 
- }
+}
 
 .sale-inp {
     width: 90px;
@@ -256,7 +257,8 @@ input:active {
 button:active {
     outline: none;
 }
-.minus_p, .plus_p{
+
+.minus_p, .plus_p {
     width: 20px;
     height: 24px;
     font-weight: 700;
@@ -266,50 +268,76 @@ button:active {
     outline: none;
     cursor: pointer;
 }
-#custom_material{
+
+#custom_material {
 
     width: 75%;
     height: 25px;
 
 }
+
+.product_white_button {
+
+    width: 100%;
+    height: 23px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    background-color: white;
+    border-color: lightgrey;
+}
+.delete-image{
+
+    cursor: pointer;
+}
 /* Dropdown*/
 
 
-.sizes_small{
+.sizes_small {
 
     display: flex;
     align-items: center;
     float: left;
 }
-#size_second_item,#size_all_content,#sizes_slack{
+
+#size_second_item, #size_all_content, #sizes_slack {
 
     background-color: white;
 
 }
-#sizes_opening{
+
+#sizes_opening {
 
     background-color: white;
     height: 20px;
-    color: unset!important;
+    color: unset !important;
 
 }
-.single_size_group{
+
+.single_size_group {
 
     padding: 0;
-    width: 120px;
+    /*width: 120px;*/
     color: #000;
 
 }
-.sizes .dropdown-menu{
+#list_colors{
+
+    transform: translate3d(-10px, -80%, 0px)!important;
+
+}
+.sizes .dropdown-menu {
     width: 7rem;
     min-width: 7rem
 }
-.sizes_content{
+
+.sizes_content {
     width: 120px
 }
-.single_key{
 
-    background-color: white!important;
+.single_key {
+
+    background-color: white !important;
 }
 
 /* end Dropdown*/
