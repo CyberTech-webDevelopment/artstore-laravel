@@ -37,12 +37,16 @@
                         <div class="flex-fill">@lang('nav.nav.help')</div>
                         <div class="flex-fill ">
                             <div class="flags-nav">
+                                @php
+
+
+                                @endphp
                                 <img src="{{asset('assets\images\flags/' .$locale.'.png')}}"
                                      class='flg-nav-img active-nav-lng'>
                                 <div class='hide hide-flags'>
                                     @foreach ($arr_lng as $value)
                                         @if ($value!=$locale)
-                                            <a href={{ url($value) }}><img
+                                            <a href={{ route(Route::currentRouteName(),$value) }}><img
                                                     src="{{asset('assets\images\flags/'. $value.'.png')}}"
                                                     class='flg-nav-img mt-1' ></a>
                                             <br>

@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
                     'id' => 1,
                     'name' => 'Vladimir',
                     'email' => 'stepanyan281995@gmail.com',
-                    'password' => '123456',
+                    'password' => '12345678',
                     'is_verified' => 1
                 ),
         ));

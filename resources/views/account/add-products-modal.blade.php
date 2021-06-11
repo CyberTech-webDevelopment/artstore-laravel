@@ -1,12 +1,14 @@
 <!-- ----------------------modal add product------------------------------ -->
-
+<button type="button" style="display: none" data-toggle="modal"  data-target=".product-successfully-aded" data-dismiss="modal" aria-label="Close" id="open_success_modal">Open_Success</button>
+{{-- aria-label="Close"        data-toggle="modal"                                     value="Add Product" data-dismiss="modal"
+                                  data-target=".product-successfully-aded"--}}
 <div class="modal fade add-product-modal" tabindex="-1" id="add-product-modal" role="dialog"
      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
-                <div class="modal-title text-strong" id="exampleModalLongTitle">Add Product</div>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <div class="modal-title text-strong" id="exampleModalLongTitle">@lang('add-product.product.add_title')</div>
+                <button type="button" class="close" id="close_add_model" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>
                 </button>
             </div>
@@ -20,17 +22,17 @@
                             <div class="ml-1 edit-img">
                                 <button id="crop-image"><i class='fas fa-crop' style='font-size:24px'></i></button>
                                 <p></p>
-                                <button class="delete-image"><img src="{{asset('assets/icons/close.png')}}"></button>
+                                <div class="delete-image"><img src="{{asset('assets/icons/close.png')}}"></div>
                             </div>
                         </div>
                         <div class="d-flex col-4 uploade-image">
                             <div class="modal-drag-photo py-4 input-file-trigger text-center">
                                 <div class="text-center"><img src="{{asset('assets/icons/upload.png')}}"></div>
-                                <div class="font-size-14 text-center pt-3">Drag photo to upload</div>
-                                <div class="font-size-14 text-center">or</div>
+                                <div class="font-size-14 text-center pt-3">@lang('add-product.product.drag_drop')</div>
+                                <div class="font-size-14 text-center">{{ app()->getLocale()=='en' ? 'or' : ( app()->getLocale()=='ru' ? 'или' : ( app()->getLocale()=='am' ? 'կամ' : 'or')) }}</div>
                                 <label for="fileupload" class="browse font-size-12 text-strong" id='labelFU'
                                        tabindex="0">
-                                    Browse
+                                    @lang('add-product.product.browse')
                                     <input class="input-file" id="fileupload" name="file" type="file" multiple>
 
                                 </label>
@@ -43,21 +45,21 @@
                     </div>
                     <div class="row pl-3 pr-0 mt-3">
                         <div class="inputs-group pl-0 pr-0">
-                            <input type="" name="name_en" placeholder="Product Name_English" class="pt-3">
-                            <input type="" name="desc_en" placeholder="Description_English" class="pt-3">
-                            <input type="" name="detail_en" placeholder="Product Details_English" class="pt-3">
-                            <input type="" name="name_ru" placeholder="Product Name_Russian" class="pt-3">
-                            <input type="" name="desc_ru" placeholder="Description_Russian" class="pt-3">
-                            <input type="" name="detail_ru" placeholder="Product Details_Russian" class="pt-3">
-                            <input type="" name="name_am" placeholder="Product Name_Armenian" class="pt-3">
-                            <input type="" name="desc_am" placeholder="Description_Armenian" class="pt-3">
-                            <input type="" name="detail_am" placeholder="Product Details_Armenian" class="pt-3">
+                            <input type="" name="name_en" placeholder="@lang('add-product.product.name_en')" class="pt-3">
+                            <input type="" name="desc_en" placeholder="@lang('add-product.product.desc_en')" class="pt-3">
+                            <input type="" name="detail_en" placeholder="@lang('add-product.product.detail_en')" class="pt-3">
+                            <input type="" name="name_ru" placeholder="@lang('add-product.product.name_ru')" class="pt-3">
+                            <input type="" name="desc_ru" placeholder="@lang('add-product.product.desc_ru')" class="pt-3">
+                            <input type="" name="detail_ru" placeholder="@lang('add-product.product.detail_ru')" class="pt-3">
+                            <input type="" name="name_am" placeholder="@lang('add-product.product.name_am')" class="pt-3">
+                            <input type="" name="desc_am" placeholder="@lang('add-product.product.desc_am')" class="pt-3">
+                            <input type="" name="detail_am" placeholder="@lang('add-product.product.detail_ru')" class="pt-3">
                             {{--                        <input type="" name="" placeholder="Detail 2" class="pt-3">--}}
                             {{--                        <input type="" name="" placeholder="Detail 3" class="pt-3">--}}
                         </div>
                         <div class="row pl-0 pr-0 mt-3 select-group-1">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>Category</label>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.category')</label>
                                 <input type="hidden" id="sel_cat_route"
                                        value="{{route('menu.submenu',app()->getLocale())}}">
                                 <input type="hidden" id="sel_sub_cat_route"
@@ -67,34 +69,37 @@
                                        value="{{ route('add.product',app()->getLocale()) }}">
 
                                 <select id="select-menu">
-                                    <option class="add_product_menu">Select Category</option>
+                                    <option class="add_product_menu">@lang('add-product.product.sel_cat')</option>
                                     @foreach($menu as $m)
                                         <option name="menu" class="add_product_menu"
                                                 data-menu-id='{{ $m['id'] }}'>{{ $m['menu_name_' . app()->getLocale()] }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>Subcategory</label>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.sub_cat')</label>
                                 <div class="button-group">
-                                    <button class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="caret">Select Sub_menu</span></button>
+                                    <button class="dropdown-toggle product_white_button justify-content-between"  data-toggle="dropdown"><span
+                                            class="caret">@lang('add-product.product.sel_sub_cat')</span></button>
                                     <ul class="dropdown-menu" id="list_sub_menu">
 
                                     </ul>
                                 </div>
 
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>Type</label>
+                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.type')</label>
 
                                 <select id="select_sub_category" name="type">
-                                    <option class="add_product_menu">Select Type</option>
+                                    <option class="add_product_menu">@lang('add-product.product.sel_type')</option>
 
                                 </select>
                             </div>
+
+                        </div>
+                        <div class="row pl-0 pr-0 mt-4 justify-content-around select-group-2">
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
-                                <label>Quantity</label>
+                                <label>@lang('add-product.product.quantity')</label>
                                 <div class="d-flex text-center">
                                     <div class="ml-auto d-flex mr-auto">
                                         <div class="minus_p">-</div>
@@ -104,18 +109,16 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row pl-0 pr-0 mt-4 select-group-2">
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
-                                <label>Price</label>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                                <label class="ml-3">@lang('add-product.product.price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">$</span>
                                     <input type="text" id="price_product" name="price" class="price">
                                 </div>
 
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
-                                <label>Sale Price</label>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
+                                <label class="ml-4">@lang('add-product.product.sel_price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">%</span>
                                     <div>
@@ -126,8 +129,10 @@
                                 </div>
                                 <span class="prices_cost"></span>
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
-                                <label>Size</label>
+                        </div>
+                        <div class="row pl-0 pr-0 mt-4">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.size')</label>
 
                                 <!-- --------------------select with checkbox------------ -->
 
@@ -136,7 +141,7 @@
                                     <div
                                         class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
                                         id="size_all_content">
-                                        <div class="w-100 mr-1" id="sizes_opening">Sizes</div>
+                                        <div class="w-100 mr-1" id="sizes_opening">@lang('add-product.product.size')</div>
                                         <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                     </div>
                                     <div class=" dropdown-menu hide menu-first-item pt-0 pb-0 sizes"
@@ -171,15 +176,15 @@
 
 
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
-                                <label>Color</label>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.color')</label>
                                 <div class="button-group">
-                                    <button class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="caret">Select Colors</span></button>
+                                    <button class="dropdown-toggle justify-content-between product_white_button" data-toggle="dropdown"><span
+                                            class="caret">@lang('add-product.product.sel_color')</span></button>
                                     <ul class="dropdown-menu" id="list_colors">
                                         @foreach($all_colors as $c)
-                                            <li class="small" tabIndex="-1"><input value="{{ $c['id'] }}"
-                                                                                   name="color[]" class="color_check"
+                                            <li class="small d-flex align-items-center" tabIndex="-1"><input value="{{ $c['id'] }}"
+                                                                                   name="color[]" class="mr-1 color_check"
                                                                                    type="checkbox"/>
                                                 {{ $c['color_name_' . app()->getLocale()] }}
                                             </li>
@@ -189,21 +194,21 @@
 
 
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10">
-                                <label>Material</label>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.material')</label>
                                 <div class="dropdown">
                                     <div
                                         class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
                                         id="size_all_content">
-                                        <div class="w-100 mr-1" id="sizes_opening">Materials</div>
+                                        <div class="w-100 mr-1" id="sizes_opening">@lang('add-product.product.material')</div>
                                         <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                     </div>
-                                    <div class="w-100 dropdown-menu hide menu-first-item pt-0 pb-0"
+                                    <div class="dropdown-menu hide menu-first-item pt-0 pb-0"
                                          style="position: relative;">
                                         @foreach($all_materials as $k => $v)
-                                            <div class="dropdown-item" id="single_size_group">
+                                            <div class="dropdown-item single_size_group">
                                                 <div
-                                                    class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-2 pb-2 pl-3 pr-1"
+                                                    class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0"
                                                     id="size_second_item">
                                                     <div class="single_key">{{ $k }}</div>
                                                     <div class="single_key"><i class="fa fa-angle-right"
@@ -230,12 +235,11 @@
                                 </div>
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>Custom Material</label>
+                                <label>@lang('add-product.product.custom_material')</label>
                                 <input type="text" id="custom_material" name="custom_material">
                             </div>
                         </div>
-                        {{-- aria-label="Close"        data-toggle="modal"                                     value="Add Product" data-dismiss="modal"
-                                  data-target=".product-successfully-aded"--}}
+
                     </div>
                     <div class="row">
                         <div class="col-sm-12 col-md-12 col-lg-12 col-12 d-flex justify-content-center">
@@ -250,7 +254,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center mt-4 mb-5">
-                        <input type="submit" id="add-product" class="text-strong">
+                        <input type="submit" id="add-product" value="@lang('add-product.product.add_title')" class="text-strong">
 
 
                     </div>
@@ -275,19 +279,19 @@
             <div class="modal-body product-description-body ml-auto mr-auto pt-3 pb-3 text-center">
                 <div class=" mt-2"><img src="{{asset('assets/icons/success.png')}}"></div>
                 <div class="text-center mt-4 text-in-modal text-strong">
-                    Dear user, the product has been added to the "store name" store. It will be for sale after checking
-                    the Artstore moderator. You will receive a message about that.
+                    @lang('add-product.product.add_success_text')
+
                 </div>
                 <div class="text-center mt-4 mb-4">
                     <button class="again-add-product text-strong" data-toggle="modal" data-target=".add-product-modal"
-                            data-dismiss="modal" aria-label="Close">Add Product
+                            data-dismiss="modal" aria-label="Close">@lang('add-product.product.add_title')
                     </button>
                 </div>
                 <div class="go-to-product text-strong" data-toggle="modal" data-dismiss="modal" aria-label="Close">
                     <a class="nav-link d-flex go-to-product text-center justify-content-between acount-bar-item acount-bar-type-item"
                        data-type="seller" data-name="products" id="v-pills-products-tab" data-toggle="pill"
                        href="#v-pills-products" role="tab" aria-controls="v-pills-products" aria-selected="true">
-                        <div class="font-size-16">Go to Products</div>
+                        <div class="font-size-16">@lang('add-product.product.add_success_goto')</div>
                     </a>
                 </div>
             </div>

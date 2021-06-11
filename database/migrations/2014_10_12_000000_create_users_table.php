@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
-            $table->boolean('first_login')->default(false);
+            $table->boolean('shop')->default(false);
             $table->rememberToken();
             $table->timestamps();
         });

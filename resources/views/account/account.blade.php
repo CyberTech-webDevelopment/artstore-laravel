@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('style')
+
     <!--====== Account Styles ======-->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/welcome.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/account-bar.css') }}">
@@ -44,20 +45,15 @@
                             @include('account.create-store')
 
                         </div>
-                    @if(Auth::user()->first_login == false)
+
                         <!-- --------back if seller-> active class set seller------------------ -->
-                            <div class="tab-pane fade show active" id="v-pills-welcome-seller" role="tabpanel"
+                            <div class="tab-pane fade show @if(Auth::user()->shop == false) active @endif" id="v-pills-welcome-seller" role="tabpanel"
                                  aria-labelledby="v-pills-welcome-tab">
                                 @include('account.account-welcome-seller')
-                                @php
 
-                                    Auth::user()->first_login = true;
-                                    Auth::user()->save()
-
-                                @endphp
                             </div>
 
-                        @endif
+
                         <div class="tab-pane fade show " id="v-pills-basket" role="tabpanel"
                              aria-labelledby="v-pills-basket-tab">
                             @include('account.basket')

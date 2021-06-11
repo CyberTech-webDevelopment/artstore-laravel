@@ -42,7 +42,7 @@
                 <span class="pl-2">@lang('account_bar.bar.account_settings')</span></div></a>
             <a class="nav-link d-flex justify-content-between acount-bar-item" data-name="wallet" id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab" aria-controls="v-pills-wallet" aria-selected="false"><div class="font-size-16"><img src="{{asset('assets/icons/wallet.png')}}">
                 <span class="pl-2">@lang('account_bar.bar.wallet')</span></div><span class="new-int">$2600</span></a>
-            <a class="nav-link d-flex justify-content-between  acount-bar-type-item" onclick="fff()" id="add-product-a" data-type="seller" data-toggle="modal" data-target=".add-product-modal" aria-selected="false" >
+            <a class="nav-link d-flex justify-content-between  acount-bar-type-item" onclick="fff()" id="add-product-a"  data-type="seller" @if(Auth::user()->shop == true)  data-toggle="modal"  data-target=".add-product-modal"   @else href="#v-pills-welcome-seller" data-toggle="pill" aria-selected="false" role="tab" aria-controls="v-pills-welcome-seller" @endif>
                 <div class="font-size-16 text-danger">@lang('account_bar.bar.add_new_product')</div>
             </a>
         </div>
