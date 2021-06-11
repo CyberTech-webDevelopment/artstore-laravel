@@ -34,6 +34,12 @@ tbody > tr > td:not(:second-child) {
 .product-info div {
     width: 206px
 }
+.drop-image{
+
+    height: fit-content;
+    cursor: pointer;
+
+ }
 
 .sale-inp {
     width: 90px;

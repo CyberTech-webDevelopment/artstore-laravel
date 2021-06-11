@@ -55,8 +55,18 @@ function readURL(file) {
             } else {
                 if (array_images.length < 3) {
                     $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
+                    $src_icon = $('.delete-image').find('img').attr('src');
+                    $('#image-cont').append('<div class="drop-image"><img src="' + $src_icon +'"></div>')
                     array_images.push(e.target.result)
                     $('#product_form').append('<input type="hidden" name="files[]" value="' + e.target.result + '">');
+                    $img_values = $("[name='files[]']")
+
+                    for (let l=0;l<$img_values.length; l++ )
+                    {
+                        console.log($img_values[l])
+
+                    }
+
                 }
                 if (array_images.length == 3) {
                     $('.uploade-image').css('display', 'none')
@@ -117,7 +127,10 @@ $('#crop-image').click(function (e) {
         $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + cropped.src + '"></div>')
         array_images.push(cropped.src)
         $('#product_form').append('<input type="hidden" name="files[]" value="' + cropped.src + '">');
-
+        $src_icon = $('.delete-image').find('img').attr('src');
+        $('#image-cont').append('<div class="drop-image"><img src="' + $src_icon +'"></div>')
+        $img_values = $("[name='files[]']")
+        console.log($img_values.length)
         $('.canvas-cont').addClass('hide')
         $('.canvas-cont').removeClass('d-flex')
     }
@@ -142,7 +155,19 @@ $('#fileupload').on("input", function (e) {
         readURL(file);
     }
 });
+ $(document).on('click','.drop-image',function (){
+// alert()
+     $(this).prev().remove();
+//      console.log($(this).parent())
+     $(this).remove();
+      if ($('.uploade-image').css('display') == 'none')
+      {
+          $('.uploade-image').show();
 
+      }
+
+
+ })
 
 // -----------select categories--------------------------
 $('#select-menu').change(function () {
@@ -232,16 +257,7 @@ $(document).on('click', '.sub_menu_check', function () {
 $('#add-product').on('click', function (e) {
     e.preventDefault()
     let url = $('#add_product_url').val();
-    // form_data = new FormData();
-    //
-
-    //
-    // array_images.forEach(function (image) {
-    //     form_data.append("image[]", image);
-    // })
-
     var data = $('#product_form').serialize();
-    console.log(array_images)
 
     $.ajax({
         method: 'post',
@@ -251,52 +267,74 @@ $('#add-product').on('click', function (e) {
         dataType: 'json',
         cache: false,
         processData: false,
-        // contentType: false,
         success: function (res) {
+            // console.log(res)
+            if (res.product_error) {
+                if (res.field) {
 
-            console.log(res)
+                    $m = [];
+                    for (let i = 0; i < res.field.length; i++) {
+
+                        if (i == (res.field.length - 1)) {
+                            $m += $("[name='" + res.field[i] + "']").attr('placeholder');
+                        } else {
+                            $m += $("[name='" + res.field[i] + "']").attr('placeholder') + ',';
+                        }
+
+                    }
+                    console.log(res.field)
+
+                    $message = $m + " " + res.product_error
+                    $('.product_errors').html($message);
+                } else {
+                    $('.product_errors').html(res.product_error);
+
+                }
+
+
+            }
 
         }
     })
 
 })
-$('.percent').on('input',function () {
+$('.percent').on('input', function () {
     $price = $('.price').val();
     $percent = $(this).val();
-    if ($price != '')
-    {
-        $sale_percent = ($price * $percent)/100;
+    if ($price != '') {
+        $sale_percent = ($price * $percent) / 100;
         $sale_price = $price - $sale_percent;
+
         $('.prices_cost').text($sale_price);
-        if ($sale_price < 0)
-        {
-            $('.prices_cost').text(0);
+        if ($sale_price < 0 || isNaN($sale_price)) {
+
+            $('.prices_cost').text('');
+            $(this).val('');
 
         }
+
     }
-    if ($percent == "")
-    {
+    if ($percent == "") {
         $('.prices_cost').empty();
 
     }
 
 })
-$('.price').on('input',function () {
+$('.price').on('input', function () {
     $price = $(this).val();
     $percent = $('.percent').val();
-    if ($percent != '')
-    {
-        $sale_percent = ($price * $percent)/100;
+    if ($percent != '') {
+        $sale_percent = ($price * $percent) / 100;
         $sale_price = $price - $sale_percent;
+        $sale_price = parseInt($sale_price);
         $('.prices_cost').text($sale_price);
-        if ($sale_price < 0)
-        {
-            $('.prices_cost').text(0);
+        if ($sale_price < 0 || isNaN($sale_price)) {
+            $('.prices_cost').text('');
+            $(this).val('');
 
         }
     }
-    if ($price == "" )
-    {
+    if ($price == "") {
         $('.prices_cost').empty();
 
     }
