@@ -2,12 +2,12 @@
     <thead class="thead-lightorange">
     <tr>
         <th scope="col"></th>
-        <th scope="col">Product</th>
-        <th scope="col">Quantity</th>
-        <th scope="col">Status</th>
-        <th scope="col">Edit</th>
-        <th scope="col">Price</th>
-        <th scope="col">Total</th>
+        <th scope="col">@lang('account_basket.basket.product')</th>
+        <th scope="col">@lang('account_basket.basket.quantity')</th>
+        <th scope="col">@lang('account_basket.basket.status')</th>
+        <th scope="col">@lang('account_basket.basket.edit')</th>
+        <th scope="col">@lang('account_basket.basket.price')</th>
+        <th scope="col">@lang('account_basket.basket.total')</th>
     </tr>
     </thead>
 
@@ -63,21 +63,21 @@
     <div class="col-5 d-flex flex-wrap justify-content-end">
         <div class="flex-wrap col-7 mr-0  ">
             <div class="d-flex justify-content-between">
-                <span>Total Price: </span>
+                <span>@lang('account_basket.basket.total_price'):</span>
                 <span>$140</span>
             </div>
             <div class="d-flex justify-content-between">
-                <span>Ogut: </span>
+                <span>@lang('account_basket.basket.ogut'):</span>
                 <span>$140</span>
             </div>
             <div class="d-flex justify-content-between">
-                <span>Shipping: </span>
+                <span>@lang('account_basket.basket.shipping'):</span>
                 <span>$20</span>
             </div>
         </div>
         <div class="col-12 d-flex flex-wrap justify-content-end mt-3">
             <div class="d-flex justify-content-between">
-                <span>How you’ll pay</span>
+                <span>@lang('account_basket.basket.how_pay')</span>
                 <button id="select-pay" class="btn dropdown-toggle pt-0 ml-2" type="button" data-toggle="dropdown"
                         aria-haspopup="true" aria-expanded="false"></button>
                 <div class="dropdown-menu">
@@ -88,8 +88,9 @@
                 </div>
             </div>
             <div class="mt-3 justify-content-end ml-0 mb-4">
-                <button class="p-checkout">Porceed to Checkout</button>
+                <button class="p-checkout">@lang('account_basket.basket.porcend_checkout')</button>
             </div>
         </div>
     </div>
 </div>
+
