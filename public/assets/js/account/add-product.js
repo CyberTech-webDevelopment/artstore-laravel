@@ -2,6 +2,7 @@
 var image
 let array_images = []
 let c = 0;
+
 $(".input-file-trigger").on('dragenter', function (e) {
     e.preventDefault();
     $(this).css('background', '#BBD5B8');
@@ -54,15 +55,30 @@ function readURL(file) {
 
                 Edit(data, height, width, image)
             } else {
+                let unique_image = true;
                 if (array_images.length < 3) {
-                    c++;
-                    $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
-                    $src_icon = $('.delete-image').find('img').attr('src');
-                    $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
-                    array_images.push(e.target.result)
-                    $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files[]" value="' + e.target.result + '">');
+                    for (let i = 0; i < array_images.length; ++i) {
+                        // console.log(array_images[i])
+                        if (array_images[i] == e.target.result)
+                        {
+                            unique_image = false;
+                            break;
+                        }
+                    }
+                    console.log(unique_image)
+                    if (unique_image == true)
+                    {
+                        c++;
+                        $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
+                        $src_icon = $('.delete-image').find('img').attr('src');
+                        $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
+                        array_images.push(e.target.result)
+                        $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files[]" value="' + e.target.result + '">');
 
-                    console.log(c);
+                    }
+
+
+                    // console.log(c);
                 }
                 if (array_images.length == 3) {
                     $('.uploade-image').css('display', 'none')
@@ -109,6 +125,7 @@ function Edit(data, height, width, image) {
 // ------------------CROP IMAGE----------------
 $('#crop-image').click(function (e) {
     // alert()
+    $('#fileupload').val('');
     e.preventDefault()
     let cropWidth = canvas.getWidth()
     let cropHeight = canvas.getHeight()
@@ -142,6 +159,8 @@ $('#crop-image').click(function (e) {
 
 // ---------delete image-----------------------------
 $('.delete-image').click(function () {
+    console.log(array_images.length)
+    $('#fileupload').val('');
     $('.canvas-cont').addClass('hide')
     $('.canvas-cont').removeClass('d-flex')
 })
@@ -149,6 +168,7 @@ $('.delete-image').click(function () {
 
 // -------------------browse image-----------------------------
 $('#fileupload').on("input", function (e) {
+    console.log(array_images)
     if (array_images.length < 3) {
         var file = e.target.files[0];
         readURL(file);
@@ -156,6 +176,7 @@ $('#fileupload').on("input", function (e) {
 });
 $(document).on('click', '.drop-image', function () {
 // alert()
+    $('#fileupload').val('');
     $data_img_id = $(this).attr('data-img-id');
 
     // $('.img_inp').attr('data-inp-id',$data_img_id).remove();
@@ -163,7 +184,7 @@ $(document).on('click', '.drop-image', function () {
     array_images.pop();
     console.log(array_images.length)
     $img_values = $("[name='files[]']")
-    console.log($img_values.length);
+    // console.log($img_values.length);
 
     $(this).prev().remove();
 //      console.log($(this).parent())
@@ -256,25 +277,25 @@ $(document).on('click', '.sub_menu_check', function () {
 
 
 })
-$('#add-product-a').on('click',function () {
+$('#add-product-a').on('click', function () {
 
     $('.acount-bar-item').each(function () {
-        // alert()
-        console.log($(this))
 
-            // alert()
-            $active_image = $(this).find('img');
-            $active_image_src = $(this).find('img').attr('src');
+        $active_image = $(this).find('img');
+        $active_image_src = $(this).find('img').attr('src');
+        if ($active_image_src !== undefined) {
             $new_src = $active_image_src.split('-active');
-            if ($new_src.length > 1)
-            {
+            if ($new_src.length > 1) {
                 console.log($new_src);
-                $set_source = $new_src[0]+$new_src[1];
+                $set_source = $new_src[0] + $new_src[1];
                 console.log($set_source);
-                $active_image.attr('src',$set_source);
+                $active_image.attr('src', $set_source);
 
             }
-            // console.log($new_src);
+
+        }
+
+        // console.log($new_src);
 
 
     })
@@ -297,6 +318,7 @@ $('#add-product').on('click', function (e) {
         dataType: 'json',
         cache: false,
         processData: false,
+        async: false,
         success: function (res) {
             // console.log(res)
             if (res.product_error) {
@@ -323,8 +345,7 @@ $('#add-product').on('click', function (e) {
 
 
             }
-            if (res == "ok")
-            {
+            if (res == "ok") {
 
                 // $('#add-product').attr('data-target','.product-successfully-aded');
                 $('#close_add_model').trigger('click');
