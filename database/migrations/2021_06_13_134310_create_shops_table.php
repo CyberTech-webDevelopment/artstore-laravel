@@ -20,8 +20,9 @@ class CreateShopsTable extends Migration
             $table->string('background');
             $table->string('description');
             $table->string('page_type');
-            $table->string('use_name');
-            $table->string('use_avatar');
+            $table->string('use_name')->nullable();
+            $table->string('use_avatar')->nullable();
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

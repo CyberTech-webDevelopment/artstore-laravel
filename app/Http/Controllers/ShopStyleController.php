@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ShopFirstController extends Controller
+class ShopStyleController extends Controller
 {
     public function shop_first(){
 

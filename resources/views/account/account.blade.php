@@ -22,6 +22,8 @@
 
 
 @section('content')
+
+    @include('account.store_success')
     <section class="pt-4 account-section">
         <div class="container-fluid account-container">
             <div class="row ">Homepage > My Account > Basket</div>
@@ -47,11 +49,12 @@
                         </div>
 
                         <!-- --------back if seller-> active class set seller------------------ -->
-                            <div class="tab-pane fade show @if(Auth::user()->shop == false) active @endif" id="v-pills-welcome-seller" role="tabpanel"
-                                 aria-labelledby="v-pills-welcome-tab">
-                                @include('account.account-welcome-seller')
+                        <div class="tab-pane fade show @if(Auth::user()->shop == false) active @endif"
+                             id="v-pills-welcome-seller" role="tabpanel"
+                             aria-labelledby="v-pills-welcome-tab">
+                            @include('account.account-welcome-seller')
 
-                            </div>
+                        </div>
 
 
                         <div class="tab-pane fade show " id="v-pills-basket" role="tabpanel"
@@ -59,7 +62,8 @@
                             @include('account.basket')
 
                         </div>
-                        <div class="tab-pane fade show " id="v-pills-products" role="tabpanel"
+                        <div class="tab-pane fade show @if(Auth::user()->shop == true) active @endif"
+                             id="v-pills-products" role="tabpanel"
                              aria-labelledby="v-pills-products-tab">
                             @include('account.products')
 

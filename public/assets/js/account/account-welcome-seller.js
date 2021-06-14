@@ -266,26 +266,41 @@ $('#create_store').on('click', function (e) {
         success: function (res) {
             console.log(res)
 
-            if (res.product_error) {
+            if (res.store_error) {
                 if (res.field) {
 
                     $m = [];
                     for (let i = 0; i < res.field.length; i++) {
 
 
-                            $m += "Store Description";
+                        $m += "Store Description";
 
 
                     }
                     console.log(res.field)
 
-                    $message = $m + " " + res.product_error
+                    $message = $m + " " + res.store_error
                     $('.product_errors').html($message);
                 } else {
-                    $('.product_errors').html(res.product_error);
+                    $('.product_errors').html(res.store_error);
 
                 }
 
+
+            }
+            if (res.name) {
+
+                // $('#add-product').attr('data-target','.product-successfully-aded');
+                // $('#close_add_model').trigger('click');
+                $('#v-pills-create-store').removeClass('active')
+                $('#open_success_modal_store').trigger('click');
+                $('#store_name').text(res.name)
+                setTimeout(function () {
+
+                    location.reload();
+
+                }, 1500)
+                // $('.product-successfully-aded').addClass('show');
 
             }
 
@@ -293,3 +308,8 @@ $('#create_store').on('click', function (e) {
     })
 
 })
+// $('.lets-sell').on('click',function () {
+//
+//     location.reload();
+//
+// })

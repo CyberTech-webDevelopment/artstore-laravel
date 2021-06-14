@@ -10,7 +10,7 @@
             <div class="form-group parent">
                 <div>
                     <label class="text-strong">Store Name</label>
-                    <input type="text" name="store_name" class="form-control store-inp" id="">
+                    <input type="text" name="store_name" class="form-control store-inp" id="store_name_inp">
                     <p class="font-size-14">Your shop name will appear in your shop and next to each of your listings
                         throughout Artstore. You can change it later if you’d like.</p>
                 </div>
@@ -133,26 +133,4 @@
 
 </form>
 
-<!-- -------------------modal-successfully create-store-------------------- -->
 
-<div class="modal fade" id="centered" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><img src="{{ asset('assets/icons/close.png') }}"></span>
-                </button>
-            </div>
-            <div class="modal-body pt-3 pb-3">
-                <div class="text-center"><img src="{{ asset('assets/icons/success.png') }}"></div>
-                <div class="text-center success-text pt-5 pb-5 text-strong">Dear Name, Surname, Congratulations! You
-                    have successfully created the "Store Name" in Artstore.am. Now you can download and sell your
-                    products worlwide.
-                </div>
-                <div class="text-center">
-                    <button class="lets-sell">Let’s Sell</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
