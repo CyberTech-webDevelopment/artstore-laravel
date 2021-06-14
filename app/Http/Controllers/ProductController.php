@@ -144,7 +144,7 @@ class ProductController extends Controller
         $product->size_type = $size_table;
         $product->material_type = $material_table;
         $product->custom_material = $request->custom_material;
-        $product->user_id = Auth::user()->id;
+        $product->store_id = $request->store_id;
         $product->save();
 //        dump($request->all());
 //        dump($sizes);
