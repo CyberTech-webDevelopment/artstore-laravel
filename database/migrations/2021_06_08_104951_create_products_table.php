@@ -31,7 +31,7 @@ class CreateProductsTable extends Migration
             $table->string('size_type');
             $table->string('material_type');
             $table->string('custom_material')->nullable();
-            $table->integer('user_id');
+            $table->integer('store_id');
             $table->timestamps();
         });
     }

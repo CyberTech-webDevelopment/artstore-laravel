@@ -20,7 +20,7 @@ $(".input-file-trigger_store").on('drop', function (e) {
     e.preventDefault()
     var file = e.originalEvent.dataTransfer.files[0];
 
-    readURL(file);
+    readURL_store(file);
 });
 
 function readUrl_background(file) {
@@ -67,7 +67,7 @@ function readUrl_background(file) {
 
 }
 
-function readURL(file) {
+function readURL_store(file) {
     var reader = new FileReader();
     reader.onload = function (e) {
         var image = new Image();
@@ -198,7 +198,7 @@ $('#shop_img').on("input", function (e) {
     console.log(array_images_store.length)
     if (array_images_store.length < 1) {
         var file = e.target.files[0];
-        readURL(file);
+        readURL_store(file);
     }
 });
 $('#store_background').on("input", function (e) {
