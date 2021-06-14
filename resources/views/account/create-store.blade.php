@@ -15,7 +15,7 @@
                         throughout Artstore. You can change it later if you’d like.</p>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pl-0">
                 <div class="canvas-cont_store hide ml-auto mr-auto" tabindex="3">
                     <canvas id="canvas_store"></canvas>
                     <div class="ml-1 edit-img">
@@ -31,23 +31,23 @@
                             <div class="font-size-12 text-center">Drag photo to upload</div>
                             <div class="font-size-12 text-center">or</div>
                             <div class="text-center"><label class="browse font-size-12 text-strong"><input
-                                     id="shop_img" type='file'>Browse</label></div>
+                                        id="shop_img" type='file'>Browse</label></div>
                         </div>
-                        <div class="ml-2">
-                            <img src="{{ asset('assets/icons/edit-account-settings.png') }}">
-                            <div></div>
-                            <img src="{{ asset('assets/icons/delete.png') }}">
-                        </div>
+                        {{--                        <div class="ml-2">--}}
+                        {{--                            <img src="{{ asset('assets/icons/edit-account-settings.png') }}">--}}
+                        {{--                            <div></div>--}}
+                        {{--                            <img src="{{ asset('assets/icons/delete.png') }}">--}}
+                        {{--                        </div>--}}
                         <div id='divHabilitSelectors'
                              class="input-file-container text-center pt-2 input-file-trigger_store"></div>
                     </div>
                     <div id="image-cont_store" class="d-flex"></div>
                     <div class="pt-2">
-                        <input type="checkbox" name="">
+                        <input type="checkbox" name="use_name">
                         <label class="font-size-14">Use Username as Store Name</label>
                     </div>
                     <div>
-                        <input type="checkbox" name="">
+                        <input type="checkbox" name="use_avatar">
                         <label class="font-size-14">Apply User’s Avatar as Store’s Logo.</label>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
             <div class="form-group parent col-12 pl-0 pr-0">
-                <div class="d-flex">
+                <div class="d-flex uploade-image_store_back">
                     <div class="drag-photo pt-4">
                         <div class="text-center pb-2"><img src="{{ asset('assets/icons/upload.png') }}"></div>
                         <div class="font-size-12 text-center">Drag photo to upload</div>
@@ -72,12 +72,13 @@
                         <div class="text-center"><label class="browse font-size-12 text-strong"><input
                                     id="store_background" name="background_image" type='file'>Browse</label></div>
                     </div>
-                    <div class="ml-2">
-                        <img src="{{ asset('assets/icons/edit-account-settings.png') }}">
-                        <div></div>
-                        <img src="{{ asset('assets/icons/delete.png') }}">
-                    </div>
+                    {{--                    <div class="ml-2">--}}
+                    {{--                        <img src="{{ asset('assets/icons/edit-account-settings.png') }}">--}}
+                    {{--                        <div></div>--}}
+                    {{--                        <img src="{{ asset('assets/icons/delete.png') }}">--}}
+                    {{--                    </div>--}}
                 </div>
+                <div id="image-cont_store_back" class="d-flex"></div>
             </div>
             <div class="form-group parent col-12 pl-0 pr-0">
                 <div class="pt-2">
@@ -110,9 +111,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12 d-flex justify-content-center">
+                <div
+                    class="col-sm-6 col-md-6 col-lg-6 col-6 d-flex justify-content-center font-weight-bold font-size-16 text-danger product_errors">
+
+
+                </div>
+
+            </div>
+
+
+        </div>
         <div class="row pt-3 pb-5">
             {{--            data-toggle="modal" data-target="#centered"--}}
-            <input type="submit" name="submit" class="create-store-btn" id="create_store" value="Create Store" type="button">
+            <input type="submit" name="submit" class="create-store-btn" id="create_store" value="Create Store"
+                   type="button">
         </div>
     </div>
 
