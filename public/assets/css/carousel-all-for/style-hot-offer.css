@@ -1,0 +1,273 @@
+#testimonials .testimonial-item {
+    box-sizing: content-box;
+    margin: 0 9px;
+  }
+
+  .container-carusel{
+    width: 100%;
+  }
+
+  #testimonials .owl-dot {
+    display: none;
+  }
+
+  .owl-carousel{
+    width: 100% !important;
+    margin: 0 auto;
+  }
+  .owl-stage-outer{
+    width: 100%;
+    margin: 0 auto
+  }
+  .carousel-item-background {
+    height: 90px
+  }
+
+  .testimonials-item{
+    position: relative;
+  }
+  .row-d img{
+    transition: filter 0.5s;
+  }
+  .testimonial-item:hover .row-d img{
+    filter: brightness(0.5);
+  }
+
+
+  /*-----------------------------------------------------*/
+  #testimonials .owl-nav{
+      position: absolute;
+      font-size:64px;
+      top: 1%;
+      width: 100%;
+      display: block;
+
+  }
+
+  .owl-prev{
+    display: block !important;
+    position: absolute;
+    left: 10px;
+    top:60px;
+    outline: none !important;
+    text-shadow: 0px 1px, 1px 0px, 1px 1px;
+  }
+  .owl-next{
+    display: block !important;
+    right: 10px;
+    top:60px;
+    position: absolute;
+    outline: none !important;
+    text-shadow: 0px 1px, 1px 0px, 1px 1px;
+  }
+  .owl-prev>span, .owl-next>span{
+    color: #6C491C;
+    font-family: none !important;
+    font-size: 50px;
+  }
+  .carousel-trns-div{
+    width: 100%;
+    height: 100%;
+    background: #0000007a;
+  }
+  .carousel-trns-div>div{
+    width: 100%;
+    height: 100%
+  }
+  .row-icon-div{
+    height: 32px;
+    width: 100%;
+    background: rgba(39, 54, 138, 0.8);
+    font-variant: small-caps;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.5px
+  }
+  .row-icon-div>div>img{
+    width: 18px !important;
+    height: 18px !important
+  }
+  .testimonial-item:hover .carousel-trns-div{
+    display: block;
+  }
+  .active{
+    background-color: #fff;
+  }
+  .hid-rate{
+    visibility: hidden;
+    position: absolute;
+    top: 10px;
+    z-index: 1;
+    padding: 5px 45px;
+  }
+  .testimonial-item:hover .hid-rate{
+    visibility: visible;
+  }
+  .bold-hov{
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .hov-owner{
+    font-size: 11px;
+    font-weight: 600;
+    color: white;
+  }
+  .bold-hov1{
+    font-size: 12px;
+    font-weight: 600;
+    color: white;
+  }
+
+  .addToCart{
+    color:#6C491C;
+    text-shadow: 0px 0.2px, 0.2px 0px, 0.2px 0.2px;
+    font-weight: bolder;
+    font-size: 12px;
+    margin-left: 15px;
+    margin-top: 8px;
+  }
+  .num-stars{
+    color:#6C491C;
+    text-shadow: 0px 0.2px, 0.2px 0px, 0.2px 0.2px;
+    font-size: 12px;
+  }
+  .search-like-icons{
+    width: max-content;
+    margin: auto;
+    text-align: center;
+    margin-left: 25px;
+    margin-bottom: 25px;
+  }
+  .hid-date{
+    font-size: 30px;
+    color: #FF8B4A;
+    font-family: Sedan SC;
+    margin-bottom: 15px;
+  }
+  .bold-hov, .hov-owner, .hov-stars{
+    margin-left: 25px;
+  }
+  @media (max-width: 1199px){
+    .hid-rate{
+        padding: 5px 25px;
+      }
+      .hid-date{
+        font-size: 20px;
+        margin-bottom: 8px;
+      }
+      .search-like-icons {
+        margin-bottom: 10px;
+    }
+  }
+  @media (max-width: 991px){
+    .hid-rate{
+      padding: 5px 45px;
+    }
+  }
+
+  @media (max-width: 1024px){
+    .owl-prev{
+      top:40px;
+    }
+    .owl-next{
+      top:40px;
+    }
+    .bold-hov, .hov-owner, .hov-stars{
+      margin-left: 0px;
+    }
+
+  .search-like-icons{
+      margin-left: 0px;
+      margin-bottom: 8px;
+    }
+    .hid-rate{
+      margin-bottom: 8px;
+
+    }
+    .hid-date{
+      margin-top:7px;
+    }
+    .hid-rate{
+      padding: 5px 35px;
+    }
+
+  }
+
+  @media (max-width: 768px) {
+    #testimonials .testimonial-item {
+      margin: 30px 10px;
+    }
+    .owl-prev{
+      top:43px;
+    }
+    .owl-next{
+      top:43px;
+    }
+    .hid-rate{
+      top: 20px;
+      padding: 5px 5px;
+      margin-left: 25px;
+    }
+    .hid-date{
+      margin-bottom:0px;
+    }
+
+  }
+
+  @media (max-width:425px){
+    .industries-slide-section .container{
+      padding: 0
+    }
+    #testimonials .container-fluid{
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    #testimonials .row{
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+
+    .owl-stage-outer{
+      width: 100%
+    }
+    .owl-nav{
+      display: none !important;
+    }
+    .hid-date{
+      font-size: 18px;
+
+    }
+    .search-like-icons> img{
+      width: 20px;
+    }
+    .hid-rate{
+
+      margin-left: 10px;
+    }
+    .search-like-icons{
+      margin-bottom: 0px;
+    }
+
+  }
+  @media (max-width:375px){
+
+    .hid-date{
+      font-size: 30px;
+    }
+    .hid-rate{
+      margin-left: 42px;
+      margin-top: 20px;
+    }
+
+  }
+  @media (max-width:320px){
+
+    .hid-rate{
+      margin-left: 25px;
+      margin-top: 10px;
+    }
+
+  }
+

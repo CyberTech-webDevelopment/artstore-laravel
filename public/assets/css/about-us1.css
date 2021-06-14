@@ -1,0 +1,154 @@
+
+.caps{
+    font-variant: small-caps;
+    font-family: 'Sedan SC 400';
+    text-transform: capitalize;
+    text-align: center;
+    width: 100%;
+    margin: auto;
+    padding: 50px;
+    color: #3D2006;
+    font-size: 27px;
+    font-weight: 500;
+}
+.m-img img{
+    width: 382px;
+
+}
+.m-img{
+ position: relative;
+ width: 65%;
+}
+.about-absolute{
+    position: absolute;
+    top: 82px;
+    left: 370px;
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.25);
+    z-index: 1;
+    background-color: white;
+    text-align: center;
+}
+.about-absolute > p {
+    padding: 75px 20px 20px;
+    width: 350px;
+    font-size: 14px;
+    color:#3D2006;
+}
+.abs-image img{
+    position: absolute;
+    top: -27px;
+    right: 74px;
+}
+.check-text{
+    font-size: 14px;
+    margin-left: 12px;
+    margin-top: 4px;
+}
+/* .abs-image{
+    position: absolute;
+} */
+.abs-image img{
+    width: 182px;
+}
+.check-two{
+    width: 32%;
+    margin-top: 35px;
+}
+.checked{
+    padding: 18px 12px;
+}
+.color1{
+    background-color: #E2D6C6;
+}
+.color2{
+    background-color: #FFF0DD;
+}
+.checked img{
+    width: 48px;
+}
+.circle1{
+    border: 1px solid white;
+    border-radius: 50%;
+}
+.circle2{
+    border: 1px solid #E2D6C6;
+    border-radius: 50%;
+}
+.main{
+    margin-bottom: 70px;
+}
+
+@media (max-width: 1200px) {
+
+    .m-img img{
+        width: 300px;
+    }
+    .about-absolute > p {
+        width: 280px;
+    }
+    .abs-image img{
+        width: 140px;
+    }
+    .check-two {
+        width: 38%;
+    }
+    .about-absolute {
+        left: 288px;
+    }
+
+}
+@media (max-width: 992px) {
+    .main-flex{
+        flex-wrap: wrap;
+    }
+    .m-img{
+        width: 80%;
+        margin-bottom: 70px;
+    }
+    .check-two{
+        width: 80%;
+        margin: auto;
+    }
+    .about-absolute > p {
+        padding: 45px 15px 15px;
+        width: 405px;
+        font-size: 13px;
+    }
+    .abs-image img {
+        right: 115px;
+    }
+}
+
+@media (max-width: 768px) {
+    .about-absolute {
+        left: 208px;
+    }
+    .about-absolute > p {
+        width: 305px;
+    }
+    .m-img{
+        margin-bottom: 120px;
+    }
+}
+@media (max-width: 564px) {
+    .about-absolute {
+        position: unset;
+        margin-top: 25px;
+
+    }
+    .abs-image img{
+        position: unset;
+    }
+    .m-img{
+        width: 85%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .about-absolute > p {
+        width: 100%;
+    }
+
+
+}
+

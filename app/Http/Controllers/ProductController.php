@@ -213,4 +213,10 @@ class ProductController extends Controller
         }
         return ($is_contain);
     }
+
+
+    // ----------product page----------------------
+    public function product(){
+        return view('product.product-page');
+    }
 }
