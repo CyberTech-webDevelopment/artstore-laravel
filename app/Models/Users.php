@@ -46,4 +46,8 @@ class Users extends Authenticatable implements MustVerifyEmail
     {
         return self::where('created_at', '>', Carbon::yesterday())->where(['verification_code' => $verification_code]);
     }
+    public function store()
+    {
+        return $this->hasOne(Shop::class,'user_id', 'id');
+    }
 }
