@@ -31,6 +31,14 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/shop-first', [App\Http\Controllers\ShopFirstController::class, 'shop_first'])->name('shop-first');
     Route::get('/shop-second', [App\Http\Controllers\ShopSecondController::class, 'shop_second'])->name('shop-second');
     Route::get('/shop-third', [App\Http\Controllers\ShopThirdController::class, 'shop_third'])->name('shop-third');
+    Route::get('/about-us', [App\Http\Controllers\AboutUsController::class, 'about_us'])->name('about-us');
+    Route::get('/all-for', [App\Http\Controllers\AllForController::class, 'all_for'])->name('all-for');
+    Route::get('/bestseller', [App\Http\Controllers\BestSellerController::class, 'best_seller'])->name('bestseller');
+    Route::get('/hot-offer', [App\Http\Controllers\HotOfferController::class, 'hot_offer'])->name('hot-offer');
+    Route::get('/policies', [App\Http\Controllers\PoliciesController::class, 'policies'])->name('policies');
+    Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
+    Route::get('/questions', [App\Http\Controllers\QuestionsController::class, 'questions'])->name('questions');
+
     Route::get('/account',[App\Http\Controllers\AccountController::class, 'index'])->name('account');
     Route::post('/get_menu', [App\Http\Controllers\CategoryController::class, 'menu_in_sub_menu'])->name('menu.submenu');
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
