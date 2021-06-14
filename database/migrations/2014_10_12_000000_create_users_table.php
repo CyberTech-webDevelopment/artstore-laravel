@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('verification_code')->nullable();
             $table->integer('is_verified')->default(0);
             $table->boolean('shop')->default(false);
+            $table->string('avatar')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
