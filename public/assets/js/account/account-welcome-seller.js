@@ -1,6 +1,8 @@
 $('.create-store').click(function () {
+    // alert()
     $('#v-pills-welcome-seller').removeClass('active')
     $('#v-pills-create-store').addClass('active')
+    $('#v-pills-create-store').addClass('show')
 })
 var image
 let array_images_store = []
@@ -179,12 +181,13 @@ $('#crop-image_store').click(function (e) {
         $('.canvas-cont_store').addClass('hide')
         $('.canvas-cont_store').removeClass('d-flex')
     }
-    console.log(array_images.length)
+
     // if (array_images.length > 0) {
     $('.uploade-image_store').css('display', 'none')
     $('.uploade-image_store').removeClass('d-flex')
     // }
     canvas.clear()
+
 })
 // ---------delete image-----------------------------
 $('.delete-image_store').click(function () {
@@ -307,6 +310,30 @@ $('#create_store').on('click', function (e) {
         }
     })
 
+})
+$('#add-product-a').on('click', function () {
+
+
+    $('.acount-bar-item').each(function () {
+
+        $active_image = $(this).find('img');
+        $active_image_src = $(this).find('img').attr('src');
+        if ($active_image_src !== undefined) {
+            $new_src = $active_image_src.split('-active');
+            if ($new_src.length > 1) {
+                console.log($new_src);
+                $set_source = $new_src[0] + $new_src[1];
+                console.log($set_source);
+                $active_image.attr('src', $set_source);
+
+            }
+
+        }
+
+        // console.log($new_src);
+
+
+    })
 })
 // $('.lets-sell').on('click',function () {
 //

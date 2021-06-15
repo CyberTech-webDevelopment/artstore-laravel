@@ -245,6 +245,9 @@ input:focus {
 .canvas-cont:focus {
     outline: none;
 }
+.canvas-cont_store:focus {
+    outline: none;
+}
 
 button:focus {
     outline: none;
