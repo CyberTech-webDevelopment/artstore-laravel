@@ -19,7 +19,7 @@
                 <div class="canvas-cont_store hide ml-auto mr-auto" tabindex="3">
                     <canvas id="canvas_store"></canvas>
                     <div class="ml-1 edit-img">
-                        <button id="crop-image_store"><i class='fas fa-crop' style='font-size:24px'></i></button>
+                        <div id="crop-image_store"><i class='fas fa-crop' style='font-size:24px'></i></div>
                         <p></p>
                         <div class="delete-image_store"><img src="{{asset('assets/icons/close.png')}}"></div>
                     </div>
@@ -32,14 +32,11 @@
                             <div class="font-size-12 text-center">or</div>
                             <div class="text-center"><label class="browse font-size-12 text-strong"><input
                                         id="shop_img" type='file'>Browse</label></div>
+
                         </div>
-                        {{--                        <div class="ml-2">--}}
-                        {{--                            <img src="{{ asset('assets/icons/edit-account-settings.png') }}">--}}
-                        {{--                            <div></div>--}}
-                        {{--                            <img src="{{ asset('assets/icons/delete.png') }}">--}}
-                        {{--                        </div>--}}
-                        <div id='divHabilitSelectors'
+                        <div id='divHabilitSelectors_store'
                              class="input-file-container text-center pt-2 input-file-trigger_store"></div>
+
                     </div>
                     <div id="image-cont_store" class="d-flex"></div>
                     <div class="pt-2">

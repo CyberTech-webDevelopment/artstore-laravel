@@ -299,7 +299,6 @@ $('#add-product-a').on('click', function () {
 
 
     })
-
 })
 
 // add product
@@ -400,3 +399,4 @@ $('.price').on('input', function () {
     }
 
 })
+

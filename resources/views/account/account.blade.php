@@ -1,4 +1,5 @@
 @extends('layouts.app')
+
 @section('style')
 
     <!--====== Account Styles ======-->
@@ -121,8 +122,12 @@
 
     <!--====== Account Scripts ======-->
     <script src="{{asset('assets\js\account\basket.js')}}"></script>
-    <script src="{{asset('assets\js\account\add-product.js')}}"></script>
-    <script src="{{asset('assets\js\account\account-welcome-seller.js')}}"></script>
+    @if(Auth::check() && Auth::user()->shop == true)
+        <script src="{{asset('assets\js\account\add-product.js')}}"></script>
+    @endif
+    @if(Auth::check() && Auth::user()->shop == false)
+        <script src="{{asset('assets\js\account\account-welcome-seller.js')}}"></script>
+    @endif
     <script src="{{asset('assets\js\account\account-settings-address.js')}}"></script>
     <script src="{{asset('assets\js\account\account-bar.js')}}"></script>
     <script>

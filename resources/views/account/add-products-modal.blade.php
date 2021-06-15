@@ -23,10 +23,10 @@
                         <input type="hidden" name="store_id" value="{{ Auth::user()->store->id }}">
                     @endif
                     <div class="row pl-1 pr-0">
-                        <div class="canvas-cont hide ml-auto mr-auto" tabindex="3">
+                        <div class="canvas-cont hide ml-auto mr-auto" tabindex="2">
                             <canvas id="canvas"></canvas>
                             <div class="ml-1 edit-img">
-                                <button id="crop-image"><i class='fas fa-crop' style='font-size:24px'></i></button>
+                                <div id="crop-image"><i class='fas fa-crop' style='font-size:24px'></i></div>
                                 <p></p>
                                 <div class="delete-image"><img src="{{asset('assets/icons/close.png')}}"></div>
                             </div>
@@ -46,7 +46,7 @@
                                 <div id='divHabilitSelectors'
                                      class="input-file-container text-center pt-2 input-file-trigger"></div>
                             </div>
-                            <div></div>
+
                         </div>
                         <div id="image-cont" class="d-flex"></div>
                     </div>
