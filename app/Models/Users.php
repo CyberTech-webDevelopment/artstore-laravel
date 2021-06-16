@@ -46,8 +46,39 @@ class Users extends Authenticatable implements MustVerifyEmail
     {
         return self::where('created_at', '>', Carbon::yesterday())->where(['verification_code' => $verification_code]);
     }
+
     public function store()
     {
-        return $this->hasOne(Shop::class,'user_id', 'id');
+        return $this->hasOne(Shop::class, 'user_id', 'id');
+    }
+
+    public function use_name()
+    {
+        if (isset($this->store) && $this->store->use_name == 'on') {
+            return $this->name . "/" . $this->store->name;
+        } else {
+            return $this->name;
+        }
+
+    }
+
+    public function use_avatar()
+    {
+        if (isset($this->store) && $this->store->use_avatar == 'on') {
+
+            return 'store_logo/' . $this->store->logo;
+        } else {
+
+            if ($this->avatar == null) {
+
+                return "avatar/user-icon.png";
+
+            } else {
+                return 'avatar/' . $this->avatar;
+            }
+
+        }
+
+
     }
 }

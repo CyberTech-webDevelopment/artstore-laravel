@@ -1,10 +1,34 @@
 <div class="col-lg-3 col-sm-12 col-xs-12 acount-nav mt-3">
     <div>
-        <div class="row d-flex flex-nowrap acount-nav-head pt-3 pb-4 ml-0 mr-0 pl-1 pr-1">
+        <div
+            class="row @if(Auth::user()->shop == false) section_active @else d-none @endif flex-nowrap acount-nav-head pt-3 pb-4 ml-0 mr-0 pl-1 pr-1"
+             id="data-byer">
             <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 acount-user-img pl-0 pr-0"><img
-                    src="{{asset('assets/images/users-image/1.png')}}"></div>
+                    src="/storage/{{Auth::user()->use_avatar()}}"></div>
             <div class="col-lg-8 col-md-5 col-sm-4 col-xs-4 pr-0 user-info">
-                <div class="text-strong font-size-24">Name Surname</div>
+                <div class="text-strong font-size-24">{{ Auth::user()->use_name() }}</div>
+                <div class="edit-profile font-size-20"><a href="">@lang('account_bar.bar.edit_profile') <span><img
+                                src="{{asset('assets/icons/edit-profile.png')}}"></span></a></div>
+                <div class="star-cont">
+                    <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>
+                    <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>
+                    <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>
+                    <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>
+                    <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>
+                    <span class="point">(48)</span>
+                </div>
+            </div>
+        </div>
+        <div
+            class="row @if(Auth::user()->shop == true) section_active @else d-none @endif flex-nowrap acount-nav-head pt-3 pb-4 ml-0 mr-0 pl-1 pr-1"
+            id="data-seller">
+            {{--            @dump(Auth::user()->store->use_avatar)--}}
+            <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 acount-user-img pl-0 pr-0"><img
+                    @if(isset(Auth::user()->store))src="/storage/store_logo/{{Auth::user()->store->logo}}" @else
+                src="/storage/store_logo/default-logo.png" @endif></div>
+            <div class="col-lg-8 col-md-5 col-sm-4 col-xs-4 pr-0 user-info">
+                <div
+                    class="text-strong font-size-24"> @if(isset(Auth::user()->store)) {{Auth::user()->store->name}} @else {{ Auth::user()->use_name() }} @endif</div>
                 <div class="edit-profile font-size-20"><a href="">@lang('account_bar.bar.edit_profile') <span><img
                                 src="{{asset('assets/icons/edit-profile.png')}}"></span></a></div>
                 <div class="star-cont">
@@ -76,7 +100,8 @@
                 <div class="font-size-16"><img src="{{asset('assets/icons/settings.png')}}">
                     <span class="pl-2">@lang('account_bar.bar.account_settings')</span></div>
             </a>
-            <a class="nav-link d-flex justify-content-between acount-bar-item acount-bar-type-item" data-type="seller"
+            <a class="nav-link d-flex justify-content-between edit_store acount-bar-item acount-bar-type-item"
+               data-type="seller"
                data-name="settings" id="v-pills-seller-settings-tab" data-toggle="pill" href="#v-pills-seller-settings"
                role="tab" aria-controls="v-pills-seller-settings" aria-selected="false">
                 <div class="font-size-16"><img src="{{asset('assets/icons/settings.png')}}">

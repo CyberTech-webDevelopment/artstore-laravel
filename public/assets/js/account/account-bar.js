@@ -63,10 +63,17 @@ $('.acount-type').each(function () {
 })
 
 $('.acount-type').click(function () {
+
+
     $('.acount-type').each(function () {
         $(this).removeClass('acount-type-active')
-    })
 
+    })
+$('.section_active').addClass("d-none");
+$('.section_active').removeClass("section_active")
+   $id = $(this).attr('id')
+$('#data-'+$id).addClass("section_active")
+$('#data-'+$id).removeClass("d-none")
     $(this).addClass('acount-type-active')
     var $type = $(this).attr('id')
     $('.acount-bar-type-item').removeClass('d-flex')

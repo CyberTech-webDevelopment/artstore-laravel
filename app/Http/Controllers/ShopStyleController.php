@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 class ShopStyleController extends Controller
 {
-    public function shop_first(){
+    public function store_style(){
 
           return view('shop.shop-first');
     }
