@@ -79,6 +79,14 @@
 .show-nav{
 	display: block !important;
 }
+/*#buyer_section{*/
+/*    display: none!important;*/
+
+/*}*/
+.section_active{
+
+    display: flex;
+}
 /*------------------media 1024---------------------*/
 @media (max-width: 1024px) {
 	.font-size-20 {
@@ -96,7 +104,7 @@
 		left: 0;
 		padding: 0
 	}
-	
+
 	.acount-nav{
 		position: absolute;
 		z-index: 200;
@@ -153,7 +161,7 @@
     .acount-user-img img {
 	    width: 56%;
     }
-	    border-radius: 50%;
+	    /*border-radius:50%;*/
 	.user-info{
 	    padding-left: 0
 	}
