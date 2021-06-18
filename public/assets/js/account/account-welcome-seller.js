@@ -292,9 +292,7 @@ $('#create_store').on('click', function (e) {
 
             }
             if (res.name) {
-
-                // $('#add-product').attr('data-target','.product-successfully-aded');
-                // $('#close_add_model').trigger('click');
+                
                 $('#v-pills-create-store').removeClass('active')
                 $('#open_success_modal_store').trigger('click');
                 $('#store_name').text(res.name)
@@ -302,8 +300,8 @@ $('#create_store').on('click', function (e) {
 
                     location.reload();
 
-                }, 1500)
-                // $('.product-successfully-aded').addClass('show');
+                }, 1000)
+
 
             }
 

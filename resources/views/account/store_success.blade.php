@@ -8,9 +8,9 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><img src="{{ asset('assets/icons/close.png') }}"></span>
-                </button>
+{{--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                    <span aria-hidden="true"><img src="{{ asset('assets/icons/close.png') }}"></span>--}}
+{{--                </button>--}}
             </div>
             <div class="modal-body pt-3 pb-3">
                 <div class="text-center"><img src="{{ asset('assets/icons/success.png') }}"></div>
