@@ -1,3 +1,5 @@
+// alert()
+
 $('.create-store').click(function () {
     // alert()
     $('#v-pills-welcome-seller').removeClass('active')
@@ -8,16 +10,16 @@ var image
 let array_images_store = []
 // let c = 0;
 
-$(".input-file-trigger_store").on('dragenter', function (e) {
+$(".input-file-trigger_store_e").on('dragenter', function (e) {
     e.preventDefault();
     $(this).css('background', '#BBD5B8');
 });
 
-$(".input-file-trigger_store").on('dragover', function (e) {
+$(".input-file-trigger_store_e").on('dragover', function (e) {
     e.preventDefault();
 });
 
-$(".input-file-trigger_store").on('drop', function (e) {
+$(".input-file-trigger_store_e").on('drop', function (e) {
     $(this).css('background', '#D8F9D3');
     e.preventDefault()
     var file = e.originalEvent.dataTransfer.files[0];
@@ -198,6 +200,7 @@ $('.delete-image_store').click(function () {
 })
 
 $('#shop_img').on("input", function (e) {
+    // alert()
     console.log(array_images_store.length)
     if (array_images_store.length < 1) {
         var file = e.target.files[0];
@@ -292,7 +295,7 @@ $('#create_store').on('click', function (e) {
 
             }
             if (res.name) {
-                
+
                 $('#v-pills-create-store').removeClass('active')
                 $('#open_success_modal_store').trigger('click');
                 $('#store_name').text(res.name)
@@ -333,6 +336,7 @@ $('#add-product-a').on('click', function () {
 
     })
 })
+
 // $('.lets-sell').on('click',function () {
 //
 //     location.reload();

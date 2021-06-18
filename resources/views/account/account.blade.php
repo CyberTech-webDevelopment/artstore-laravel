@@ -122,6 +122,8 @@
 
     <!--====== Account Scripts ======-->
     <script src="{{asset('assets\js\account\basket.js')}}"></script>
+    <script src="{{asset('assets\js\account\seller-setting.js')}}"></script>
+
     @if(Auth::check() && Auth::user()->shop == true)
         <script src="{{asset('assets\js\account\add-product.js')}}"></script>
     @endif

@@ -1,3 +1,4 @@
+
 <form action="{{ route('add.shop',app()->getLocale()) }}" method="post" enctype="multipart/form-data"
       id="shop_form">
 
