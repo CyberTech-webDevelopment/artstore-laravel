@@ -136,8 +136,14 @@
         $('.h5-click').click(function () {
             $('#store-style').toggleClass('hide-style')
         })
-        $('.edit-h5-click').click(function () {
+        // $('.edit-h5-click').click(function () {
+        //     alert()
+        //     $('#edit-store-style').toggleClass('hide-style')
+        // })
+        $(document).on('click','.edit-h5-click',function (){
+
             $('#edit-store-style').toggleClass('hide-style')
+
         })
 
     </script>
