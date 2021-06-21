@@ -33,38 +33,15 @@ function readUrl_background(file) {
     reader.onload = function (e) {
         var image = new Image();
         image.src = e.target.result;
-
         image.onload = function () {
-            // var height = this.height;
-            // var width = this.width;
             var data = e.target.result;
-
-            // if (height > 400 || width > 400) {
-            //     $('.canvas-cont_store').removeClass('hide')
-            //     $('.canvas-cont_store').addClass('d-flex')
-            //
-            //     Edit(data, height, width, image)
-            // }
-            // else {
-            // let unique_image = true;
-            // if (array_images_store.length < 1) {
-
             $('#image-cont_store_back').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
             $src_icon = $('.delete-image').find('img').attr('src');
             $('#image-cont_store_back').append('<div class="drop-image_store_back"><img src="' + $src_icon + '"></div>')
-            // array_images_store.push(e.target.result)
-            // $('#shop_form').append('<input type="hidden" class="img_inp"  name="files_back" value="' + e.target.result + '">');
 
-            // }
-
-
-            // console.log(c);
-            // }
-            // if (array_images.length > 0) {
             $('.uploade-image_store_back').css('display', 'none')
             $('.uploade-image_store_back').removeClass('d-flex')
-            // }
-            // }
+
         }
     }
     reader.readAsDataURL(file);
@@ -202,21 +179,30 @@ $('.delete-image_store').click(function () {
 $('#shop_img').on("input", function (e) {
     // alert()
     console.log(array_images_store.length)
-    if (array_images_store.length < 1) {
-        var file = e.target.files[0];
-        readURL_store(file);
+    var file = e.target.files[0];
+    var ext = $('#shop_img').val().split('.').pop().toLowerCase();
+    if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
+
+        $(this).val('');
+        $('#image-cont_store').empty();
+        $('#image-cont_store').append('<div class="image-error-item ml-4 mt-2 text-danger">Invalide image</div>');
+    } else {
+        if (array_images_store.length < 1) {
+            var file = e.target.files[0];
+            readURL_store(file);
+        }
     }
+
 });
 $('#store_background').on("input", function (e) {
-    // console.log(array_images_store.length)
-    // if (array_images_store.length < 1) {
+
     var file = e.target.files[0];
     var ext = $('#store_background').val().split('.').pop().toLowerCase();
     if ($.inArray(ext, ['gif', 'png', 'jpg', 'jpeg']) == -1) {
 
         $(this).val('');
         $('#image-cont_store_back').empty();
-        $('#image-cont_store_back').append('<div class="image-error-item mx-1">Invalide image</div>');
+        $('#image-cont_store_back').append('<div class="image-error-item ml-4 mt-2 text-danger ">Invalide image</div>');
 
 
     } else {
@@ -225,7 +211,6 @@ $('#store_background').on("input", function (e) {
 
     }
 
-    // }
 });
 
 $(document).on('click', '.drop-image_store', function () {
