@@ -37,13 +37,14 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
     Route::get('/questions', [App\Http\Controllers\QuestionsController::class, 'questions'])->name('questions');
 
-    Route::get('/account',[App\Http\Controllers\AccountController::class, 'index'])->name('account');
+    Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');
     Route::post('/get_menu', [App\Http\Controllers\CategoryController::class, 'menu_in_sub_menu'])->name('menu.submenu');
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
-    Route::get('/blog-name', [App\Http\Controllers\BlogNameController::class, 'blog_name'])->name('blog-name');
     Route::post('/get_sub_cat', [App\Http\Controllers\CategoryController::class, 'sub_menu_in_sub_cat'])->name('sub_menu.sub_cat');
     Route::post('/add_product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('add.product');
     Route::post('/add_shop', [App\Http\Controllers\ShopController::class, 'add_store'])->name('add.shop');
+    Route::get('/edit-store', [App\Http\Controllers\ShopController::class, 'edit_store'])->name('edit.store.show');
+    Route::post('/edit-store', [App\Http\Controllers\ShopController::class, 'edit_store_post'])->name('edit.store');
 
 
 });

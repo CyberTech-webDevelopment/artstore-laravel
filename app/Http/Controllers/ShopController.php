@@ -49,8 +49,7 @@ class ShopController extends Controller
         }
         $store = new Shop();
 
-        if ($request->hasfile('background_image'))
-        {
+        if ($request->hasfile('background_image')) {
             $image = $request->file('background_image');
             $background_name = uniqid() . "." . $image->getClientOriginalExtension();
             $image->move(public_path() . '/storage/store_back/', $background_name);
@@ -69,15 +68,29 @@ class ShopController extends Controller
         $store->use_name = $request->use_name;
         $store->use_avatar = $request->use_avatar;
         $store->user_id = Auth::user()->id;
-        $save_store =  $store->save();
+        $save_store = $store->save();
         $user = Users::find(Auth::user()->id);
         $user->shop = 1;
         $user->save();
-        if ($save_store)
-        {
-            return response()->json(['name'=>$store->name]);
+        if ($save_store) {
+            return response()->json(['name' => $store->name]);
         }
 
 
     }
+
+    public function edit_store(Request $request)
+    {
+//        dd($request->all());
+        $store_id = $request->store_id;
+        $store = Shop::find($store_id);
+//        dd($store);
+        return response()
+            ->json([
+                'view' => view('account.seller-settings', compact('store'))->render(),
+                'store'=>$store,
+            ]);
+
+    }
+
 }
