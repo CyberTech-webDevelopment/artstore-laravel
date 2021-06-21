@@ -1,5 +1,6 @@
 <input type="hidden" id="edit_store_post_route" value="{{ route('edit.store',app()->getLocale()) }}">
 <form method="post" enctype="multipart/form-data" id="edit_store_form">
+    <input type="hidden" name="store_id" id="store_id" value="@if(isset($store)) {{ $store->id }} @endif">
     <div class="create-store-container ml-1 pb-5">
         <div class="row">
             <h5 class="text-strong">Edit The Store</h5>
@@ -8,8 +9,8 @@
             <div class="form-group parent">
                 <div>
                     <label class="text-strong">Store Name</label>
-                    <input type="text" class="form-control store-inp"
-                           value="@if(isset($store)) {{ $store->name }} @endif" id=" store_name">
+                    <input type="text" name="store_name" class="form-control store-inp"
+                           value="@if(isset($store)) {{ $store->name }} @endif" id="store_name">
                     <p class="font-size-14">Your shop name will appear in your shop and next to each of your listings
                         throughout Artstore. You can change it later if you’d like.</p>
                 </div>
@@ -40,12 +41,12 @@
                     <div id="image-cont_store_e" class="d-flex">
 
                     </div>
-                    <div class="pt-2">
+                    <div class="pt-2 pl-3">
                         <input type="checkbox" @if(isset($store) && $store->use_name == "on") checked
                                @endif name="use_name">
                         <label class="font-size-14">Use Username as Store Name</label>
                     </div>
-                    <div>
+                    <div class="pl-3">
 
                         <input type="checkbox" @if(isset($store) && $store->use_avatar == "on") checked
                                @endif name="use_avatar">
@@ -65,16 +66,16 @@
                 </div>
             </div>
             <div class="form-group parent col-12 pl-0 pr-0">
-                <div class="d-flex">
+                <div class="d-flex upload-store-e">
                     <div class="drag-photo pt-4" id="drag-photo-e-back">
                         <div class="text-center pb-2"><img src="{{asset('assets/icons/upload.png')}}"></div>
                         <div class="font-size-12 text-center">Drag photo to upload</div>
                         <div class="font-size-12 text-center">or</div>
                         <div class="text-center"><label class="browse font-size-12 text-strong"><input
-                                    type='file'>Browse</label></div>
+                                    type='file' id="store_back_e" name="store_back">Browse</label></div>
                     </div>
                 </div>
-                <div id="img-cont-back-e"></div>
+                <div id="img-cont-back-e" class="d-flex"></div>
             </div>
             <div class="form-group parent col-12 pl-0 pr-0">
                 <div class="pt-2">
@@ -110,33 +111,46 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-12 d-flex justify-content-center">
+                <div
+                    class="col-sm-6 col-md-6 col-lg-6 col-6 d-flex justify-content-center font-weight-bold font-size-16 text-danger product_errors">
+
+
+                </div>
+
+            </div>
+
+
+        </div>
         <div class="row pt-3 pb-5">
-            <button class="create-store-btn" type="button" data-toggle="modal" data-target="#edit-centered">Create Store
-            </button>
+{{--            data-toggle="modal"  data-target="#edit-centered"--}}
+            <input class="create-store-btn" type="button"  value="Create Store" id="edit_store_btn">
+
         </div>
     </div>
 </form>
 
-<!-- -------------------modal-successfully create-store-------------------- -->
+{{--<!-- -------------------modal-successfully create-store-------------------- -->--}}
 
-<div class="modal fade" id="edit-centered" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>
-                </button>
-            </div>
-            <div class="modal-body pt-3 pb-3">
-                <div class="text-center"><img src="{{asset('assets/icons/success.png')}}"></div>
-                <div class="text-center success-text pt-5 pb-5 text-strong">Dear Name, Surname, Congratulations! You
-                    have successfully created the "Store Name" in Artstore.am. Now you can download and sell your
-                    products worlwide.
-                </div>
-                <div class="text-center">
-                    <button class="lets-sell">Let’s Sell</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+{{--<div class="modal fade" id="edit-centered" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">--}}
+{{--    <div class="modal-dialog modal-dialog-centered">--}}
+{{--        <div class="modal-content">--}}
+{{--            <div class="modal-header">--}}
+{{--                <button type="button" class="close" data-dismiss="modal" aria-label="Close">--}}
+{{--                    <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>--}}
+{{--                </button>--}}
+{{--            </div>--}}
+{{--            <div class="modal-body pt-3 pb-3">--}}
+{{--                <div class="text-center"><img src="{{asset('assets/icons/success.png')}}"></div>--}}
+{{--                <div class="text-center success-text pt-5 pb-5 text-strong">Dear Name, Surname, Congratulations! You--}}
+{{--                    have successfully created the "Store Name" in Artstore.am. Now you can download and sell your--}}
+{{--                    products worlwide.--}}
+{{--                </div>--}}
+{{--                <div class="text-center">--}}
+{{--                    <button class="lets-sell">Let’s Sell</button>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</div>--}}
