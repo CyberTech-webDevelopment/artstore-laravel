@@ -27,11 +27,13 @@ class CreateProductsTable extends Migration
             $table->string('sub_cat');
             $table->string('quantity');
             $table->float('price');
-            $table->integer('percent');
-            $table->string('size_type');
-            $table->string('material_type');
+            $table->integer('percent')->nullable();
+            $table->string('size_type')->nullable();
+            $table->string('material_type')->nullable();
+            $table->string('gift')->nullable();
+            $table->integer('gender_id')->default(0);
             $table->string('custom_material')->nullable();
-            $table->string('status')->default('active');
+            $table->string('status')->default(1);
             $table->integer('store_id');
             $table->integer('user_id');
             $table->timestamps();

@@ -74,7 +74,10 @@ textarea:focus{
 .style-group-cont>div{
  width: 32%
 }
+#image-cont_store_e{
 
+    width: 26vw;
+}
 .success-text{
 	color: #f97a29;
 }
@@ -89,7 +92,7 @@ textarea:focus{
 .go-to-product{
 	width: 150px;
 	color: #000;
-	margin: 0 auto 
+	margin: 0 auto
 }
 .go-to-product:hover{
 	color: #DF5700

@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Sub_menuSeeder::class);
         $this->call(sub_categories_sub_menusSeeder::class);
         $this->call(UserSeeder::class);
+        $this->call(GenderSeeder::class);
 
     }
 }

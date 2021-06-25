@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Colors;
+use App\Models\Gender;
 use App\Models\Menu;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -50,8 +51,9 @@ class AppServiceProvider extends ServiceProvider
 
         $menu = Menu::all();
         $all_colors = Colors::all();
+        $genders = Gender::all();
 
-        view()->share(compact('menu', 'all_sizes','all_materials','all_colors'));
+        view()->share(compact('menu','genders','all_sizes','all_materials','all_colors'));
 
     }
 }
