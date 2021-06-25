@@ -15,7 +15,7 @@ tr{
 	border-bottom: 1px solid  #F1E1D2;
 }
 td{
-	
+
 	vertical-align: middle !important;
 }
 .product-img{
@@ -36,7 +36,7 @@ td{
     height: 46px;
     width: 310px;
     font-size: 14px;
-   /* 
+   /*
     text-overflow: ellipsis;
   white-space: nowrap;*/
   overflow: hidden;

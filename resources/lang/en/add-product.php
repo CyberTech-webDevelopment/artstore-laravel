@@ -31,6 +31,9 @@ return [
         'add_success_goto' => 'Go To Products',
         'add_success_text' => 'Dear user, the product has been added to the "store name" store. It will be for sale after checking
                     the Artstore moderator. You will receive a message about that.',
+        'marketing_tools' => 'Marketing Tools',
+        'by_gender' => 'By gender',
+        'gift_for' => 'Gift for',
 
     ]
 ];

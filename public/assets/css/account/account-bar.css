@@ -23,6 +23,13 @@
   width: 1vw;
   height: 1vw
 }
+.modal{
+
+    overflow: auto!important;
+}
+.modal::-webkit-scrollbar {
+    display: none;
+  }
 .account-open-bar{
 	width: 70px;
 	height: 44px;

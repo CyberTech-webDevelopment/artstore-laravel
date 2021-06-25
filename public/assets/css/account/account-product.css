@@ -1,0 +1,19 @@
+.product-img-products img{
+
+   width: 100%;
+
+}
+.minus_short, .plus_short{
+	width: 20px;
+	height: 24px;
+	font-weight: 700;
+	border: 1px solid #000;
+	border-radius: 2px;
+	background: none;
+	outline: none;
+}
+.prices_cost_short{
+
+    position: absolute;
+    right: 17%;
+}

@@ -44,7 +44,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::post('/add_product', [App\Http\Controllers\ProductController::class, 'add_product'])->name('add.product');
     Route::post('/add_shop', [App\Http\Controllers\ShopController::class, 'add_store'])->name('add.shop');
     Route::get('/edit-store', [App\Http\Controllers\ShopController::class, 'edit_store'])->name('edit.store.show');
-    Route::post('/edit-store', [App\Http\Controllers\ShopController::class, 'edit_store_post'])->name('edit.store');
+    Route::post('/edit-storepost', [App\Http\Controllers\ShopController::class, 'edit_store_post'])->name('edit.store');
+    Route::post('/edit-productshort', [App\Http\Controllers\ProductController::class, 'edit_short'])->name('edit.short');
 
 
 });

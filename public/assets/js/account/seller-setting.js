@@ -26,7 +26,7 @@ $(document).ready(function () {
             image.src = e.target.result;
             image.onload = function () {
                 var data = e.target.result;
-                $('#img-cont-back-e').append('<div class="ml-3 image-cont-item"><img src="' + e.target.result + '"></div>');
+                $('#img-cont-back-e').append('<div class="drop-image_e col-sm-4 col-4 col-lg-4 col-md-4"><img src="' + e.target.result + '" style="width: 100%"></div>');
                 $src_icon = $('.delete-image_store_e').find('img').attr('src');
                 $('#img-cont-back-e').append('<div class="ml-2 drop-image-e-store_back"><img src="' + $src_icon + '"></div>')
 
@@ -60,7 +60,8 @@ $(document).ready(function () {
 
                     if (array_images_store_e.length < 1) {
 
-                        $('#image-cont_store_e').append('<div class="ml-3 image-cont-item"><img src="' + e.target.result + '"></div>');
+
+                        $('#image-cont_store_e').append('<div class="drop-image_e col-sm-8 col-8 col-lg-8 col-md-8"><img src="' + e.target.result + '" style="width: 100%"></div>');
 
                         $src_icon = $('.delete-image_store_e').find('img').attr('src');
                         $('#image-cont_store_e').append('<div class="ml-2 drop-image-e-store" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
@@ -127,8 +128,9 @@ $(document).ready(function () {
         // console.log(cropped.src)
 
         if (array_images_store_e.length < 1) {
+
             $('#image-cont_store_e').empty();
-            $('#image-cont_store_e').append('<div class="ml-3 image-cont-item"><img src="' + cropped.src + '"></div>')
+            $('#image-cont_store_e').append('<div class="drop-image_e col-sm-8 col-8 col-lg-8 col-md-8"><img src="' + cropped.src + '" style="width: 100%"></div>')
             $src_icon = $('.delete-image_store_e').find('img').attr('src');
             $('#image-cont_store_e').append('<div class="ml-2 drop-image-e-store" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
             array_images_store_e.push(cropped.src)

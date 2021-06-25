@@ -125,7 +125,7 @@
         </div>
         <div class="row pt-3 pb-5">
 {{--            data-toggle="modal"  data-target="#edit-centered"--}}
-            <input class="create-store-btn" type="button"  value="Create Store" id="edit_store_btn">
+            <input class="create-store-btn" type="button"  value="Edit Store" id="edit_store_btn">
 
         </div>
     </div>

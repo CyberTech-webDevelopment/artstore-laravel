@@ -136,7 +136,7 @@ class ShopController extends Controller
 
             $old_back_img = $old_shop->background;
 
-            unlink('../storage/app/public/store_back/' . $old_back_img);
+            unlink(public_path() . '/storage/store_back/' . $old_back_img);
             $image = $request->file('store_back');
             $background_name = uniqid() . "." . $image->getClientOriginalExtension();
             $image->move(public_path() . '/storage/store_back/', $background_name);
@@ -145,7 +145,7 @@ class ShopController extends Controller
         if ($request->input('file_edit')){
             $old_logo = $old_shop->logo;
 
-            unlink('../storage/app/public/store_logo/' . $old_logo);
+            unlink(public_path() . '/storage/store_logo/' . $old_logo);
             $store_logo = $request->input('file_edit');
             $store_logo = str_replace('data:image/png;base64,', '', $store_logo);
             $img = str_replace(' ', '+', $store_logo);

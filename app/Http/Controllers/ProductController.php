@@ -14,6 +14,7 @@ class ProductController extends Controller
 {
     public function add_product(Request $request)
     {
+// dd($request->all());
         $validator = Validator::make($request->all(), [
             'name_en' => 'required|max:255',
             'name_ru' => 'required|max:255',
@@ -27,10 +28,11 @@ class ProductController extends Controller
             'type' => 'required',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
-            'percent' => 'numeric',
-            'size' => 'required',
-            'color' => 'required',
-            'material' => 'required',
+            'percent' => 'nullable|numeric',
+            'gender' => 'nullable|numeric',
+            // 'size' => 'required',
+            // 'color' => 'required',
+            // 'material' => 'required',
             'files' => 'required',
 
         ]);
@@ -74,13 +76,17 @@ class ProductController extends Controller
         $sizes = [];
         $materials = [];
         $colors = [];
-        foreach ($request->color as $color) {
-            array_push($colors, $color);
-
+        $product = new Product();
+        if(isset($request->color)){
+            foreach ($request->color as $color) {
+                array_push($colors, $color);
+            }
         }
-        $size_length = count($request->size);
-        $material_length = count($request->material);
         $path = app_path() . "/Models";
+    if(isset($request->size)){
+        $size_length = count($request->size);
+
+
         if ($size_length > 1) {
             return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
 
@@ -98,8 +104,11 @@ class ProductController extends Controller
 
             }
 
-
         }
+        $product->size_type = $size_table;
+    }
+    if(isset($request->material)){
+        $material_length = count($request->material);
         if ($material_length > 1) {
 
             return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
@@ -119,15 +128,10 @@ class ProductController extends Controller
 
             }
 
-
         }
-//        dump($request->all());
-//        Get sub_menues sub_categories if isset its
-//          $sel_sub_cat = Sub_categories::find($request->type);
-//          $parent_sub_menus = $sel_sub_cat->sub_menus;
-//          dump($parent_sub_menus);
-        // end get  sub_menues sub_categories if isset its
-        $product = new Product();
+        $product->material_type = $material_table;
+    }
+
         $product->name_am = $request->name_am;
         $product->name_ru = $request->name_ru;
         $product->name_en = $request->name_en;
@@ -140,25 +144,28 @@ class ProductController extends Controller
         $product->sub_cat = $request->type;
         $product->quantity = $request->count;
         $product->price = $request->price;
+        $product->gender_id = $request->gender;
+        $product->gift = $request->gift;
         $product->percent = $request->percent;
-        $product->size_type = $size_table;
-        $product->material_type = $material_table;
         $product->custom_material = $request->custom_material;
         $product->store_id = $request->store_id;
         $product->user_id = Auth::user()->id;
         $product->save();
-//        dump($request->all());
-//        dump($sizes);
-//        dump($materials);
-        foreach ($sizes as $s) {
 
-            DB::table('products_' . $size_table)->insert([
-                'product_id' => $product->id,
-                'size_id' => $s,
+        if(!empty($sizes)){
+            foreach ($sizes as $s) {
 
-            ]);
+                DB::table('products_' . $size_table)->insert([
+                    'product_id' => $product->id,
+                    'size_id' => $s,
+
+                ]);
+
+            }
 
         }
+
+        if(!empty($materials)){
         foreach ($materials as $m) {
 
             DB::table('products_' . $material_table)->insert([
@@ -167,7 +174,9 @@ class ProductController extends Controller
 
             ]);
 
-        }
+         }
+       }
+       if(!empty($colors)){
         foreach ($colors as $c) {
 
             DB::table('products_colors')->insert([
@@ -176,23 +185,36 @@ class ProductController extends Controller
 
             ]);
 
+         }
         }
-
 //        @dd($product->id);
 
         $product_images = $request->input('files');
 
-        foreach ($product_images as $img) {
-
+        foreach ($product_images as $key => $img) {
+            // dump($key);
             $img = str_replace('data:image/png;base64,', '', $img);
             $img = str_replace(' ', '+', $img);
             $imageName = uniqid() . '.' . 'png';
             \File::put(public_path() . '/storage/product/' . $imageName, base64_decode($img));
-            DB::table('products_images')->insert([
-                'product_id' => $product->id,
-                'image' => $imageName,
+            if($key == 0){
+                DB::table('products_images')->insert([
+                    'product_id' => $product->id,
+                    'image' => $imageName,
+                    'main' => 1,
+                ]);
 
-            ]);
+            }
+            else
+            {
+                DB::table('products_images')->insert([
+                    'product_id' => $product->id,
+                    'image' => $imageName,
+                    'main' => 0,
+                ]);
+
+            }
+
 
         }
 
@@ -215,7 +237,59 @@ class ProductController extends Controller
         return ($is_contain);
     }
 
+// product short edit
+   public function edit_short(Request $request)
+   {
 
+    //   dd($request->all());
+    $validator = Validator::make($request->all(), [
+        'quantity' => 'required|numeric',
+        'status' => 'required|numeric',
+        'price' => 'required|numeric',
+        'percent' => 'nullable|numeric',
+
+    ]);
+
+    if ($validator->fails()) {
+        $errors = $validator->failed();
+         foreach ($errors as $err => $value)
+        {
+            foreach ($value as $key => $v)
+            {
+                if ($key == 'Required')
+                {
+                    return response()->json(['product_error' => 'Please fill all required fields']);
+                }
+                if ($key == 'Numeric')
+                {
+
+                    $message_error = "Invalid value in the numeric field (s)";
+                    return response()->json(['product_error' => $message_error]);
+
+                }
+
+            }
+        }
+      }
+      if(isset($request->product_id))
+      {
+         $product = Product::find($request->product_id);
+         $product->quantity = $request->input('quantity');
+         $product->status = $request->status;
+         $product->price = $request->price;
+         $product->percent = $request->percent;
+         $suc_save =  $product->save();
+
+      }
+      if($suc_save)
+      {
+
+        return response()->json('ok');
+
+      }
+
+
+   }
     // ----------product page----------------------
     public function product(){
         return view('product.product-page');

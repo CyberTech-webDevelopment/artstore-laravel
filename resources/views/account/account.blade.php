@@ -17,6 +17,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/create-store.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/seller-add-products.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/delete-products.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/account-product.css') }}">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.16/fabric.min.js"></script>
 @endsection
@@ -26,6 +27,7 @@
 
     @include('account.store_success')
     @include('account.store_edit_successfuly')
+    @include('account.add-products-modal')
     <section class="pt-4 account-section">
         <div class="container-fluid account-container">
             <div class="row ">Homepage > My Account > Basket</div>
@@ -133,6 +135,7 @@
     @endif
     <script src="{{asset('assets\js\account\account-settings-address.js')}}"></script>
     <script src="{{asset('assets\js\account\account-bar.js')}}"></script>
+    <script src="{{asset('assets\js\account\account-product.js')}}"></script>
     <script>
         $('.h5-click').click(function () {
             $('#store-style').toggleClass('hide-style')

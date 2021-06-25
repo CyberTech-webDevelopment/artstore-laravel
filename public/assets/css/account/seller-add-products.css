@@ -184,7 +184,7 @@ tbody > tr > td:not(:second-child) {
 
 .again-add-product {
     width: 130px;
-    height: 35px;
+    height: fit-content;
     background: #FFFFFF;
     border: 1px solid #E18800;
     border-radius: 8px;
@@ -278,7 +278,19 @@ button:active {
     height: 25px;
 
 }
+.form-check-input_gift{
 
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+}
+.form-check-input_gift_check{
+
+    height: unset!important;
+
+}
 .product_white_button {
 
     width: 100%;

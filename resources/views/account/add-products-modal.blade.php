@@ -114,8 +114,8 @@
                             </div>
 
                         </div>
-                        <div class="row pl-0 pr-0 mt-4 justify-content-around select-group-2">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
+                        <div class="row pl-0 pr-0 mt-4 justify-content-around align-items-end select-group-2 ">
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
                                 <label>@lang('add-product.product.quantity')</label>
                                 <div class="d-flex text-center">
                                     <div class="ml-auto d-flex mr-auto">
@@ -126,7 +126,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
+                            {{-- last row product_add --}}
+
+
+                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.by_gender')</label>
+
+                                <select id="select_gender" name="gender">
+                                    <option class="add_product_menu" value="0">@lang('add-product.product.by_gender')</option>
+                                    @foreach ($genders as $g)
+
+                                       <option class="add_product_menu" value="{{ $g->id }}">{{ $g->name }}</option>
+
+                                    @endforeach
+
+
+
+                                </select>
+                            </div>
+                            <div class="p-0 col-lg-3 col-md-3 col-sm-6 col-xs-10 d-flex align-items-center">
+                                <div class="form-check-input_gift">
+                                   <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1" id="gift_check">
+                                   <label class="form-check-label" for="gift_check">
+                                       @lang('add-product.product.gift_for')
+                                   </label>
+                                </div>
+                            </div>
+                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10">
                                 <label class="ml-3">@lang('add-product.product.price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">$</span>
@@ -134,8 +160,8 @@
                                 </div>
 
                             </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10 text-center">
-                                <label class="ml-4">@lang('add-product.product.sel_price')</label>
+                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
+                                <label class="ml-3">@lang('add-product.product.sel_price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">%</span>
                                     <div>
@@ -192,7 +218,6 @@
                                     </div>
                                 </div>
 
-
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                                 <label>@lang('add-product.product.color')</label>
@@ -211,7 +236,6 @@
                                         @endforeach
                                     </ul>
                                 </div>
-
 
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
@@ -267,11 +291,9 @@
                             <div
                                 class="col-sm-6 col-md-6 col-lg-6 col-6 d-flex justify-content-center font-weight-bold font-size-16 text-danger product_errors">
 
-
                             </div>
 
                         </div>
-
 
                     </div>
                     <div class="d-flex justify-content-center mt-4 mb-5">

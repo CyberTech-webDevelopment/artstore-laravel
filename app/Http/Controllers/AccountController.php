@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -13,12 +15,13 @@ class AccountController extends Controller
      */
     public function __construct()
     {
-
-        $this->middleware('auth');
+       $this->middleware('auth');
     }
     public function index()
     {
-        return view('account.account');
+        $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        // dd($products[0]->product_sizes);
+        return view('account.account',compact('products'));
 
     }
 }

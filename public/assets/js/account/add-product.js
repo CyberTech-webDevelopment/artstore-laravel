@@ -169,7 +169,7 @@ $('.delete-image').click(function () {
 
 // -------------------browse image-----------------------------
 $('#fileupload').on("input", function (e) {
-    console.log(array_images)
+    // alert(array_images.length)
     if (array_images.length < 3) {
         var file = e.target.files[0];
         readURL(file);
@@ -364,19 +364,20 @@ $('.percent').on('input', function () {
     if ($price != '') {
         $sale_percent = ($price * $percent) / 100;
         $sale_price = $price - $sale_percent;
-
+        $(this).parent().parent().parent().css('margin-bottom','-23px')
         $('.prices_cost').text($sale_price);
         if ($sale_price < 0 || isNaN($sale_price)) {
 
             $('.prices_cost').text('');
             $(this).val('');
+            $(this).parent().parent().parent().css('margin-bottom','0px')
 
         }
 
     }
     if ($percent == "") {
         $('.prices_cost').empty();
-
+        $(this).parent().parent().parent().css('margin-bottom','0px')
     }
 
 })
@@ -388,16 +389,37 @@ $('.price').on('input', function () {
         $sale_price = $price - $sale_percent;
         $sale_price = parseInt($sale_price);
         $('.prices_cost').text($sale_price);
+        $('.percent').parent().parent().parent().css('margin-bottom','-23px');
         if ($sale_price < 0 || isNaN($sale_price)) {
             $('.prices_cost').text('');
             $(this).val('');
-
+            $('.percent').parent().parent().parent().css('margin-bottom','0px');
         }
     }
     if ($price == "") {
-        $('.prices_cost').empty();
 
+        $('.prices_cost').empty();
+        $('.percent').parent().parent().parent().css('margin-bottom','0px');
     }
 
 })
+
+$('.go-to-product').on('click',function(){
+
+    location.reload();
+})
+$('.again-add-product').on('click',function(e){
+
+    e.preventDefault();
+    $('#product_form')[0].reset();
+    $('#image-cont').empty();
+    $('.uploade-image').css('display','block');
+    while(array_images.length > 0) {
+        array_images.pop();
+    }
+    console.log(array_images.length)
+
+})
+
+
 
