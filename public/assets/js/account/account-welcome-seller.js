@@ -34,13 +34,21 @@ function readUrl_background(file) {
         var image = new Image();
         image.src = e.target.result;
         image.onload = function () {
+            var width = this.width;
             var data = e.target.result;
-            $('#image-cont_store_back').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
-            $src_icon = $('.delete-image').find('img').attr('src');
-            $('#image-cont_store_back').append('<div class="drop-image_store_back"><img src="' + $src_icon + '"></div>')
+            if (width < 680) {
+                $('#store_background').val('');
+                $('#image-cont_store_back').empty();
+                $('#image-cont_store_back').append('<div class="image-error-item ml-4 mt-2 text-danger ">Background Image min width must be 680px</div>');
+            } else {
+                $('#image-cont_store_back').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
+                $src_icon = $('.delete-image').find('img').attr('src');
+                $('#image-cont_store_back').append('<div class="drop-image_store_back"><img src="' + $src_icon + '"></div>')
 
-            $('.uploade-image_store_back').css('display', 'none')
-            $('.uploade-image_store_back').removeClass('d-flex')
+                $('.uploade-image_store_back').css('display', 'none')
+                $('.uploade-image_store_back').removeClass('d-flex')
+            }
+
 
         }
     }
@@ -65,35 +73,22 @@ function readURL_store(file) {
 
                 Edit(data, height, width, image)
             } else {
-                // let unique_image = true;
+
                 if (array_images_store.length < 1) {
-                    // for (let i = 0; i < array_images.length; ++i) {
-                    //     // console.log(array_images[i])
-                    //     if (array_images[i] == e.target.result)
-                    //     {
-                    //         unique_image = false;
-                    //         break;
-                    //     }
-                    // }
-                    // console.log(unique_image)
-                    // if (unique_image == true)
-                    // {
-                    // c++;
+
                     $('#image-cont_store').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                     $src_icon = $('.delete-image').find('img').attr('src');
                     $('#image-cont_store').append('<div class="drop-image_store"><img src="' + $src_icon + '"></div>')
                     array_images_store.push(e.target.result)
                     $('#shop_form').append('<input type="hidden" class="img_inp"  name="files" value="' + e.target.result + '">');
 
-                    // }
-
 
                     // console.log(c);
                 }
-                // if (array_images.length > 0) {
+
                 $('.uploade-image_store').css('display', 'none')
                 $('.uploade-image_store').removeClass('d-flex')
-                // }
+
             }
         }
     }

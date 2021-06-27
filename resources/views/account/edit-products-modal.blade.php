@@ -2,57 +2,65 @@
 <button type="button" style="display: none" data-toggle="modal" data-target=".product-successfully-aded"
         data-dismiss="modal" aria-label="Close" id="open_success_modal">Open_Success
 </button>
+<button type="button" style="display: none" data-toggle="modal" data-target=".edit_product"
+        data-dismiss="modal" aria-label="Close" id="open_edit_modal">Edit_Modal
+</button>
 {{-- aria-label="Close"        data-toggle="modal"                                     value="Add Product" data-dismiss="modal"
                                   data-target=".product-successfully-aded"--}}
-<div class="modal fade add-product-modal" tabindex="-1" id="add-product-modal" role="dialog"
-     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+{{--@if(isset($product))--}}
+{{--    @dump($product)--}}
+{{--@endif--}}
+<div class="modal fade edit_product" tabindex="-1" id="edit-product-modal" role="dialog"
+     aria-labelledby="exampleModalCenterTitle_edit" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
                 <div class="modal-title text-strong"
                      id="exampleModalLongTitle">@lang('add-product.product.add_title')</div>
-                <button type="button" class="close" id="close_add_model" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" id="close_add_model_edit" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('add.product',app()->getLocale()) }}" method="post" enctype="multipart/form-data"
-                      id="product_form">
+                <form action="{{ route('edit.morepost',app()->getLocale()) }}" method="post" enctype="multipart/form-data"
+                      id="editproduct_form">
+                    <input type="hidden" id="more_post_edit" value="{{ route('edit.morepost',app()->getLocale()) }}">
                     @csrf
                     @if(isset(Auth::user()->store))
                         <input type="hidden" name="store_id" value="{{ Auth::user()->store->id }}">
                     @endif
                     <div class="row pl-1 pr-0">
-                        <div class="canvas-cont hide ml-auto mr-auto" tabindex="2">
-                            <canvas id="canvas"></canvas>
+                        <div class="canvas-cont_edit_pr hide ml-auto mr-auto" tabindex="2">
+                            <canvas id="canvas_edit_pr"></canvas>
                             <div class="ml-1 edit-img">
-                                <div id="crop-image"><i class='fas fa-crop' style='font-size:24px'></i></div>
+                                <div id="crop-image_edit_pr"><i class='fas fa-crop' style='font-size:24px'></i></div>
                                 <p></p>
-                                <div class="delete-image"><img src="{{asset('assets/icons/close.png')}}"></div>
+                                <div class="delete-image_edit_pr"><img src="{{asset('assets/icons/close.png')}}"></div>
                             </div>
                         </div>
-                        <div class="d-flex col-4 uploade-image">
-                            <div class="modal-drag-photo py-4 input-file-trigger text-center">
+                        <div class="d-flex col-4 uploade-image_edit_pr">
+                            <div class="capital_img"></div>
+                            <div class="modal-drag-photo_edit_pr py-4 input-file-trigger_edit_pr text-center">
                                 <div class="text-center"><img src="{{asset('assets/icons/upload.png')}}"></div>
                                 <div class="font-size-14 text-center pt-3">@lang('add-product.product.drag_drop')</div>
                                 <div
                                     class="font-size-14 text-center">{{ app()->getLocale()=='en' ? 'or' : ( app()->getLocale()=='ru' ? 'или' : ( app()->getLocale()=='am' ? 'կամ' : 'or')) }}</div>
-                                <label for="fileupload" class="browse font-size-12 text-strong" id='labelFU'
+                                <label for="fileupload_edit_pr" class="browse font-size-12 text-strong" id='labelFU'
                                        tabindex="0">
                                     @lang('add-product.product.browse')
-                                    <input class="input-file" id="fileupload" name="file" type="file" multiple>
+                                    <input class="input-file" id="fileupload_edit_pr" name="file" type="file" multiple>
 
                                 </label>
                                 <div id='divHabilitSelectors'
-                                     class="input-file-container text-center pt-2 input-file-trigger"></div>
+                                     class="input-file-container text-center pt-2 input-file-trigger_edit_pr"></div>
                             </div>
 
                         </div>
-                        <div id="image-cont" class="d-flex"></div>
+                        <div id="image-cont_edit_pr" class="d-flex"></div>
                     </div>
                     <div class="row pl-3 pr-0 mt-3">
                         <div class="inputs-group pl-0 pr-0">
-                            <input type="" name="name_en" placeholder="@lang('add-product.product.name_en')"
+                            <input type="" name="name_en" @if(isset($product)) value="{{ $product['name_am'] }}" @endif placeholder="@lang('add-product.product.name_en')"
                                    class="pt-3">
                             <input type="" name="desc_en" placeholder="@lang('add-product.product.desc_en')"
                                    class="pt-3">
@@ -133,23 +141,24 @@
                                 <label>@lang('add-product.product.by_gender')</label>
 
                                 <select id="select_gender" name="gender">
-                                    <option class="add_product_menu" value="0">@lang('add-product.product.by_gender')</option>
+                                    <option class="add_product_menu"
+                                            value="0">@lang('add-product.product.by_gender')</option>
                                     @foreach ($genders as $g)
 
-                                       <option class="add_product_menu" value="{{ $g->id }}">{{ $g->name }}</option>
+                                        <option class="add_product_menu" value="{{ $g->id }}">{{ $g->name }}</option>
 
                                     @endforeach
-
 
 
                                 </select>
                             </div>
                             <div class="p-0 col-lg-3 col-md-3 col-sm-6 col-xs-10 d-flex align-items-center">
                                 <div class="form-check-input_gift">
-                                   <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1" id="gift_check">
-                                   <label class="form-check-label" for="gift_check">
-                                       @lang('add-product.product.gift_for')
-                                   </label>
+                                    <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1"
+                                           id="gift_check">
+                                    <label class="form-check-label" for="gift_check">
+                                        @lang('add-product.product.gift_for')
+                                    </label>
                                 </div>
                             </div>
                             <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10">
@@ -297,7 +306,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center mt-4 mb-5">
-                        <input type="submit" id="add-product" value="@lang('add-product.product.add_title')"
+                        <input type="submit" id="edit-product" value="@lang('add-product.product.add_title')"
                                class="text-strong">
 
 
@@ -340,3 +349,4 @@
         </div>
     </div>
 </div>
+

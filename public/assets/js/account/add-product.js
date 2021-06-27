@@ -169,6 +169,7 @@ $('.delete-image').click(function () {
 
 // -------------------browse image-----------------------------
 $('#fileupload').on("input", function (e) {
+
     // alert(array_images.length)
     if (array_images.length < 3) {
         var file = e.target.files[0];
@@ -414,6 +415,10 @@ $('.again-add-product').on('click',function(e){
     $('#product_form')[0].reset();
     $('#image-cont').empty();
     $('.uploade-image').css('display','block');
+    $('#product_form').find('#product_count').val(1);
+    $('#product_form').find('.quantity').text(1);
+    // $('#product_count').val(1);
+
     while(array_images.length > 0) {
         array_images.pop();
     }
