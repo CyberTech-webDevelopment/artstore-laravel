@@ -1,6 +1,6 @@
 .product-img-products img{
 
-   width: 100%;
+   width: 10vw;
 
 }
 .minus_short, .plus_short{
@@ -16,4 +16,9 @@
 
     position: absolute;
     right: 17%;
+}
+.product_empty{
+
+    font-size: 20px;
+    font-weight: bold;
 }

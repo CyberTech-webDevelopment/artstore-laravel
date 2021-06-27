@@ -28,6 +28,11 @@
     @include('account.store_success')
     @include('account.store_edit_successfuly')
     @include('account.add-products-modal')
+    <div class="row" id="edit_prod_modal">
+
+        @include('account.edit-products-modal')
+    </div>
+
     <section class="pt-4 account-section">
         <div class="container-fluid account-container">
             <div class="row ">Homepage > My Account > Basket</div>
