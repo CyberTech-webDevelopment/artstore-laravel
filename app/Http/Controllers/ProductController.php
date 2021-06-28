@@ -296,7 +296,62 @@ class ProductController extends Controller
     }
     public function edit_morepost(Request $request)
     {
-        dd($request->input('files_edit_pr'));
+
+        dd($request->all());
+
+        $validator = Validator::make($request->all(), [
+            'name_en' => 'required|max:255',
+            'name_ru' => 'required|max:255',
+            'name_am' => 'required|max:255',
+            'desc_en' => 'required|min:25|max:255',
+            'desc_ru' => 'required|min:25|max:255',
+            'desc_am' => 'required|min:25|max:255',
+            'detail_en' => 'required|min:6|max:255',
+            'detail_ru' => 'required|min:6|max:255',
+            'detail_am' => 'required|min:6|max:255',
+            'type' => 'required',
+            'count' => 'required|numeric',
+            'price' => 'required|numeric',
+            'percent' => 'nullable|numeric',
+            'gender' => 'required|numeric',
+            // 'size' => 'required',
+            // 'color' => 'required',
+            // 'material' => 'required',
+            'files_edit_pr' => 'required',
+
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->failed();
+//            dump($errors);
+            $fields_array = [];
+            foreach ($errors as $err => $value) {
+                foreach ($value as $key => $v) {
+                    if ($key == 'Required') {
+                        return response()->json(['product_error' => 'Please fill all required fields']);
+                    }
+                    if ($key == 'Numeric') {
+
+                        $message_error = "Invalid value in the numeric field (s)";
+                        return response()->json(['product_error' => $message_error]);
+
+                    }
+                    if ($key == 'Min') {
+
+                        array_push($fields_array, $err);
+                        $message_error = "field length " . $key;
+                        foreach ($v as $el) {
+                            $message_error = $message_error . ":" . $el;
+
+                        }
+
+                    }
+                }
+
+            }
+            return response()->json(['product_error' => $message_error, 'field' => $fields_array]);
+
+        }
+
 
     }
 

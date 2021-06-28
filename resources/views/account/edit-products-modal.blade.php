@@ -7,16 +7,16 @@
 </button>
 {{-- aria-label="Close"        data-toggle="modal"                                     value="Add Product" data-dismiss="modal"
                                   data-target=".product-successfully-aded"--}}
-{{--@if(isset($product))--}}
-{{--    @dump($product)--}}
-{{--@endif--}}
+{{-- @if(isset($product))
+@dump($product->product_colors)
+@endif --}}
 <div class="modal fade edit_product" tabindex="-1" id="edit-product-modal" role="dialog"
      aria-labelledby="exampleModalCenterTitle_edit" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header d-flex justify-content-between">
                 <div class="modal-title text-strong"
-                     id="exampleModalLongTitle">@lang('add-product.product.add_title')</div>
+                     id="exampleModalLongTitle">@lang('add-product.product.edit_title')</div>
                 <button type="button" class="close" id="close_add_model_edit" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>
                 </button>
@@ -60,37 +60,36 @@
                     </div>
                     <div class="row pl-3 pr-0 mt-3">
                         <div class="inputs-group pl-0 pr-0">
-                            <input type="" name="name_en" @if(isset($product)) value="{{ $product['name_am'] }}" @endif placeholder="@lang('add-product.product.name_en')"
+                            <input type="" name="name_en" @if(isset($product)) value="{{ $product['name_en'] }}" @endif placeholder="@lang('add-product.product.name_en')"
                                    class="pt-3">
-                            <input type="" name="desc_en" placeholder="@lang('add-product.product.desc_en')"
+                            <input type="" name="desc_en" @if(isset($product)) value="{{ $product['desc_en'] }}" @endif placeholder="@lang('add-product.product.desc_en')"
                                    class="pt-3">
-                            <input type="" name="detail_en" placeholder="@lang('add-product.product.detail_en')"
+                            <input type="" name="detail_en" @if(isset($product)) value="{{ $product['detail_en'] }}" @endif placeholder="@lang('add-product.product.detail_en')"
                                    class="pt-3">
-                            <input type="" name="name_ru" placeholder="@lang('add-product.product.name_ru')"
+                            <input type="" name="name_ru" @if(isset($product)) value="{{ $product['name_ru'] }}" @endif placeholder="@lang('add-product.product.name_ru')"
                                    class="pt-3">
-                            <input type="" name="desc_ru" placeholder="@lang('add-product.product.desc_ru')"
+                            <input type="" name="desc_ru" @if(isset($product)) value="{{ $product['desc_ru'] }}" @endif placeholder="@lang('add-product.product.desc_ru')"
                                    class="pt-3">
-                            <input type="" name="detail_ru" placeholder="@lang('add-product.product.detail_ru')"
+                            <input type="" name="detail_ru" @if(isset($product)) value="{{ $product['detail_ru'] }}" @endif placeholder="@lang('add-product.product.detail_ru')"
                                    class="pt-3">
-                            <input type="" name="name_am" placeholder="@lang('add-product.product.name_am')"
+                            <input type="" name="name_am" @if(isset($product)) value="{{ $product['name_am'] }}" @endif placeholder="@lang('add-product.product.name_am')"
                                    class="pt-3">
-                            <input type="" name="desc_am" placeholder="@lang('add-product.product.desc_am')"
+                            <input type="" name="desc_am" @if(isset($product)) value="{{ $product['desc_am'] }}" @endif placeholder="@lang('add-product.product.desc_am')"
                                    class="pt-3">
-                            <input type="" name="detail_am" placeholder="@lang('add-product.product.detail_ru')"
+                            <input type="" name="detail_am" @if(isset($product)) value="{{ $product['detail_am'] }}" @endif placeholder="@lang('add-product.product.detail_ru')"
                                    class="pt-3">
-                            {{--                        <input type="" name="" placeholder="Detail 2" class="pt-3">--}}
-                            {{--                        <input type="" name="" placeholder="Detail 3" class="pt-3">--}}
+
                         </div>
                         <div class="row pl-0 pr-0 mt-3 select-group-1">
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
                                 <label>@lang('add-product.product.category')</label>
-                                <input type="hidden" id="sel_cat_route"
+                                <input type="hidden" id="sel_cat_route_edit"
                                        value="{{route('menu.submenu',app()->getLocale())}}">
-                                <input type="hidden" id="sel_sub_cat_route"
+                                <input type="hidden" id="sel_sub_cat_route_edit"
                                        value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
-                                <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
-                                <input type="hidden" id="add_product_url"
-                                       value="{{ route('add.product',app()->getLocale()) }}">
+                                <input type="hidden" id="cur_lang_edit" value="{{ app()->getLocale() }}">
+                                {{-- <input type="hidden" id="add_product_url"
+                                       value="{{ route('add.product',app()->getLocale()) }}"> --}}
 
                                 <select id="select-menu">
                                     <option class="add_product_menu">@lang('add-product.product.sel_cat')</option>
@@ -106,7 +105,7 @@
                                     <button class="dropdown-toggle product_white_button justify-content-between"
                                             data-toggle="dropdown"><span
                                             class="caret">@lang('add-product.product.sel_sub_cat')</span></button>
-                                    <ul class="dropdown-menu" id="list_sub_menu">
+                                    <ul class="dropdown-menu" id="list_sub_menu_edit">
 
                                     </ul>
                                 </div>
@@ -115,8 +114,8 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
                                 <label>@lang('add-product.product.type')</label>
 
-                                <select id="select_sub_category" name="type">
-                                    <option class="add_product_menu">@lang('add-product.product.sel_type')</option>
+                                <select id="select_sub_category_edit" name="type">
+                                    <option class="add_product_menu" @if(isset($product)) value="{{ $product['sub_cat'] }}" @endif>@if(isset($product)) {{ $product->product_sub_cat()['name_category_'.app()->getLocale()] }} @endif</option>
 
                                 </select>
                             </div>
@@ -127,10 +126,10 @@
                                 <label>@lang('add-product.product.quantity')</label>
                                 <div class="d-flex text-center">
                                     <div class="ml-auto d-flex mr-auto">
-                                        <div class="minus_p">-</div>
-                                        <span class="pl-2 pr-2 quantity">1</span>
-                                        <div class="plus_p">+</div>
-                                        <input type="hidden" name="count" value="1" id="product_count">
+                                        <div class="minus_edit">-</div>
+                                        <span class="pl-2 pr-2 quantity">@if(isset($product)) {{ $product->quantity }} @endif</span>
+                                        <div class="plus_edit">+</div>
+                                        <input type="hidden" name="count" @if(isset($product)) value="{{$product->quantity}}" @endif id="product_count_edit">
                                     </div>
                                 </div>
                             </div>
@@ -141,11 +140,26 @@
                                 <label>@lang('add-product.product.by_gender')</label>
 
                                 <select id="select_gender" name="gender">
-                                    <option class="add_product_menu"
-                                            value="0">@lang('add-product.product.by_gender')</option>
+                                  <option class="add_product_menu"
+
+                                    @if (isset($product) && $product->gender_id != 0 )
+
+                                    value="{{ $product->gender_id }}">{{ $product->product_gender()->name }}
+
+                                    @else
+
+                                     value="0">@lang('add-product.product.by_gender')
+
+                                    @endif
+                                  </option>
                                     @foreach ($genders as $g)
 
+                                        @if (isset($product) && $g->id != $product->gender_id)
+
                                         <option class="add_product_menu" value="{{ $g->id }}">{{ $g->name }}</option>
+
+                                        @endif
+
 
                                     @endforeach
 
@@ -154,8 +168,13 @@
                             </div>
                             <div class="p-0 col-lg-3 col-md-3 col-sm-6 col-xs-10 d-flex align-items-center">
                                 <div class="form-check-input_gift">
-                                    <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1"
-                                           id="gift_check">
+                                    <input class="form-check-input_gift_check" name="gift"
+                                     type="checkbox"
+                                     @if (isset($product) && $product->gift == 1)
+                                        checked
+                                     @endif
+                                     value="1"
+                                     id="gift_check">
                                     <label class="form-check-label" for="gift_check">
                                         @lang('add-product.product.gift_for')
                                     </label>
@@ -165,21 +184,27 @@
                                 <label class="ml-3">@lang('add-product.product.price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">$</span>
-                                    <input type="text" id="price_product" name="price" class="price">
+                                    <input type="text" id="price_product" @if(isset($product)) value="{{$product->price}}" @endif name="price" class="price_ed">
                                 </div>
 
                             </div>
-                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
+                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center  @if (isset($product) && $product->percent != null) in_percent_margin @endif ">
+
+
                                 <label class="ml-3">@lang('add-product.product.sel_price')</label>
                                 <div class="d-flex">
                                     <span class="pr-2">%</span>
                                     <div>
-                                        <input type="text" id="price_product" name="percent" class="percent">
+                                        <input type="text" id="price_product" @if(isset($product) && $product->percent != null) value="{{$product->percent}}" @endif name="percent" class="percent_ed">
                                         {{--                                    <div><input type="radio" name=""><label class="pl-2">Hot Offer</label></div>--}}
                                         {{--                                    <div><input type="radio" name=""><label class="pl-2">Spetial Offer</label></div>--}}
                                     </div>
                                 </div>
-                                <span class="prices_cost"></span>
+                                <span class="prices_cost_edit">
+                                   @if (isset($product) && $product->percent != null)
+                                       {{ $product->discounted_price() }}
+                                   @endif
+                                </span>
                             </div>
                         </div>
                         <div class="row pl-0 pr-0 mt-4">
@@ -192,15 +217,18 @@
                                 <div class="dropdown">
                                     <div
                                         class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
-                                        id="size_all_content">
+                                        id="size_all_content_edit">
                                         <div class="w-100 mr-1"
                                              id="sizes_opening">@lang('add-product.product.size')</div>
                                         <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                     </div>
-                                    <div class=" dropdown-menu hide menu-first-item pt-0 pb-0 sizes"
+                                    <div class=" dropdown-menu_edit hide menu-first-item pt-0 pb-0 sizes"
                                          style="position: relative;">
+                                         {{-- @dump($all_sizes) --}}
+
                                         @foreach($all_sizes as $k => $v)
-                                            <div class="dropdown-item single_size_group">
+
+                                            <div class="dropdown-item single_size_group_size">
                                                 <div
                                                     class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0"
                                                     id="size_second_item">
@@ -211,10 +239,21 @@
                                                 <div class=" dropdown-menu hide menu-second-item sizes_content"
                                                      style="position: relative;">
                                                     @foreach($v as $el)
+
+
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
-                                                            tabIndex="-1">
-                                                            <input type="checkbox" name="size[{{$k}}][]"
-                                                                   value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
+                                                        tabIndex="-1">
+                                                        <input type="checkbox"
+                                                        @if (isset($product) && $product->size_type != null)
+                                                          @foreach ($product->product_sizes as $size)
+                                                            @if ($product->size_type == strtolower($k) && $size->id == $el['id'])
+                                                              checked
+                                                            @endif
+                                                          @endforeach
+                                                        @endif
+
+                                                        name="size[{{$k}}][]"
+                                                               value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
 
 
                                                     @endforeach
@@ -235,11 +274,28 @@
                                             data-toggle="dropdown"><span
                                             class="caret">@lang('add-product.product.sel_color')</span></button>
                                     <ul class="dropdown-menu" id="list_colors">
+                                        @if(isset($product))
+                                         @dump($product->product_colors)
+                                        @endif
                                         @foreach($all_colors as $c)
                                             <li class="small d-flex align-items-center" tabIndex="-1"><input
                                                     value="{{ $c['id'] }}"
                                                     name="color[]" class="mr-1 color_check"
-                                                    type="checkbox"/>
+                                                    type="checkbox"
+                                                    @if (isset($product) && $product->product_colors != null)
+                                                      @foreach ($product->product_colors as $color)
+
+                                                         @if ($color->id == $c['id'])
+                                                              checked
+                                                         @endif
+
+                                                      @endforeach
+
+                                                    @endif
+                                                    {{-- @if (isset($product) && $product->product_materials[0]->id == $el['id'])
+                                                       checked
+                                                    @endif --}}
+                                                     />
                                                 {{ $c['color_name_' . app()->getLocale()] }}
                                             </li>
                                         @endforeach
@@ -252,15 +308,19 @@
                                 <div class="dropdown">
                                     <div
                                         class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
-                                        id="size_all_content">
+                                        id="size_all_content_edit_material">
                                         <div class="w-100 mr-1"
                                              id="sizes_opening">@lang('add-product.product.material')</div>
                                         <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
                                     </div>
-                                    <div class="dropdown-menu hide menu-first-item pt-0 pb-0"
+                                    <div class="dropdown-menu_edit_material hide menu-first-item pt-0 pb-0"
                                          style="position: relative;">
                                         @foreach($all_materials as $k => $v)
-                                            <div class="dropdown-item single_size_group">
+                                        {{-- @if (isset($product) && $product->material_type == strtolower($k))
+                                        @dump($product->product_materials[0]->id)
+                                        @endif --}}
+
+                                            <div class="dropdown-item single_size_group_material">
                                                 <div
                                                     class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0"
                                                     id="size_second_item">
@@ -268,13 +328,22 @@
                                                     <div class="single_key"><i class="fa fa-angle-right"
                                                                                aria-hidden="true"></i></div>
                                                 </div>
-                                                <div class="w-100 dropdown-menu hide menu-second-item"
-                                                     style="position: relative;" id="sizes_content">
+                                                <div class="w-100 dropdown-menu hide menu-second-item sizes_content"
+                                                     style="position: relative;">
                                                     @foreach($v as $el)
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
                                                             tabIndex="-1">
                                                             <input
-                                                                type="checkbox" name="material[{{$k}}][]"
+                                                                type="checkbox"
+                                                                @if (isset($product) && $product->material_type != null)
+                                                                  @foreach ($product->product_materials as $material)
+                                                                    @if ($product->material_type == strtolower($k) && $material->id == $el['id'])
+                                                                     checked
+                                                                    @endif
+                                                                  @endforeach
+                                                                @endif
+
+                                                                name="material[{{$k}}][]"
                                                                 value="{{ $el['id'] }}"/>{{ $el['material_'. app()->getLocale()] }}
                                                         </li>
 
@@ -288,9 +357,16 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
                                 <label>@lang('add-product.product.custom_material')</label>
-                                <input type="text" id="custom_material" name="custom_material">
+                                <input type="text" id="custom_material"
+
+                                 @if (isset($product) && $product->custom_material != null)
+                                    value="{{ $product->custom_material}}"
+                                 @endif
+
+                                name="custom_material">
                             </div>
                         </div>
 
@@ -306,7 +382,7 @@
 
                     </div>
                     <div class="d-flex justify-content-center mt-4 mb-5">
-                        <input type="submit" id="edit-product" value="@lang('add-product.product.add_title')"
+                        <input type="submit" id="edit-product" value="@lang('add-product.product.edit_title')"
                                class="text-strong">
 
 

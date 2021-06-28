@@ -51,6 +51,17 @@ class Product extends Model
         return Gender::find($this->gender_id);
 
     }
+    public function discounted_price()
+    {
+        $discount = ($this->price * $this->percent)/100;
+        return $this->price - $discount;
+
+    }
+    public function product_sub_cat()
+    {
+        return Sub_categories::find($this->sub_cat);
+
+    }
 
     public function product_images()
     {

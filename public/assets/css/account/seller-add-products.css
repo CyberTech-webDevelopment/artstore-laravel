@@ -145,7 +145,7 @@ tbody > tr > td:not(:second-child) {
     background: none
 }
 
-#add-product {
+#add-product,#edit-product {
     width: 186px;
     height: 40px;
     background: #DF5700;
@@ -329,7 +329,7 @@ button:active {
 
 }
 
-.single_size_group {
+.single_size_group,.single_size_group_material {
 
     padding: 0;
     /*width: 120px;*/

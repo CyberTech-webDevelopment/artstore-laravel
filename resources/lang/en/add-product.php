@@ -3,6 +3,7 @@
 return [
     'product' => [
         'add_title' => 'Add Product',
+        'edit_title' => 'Edit Product',
         'drag_drop' => 'Drag photo to upload',
         'browse' => 'Browse',
         'name_en' => 'Product Name_English',
