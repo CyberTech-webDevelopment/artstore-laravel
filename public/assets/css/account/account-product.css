@@ -3,7 +3,7 @@
    width: 10vw;
 
 }
-.minus_short, .plus_short{
+.minus_short, .plus_short,.plus_edit,.minus_edit{
 	width: 20px;
 	height: 24px;
 	font-weight: 700;
@@ -11,6 +11,7 @@
 	border-radius: 2px;
 	background: none;
 	outline: none;
+    cursor: pointer;
 }
 .prices_cost_short{
 
@@ -21,4 +22,29 @@
 
     font-size: 20px;
     font-weight: bold;
+}
+.in_percent_margin{
+
+    margin-bottom: -23px;
+}
+#size_all_content_edit,#size_all_content_edit_material{
+
+    background-color: white;
+}
+#size_second_item{
+
+    color: black!important;
+}
+.set_capital_img{
+
+    width: 25px;
+    margin-top: 5px;
+    -webkit-transform: scale(1.5);
+    height: 14px!important;
+
+}
+.drop-image_edit_pr img{
+
+    cursor: pointer;
+
 }

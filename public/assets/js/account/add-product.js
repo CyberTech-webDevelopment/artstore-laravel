@@ -348,10 +348,8 @@ $('#add-product').on('click', function (e) {
             }
             if (res == "ok") {
 
-                // $('#add-product').attr('data-target','.product-successfully-aded');
                 $('#close_add_model').trigger('click');
                 $('#open_success_modal').trigger('click');
-                // $('.product-successfully-aded').addClass('show');
 
             }
 

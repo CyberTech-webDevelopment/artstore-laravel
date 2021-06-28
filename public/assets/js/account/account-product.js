@@ -3,6 +3,8 @@ $(document).ready(function () {
     var image_edit_pr
     let array_images_edit_pr = []
     let array_has_images = []
+    let array_capital_image = []
+
     let c = 0;
 
     $(document).on('dragenter', ".input-file-trigger", function (e) {
@@ -216,9 +218,6 @@ $(document).ready(function () {
         // }
 
 
-        // $img_values = $("[name='files_edit_pr[]']")
-        // console.log($img_values.length);
-
         $(this).prev().remove();
 
         $(this).remove();
@@ -261,32 +260,160 @@ $(document).ready(function () {
                     $('.modal-drag-photo_edit_pr').hide();
                     for (let i = 0; i < res.product_img.length; i++) {
                         let j = parseInt(i + 1);
-                        $('#image-cont_edit_pr').append('<div class="image-cont-item mx-1"><img src="/storage/product/' + res.product_img[i].image + '"></div>')
-                        $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + res.product_img[i].image + '" data-img-id="' + j + '"><img src="/assets/icons/close.png"></div>')
+                        $('#image-cont_edit_pr').append('<div class="image-cont-item ml-2"><img src="/storage/product/' + res.product_img[i].image + '"></div>')
                         array_has_images.push(res.product_img[i].image)
+                        if(res.product_img[i].main == 1){
+
+                            array_capital_image.push(res.product_img[i].image)
+                            $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + res.product_img[i].image + '" data-img-id="' + j + '"><img src="/assets/icons/close.png"></div>')
+
+                            $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + res.product_img[i].image + '" class="set_capital_img" name="capital_image" checked></div>')
+
+
+                        }
+                        else
+                        {
+                            $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + res.product_img[i].image + '" data-img-id="' + j + '"><img src="/assets/icons/close.png"></div>')
+
+                            $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + res.product_img[i].image + '" class="set_capital_img" name="capital_image"></div>')
+
+
+                        }
                     }
+                    $(array_has_images).each(function (index, value) {
+                         if(value == array_capital_image[0]){
+
+                            $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+
+                         }
+                         else
+                         {
+                            $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+
+
+                         }
+
+                    });
                     $('#open_edit_modal').trigger('click');
                     $('#edit-product-modal').addClass('show');
 
                     canvas = new fabric.Canvas('canvas_edit_pr');
                     can = document.getElementById('canvas_edit_pr')
-                    // $('.edit_more').trigger('click');
+
 
                 }
-                // if (res.product_error) {
-                //
-                //     $('#close_question_save').trigger('click');
-                //     $('.product_errors').html(res.product_error);
-                //
-                // }
-                // if (res == "ok") {
-                //
-                //     location.reload();
-                //
-                // }
+
 
             }
         })
+
+
+    })
+
+
+    // set capital image
+    //sharunakel
+    $(document).on('input','.set_capital_img',function(){
+
+
+         if($(this).is(':checked'))
+         {
+             let seting_capital_img_name = $(this).data('image-name')
+             array_capital_image.pop();
+             array_capital_image.push(seting_capital_img_name)
+             $(array_has_images).each(function (index, value) {
+
+                // array_capital_image.push()
+
+            });
+           console.log(seting_capital_img_name)
+           console.log(array_has_images);
+           console.log(array_capital_image);
+         }
+
+
+
+    })
+
+    $(document).on('change','#select-menu',function () {
+        // alert()
+        let select_menu_id = $(this).find("option:selected").attr('data-menu-id')
+        let url = $('#sel_cat_route_edit').val()
+        $('#list_sub_menu_edit').empty()
+        $('#select_sub_category_edit').empty()
+        // let sel_id=$(this).attr('id')
+        console.log(select_menu_id)
+        $.ajax({
+            method: 'post',
+            url: url,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {menu_id: select_menu_id},
+            dataType: 'json',
+            success: function (res) {
+
+                $lang_name_menu = "sub_menu_name_" + $('#cur_lang_edit').val();
+
+                $('#list_sub_menu_edit').empty();
+
+                for ($i = 0; $i < res.sub_menu.length; $i++) {
+
+                    $('#list_sub_menu_edit').append(`<li class="small d-flex align-items-center" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
+                        name="sub_menu[]" class="mr-1 sub_menu_check_edit" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
+
+                }
+
+                console.log(res)
+            }
+        })
+    })
+
+
+    $(document).on('click', '.sub_menu_check_edit', function () {
+        $checkeds = [];
+        $('#select_sub_category_edit').empty();
+        let url = $('#sel_sub_cat_route_edit').val()
+        $('.sub_menu_check_edit').each(function () {
+            if ($(this).is(":checked")) {
+                if ($checkeds.length < 4) {
+                    $checkeds.push($(this).attr('data-menu-id'))
+                    console.log($checkeds)
+
+                }
+
+            }
+        })
+        if ($checkeds.length < 4) {
+            $.ajax({
+                method: 'post',
+                url: url,
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                data: {sub_menu_ids: $checkeds},
+                dataType: 'json',
+                success: function (res) {
+                    $lang_name_cat = "name_category_" + $('#cur_lang_edit').val();
+                    console.log(res.sub_cat)
+
+                    let options_text = '';
+                    $('#select_sub_category_edit').empty();
+                    $('#select_sub_category_edit').prepend('<option>Select Type</option>');
+                    for (let $i in res.sub_cat) {
+                        // console.log($i)
+                        options_text += "<optgroup label='" + $i + "'>"
+
+
+                        for (let key in res.sub_cat[$i]) {
+                            console.log(res.sub_cat[$i][key][$lang_name_cat])
+                            options_text += "<option value='" + res.sub_cat[$i][key]['id'] + "'>" + res.sub_cat[$i][key][$lang_name_cat] + "</option>"
+                        }
+                        options_text += "</optgroup>"
+                    }
+                    $('#select_sub_category_edit').append(options_text);
+
+
+                }
+            })
+
+        }
 
 
     })
@@ -308,10 +435,170 @@ $(document).ready(function () {
             async: false,
             success: function (res) {
                 console.log(res)
+                if (res.product_error) {
+                    if (res.field) {
 
+                        $m = [];
+                        for (let i = 0; i < res.field.length; i++) {
+
+                            if (i == (res.field.length - 1)) {
+                                $m += $("[name='" + res.field[i] + "']").attr('placeholder');
+                            } else {
+                                $m += $("[name='" + res.field[i] + "']").attr('placeholder') + ',';
+                            }
+
+                        }
+                        console.log(res.field)
+
+                        $message = $m + " " + res.product_error
+                        $('.product_errors').html($message);
+                    } else {
+                        $('.product_errors').html(res.product_error);
+
+                    }
+
+
+                }
+                if (res == "ok") {
+
+                    $('#close_add_model').trigger('click');
+                    $('#open_success_modal').trigger('click');
+
+                }
 
             }
         })
+
+    })
+
+    $(document).on('click','#size_all_content_edit',function(){
+
+
+      $('.dropdown-menu_edit').toggleClass('hide');
+
+    })
+    $(document).on('click','.single_size_group_size',function(){
+
+        if(!$(this).find('.sizes_content').hasClass('hide'))
+        {
+
+            $('.sizes_content').each(function(){
+
+                $(this).addClass('hide');
+                $(this).css('display','none');
+             })
+
+        }
+        else
+        {
+            $('.sizes_content').each(function(){
+
+                $(this).addClass('hide');
+                $(this).css('display','none');
+             })
+            $(this).find('.sizes_content').removeClass('hide');
+            $(this).find('.dropdown-menu').css('display','block');
+
+        }
+
+
+    })
+
+    $(document).on('click','#size_all_content_edit_material',function(){
+
+
+        $('.dropdown-menu_edit_material').toggleClass('hide');
+
+    })
+    $(document).on('click','.single_size_group_material',function(){
+
+        if(!$(this).find('.sizes_content').hasClass('hide'))
+        {
+
+            $('.sizes_content').each(function(){
+
+                $(this).addClass('hide');
+                $(this).css('display','none');
+             })
+
+        }
+        else
+        {
+            $('.sizes_content').each(function(){
+
+                $(this).addClass('hide');
+                $(this).css('display','none');
+             })
+            $(this).find('.sizes_content').removeClass('hide');
+            $(this).find('.dropdown-menu').css('display','block');
+
+        }
+
+
+    })
+
+    $(document).on('input','.percent_ed',function () {
+        $price = $('.price_ed').val();
+        $percent = $(this).val();
+        if ($price != '') {
+            $sale_percent = ($price * $percent) / 100;
+            $sale_price = $price - $sale_percent;
+            $(this).parent().parent().parent().css('margin-bottom','-23px')
+            $('.prices_cost_edit').text($sale_price);
+            if ($sale_price < 0 || isNaN($sale_price)) {
+
+                $('.prices_cost_edit').text('');
+                $(this).val('');
+                $(this).parent().parent().parent().css('margin-bottom','0px')
+
+            }
+
+        }
+        if ($percent == "") {
+            $('.prices_cost_edit').empty();
+            $(this).parent().parent().parent().css('margin-bottom','0px')
+        }
+
+    })
+    $(document).on('input','.price_ed', function () {
+        $price = $(this).val();
+        $percent = $('.percent_ed').val();
+        if ($percent != '') {
+            $sale_percent = ($price * $percent) / 100;
+            $sale_price = $price - $sale_percent;
+            $sale_price = parseInt($sale_price);
+            $('.prices_cost_edit').text($sale_price);
+            $('.percent_ed').parent().parent().parent().css('margin-bottom','-23px');
+            if ($sale_price < 0 || isNaN($sale_price)) {
+                $('.prices_cost_edit').text('');
+                $(this).val('');
+                $('.percent_ed').parent().parent().parent().css('margin-bottom','0px');
+            }
+        }
+        if ($price == "") {
+
+            $('.prices_cost_edit').empty();
+            $('.percent_ed').parent().parent().parent().css('margin-bottom','0px');
+        }
+
+    })
+
+    $(document).on('click','.plus_edit',function () {
+        let quantity = $(this).parent().find('.quantity').html() * 1
+        quantity++
+        $(this).parent().find('.quantity').html(quantity)
+        $('#product_count_edit').val(quantity);
+
+    })
+    $(document).on('click','.minus_edit',function () {
+        // alert()
+        let quantity = $(this).parent().find('.quantity').html() * 1
+        quantity--
+        if (quantity < 1) {
+            quantity = 1
+        }
+        $(this).parent().find('.quantity').html(quantity)
+        $('#product_count_edit').val(quantity);
 
     })
 
