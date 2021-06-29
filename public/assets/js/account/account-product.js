@@ -56,16 +56,28 @@ $(document).ready(function () {
                             $('#image-cont_edit_pr').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                             $src_icon = $('.delete-image').find('img').attr('src');
                             $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + e.target.result + '" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
+                            $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + e.target.result + '" class="set_capital_img" name="capital_image"></div>')
+
                             array_images_edit_pr.push(e.target.result)
                             array_has_images.push(e.target.result)
-                            $("[name='files_edit_pr[]']").each(function (){
+                            let capital_image = $("[name='files_edit_capital[]']").val()
+                            // console.log(array_has_images);
+                            // console.log($("[name='files_edit_pr[]']").length)
+
+                            $("[name='files_edit_pr[]']").each(function () {
 
                                 $(this).remove();
 
                             })
+                            console.log(capital_image);
                             $(array_has_images).each(function (index, value) {
 
-                                $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+                                if ( value != capital_image )
+                                {
+
+                                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+
+                                }
 
                             });
                             console.log($("[name='files_edit_pr[]']").val());
@@ -135,10 +147,10 @@ $(document).ready(function () {
         if (array_has_images.length < 3) {
             c++;
             $('#image-cont_edit_pr').append('<div class="image-cont-item mx-1"><img src="' + cropped.src + '"></div>')
-            array_images.push(cropped.src)
+            array_images_edit_pr.push(cropped.src)
             array_has_images.push(cropped.src)
-            $("[name='files_edit_pr[]']").each(function (){
-
+            $("[name='files_edit_pr[]']").each(function () {
+                console.log('jnjelll')
                 $(this).remove();
 
             })
@@ -148,9 +160,10 @@ $(document).ready(function () {
 
             });
             // $('#editproduct_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '" name="files_edit_pr[]" value="' + cropped.src + '">');
-            console.log($("[name='files_edit_pr[]']").val());
+
             $src_icon = $('.delete-image_edit_pr').find('img').attr('src');
             $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + cropped.src + '" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
+            $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + cropped.src + '" class="set_capital_img" name="capital_image"></div>')
 
             console.log(c);
             // console.log($img_values.length)
@@ -174,7 +187,7 @@ $(document).ready(function () {
     })
 
     $(document).on("input", '#fileupload_edit_pr', function (e) {
-        alert(array_has_images.length);
+        // alert(array_has_images.length);
         // alert(array_images_edit_pr.length)
         if (array_has_images.length < 3) {
             var file = e.target.files[0];
@@ -183,16 +196,22 @@ $(document).ready(function () {
     });
 
     $(document).on('click', '.drop-image_edit_pr', function () {
-// alert()
-//         alert(array_has_images.length);
+
+
         $droping_img_name = $(this).attr('data-image-name');
         $('#fileupload_edit_pr').val('');
-        $("[name='files_edit_pr[]']").each(function (){
+        console.log(array_capital_image)
+        $("[name='files_edit_pr[]']").each(function () {
 
             $(this).remove();
 
         })
-        // $("[name='files_edit_pr[]']").remove();
+        $("[name='files_edit_capital[]']").each(function () {
+
+            $(this).remove();
+
+        })
+
         $(array_has_images).each(function (index, value) {
 
             if (value == $droping_img_name) {
@@ -200,13 +219,24 @@ $(document).ready(function () {
                 array_has_images.splice(index, 1)
 
             } else {
-                $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+                if (value == array_capital_image[0])
+                {
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+
+
+                }
+                else
+                {
+
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+
+                }
 
 
             }
         });
 
-       console.log(array_has_images);
+        console.log(array_has_images);
         $data_img_id = $(this).attr('data-img-id');
 
 
@@ -219,6 +249,7 @@ $(document).ready(function () {
 
 
         $(this).prev().remove();
+        $(this).next().remove();
 
         $(this).remove();
         if ($('.uploade-image_edit_pr').css('display') == 'none') {
@@ -258,11 +289,16 @@ $(document).ready(function () {
                     $('.uploade-image_edit_pr').removeClass('d-flex')
                     $('.uploade-image_edit_pr').css('display', 'none');
                     $('.modal-drag-photo_edit_pr').hide();
+                    while (array_has_images.length > 0) {
+                        array_has_images.pop();
+                    }
+                    array_capital_image.pop();
                     for (let i = 0; i < res.product_img.length; i++) {
                         let j = parseInt(i + 1);
                         $('#image-cont_edit_pr').append('<div class="image-cont-item ml-2"><img src="/storage/product/' + res.product_img[i].image + '"></div>')
+
                         array_has_images.push(res.product_img[i].image)
-                        if(res.product_img[i].main == 1){
+                        if (res.product_img[i].main == 1) {
 
                             array_capital_image.push(res.product_img[i].image)
                             $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + res.product_img[i].image + '" data-img-id="' + j + '"><img src="/assets/icons/close.png"></div>')
@@ -270,9 +306,7 @@ $(document).ready(function () {
                             $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + res.product_img[i].image + '" class="set_capital_img" name="capital_image" checked></div>')
 
 
-                        }
-                        else
-                        {
+                        } else {
                             $('#image-cont_edit_pr').append('<div class="drop-image_edit_pr" data-image-name="' + res.product_img[i].image + '" data-img-id="' + j + '"><img src="/assets/icons/close.png"></div>')
 
                             $('#image-cont_edit_pr').append('<div class="capital_image_edit"><input type="radio" data-image-name="' + res.product_img[i].image + '" class="set_capital_img" name="capital_image"></div>')
@@ -281,17 +315,15 @@ $(document).ready(function () {
                         }
                     }
                     $(array_has_images).each(function (index, value) {
-                         if(value == array_capital_image[0]){
+                        if (value == array_capital_image[0]) {
 
                             $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
 
-                         }
-                         else
-                         {
+                        } else {
                             $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
 
-                         }
+                        }
 
                     });
                     $('#open_edit_modal').trigger('click');
@@ -313,29 +345,50 @@ $(document).ready(function () {
 
     // set capital image
     //sharunakel
-    $(document).on('input','.set_capital_img',function(){
+    $(document).on('input', '.set_capital_img', function () {
 
 
-         if($(this).is(':checked'))
-         {
-             let seting_capital_img_name = $(this).data('image-name')
-             array_capital_image.pop();
-             array_capital_image.push(seting_capital_img_name)
-             $(array_has_images).each(function (index, value) {
+        if ($(this).is(':checked')) {
+// alert();
+            let form = $("[name='files_edit_pr[]']").closest("form");
+            form.find("[name='files_edit_capital[]']").each(function () {
+console.log('glxavor')
+                $(this).remove();
 
-                // array_capital_image.push()
+            })
+            form.find("[name='files_edit_pr[]']").each(function () {
+                console.log('nkar')
+                $(this).remove();
+
+            })
+            // console.log(form);
+            let seting_capital_img_name = $(this).data('image-name')
+            array_capital_image.pop();
+            array_capital_image.push(seting_capital_img_name)
+
+            $(array_has_images).each(function (index, value) {
+
+                if (value == array_capital_image[0]) {
+
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+
+                } else {
+                    // console.log(value);
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+
+
+                }
 
             });
-           console.log(seting_capital_img_name)
-           console.log(array_has_images);
-           console.log(array_capital_image);
-         }
-
+            // console.log(seting_capital_img_name)
+            // console.log(array_has_images);
+            // console.log(array_capital_image);
+        }
 
 
     })
 
-    $(document).on('change','#select-menu',function () {
+    $(document).on('change', '#select-menu', function () {
         // alert()
         let select_menu_id = $(this).find("option:selected").attr('data-menu-id')
         let url = $('#sel_cat_route_edit').val()
@@ -418,7 +471,7 @@ $(document).ready(function () {
 
     })
 
-    $(document).on('click','#edit-product', function (e) {
+    $(document).on('click', '#edit-product', function (e) {
 
         e.preventDefault()
         let url = $('#more_post_edit').val();
@@ -471,96 +524,90 @@ $(document).ready(function () {
 
     })
 
-    $(document).on('click','#size_all_content_edit',function(){
+    $(document).on('click', '#size_all_content_edit', function () {
 
 
-      $('.dropdown-menu_edit').toggleClass('hide');
+        $('.dropdown-menu_edit').toggleClass('hide');
 
     })
-    $(document).on('click','.single_size_group_size',function(){
+    $(document).on('click', '.single_size_group_size', function () {
 
-        if(!$(this).find('.sizes_content').hasClass('hide'))
-        {
+        if (!$(this).find('.sizes_content').hasClass('hide')) {
 
-            $('.sizes_content').each(function(){
-
-                $(this).addClass('hide');
-                $(this).css('display','none');
-             })
-
-        }
-        else
-        {
-            $('.sizes_content').each(function(){
+            $('.sizes_content').each(function () {
 
                 $(this).addClass('hide');
-                $(this).css('display','none');
-             })
+                $(this).css('display', 'none');
+            })
+
+        } else {
+            $('.sizes_content').each(function () {
+
+                $(this).addClass('hide');
+                $(this).css('display', 'none');
+            })
             $(this).find('.sizes_content').removeClass('hide');
-            $(this).find('.dropdown-menu').css('display','block');
+            $(this).find('.dropdown-menu').css('display', 'block');
 
         }
 
 
     })
 
-    $(document).on('click','#size_all_content_edit_material',function(){
+    $(document).on('click', '#size_all_content_edit_material', function () {
 
 
         $('.dropdown-menu_edit_material').toggleClass('hide');
 
     })
-    $(document).on('click','.single_size_group_material',function(){
+    $(document).on('click', '.single_size_group_material', function () {
 
-        if(!$(this).find('.sizes_content').hasClass('hide'))
-        {
+        if (!$(this).find('.sizes_content').hasClass('hide')) {
 
-            $('.sizes_content').each(function(){
-
-                $(this).addClass('hide');
-                $(this).css('display','none');
-             })
-
-        }
-        else
-        {
-            $('.sizes_content').each(function(){
+            $('.sizes_content').each(function () {
 
                 $(this).addClass('hide');
-                $(this).css('display','none');
-             })
+                $(this).css('display', 'none');
+            })
+
+        } else {
+            $('.sizes_content').each(function () {
+
+                $(this).addClass('hide');
+                $(this).css('display', 'none');
+            })
             $(this).find('.sizes_content').removeClass('hide');
-            $(this).find('.dropdown-menu').css('display','block');
+            $(this).find('.dropdown-menu').css('display', 'block');
 
         }
 
 
     })
 
-    $(document).on('input','.percent_ed',function () {
+    $(document).on('input', '.percent_ed', function () {
         $price = $('.price_ed').val();
         $percent = $(this).val();
         if ($price != '') {
             $sale_percent = ($price * $percent) / 100;
             $sale_price = $price - $sale_percent;
-            $(this).parent().parent().parent().css('margin-bottom','-23px')
+            $(this).parent().parent().parent().css('margin-bottom', '-23px')
             $('.prices_cost_edit').text($sale_price);
             if ($sale_price < 0 || isNaN($sale_price)) {
 
                 $('.prices_cost_edit').text('');
                 $(this).val('');
-                $(this).parent().parent().parent().css('margin-bottom','0px')
+                $(this).parent().parent().parent().css('margin-bottom', '0px')
 
             }
 
         }
         if ($percent == "") {
             $('.prices_cost_edit').empty();
-            $(this).parent().parent().parent().css('margin-bottom','0px')
+            $(this).parent().parent().parent().css('margin-bottom', '0px')
         }
 
     })
-    $(document).on('input','.price_ed', function () {
+    $(document).on('input', '.price_ed', function () {
         $price = $(this).val();
         $percent = $('.percent_ed').val();
         if ($percent != '') {
@@ -568,29 +615,29 @@ $(document).ready(function () {
             $sale_price = $price - $sale_percent;
             $sale_price = parseInt($sale_price);
             $('.prices_cost_edit').text($sale_price);
-            $('.percent_ed').parent().parent().parent().css('margin-bottom','-23px');
+            $('.percent_ed').parent().parent().parent().css('margin-bottom', '-23px');
             if ($sale_price < 0 || isNaN($sale_price)) {
                 $('.prices_cost_edit').text('');
                 $(this).val('');
-                $('.percent_ed').parent().parent().parent().css('margin-bottom','0px');
+                $('.percent_ed').parent().parent().parent().css('margin-bottom', '0px');
             }
         }
         if ($price == "") {
 
             $('.prices_cost_edit').empty();
-            $('.percent_ed').parent().parent().parent().css('margin-bottom','0px');
+            $('.percent_ed').parent().parent().parent().css('margin-bottom', '0px');
         }
 
     })
 
-    $(document).on('click','.plus_edit',function () {
+    $(document).on('click', '.plus_edit', function () {
         let quantity = $(this).parent().find('.quantity').html() * 1
         quantity++
         $(this).parent().find('.quantity').html(quantity)
         $('#product_count_edit').val(quantity);
 
     })
-    $(document).on('click','.minus_edit',function () {
+    $(document).on('click', '.minus_edit', function () {
         // alert()
         let quantity = $(this).parent().find('.quantity').html() * 1
         quantity--
