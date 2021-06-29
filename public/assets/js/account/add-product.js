@@ -417,6 +417,11 @@ $('.again-add-product').on('click',function(e){
     $('#product_form').find('.quantity').text(1);
     // $('#product_count').val(1);
 
+    $("[name='files[]']").each(function (){
+
+        $(this).remove();
+
+    })
     while(array_images.length > 0) {
         array_images.pop();
     }
