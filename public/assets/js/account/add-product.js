@@ -425,6 +425,7 @@ $('.again-add-product').on('click',function(e){
     while(array_images.length > 0) {
         array_images.pop();
     }
+    $('.product_errors').empty();
     console.log(array_images.length)
 
 })
