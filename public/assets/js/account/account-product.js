@@ -149,6 +149,7 @@ $(document).ready(function () {
             $('#image-cont_edit_pr').append('<div class="image-cont-item mx-1"><img src="' + cropped.src + '"></div>')
             array_images_edit_pr.push(cropped.src)
             array_has_images.push(cropped.src)
+            let capital_image = $("[name='files_edit_capital[]']").val()
             $("[name='files_edit_pr[]']").each(function () {
                 console.log('jnjelll')
                 $(this).remove();
@@ -156,8 +157,13 @@ $(document).ready(function () {
             })
             $(array_has_images).each(function (index, value) {
 
+
+                if ( value != capital_image )
+                {
+
                 $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
+                }
             });
             // $('#editproduct_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '" name="files_edit_pr[]" value="' + cropped.src + '">');
 
@@ -194,23 +200,27 @@ $(document).ready(function () {
             readURL(file);
         }
     });
+function clear_hiddens()
+{
+    $("[name='files_edit_pr[]']").each(function () {
 
+        $(this).remove();
+
+    })
+    $("[name='files_edit_capital[]']").each(function () {
+
+        $(this).remove();
+
+    })
+
+}
     $(document).on('click', '.drop-image_edit_pr', function () {
 
 
         $droping_img_name = $(this).attr('data-image-name');
         $('#fileupload_edit_pr').val('');
         console.log(array_capital_image)
-        $("[name='files_edit_pr[]']").each(function () {
-
-            $(this).remove();
-
-        })
-        $("[name='files_edit_capital[]']").each(function () {
-
-            $(this).remove();
-
-        })
+        clear_hiddens();
 
         $(array_has_images).each(function (index, value) {
 
@@ -219,24 +229,41 @@ $(document).ready(function () {
                 array_has_images.splice(index, 1)
 
             } else {
-                if (value == array_capital_image[0])
-                {
-                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+                // alert(array_has_images.length);
+
+                    if (value == array_capital_image[0])
+                    {
+                        $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
 
 
-                }
-                else
-                {
+                    }
+                    else
+                    {
 
-                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+                        $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
-                }
+                    }
+
+
+
 
 
             }
-        });
 
-        console.log(array_has_images);
+        });
+        if($("[name='files_edit_pr[]']").length  == 1 && $("[name='files_edit_capital[]']").length  == 0)
+        {
+            let image_hidden_val = $("[name='files_edit_pr[]']").val();
+            clear_hiddens();
+
+            $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + image_hidden_val + '">');
+            console.log(image_hidden_val) ;
+            $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
+
+        }
+
+
+
         $data_img_id = $(this).attr('data-img-id');
 
 
@@ -513,9 +540,10 @@ console.log('glxavor')
 
                 }
                 if (res == "ok") {
-
-                    $('#close_add_model').trigger('click');
-                    $('#open_success_modal').trigger('click');
+                    console.log('okkkkkk')
+                    location.reload();
+                    // $('#close_add_model').trigger('click');
+                    // $('#open_success_modal').trigger('click');
 
                 }
 

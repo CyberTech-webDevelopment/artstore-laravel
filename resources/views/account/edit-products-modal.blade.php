@@ -26,8 +26,10 @@
                       id="editproduct_form">
                     <input type="hidden" id="more_post_edit" value="{{ route('edit.morepost',app()->getLocale()) }}">
                     @csrf
-                    @if(isset(Auth::user()->store))
+                    @if(isset(Auth::user()->store) && isset($product))
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
                         <input type="hidden" name="store_id" value="{{ Auth::user()->store->id }}">
+
                     @endif
                     <div class="row pl-1 pr-0">
                         <div class="canvas-cont_edit_pr hide ml-auto mr-auto" tabindex="2">
