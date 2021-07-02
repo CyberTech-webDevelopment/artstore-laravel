@@ -245,7 +245,7 @@
 
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
                                                         tabIndex="-1">
-                                                        <input type="checkbox"
+                                                        <input type="checkbox" class="edit_check"
                                                         @if (isset($product) && $product->size_type != null)
                                                           @foreach ($product->product_sizes as $size)
                                                             @if ($product->size_type == strtolower($k) && $size->id == $el['id'])
@@ -336,7 +336,7 @@
                                                         <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
                                                             tabIndex="-1">
                                                             <input
-                                                                type="checkbox"
+                                                                type="checkbox" class="edit_check"
                                                                 @if (isset($product) && $product->material_type != null)
                                                                   @foreach ($product->product_materials as $material)
                                                                     @if ($product->material_type == strtolower($k) && $material->id == $el['id'])

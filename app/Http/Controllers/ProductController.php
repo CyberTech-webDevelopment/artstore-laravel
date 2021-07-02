@@ -510,31 +510,55 @@ class ProductController extends Controller
         $product_capital_image = $request->input('files_edit_capital')[0];
         DB::table('products_images')->where('product_id', $product_id)->delete();
 
-            if($db_capital_image != $product_capital_image)
-            {
-                // dump($db_capital_image);
-                // dump($product_capital_image);
-                unlink(public_path() . '/storage/product/' . $db_capital_image);
-            }
+//            if($db_capital_image != $product_capital_image && )
+//            {
+//                // dump($db_capital_image);
+//                // dump($product_capital_image);
+//                unlink(public_path() . '/storage/product/' . $db_capital_image);
+//            }
 
 
     //    dd($product_images);
        if($product_images != null){
         // dump('ssssssss')
+//           dump($db_capital_image);
+//           dump($product_capital_image);
+//           dump($db_images);
+//           dump($product_images);
         foreach($db_images as $element){
+//            if ($element->image != $product_capital_image && $element->main != 1){
+                if (count($product_images) == 1){
 
-            foreach ($product_images as $key => $img) {
-                if($element->image != $img && $element->image != $product_capital_image && $element->main != 1)
+                    if ($element->image != $product_images[0] && $element->image != $product_capital_image )
+                    {
+                        unlink(public_path() . '/storage/product/' . $element->image);
+
+                    }
+                }
+                else
                 {
-                    // dump($element->image);
-                    // dump($img);
-                    // dump($product_capital_image);
+                    if ($element->image != $product_images[0] && $element->image != $product_images[1] && $element->image != $product_capital_image )
+                    {
+                        unlink(public_path() . '/storage/product/' . $element->image);
 
-                    unlink(public_path() . '/storage/product/' . $element->image);
-                    break;
+                    }
+
                 }
 
-            }
+//                foreach ($product_images as $key => $img) {
+//                    if($element->image != $img && $element->image != $product_capital_image)
+//                    {
+////                        dump($element->image);
+////                        dump($img);
+////                        dump($product_capital_image);
+//
+//                        unlink(public_path() . '/storage/product/' . $element->image);
+//                        break;
+//                    }
+////
+//                }
+//            }
+
 
         }
 

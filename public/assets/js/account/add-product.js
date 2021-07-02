@@ -73,9 +73,18 @@ function readURL(file) {
                         $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                         $src_icon = $('.delete-image').find('img').attr('src');
                         $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
+
+                        $('#image-cont').append('<div class="capital_image"><input type="radio" data-image-name="' + e.target.result + '" class="set_capital_img_add" name="capital_image"></div>')
                         array_images.push(e.target.result)
                         $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files[]" value="' + e.target.result + '">');
 
+                        if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
+                        {
+                            let image_hidden_val = $("[name='files[]']").val();
+                            $("[name='files[]']").attr('name','files_capital[]');
+                            $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
+
+                        }
                     }
 
 
@@ -145,11 +154,21 @@ $('#crop-image').click(function (e) {
 
         $src_icon = $('.delete-image').find('img').attr('src');
         $('#image-cont').append('<div class="drop-image" data-img-id="' + c + '"><img src="' + $src_icon + '"></div>')
+        $('#image-cont').append('<div class="capital_image"><input type="radio" data-image-name="' + cropped.src + '" class="set_capital_img_add" name="capital_image"></div>')
+
         $img_values = $("[name='files[]']")
         console.log(c);
         // console.log($img_values.length)
         $('.canvas-cont').addClass('hide')
         $('.canvas-cont').removeClass('d-flex')
+
+        if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
+        {
+            let image_hidden_val = $("[name='files[]']").val();
+            $("[name='files[]']").attr('name','files_capital[]');
+            $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
+
+        }
     }
     if (array_images.length == 3) {
         $('.uploade-image').css('display', 'none')
@@ -189,10 +208,62 @@ $(document).on('click', '.drop-image', function () {
     // console.log($img_values.length);
 
     $(this).prev().remove();
+    $(this).next().remove();
 //      console.log($(this).parent())
     $(this).remove();
     if ($('.uploade-image').css('display') == 'none') {
         $('.uploade-image').show();
+
+    }
+    if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
+    {
+        let image_hidden_val = $("[name='files[]']").val();
+        $("[name='files[]']").attr('name','files_capital[]');
+        $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
+
+    }
+
+
+})
+
+// set capital image add
+
+$(document).on('input', '.set_capital_img_add', function () {
+
+    let capital_img = $(this).data('image-name');
+    if ($(this).is(':checked')) {
+// alert();
+         $("[name='files_capital[]']").attr('name','files[]')
+        $("[name='files[]']").each(function () {
+
+            if ($(this).val() == capital_img)
+            {
+                $(this).attr('name','files_capital[]')
+
+            }
+
+
+        })
+
+        // console.log(form);
+        // let seting_capital_img_name = $(this).data('image-name')
+        // array_capital_image.pop();
+        // array_capital_image.push(seting_capital_img_name)
+        //
+        // $(array_has_images).each(function (index, value) {
+        //
+        //     if (value == array_capital_image[0]) {
+        //
+        //         $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+        //
+        //     } else {
+        //         // console.log(value);
+        //         $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+        //
+        //
+        //     }
+        //
+        // });
 
     }
 

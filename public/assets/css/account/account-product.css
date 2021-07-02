@@ -27,6 +27,11 @@
 
     margin-bottom: -23px;
 }
+.single_size_group_size{
+
+    padding: 0px!important;
+
+}
 #size_all_content_edit,#size_all_content_edit_material{
 
     background-color: white;
