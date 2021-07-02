@@ -159,7 +159,7 @@
 
 @else
 
-    <div class="row justify-content-center flex-column align-items-center add-new-product-row  pr-3">
+    <div class="row justify-content-center flex-column align-items-center add-new-product-row mt-2 pr-3">
         <div class="col-sm-6 col-md-6 col-lg-6 col-6 product_empty d-flex justify-content-center text-bold">
 
             You are dont have products
