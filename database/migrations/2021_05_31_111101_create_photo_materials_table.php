@@ -14,7 +14,7 @@ class CreatePhotoMaterialsTable extends Migration
     public function up()
     {
         Schema::create('photo_materials', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('material_am');
             $table->string('material_ru');
             $table->string('material_en');

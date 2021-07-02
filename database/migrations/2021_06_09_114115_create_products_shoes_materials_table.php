@@ -14,8 +14,10 @@ class CreateProductsShoesMaterialsTable extends Migration
     public function up()
     {
         Schema::create('products_shoes_materials', function (Blueprint $table) {
-            $table->integer('product_id');
-            $table->integer('materials_id');
+            $table->integer('product_id')->unsigned()->index();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('materials_id')->unsigned()->index();
+            $table->foreign('materials_id')->references('id')->on('shoes_materials')->onDelete('cascade');
             $table->timestamps();
         });
     }

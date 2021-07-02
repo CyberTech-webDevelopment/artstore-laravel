@@ -40,7 +40,7 @@
 
     color: black!important;
 }
-.set_capital_img{
+.set_capital_img, .set_capital_img_add{
 
     width: 25px;
     margin-top: 5px;
@@ -52,4 +52,22 @@
 
     cursor: pointer;
 
+}
+.my-active{
+
+    z-index: 2;
+
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    font-size: 20px;
+    font-weight: 700;
+}
+.my-active .page-link{
+
+    color: #a70c0c!important;
+}
+.page-link{
+
+    color: #764D10;
 }

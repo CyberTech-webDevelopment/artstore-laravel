@@ -14,8 +14,10 @@ class CreateProductsRingSizesTable extends Migration
     public function up()
     {
         Schema::create('products_ring_sizes', function (Blueprint $table) {
-            $table->integer('product_id');
-            $table->integer('size_id');
+            $table->integer('product_id')->unsigned()->index();
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
+            $table->integer('size_id')->unsigned()->index();
+            $table->foreign('size_id')->references('id')->on('ring_sizes')->onDelete('cascade');
             $table->timestamps();
         });
     }

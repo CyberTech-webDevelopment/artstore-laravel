@@ -277,7 +277,7 @@
                                             class="caret">@lang('add-product.product.sel_color')</span></button>
                                     <ul class="dropdown-menu" id="list_colors">
                                         @if(isset($product))
-                                         @dump($product->product_colors)
+
                                         @endif
                                         @foreach($all_colors as $c)
                                             <li class="small d-flex align-items-center" tabIndex="-1"><input

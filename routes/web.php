@@ -48,6 +48,10 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::post('/edit-productshort', [App\Http\Controllers\ProductController::class, 'edit_short'])->name('edit.short');
     Route::get('/edit-productmore', [App\Http\Controllers\ProductController::class, 'edit_more'])->name('edit.more');
     Route::post('/edit-productmorepost', [App\Http\Controllers\ProductController::class, 'edit_morepost'])->name('edit.morepost');
+    Route::post('/delete-selected', [App\Http\Controllers\ProductController::class, 'delete_selected'])->name('delete.selected');
+    Route::post('/delete-current', [App\Http\Controllers\ProductController::class, 'delete_current'])->name('delete.current');
+
+
 
 
 });

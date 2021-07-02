@@ -14,7 +14,7 @@ class CreateShoesSizesTable extends Migration
     public function up()
     {
         Schema::create('shoes_sizes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->float('size');
             $table->timestamps();
         });
