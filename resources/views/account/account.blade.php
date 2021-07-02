@@ -35,7 +35,7 @@
 
     <section class="pt-4 account-section">
         <div class="container-fluid account-container">
-            <div class="row ">Homepage > My Account > Basket</div>
+            <div class="row mt-2">Homepage > My Account > Basket</div>
             <div class="row account-open-bar-row">
                 <div class="account-open-bar mt-3 pt-2">
                     <img src="{{ asset('assets/icons/icon-user-mobile.svg') }}">

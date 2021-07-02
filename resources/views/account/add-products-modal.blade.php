@@ -136,7 +136,7 @@
                                     <option class="add_product_menu" value="0">@lang('add-product.product.by_gender')</option>
                                     @foreach ($genders as $g)
 
-                                       <option class="add_product_menu" value="{{ $g->id }}">{{ $g->name }}</option>
+                                       <option class="add_product_menu" value="{{ $g->id }}">{{ $g['name_'.app()->getLocale()] }}</option>
 
                                     @endforeach
 

@@ -243,11 +243,7 @@ function clear_hiddens()
                         $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
                     }
-
-
-
-
-
+\
             }
 
         });
@@ -262,17 +258,11 @@ function clear_hiddens()
 
         }
 
-
-
         $data_img_id = $(this).attr('data-img-id');
 
-
-        // $('.img_inp').attr('data-inp-id',$data_img_id).remove();
-        // if ($("[data-inp-id='" + $data_img_id + "']")) {
-        //     $("[data-inp-id='" + $data_img_id + "']").remove();
         array_images_edit_pr.pop();
 
-        // }
+
 
 
         $(this).prev().remove();
@@ -371,12 +361,12 @@ function clear_hiddens()
 
 
     // set capital image
-    //sharunakel
+
     $(document).on('input', '.set_capital_img', function () {
 
 
         if ($(this).is(':checked')) {
-// alert();
+
             let form = $("[name='files_edit_pr[]']").closest("form");
             form.find("[name='files_edit_capital[]']").each(function () {
 console.log('glxavor')
@@ -407,21 +397,19 @@ console.log('glxavor')
                 }
 
             });
-            // console.log(seting_capital_img_name)
-            // console.log(array_has_images);
-            // console.log(array_capital_image);
+
         }
 
 
     })
 
     $(document).on('change', '#select-menu', function () {
-        // alert()
+
         let select_menu_id = $(this).find("option:selected").attr('data-menu-id')
         let url = $('#sel_cat_route_edit').val()
         $('#list_sub_menu_edit').empty()
         $('#select_sub_category_edit').empty()
-        // let sel_id=$(this).attr('id')
+
         console.log(select_menu_id)
         $.ajax({
             method: 'post',
@@ -540,10 +528,8 @@ console.log('glxavor')
 
                 }
                 if (res == "ok") {
-                    console.log('okkkkkk')
+
                     location.reload();
-                    // $('#close_add_model').trigger('click');
-                    // $('#open_success_modal').trigger('click');
 
                 }
 
