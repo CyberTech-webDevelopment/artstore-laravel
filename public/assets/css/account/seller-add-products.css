@@ -101,7 +101,7 @@ tbody > tr > td:not(:second-child) {
     height: 100%
 }
 
-.modal-drag-photo,.modal-drag-photo{
+.modal-drag-photo,.modal-drag-photo_edit_pr{
     width: 100%;
     background: #F0F0F0;
 }

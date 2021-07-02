@@ -313,9 +313,7 @@ function clear_hiddens()
                     //
                     $('#edit_prod_modal').empty();
                     $('#edit_prod_modal').append(res.view);
-                    $('.uploade-image_edit_pr').removeClass('d-flex')
-                    $('.uploade-image_edit_pr').css('display', 'none');
-                    $('.modal-drag-photo_edit_pr').hide();
+
                     while (array_has_images.length > 0) {
                         array_has_images.pop();
                     }
@@ -355,10 +353,17 @@ function clear_hiddens()
                     });
                     $('#open_edit_modal').trigger('click');
                     $('#edit-product-modal').addClass('show');
+                    if (array_has_images.length == 3 )
+                    {
+                        $('.uploade-image_edit_pr').removeClass('d-flex')
+                        $('.uploade-image_edit_pr').css('display', 'none');
+                        $('.modal-drag-photo_edit_pr').hide();
 
+                    }
                     canvas = new fabric.Canvas('canvas_edit_pr');
                     can = document.getElementById('canvas_edit_pr')
 
+                     // alert(array_has_images.length)
 
                 }
 
@@ -368,10 +373,14 @@ function clear_hiddens()
 
 
     })
+    $(document).on('click','.edit_check', function(e) {
 
+        e.stopPropagation();
+
+    });
 
     // set capital image
-    //sharunakel
+
     $(document).on('input', '.set_capital_img', function () {
 
 
@@ -407,9 +416,7 @@ console.log('glxavor')
                 }
 
             });
-            // console.log(seting_capital_img_name)
-            // console.log(array_has_images);
-            // console.log(array_capital_image);
+
         }
 
 
