@@ -232,7 +232,7 @@ $(document).on('input', '.set_capital_img_add', function () {
 
     let capital_img = $(this).data('image-name');
     if ($(this).is(':checked')) {
-// alert();
+
          $("[name='files_capital[]']").attr('name','files[]')
         $("[name='files[]']").each(function () {
 
@@ -245,25 +245,6 @@ $(document).on('input', '.set_capital_img_add', function () {
 
         })
 
-        // console.log(form);
-        // let seting_capital_img_name = $(this).data('image-name')
-        // array_capital_image.pop();
-        // array_capital_image.push(seting_capital_img_name)
-        //
-        // $(array_has_images).each(function (index, value) {
-        //
-        //     if (value == array_capital_image[0]) {
-        //
-        //         $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
-        //
-        //     } else {
-        //         // console.log(value);
-        //         $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
-        //
-        //
-        //     }
-        //
-        // });
 
     }
 
@@ -493,6 +474,7 @@ $('.again-add-product').on('click',function(e){
         $(this).remove();
 
     })
+    $("[name='files_capital[]']").remove();
     while(array_images.length > 0) {
         array_images.pop();
     }

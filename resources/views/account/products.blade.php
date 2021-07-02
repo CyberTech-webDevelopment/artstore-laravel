@@ -1,9 +1,11 @@
 {{-- str_cut('hjkhhkh',2) --}}
 @if(count($products) > 0)
+    <input type="hidden" id="selected_delete" value="{{ route('delete.selected', app()->getLocale()) }}">
+    <input type="hidden" id="current_delete" value="{{ route('delete.current', app()->getLocale()) }}">
     <input type="hidden" id="short_edit_url" value="{{ route('edit.short',app()->getLocale()) }}">
     <div class="row justify-content-end add-new-product-row  pr-3">
         <div class="col-sm-6 col-md-6 col-lg-6 col-6 product_errors text-danger text-bold"></div>
-        <button class="add-new-product text-strong" data-toggle="modal" data-target=".add-product-modal">Add New Product
+        <button class="add-new-product text-strong mt-1 mr-3" data-toggle="modal" data-target=".add-product-modal">Add New Product
             +
         </button>
     </div>
@@ -12,7 +14,7 @@
 
         <thead class="thead-lightorange">
         <tr>
-            <th scope="col"><input type="checkbox" name=""></th>
+            <th scope="col"><input type="checkbox" class="all_del"></th>
             <th scope="col" class="">Product</th>
             <th scope="col" class="text-center">Quantity</th>
             <th scope="col" class="text-center">Status</th>
@@ -20,7 +22,7 @@
             <th scope="col" class="text-center">Sale</th>
             {{-- <th scope="col" class="text-center">Photos</th> --}}
             <th scope="col" class="text-center">
-                <div data-toggle="modal" data-target=".delete-prds" class="delete-all-products">Delete</div>
+                <button  disabled class="delete-all-products">Delete</button>
             </th>
         </tr>
         </thead>
@@ -30,7 +32,7 @@
         @foreach ($products as $elem)
 
             <tr id="product_{{$elem['id']}}">
-                <th scope="row"><input type="checkbox" name=""></th>
+                <th scope="row"><input type="checkbox" class="current_del" value="{{$elem['id']}}"></th>
                 <td class="d-flex flex-nowrap ">
                     <div class="product-img-products"><img src="/storage/product/{{$elem->product_head_images()}}">
                     </div>
@@ -81,7 +83,7 @@
                     <input type="hidden" id="more_edit_url" value="{{ route('edit.more',app()->getLocale()) }}">
 {{--                    data-toggle="modal" data-target=".edit_product"--}}
                     <button class="download text-strong edit_more" data-editedid="{{$elem['id']}}">Edit More</button>
-                    <button class="delete-product text-strong mt-2" data-toggle="modal" data-target=".delete-prd">
+                    <button class="delete-product text-strong mt-2" value="{{$elem['id']}}" data-toggle="modal" data-target=".delete-prd">
                         Delete
                     </button>
                     <button class="save-product text-strong mt-2" data-toggle="modal" data-target=".save-prd"
@@ -95,7 +97,9 @@
         </tbody>
     </table>
 
+    {{-- Pagination --}}
 
+    {{ $products->links('vendor.pagination.pagination') }}
 
     <!-- -----------------modal-for edit product ------------ -->
 
@@ -134,7 +138,7 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button type="button" class="close" data-dismiss="modal" id="close_del" aria-label="Close">
                         <span aria-hidden="true"><img src="{{asset('assets/icons/close.png')}}"></span>
                     </button>
                 </div>
@@ -147,8 +151,8 @@
                     </div>
                     <div class=" mt-2  text-center">
                         <div class="text-center mt-4 mb-4">
-                            <button class="cancel" data-dismiss="modal">Cancel</button>
-                            <button class="delete ml-4">Delete</button>
+                            <button class="cancel cancel_del" data-dismiss="modal">Cancel</button>
+                            <button class="delete delete-multi ml-4">Delete</button>
                         </div>
                     </div>
                 </div>

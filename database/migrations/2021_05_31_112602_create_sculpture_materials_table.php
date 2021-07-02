@@ -14,7 +14,7 @@ class CreateSculptureMaterialsTable extends Migration
     public function up()
     {
         Schema::create('sculpture_materials', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
             $table->string('material_am');
             $table->string('material_ru');
             $table->string('material_en');

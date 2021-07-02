@@ -1,6 +1,10 @@
 .delete-all-products{
-	color: #916363 !important;
+
+    font-weight: 700;
+
     cursor: pointer;
+    border: none;
+    background-color: unset;
 }
 .cancel{
 	width: 100px;

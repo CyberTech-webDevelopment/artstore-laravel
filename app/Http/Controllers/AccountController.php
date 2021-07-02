@@ -19,7 +19,7 @@ class AccountController extends Controller
     }
     public function index()
     {
-        $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at', 'desc')->get();
+        $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(6);
         // dd($products[0]->product_sizes);
         return view('account.account',compact('products'));
 

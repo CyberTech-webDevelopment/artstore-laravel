@@ -14,7 +14,7 @@ class CreateClothsSizesTable extends Migration
     public function up()
     {
         Schema::create('cloths_sizes', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');;
             $table->string('size');
             $table->timestamps();
         });
