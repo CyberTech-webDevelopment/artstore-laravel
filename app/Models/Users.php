@@ -81,4 +81,18 @@ class Users extends Authenticatable implements MustVerifyEmail
 
 
     }
+
+    public function only_user_avatar()
+    {
+
+        if ($this->avatar == null) {
+
+            return "avatar/user-icon.png";
+
+        } else {
+            return 'avatar/' . $this->avatar;
+        }
+
+
+    }
 }

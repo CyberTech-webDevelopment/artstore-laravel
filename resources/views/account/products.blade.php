@@ -1,8 +1,10 @@
 {{-- str_cut('hjkhhkh',2) --}}
+{{--@dd($products);--}}
 @if(count($products) > 0)
     <input type="hidden" id="selected_delete" value="{{ route('delete.selected', app()->getLocale()) }}">
     <input type="hidden" id="current_delete" value="{{ route('delete.current', app()->getLocale()) }}">
     <input type="hidden" id="short_edit_url" value="{{ route('edit.short',app()->getLocale()) }}">
+    <input type="hidden" id="account_route" value="{{ route('account',app()->getLocale()) }}">
     <div class="row justify-content-end add-new-product-row  pr-3">
         <div class="col-sm-6 col-md-6 col-lg-6 col-6 product_errors text-danger text-bold"></div>
         <button class="add-new-product text-strong mt-1 mr-3" data-toggle="modal" data-target=".add-product-modal">Add New Product
@@ -145,9 +147,13 @@
                 <div class="modal-body product-description-body ml-auto mr-auto pt-3 pb-3">
                     <div class="mt-3 text-center"><img src="{{asset('assets/icons/delete-icon.png')}}"
                                                        class="img-delete"></div>
-                    <div class="mt-2 text-center ">
-                        Are you sure you want to remove this item from the store? If the product is removed, it will not
-                        be possible to restore it. If you remove this item, you can deactivate it.
+                    <div class="mt-2 text-center delete_text_current">
+                        Are you sure you want to remove this item(s) from the store? If the product is removed, it already will be impossible to restore. If you
+                        want remove this item, you can deactivate it.
+                    </div>
+                    <div class="mt-2 text-center delete_text_all" style="display: none">
+                        Are you sure you want to remove all products from the store? If the all products are removing,its already
+                        will be impossible to restore  If you want removed all items, you can deactivate its.
                     </div>
                     <div class=" mt-2  text-center">
                         <div class="text-center mt-4 mb-4">

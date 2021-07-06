@@ -73,8 +73,7 @@ $(document).ready(function () {
                             console.log(capital_image);
                             $(array_has_images).each(function (index, value) {
 
-                                if ( value != capital_image )
-                                {
+                                if (value != capital_image) {
 
                                     $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
@@ -159,10 +158,9 @@ $(document).ready(function () {
             $(array_has_images).each(function (index, value) {
 
 
-                if ( value != capital_image )
-                {
+                if (value != capital_image) {
 
-                $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
                 }
             });
@@ -198,20 +196,21 @@ $(document).ready(function () {
             readURL(file);
         }
     });
-function clear_hiddens()
-{
-    $("[name='files_edit_pr[]']").each(function () {
 
-        $(this).remove();
+    function clear_hiddens() {
+        $("[name='files_edit_pr[]']").each(function () {
 
-    })
-    $("[name='files_edit_capital[]']").each(function () {
+            $(this).remove();
 
-        $(this).remove();
+        })
+        $("[name='files_edit_capital[]']").each(function () {
 
-    })
+            $(this).remove();
 
-}
+        })
+
+    }
+
     $(document).on('click', '.drop-image_edit_pr', function () {
 
 
@@ -229,29 +228,25 @@ function clear_hiddens()
             } else {
 
 
-                    if (value == array_capital_image[0])
-                    {
-                        $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
+                if (value == array_capital_image[0]) {
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + value + '">');
 
 
-                    }
-                    else
-                    {
+                } else {
 
-                        $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
+                    $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_pr[]" value="' + value + '">');
 
-                    }
+                }
 
             }
 
         });
-        if($("[name='files_edit_pr[]']").length  == 1 && $("[name='files_edit_capital[]']").length  == 0)
-        {
+        if ($("[name='files_edit_pr[]']").length == 1 && $("[name='files_edit_capital[]']").length == 0) {
             let image_hidden_val = $("[name='files_edit_pr[]']").val();
             clear_hiddens();
 
             $('#editproduct_form').append('<input type="hidden" class="img_inp"  name="files_edit_capital[]" value="' + image_hidden_val + '">');
-            console.log(image_hidden_val) ;
+            console.log(image_hidden_val);
             $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
 
         }
@@ -259,8 +254,6 @@ function clear_hiddens()
         $data_img_id = $(this).attr('data-img-id');
 
         array_images_edit_pr.pop();
-
-
 
 
         $(this).prev().remove();
@@ -341,8 +334,7 @@ function clear_hiddens()
                     });
                     $('#open_edit_modal').trigger('click');
                     $('#edit-product-modal').addClass('show');
-                    if (array_has_images.length == 3 )
-                    {
+                    if (array_has_images.length == 3) {
                         $('.uploade-image_edit_pr').removeClass('d-flex')
                         $('.uploade-image_edit_pr').css('display', 'none');
                         $('.modal-drag-photo_edit_pr').hide();
@@ -360,7 +352,7 @@ function clear_hiddens()
 
 
     })
-    $(document).on('click','.edit_check', function(e) {
+    $(document).on('click', '.edit_check', function (e) {
 
         e.stopPropagation();
 
@@ -375,7 +367,7 @@ function clear_hiddens()
 
             let form = $("[name='files_edit_pr[]']").closest("form");
             form.find("[name='files_edit_capital[]']").each(function () {
-console.log('glxavor')
+                console.log('glxavor')
                 $(this).remove();
 
             })
@@ -814,17 +806,15 @@ console.log('glxavor')
     })
 
 
-    $('.current_del').on('input',function(){
+    $('.current_del').on('input', function () {
 
         let el = $(this);
-        if($(this).is(':checked')){
+        if ($(this).is(':checked')) {
 
-          array_deleting_checked.push($(this).val());
-          $('.delete-all-products').prop('disabled', false);
+            array_deleting_checked.push($(this).val());
+            $('.delete-all-products').prop('disabled', false);
 
-        }
-        else
-        {
+        } else {
             $(array_deleting_checked).each(function (index, value) {
 
                 if (value == el.val()) {
@@ -834,10 +824,9 @@ console.log('glxavor')
             });
 
             $('.delete-all-products').prop('disabled', true);
-            $('.current_del').each(function(){
+            $('.current_del').each(function () {
 
-                if($(this).is(':checked'))
-                {
+                if ($(this).is(':checked')) {
 
                     $('.delete-all-products').prop('disabled', false);
 
@@ -848,13 +837,15 @@ console.log('glxavor')
         }
 
         console.log(array_deleting_checked);
+        $('.delete_text_all').hide();
+        $('.delete_text_current').show();
     })
 
-    $('.all_del').on('input',function(){
+    $('.all_del').on('input', function () {
 
-        if($(this).is(':checked')){
+        if ($(this).is(':checked')) {
 
-            $('.current_del').each(function(){
+            $('.current_del').each(function () {
 
                 $(this).prop('checked', true);
                 array_deleting_checked.push($(this).val());
@@ -863,12 +854,11 @@ console.log('glxavor')
 
 
             $('.delete-all-products').prop('disabled', false);
+            $('.delete_text_all').show();
+            $('.delete_text_current').hide();
+        } else {
 
-        }
-        else
-        {
-
-            $('.current_del').each(function(){
+            $('.current_del').each(function () {
 
                 $(this).prop('checked', false);
                 array_deleting_checked.pop();
@@ -876,29 +866,46 @@ console.log('glxavor')
 
 
             $('.delete-all-products').prop('disabled', true);
-
+            $('.delete_text_all').hide();
+            $('.delete_text_current').show();
         }
 
 
     })
-    $('.delete-all-products').on('click',function(){
+    $('.delete-all-products').on('click', function () {
 
         $('.delete-product').trigger('click');
-        $('.delete-multi').attr('id','selected_del')
+        $('.delete-multi').attr('id', 'selected_del')
     })
-    $('.cancel_del').on('click',function(){
+    $('.cancel_del,#close_del').on('click', function () {
 
         $('.delete-multi').removeAttr('id');
         $('.delete-multi').val('');
 
     })
-    $('.delete-product').on('click',function(){
+    $('.delete-product').on('click', function () {
 
-        $('.delete-multi').attr('id','current_del');
+        $('.delete-multi').attr('id', 'current_del');
         $('#current_del').val($(this).val());
     })
-    function send_delete(url,values)
-    {
+
+    var getUrlParameter = function getUrlParameter(sParam) {
+        var sPageURL = window.location.search.substring(1),
+            sURLVariables = sPageURL.split('&'),
+            sParameterName,
+            i;
+
+        for (i = 0; i < sURLVariables.length; i++) {
+            sParameterName = sURLVariables[i].split('=');
+
+            if (sParameterName[0] === sParam) {
+                return typeof sParameterName[1] === undefined ? true : decodeURIComponent(sParameterName[1]);
+            }
+        }
+        return false;
+    };
+
+    function send_delete(url, values) {
 
         $.ajax({
             method: 'post',
@@ -913,33 +920,63 @@ console.log('glxavor')
             dataType: 'json',
             success: function (res) {
 
-                console.log(res);
-                if(res.res == 0)
-                {
+
+                if (res.res == 0) {
                     $('#close_del').trigger('click');
                     alert("Product(s) is not found")
-
-                }
-                else
-                {
-
                     location.reload();
+
+                } else {
+
+                    if (res.products.last_page == 1) {
+                        let redirect_url = $('#account_route').val()
+                        window.location.href = redirect_url;
+
+                    } else {
+                        let current_page = '?page=' + res.products.current_page;
+                        let curr_page = getUrlParameter('page');
+                        let redirect_url = $('#account_route').val()
+                        if (res.products.last_page >= curr_page) {
+                            current_page = '?page=' + curr_page;
+
+                        } else {
+                            current_page = '?page=' + res.products.last_page;
+
+                        }
+
+                        if (curr_page != false) {
+                            redirect_url = $('#account_route').val() + current_page
+                        }
+
+
+                        console.log(res.products.current_page);
+                        console.log(redirect_url);
+                        console.log(curr_page);
+                        console.log(res);
+
+
+                        window.location.href = redirect_url;
+
+
+                    }
+                    // location.reload();
                 }
 
             }
         })
     }
-    $(document).on('click','#current_del',function(){
+
+    $(document).on('click', '#current_del', function () {
 
         let url = $('#current_delete').val();
         let p_id = $(this).val();
-        send_delete(url,p_id);
+        send_delete(url, p_id);
 
     })
-    $(document).on('click','#selected_del',function(){
+    $(document).on('click', '#selected_del', function () {
 
         let url = $('#selected_delete').val();
-        send_delete(url,array_deleting_checked);
+        send_delete(url, array_deleting_checked);
 
     })
 

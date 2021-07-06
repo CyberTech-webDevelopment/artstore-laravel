@@ -457,7 +457,8 @@ $('.price').on('input', function () {
 
 $('.go-to-product').on('click',function(){
 
-    location.reload();
+    let redirect_url_go = $('#account_route').val()
+    window.location.href = redirect_url_go;
 })
 $('.again-add-product').on('click',function(e){
 
@@ -467,6 +468,11 @@ $('.again-add-product').on('click',function(e){
     $('.uploade-image').css('display','block');
     $('#product_form').find('#product_count').val(1);
     $('#product_form').find('.quantity').text(1);
+    $('#list_sub_menu').empty();
+    $('#select_sub_category').empty();
+    var default_select = $('#selesct_default_lang').val();
+    $('#select_sub_category').append("<option class='default_select' value=''></option>")
+    $('.default_select').text(default_select);
     // $('#product_count').val(1);
 
     $("[name='files[]']").each(function (){
