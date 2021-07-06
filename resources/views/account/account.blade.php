@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/seller-add-products.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/delete-products.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/account-product.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/account/account-user-settings.css') }}">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.7.16/fabric.min.js"></script>
 @endsection
@@ -58,7 +59,7 @@
                         </div>
 
                         <!-- --------back if seller-> active class set seller------------------ -->
-                        <div class="tab-pane fade show @if(Auth::user()->shop == false) active @endif"
+                        <div class="tab-pane fade show @if(Auth::user()->shop == false && !session()->has('modal_type')) active @endif"
                              id="v-pills-welcome-seller" role="tabpanel"
                              aria-labelledby="v-pills-welcome-tab">
                             @include('account.account-welcome-seller')
@@ -102,7 +103,7 @@
                             @include('account.my-comments')
 
                         </div>
-                        <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                        <div class="tab-pane fade @if(session()->has('modal_type') && session('modal_type')[0] == 'change_email') active  @endif " id="v-pills-settings" role="tabpanel"
                              aria-labelledby="v-pills-settings-tab">
                             @include('account.settings')
 
@@ -141,6 +142,7 @@
     <script src="{{asset('assets\js\account\account-settings-address.js')}}"></script>
     <script src="{{asset('assets\js\account\account-bar.js')}}"></script>
     <script src="{{asset('assets\js\account\account-product.js')}}"></script>
+    <script src="{{asset('assets\js\account\account-user-settings.js')}}"></script>
     <script>
         $('.h5-click').click(function () {
             $('#store-style').toggleClass('hide-style')

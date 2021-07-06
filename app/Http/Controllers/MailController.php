@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ChangeEmail;
 use App\Mail\ResetPassword;
 use App\Mail\SignUp;
 use Illuminate\Http\Request;
@@ -29,6 +30,17 @@ class MailController extends Controller
             "email"=>$email,
         ];
         Mail::to($email)->send(new ResetPassword($data));
+
+
+    }
+    public static function ChangeEmail($name, $email, $reset_token)
+    {
+        $data = [
+            "name" => $name,
+            "reset_token"=>$reset_token,
+            "email"=>$email,
+        ];
+        Mail::to($email)->send(new ChangeEmail($data));
 
 
     }

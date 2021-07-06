@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
-
 class ProductController extends Controller
 {
     public function add_product(Request $request)
@@ -207,7 +206,7 @@ class ProductController extends Controller
             'image' => $imageName_c,
             'main' => 1,
         ]);
-        if($product_images != null){
+        if ($product_images != null) {
 
             foreach ($product_images as $key => $img) {
 
@@ -216,11 +215,11 @@ class ProductController extends Controller
                 $imageName = uniqid() . '.' . 'png';
                 \File::put(public_path() . '/storage/product/' . $imageName, base64_decode($img));
 
-                    DB::table('products_images')->insert([
-                        'product_id' => $product->id,
-                        'image' => $imageName,
-                        'main' => 0,
-                    ]);
+                DB::table('products_images')->insert([
+                    'product_id' => $product->id,
+                    'image' => $imageName,
+                    'main' => 0,
+                ]);
 
 
             }
@@ -247,7 +246,9 @@ class ProductController extends Controller
         }
         return ($is_contain);
     }
-    function startsWith($haystack, $needle) {
+
+    function startsWith($haystack, $needle)
+    {
         return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
     }
 
@@ -303,7 +304,7 @@ class ProductController extends Controller
 
     public function edit_more(Request $request)
     {
-    //    dd($request->all());
+        //    dd($request->all());
         $product_id = $request->product_id;
         $product = Product::find($product_id);
         $product_images = $product->product_images();
@@ -311,14 +312,14 @@ class ProductController extends Controller
         return response()
             ->json([
                 'view' => view('account.edit-products-modal', compact('product'))->render(),
-                'product'=>$product,
-                'product_img'=>$product_images,
+                'product' => $product,
+                'product_img' => $product_images,
             ]);
 
     }
+
     public function edit_morepost(Request $request)
     {
-
 
 
         $validator = Validator::make($request->all(), [
@@ -347,13 +348,10 @@ class ProductController extends Controller
                 // dump($err);
                 foreach ($value as $key => $v) {
                     if ($key == 'Required') {
-                        if($err == 'files_edit_capital')
-                        {
+                        if ($err == 'files_edit_capital') {
 
                             return response()->json(['product_error' => 'Please set capital image']);
-                        }
-                        else
-                        {
+                        } else {
                             return response()->json(['product_error' => 'Please fill all required fields']);
                         }
 
@@ -469,8 +467,7 @@ class ProductController extends Controller
         $product->save();
 
         if (!empty($sizes)) {
-            if($db_size_type != null)
-            {
+            if ($db_size_type != null) {
 
                 DB::table('products_' . $db_size_type)->where('product_id', $product_id)->delete();
 
@@ -490,8 +487,7 @@ class ProductController extends Controller
 
         if (!empty($materials)) {
 
-            if($db_material_type != null)
-            {
+            if ($db_material_type != null) {
 
                 DB::table('products_' . $db_material_type)->where('product_id', $product_id)->delete();
             }
@@ -526,36 +522,31 @@ class ProductController extends Controller
         $product_capital_image = $request->input('files_edit_capital')[0];
         DB::table('products_images')->where('product_id', $product_id)->delete();
 
-       if($product_images != null){
+        if ($product_images != null) {
 
-        foreach($db_images as $element){
+            foreach ($db_images as $element) {
 
-                if (count($product_images) == 1){
+                if (count($product_images) == 1) {
 
-                    if ($element->image != $product_images[0] && $element->image != $product_capital_image )
-                    {
+                    if ($element->image != $product_images[0] && $element->image != $product_capital_image) {
                         unlink(public_path() . '/storage/product/' . $element->image);
 
                     }
-                }
-                else
-                {
-                    if ($element->image != $product_images[0] && $element->image != $product_images[1] && $element->image != $product_capital_image )
-                    {
+                } else {
+                    if ($element->image != $product_images[0] && $element->image != $product_images[1] && $element->image != $product_capital_image) {
                         unlink(public_path() . '/storage/product/' . $element->image);
 
                     }
 
                 }
 
+
+            }
 
 
         }
 
-
-       }
-
-        if ($this->startsWith($product_capital_image,"data:")){
+        if ($this->startsWith($product_capital_image, "data:")) {
             // dd("is base 64 ");
             $img_capital = str_replace('data:image/png;base64,', '', $product_capital_image);
             $img_capital = str_replace(' ', '+', $img_capital);
@@ -566,8 +557,7 @@ class ProductController extends Controller
                 'image' => $imageName_capital,
                 'main' => 1,
             ]);
-        }
-        else {
+        } else {
 
             DB::table('products_images')->insert([
                 'product_id' => $product->id,
@@ -576,30 +566,27 @@ class ProductController extends Controller
             ]);
         }
 
-        if($product_images != null)
-        {
+        if ($product_images != null) {
 
             foreach ($product_images as $key => $img) {
                 // dump($img);
-                if ($this->startsWith($img,"data:")){
-                  $img = str_replace('data:image/png;base64,', '', $img);
-                  $img = str_replace(' ', '+', $img);
-                  $imageName = uniqid() . '.' . 'png';
-                  \File::put(public_path() . '/storage/product/' . $imageName, base64_decode($img));
+                if ($this->startsWith($img, "data:")) {
+                    $img = str_replace('data:image/png;base64,', '', $img);
+                    $img = str_replace(' ', '+', $img);
+                    $imageName = uniqid() . '.' . 'png';
+                    \File::put(public_path() . '/storage/product/' . $imageName, base64_decode($img));
 
-                     DB::table('products_images')->insert([
-                         'product_id' => $product->id,
-                         'image' => $imageName,
-                         'main' => 0,
-                     ]);
-
-
-                }
-                else
-                {
                     DB::table('products_images')->insert([
                         'product_id' => $product->id,
-                        'image' => $img ,
+                        'image' => $imageName,
+                        'main' => 0,
+                    ]);
+
+
+                } else {
+                    DB::table('products_images')->insert([
+                        'product_id' => $product->id,
+                        'image' => $img,
                         'main' => 0,
                     ]);
 
@@ -617,46 +604,44 @@ class ProductController extends Controller
     public function delete_selected(Request $request)
     {
 
-        if($request->product_ids){
+        if ($request->product_ids) {
 
             $product_ids = $request->product_ids;
-            foreach($product_ids as $p)
-            {
-               $pr_obj = Product::find($p);
-            //    dd($pr_obj->product_images());
-               $pr_images = $pr_obj->product_images();
+            foreach ($product_ids as $p) {
+                $pr_obj = Product::find($p);
+                //    dd($pr_obj->product_images());
+                $pr_images = $pr_obj->product_images();
 
-               foreach($pr_images as $image)
-               {
-                unlink(public_path() . '/storage/product/' . $image->image);
+                foreach ($pr_images as $image) {
+                    unlink(public_path() . '/storage/product/' . $image->image);
 
-               }
+                }
 
             }
-            $del = Product::whereIn('id',$product_ids)->delete();
+            $del = Product::whereIn('id', $product_ids)->delete();
+            $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(2);
 
-            return response()->json(['res' => $del]);
+            return response()->json(['res' => $del, 'products' => $products]);
 
-        }
-        else
-        {
+        } else {
             return response()->json(['res' => 0]);
         }
 
 
     }
+
     public function delete_current(Request $request)
     {
         $product_id = $request->product_ids;
         $pr_obj = Product::find($product_id);
         $pr_images = $pr_obj->product_images();
-               foreach($pr_images as $image)
-               {
-                unlink(public_path() . '/storage/product/' . $image->image);
+        foreach ($pr_images as $image) {
+            unlink(public_path() . '/storage/product/' . $image->image);
 
-               }
-        $del_cur = Product::where('id',$product_id)->delete();
-        return response()->json(['res' => $del_cur]);
+        }
+        $del_cur = Product::where('id', $product_id)->delete();
+        $products = Product::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(2);
+        return response()->json(['res' => $del_cur, 'products' => $products]);
 
     }
 

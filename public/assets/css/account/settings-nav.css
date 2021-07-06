@@ -20,24 +20,24 @@
 	height: 80px;
 	border-radius: 50%
 }
-.upload{
-	color: #E54500;
-	border-radius: 8px;
-	width: 92px;
-	height: 30px;
-	outline: none;
-	background: none;
-	border: 1px solid #8D8D8D;
-}
-.remove{
-	color: #2D5131;
-	border-radius: 8px;
-	width: 92px;
-	height: 30px;
-	outline: none;
-	background: none;
-	border: 1px solid #8D8D8D;
-}
+/*.upload{*/
+/*	color: #E54500;*/
+/*	border-radius: 8px;*/
+/*	width: 92px;*/
+/*	height: 30px;*/
+/*	outline: none;*/
+/*	background: none;*/
+/*	border: 1px solid #8D8D8D;*/
+/*}*/
+/*.remove{*/
+/*	color: #2D5131;*/
+/*	border-radius: 8px;*/
+/*	width: 92px;*/
+/*	height: 30px;*/
+/*	outline: none;*/
+/*	background: none;*/
+/*	border: 1px solid #8D8D8D;*/
+/*}*/
 .account-change-inp, .delete-account-sel{
    height: 36px;
    border: 1px solid  #959595 !important;

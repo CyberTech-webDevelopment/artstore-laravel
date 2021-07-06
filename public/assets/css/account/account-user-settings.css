@@ -1,0 +1,27 @@
+.none_see{
+
+    display: none;
+
+}
+.upload_user_img{
+    color: #E54500;
+    border-radius: 8px;
+    width: 92px;
+    height: 30px;
+    outline: none;
+    background: none;
+    border: 1px solid #8D8D8D;
+}
+.remove_user_img{
+    color: #2D5131;
+    border-radius: 8px;
+    width: 92px;
+    height: 30px;
+    outline: none;
+    background: none;
+    border: 1px solid #8D8D8D;
+}
+#change_form{
+
+    width: 100%;
+}

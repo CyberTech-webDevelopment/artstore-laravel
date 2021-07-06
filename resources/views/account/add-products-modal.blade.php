@@ -106,9 +106,9 @@
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
                                 <label>@lang('add-product.product.type')</label>
-
+                                <input type="hidden" id="selesct_default_lang" value="@lang('add-product.product.sel_type')">
                                 <select id="select_sub_category" name="type">
-                                    <option class="add_product_menu">@lang('add-product.product.sel_type')</option>
+                                    <option class="add_product_menu" value="">@lang('add-product.product.sel_type')</option>
 
                                 </select>
                             </div>
