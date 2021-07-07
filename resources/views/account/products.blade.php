@@ -1,10 +1,11 @@
 {{-- str_cut('hjkhhkh',2) --}}
 {{--@dd($products);--}}
+<input type="hidden" id="account_route" value="{{ route('account',app()->getLocale()) }}">
 @if(count($products) > 0)
-    <input type="hidden" id="selected_delete" value="{{ route('delete.selected', app()->getLocale()) }}">
-    <input type="hidden" id="current_delete" value="{{ route('delete.current', app()->getLocale()) }}">
-    <input type="hidden" id="short_edit_url" value="{{ route('edit.short',app()->getLocale()) }}">
-    <input type="hidden" id="account_route" value="{{ route('account',app()->getLocale()) }}">
+<input type="hidden" id="selected_delete" value="{{ route('delete.selected', app()->getLocale()) }}">
+<input type="hidden" id="current_delete" value="{{ route('delete.current', app()->getLocale()) }}">
+<input type="hidden" id="short_edit_url" value="{{ route('edit.short',app()->getLocale()) }}">
+
     <div class="row justify-content-end add-new-product-row  pr-3">
         <div class="col-sm-6 col-md-6 col-lg-6 col-6 product_errors text-danger text-bold"></div>
         <button class="add-new-product text-strong mt-1 mr-3" data-toggle="modal" data-target=".add-product-modal">Add New Product

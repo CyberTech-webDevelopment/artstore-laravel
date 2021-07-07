@@ -19,6 +19,7 @@ class Product extends Model
         return $this->hasOne(Shop::class,'user_id', 'id');
     }
 
+
     public function setnNameForSizeRelation()
     {
         $this->con_size = "App\Models\\" . ucfirst($this->size_type);
@@ -49,6 +50,11 @@ class Product extends Model
     public function product_gender()
     {
         return Gender::find($this->gender_id);
+
+    }
+    public function product_author()
+    {
+        return Users::find($this->user_id);
 
     }
     public function discounted_price()
