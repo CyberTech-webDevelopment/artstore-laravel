@@ -6,11 +6,23 @@
             <img id="user_avatar" src="/storage/{{Auth::user()->only_user_avatar()}}">
             <div class="text-strong text-danger" id="avatar_error"></div>
         </div>
-        <div class="pl-5 d-flex">
-            <div class="upload_user_img d-flex align-items-center justify-content-center text-strong">Upload</div>
-            <input type="file" id="download_user_img" name="avatar_change" class="none_see">
-            <div class="remove_user_img d-flex align-items-center justify-content-center text-strong ml-2">Remove</div>
+        <div class="col-6 buttons_change_message d-flex flex-column align-items-center">
+
+            <div class="mb-2 error_change_data text-danger">
+                @if(session()->has('no_img'))
+
+                    {{ session('no_img') }}
+                @endif
+
+            </div>
+             <div class="pl-5 d-flex">
+               <div class="upload_user_img d-flex align-items-center justify-content-center text-strong">Upload</div>
+               <input type="file" id="download_user_img" name="avatar_change" class="none_see">
+               <a href="{{ route('delete.avatar',app()->getLocale()) }}" class="remove_user_img d-flex align-items-center justify-content-center text-strong ml-2">Remove</a>
+             </div>
+
         </div>
+
     </div>
     <input type="hidden" id="change_data_url" value="{{ route('change.data',app()->getLocale()) }}">
     <!-- ----------------------edit account-------------------------- -->
@@ -63,19 +75,9 @@
                     </div>
                     <div class="invalid-inp invalid-pass"></div>
                 </div>
-                <!-- <div class="form-group parent">
-                   <label  class="text-strong">Password</label>
-                   <div class="input-group">
-                          <input type="password" class="form-control account-change-inp" id="account-change-pass" class="password" min="8" max="16" data-name='0'>
-                          <div class="input-group-append">
-                               <span class="input-group-text eye-span" id="icon-lock">
-                                    <img src="{{asset('assets/icons/icon-lock.png')}}">
-                               </span>
-                          </div>
-                   </div>
-                   <div class="invalid-inp invalid-pass" ></div>
-                </div> -->
+
                 <button class="mt-3 mb-4 save-account-change">Save Changes</button>
+                <div class="succes_data_change text-success">@if(session()->has('modal_type') && session('modal_type')[0] == 'change_email') Your data changes successfuly @endif</div>
             </form>
         </div>
     </div>

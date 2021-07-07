@@ -25,3 +25,16 @@
 
     width: 100%;
 }
+.succes_data_change{
+
+    font-size: 20px;
+}
+.error_change_data{
+
+    font-size: 18px;
+    font-weight: bold;
+}
+.upload_user_img,.remove_user_img{
+
+    cursor: pointer;
+}

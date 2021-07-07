@@ -7,7 +7,7 @@
 	width: 100%
 }
 .left-div{
-	padding: 0 
+	padding: 0
 }
 .right-div{
 	padding-left: 3rem;
@@ -37,7 +37,7 @@
 	letter-spacing: 2px;
 	font-size: 14px;
 	font-family: 'Sedan SC 400';
-	padding: 10px 46px; 
+	padding: 10px 46px;
 	line-height: 28px;
 	text-transform: uppercase;
 }
@@ -79,7 +79,7 @@
 .description p:nth-child(2){
 	font-size: 14px
 }
-.price{
+.price,.discount_price{
 	font-weight: bold;
 }
 .add-cart{
@@ -194,7 +194,7 @@ top: -10px
 
 
 	.hot-offers p:first-child{
-      margin-bottom: 0 
+      margin-bottom: 0
    }
    .hot-offers p:last-child{
       padding: 10px 12px
@@ -211,7 +211,7 @@ top: -10px
     }
     .right-div>div:nth-child(2){
     	margin: 0 !important;
-    	padding: 0 !important	
+    	padding: 0 !important
     }
     .text-capitalize{
     	font-size: 24px
@@ -219,7 +219,7 @@ top: -10px
     .sec-title>div{
     	padding: 0 !important;
     }
-	
+
 	.right-div-item:first-child{
 		padding-bottom: 16px;
 		border-bottom: 1px solid #E2D6C6;
@@ -319,7 +319,7 @@ top: -10px
 		margin-left: 0 !important
 
 	}
-	
+
 }
 /*--------------------------max width 375px ---------------------------*/
 

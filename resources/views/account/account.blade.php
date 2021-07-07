@@ -29,6 +29,7 @@
     @include('account.store_success')
     @include('account.store_edit_successfuly')
     @include('account.add-products-modal')
+    @include('account.check_email_change')
     <div class="row" id="edit_prod_modal">
 
         @include('account.edit-products-modal')
@@ -48,10 +49,7 @@
 
                 <div class="col-lg-9 col-sm-12 col-xs-12 mt-3">
                     <div class="tab-content mt-0" id="v-pills-tabContent">
-                        <!-- <div class="tab-pane fade show active" id="v-pills-welcome-buyer" role="tabpanel" aria-labelledby="v-pills-welcome-tab">
-                            include "account/account-welcome-buyer.php";
-                        </div> -->
-                        <!--  -->
+
                         <div class="tab-pane fade show" id="v-pills-create-store" role="tabpanel"
                              aria-labelledby="v-pills-create-store-tab">
                             @include('account.create-store')
@@ -103,7 +101,8 @@
                             @include('account.my-comments')
 
                         </div>
-                        <div class="tab-pane fade @if(session()->has('modal_type') && session('modal_type')[0] == 'change_email') active  @endif " id="v-pills-settings" role="tabpanel"
+
+                        <div class="tab-pane  @if(session()->has('modal_type') && (session('modal_type')[0] == 'change_email') || session('modal_type')[0] == 'del_avatar')) active @else fade  @endif" id="v-pills-settings" role="tabpanel"
                              aria-labelledby="v-pills-settings-tab">
                             @include('account.settings')
 

@@ -22,19 +22,6 @@ $(document).ready(function() {
                 var width = this.width;
                 var data = e.target.result;
                 $('#user_avatar').attr('src',e.target.result)
-                // if (width < 680) {
-                //     $('#store_background').val('');
-                //     $('#image-cont_store_back').empty();
-                //     $('#image-cont_store_back').append('<div class="image-error-item ml-4 mt-2 text-danger ">Background Image min width must be 680px</div>');
-                // } else {
-                //     $('#image-cont_store_back').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
-                //     $src_icon = $('.delete-image').find('img').attr('src');
-                //     $('#image-cont_store_back').append('<div class="drop-image_store_back"><img src="' + $src_icon + '"></div>')
-                //
-                //     $('.uploade-image_store_back').css('display', 'none')
-                //     $('.uploade-image_store_back').removeClass('d-flex')
-                // }
-
 
             }
         }
@@ -66,7 +53,6 @@ $(document).ready(function() {
     $('.save-account-change').on('click',function (e){
 
         e.preventDefault();
-        // let avatar = $('#download_user_img').val();
         $('.account-change-inp').each(function (){
 
             $(this).prop('disabled',false);
@@ -75,13 +61,7 @@ $(document).ready(function() {
         let form_change = $('#change_form')[0];
         let data_user = new FormData(form_change);
         let url = $('#change_data_url').val();
-        // data_user.append('avatar', $('#download_user_img').files[0]);
-        // data_user.append('name', $('#account-change-name').val());
-        // data_user.append('email', $('#account-change-email').val());
-        // data_user.append('old_pass', $('#account-change-pass-old').val());
-        // data_user.append('new_pass', $('#account-change-pass-new').val());
-        // data_user.append('new_pass', $('#account-change-pass-confirm').val());
-        $.ajax({
+         $.ajax({
             url : url,
             method: "POST",
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
@@ -91,9 +71,41 @@ $(document).ready(function() {
             dataType:'json',
             success: function(res){
                 console.log(res);
+                if (res.change_error) {
+                    $('.error_change_data').empty();
+                    if (res.field) {
+
+                        $m = [];
+                        for (let i = 0; i < res.field.length; i++) {
+
+                            if (i == (res.field.length - 1)) {
+                                $m += $("[name='" + res.field[i] + "']").parent().prev().text();
+                            } else {
+                                $m += $("[name='" + res.field[i] + "']").parent().prev().text() + ',';
+                            }
+
+                        }
+                        console.log(res.field)
+
+                        $message = $m + " " + res.change_error
+                        $('.error_change_data').html($message);
+                    } else {
+                        $('.error_change_data').html(res.change_error);
+
+                    }
+
+
+                }
+
+                if(res.change_success)
+                {
+                    $('.error_change_data').empty();
+                    $('.succes_data_change').empty();
+                    $('.succes_data_change').html(res.change_success);
+                }
                 if (res.check_email)
                 {
-                    alert('Message sending');
+                    $('#open_changing_email').trigger('click');
 
                 }
             }

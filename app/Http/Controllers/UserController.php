@@ -23,6 +23,8 @@ class UserController extends Controller
     public function change_data(Request $request)
     {
         $validator = Validator::make($request->all(), [
+
+            'name_change' => 'required|max:255',
             'new_pass_change' => 'nullable|min:8',
             'confirm_pass_change' => 'nullable|min:8',
             'email_change' => 'required|email',
@@ -52,6 +54,16 @@ class UserController extends Controller
                         }
 
                     }
+                    if ($key == 'Max') {
+
+                        array_push($fields_array, $err);
+                        $message_error = "field length " . $key;
+                        foreach ($v as $el) {
+                            $message_error = $message_error . ":" . $el;
+
+                        }
+
+                    }
 
                 }
 
@@ -62,6 +74,7 @@ class UserController extends Controller
 
         $user = Users::find(Auth::user()->id);
         $user_email = $user->email;
+        $user->name = $request->name_change;
         if ($request->hasFile('avatar_change')) {
             if ($user->avatar != null) {
                 unlink(public_path() . '/storage/avatar/' . $user->avatar);
@@ -97,11 +110,40 @@ class UserController extends Controller
             }
 
         }
+            $user->save();
+
+
         if ($user_email != $request->email_change) {
+
 
             MailController::ChangeEmail($user->name, $request->email_change, $user->verification_code);
 
             return response()->json(['check_email' => 'Sending']);
+
+        }
+        else
+        {
+            return response()->json(['change_success' => 'Your data changes successfuly']);
+        }
+
+
+    }
+
+    public function delete_avatar()
+    {
+        $user = Users::find(Auth::user()->id);
+        $del_avatar = $user->avatar;
+        if($del_avatar != null)
+        {
+            unlink(public_path() . '/storage/avatar/' . $del_avatar);
+            $user->avatar = null;
+            $user->save();
+            return redirect()->back()->with('modal_type',['del_avatar']);
+
+        }
+        else
+        {
+            return redirect()->back()->with('modal_type',['del_avatar'])->with('no_img','You are dont have avatar image');
 
         }
 
