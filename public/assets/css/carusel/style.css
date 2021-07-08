@@ -2,7 +2,18 @@
   box-sizing: content-box;
   margin: 5px 10px;
 }
+#testimonials .testimonial-item_min {
+    box-sizing: content-box;
+    margin: 5px 10px;
+}
+.testimonial-item_min{
 
+    width: fit-content;
+}
+.bd-highlight_min
+{
+    width: 100%;
+}
 @media (max-width: 767px) {
   #testimonials .testimonial-item {
     margin: 30px 10px;
@@ -83,7 +94,7 @@ src: local('../../fonts/Aniyah Personal Use Regular'), url('../../fonts/AniyahPe
 
 }
 h3{
-  font-family: "Aniyah Personal Use Regular"; 
+  font-family: "Aniyah Personal Use Regular";
   font-weight: normal;
   color: #3D2006;
 }
@@ -100,7 +111,7 @@ h3{
   width: 92%;
   margin: 0 auto
 }
-  
+
 /*-----------------------------------------------------*/
 #testimonials .owl-nav{
     position: absolute;
@@ -133,6 +144,13 @@ h3{
   background: #0000007a;
   display: none;
 }
+.transparent-div_min{
+    width: 18vw;
+    height: 26vh;
+    position: absolute;
+    background: #0000007a;
+    display: none;
+}
 .transparent-div>div{
   width: 100%;
   height: 100%
@@ -151,6 +169,9 @@ h3{
 }
 .testimonial-item:hover .transparent-div{
   display: block;
+}
+.testimonial-item_min:hover .transparent-div_min{
+    display: flex;
 }
 /*.owl-dots{
   display: none;
@@ -196,7 +217,7 @@ h3{
 /*#testimonials11 div.owl-carousel .owl-nav .owl-prev, div.owl-carousel .owl-nav .owl-next{
     font-size:36px;
     top:unset;
-    bottom: 15px; 
+    bottom: 15px;
 }*/
 @media (max-width:1024px) and (min-width: 768px){
     .owl-nav{

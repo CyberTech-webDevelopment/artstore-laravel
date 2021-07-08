@@ -19,7 +19,7 @@
                     <div class="pr-0 pt-2 flex-grow-1 bd-highlight"><hr width="100%" color='#6d4017'></div>
                 </div>
                         <div class="row pr-0 pl-4 mr-0 pt-3">
-                            @if (count($new_arrivals) != 0)
+                            @if (isset($new_arrivals))
                                 @foreach ($new_arrivals as $elem)
 
                                 <div class="col-6 col-xl-3 col-lg-3 col-md-6 col-sm-2 col-xs-2 br-1 right-div-item">

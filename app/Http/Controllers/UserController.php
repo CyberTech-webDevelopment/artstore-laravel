@@ -138,12 +138,12 @@ class UserController extends Controller
             unlink(public_path() . '/storage/avatar/' . $del_avatar);
             $user->avatar = null;
             $user->save();
-            return redirect()->back()->with('modal_type',['del_avatar']);
+            return redirect()->back()->with('modal_type','del_avatar');
 
         }
         else
         {
-            return redirect()->back()->with('modal_type',['del_avatar'])->with('no_img','You are dont have avatar image');
+            return redirect()->back()->with('modal_type','del_avatar')->with('no_img','You are dont have avatar image');
 
         }
 
