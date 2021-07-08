@@ -102,7 +102,7 @@
 
                         </div>
 
-                        <div class="tab-pane  @if(session()->has('modal_type') && (session('modal_type')[0] == 'change_email') || session('modal_type')[0] == 'del_avatar')) active @else fade  @endif" id="v-pills-settings" role="tabpanel"
+                        <div class="tab-pane  @if(session()->has('modal_type') && (session('modal_type') == 'change_email') || session('modal_type') == 'del_avatar')) active @else fade  @endif" id="v-pills-settings" role="tabpanel"
                              aria-labelledby="v-pills-settings-tab">
                             @include('account.settings')
 

@@ -29,7 +29,7 @@ class AccountController extends Controller
 
                 $user->email = $changed_email;
                 $user->save();
-                return redirect()->back()->with('modal_type',['change_email']);
+                return redirect()->back()->with('modal_type','change_email');
 
             }
 

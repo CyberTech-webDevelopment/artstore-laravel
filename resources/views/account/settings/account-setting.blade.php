@@ -77,7 +77,7 @@
                 </div>
 
                 <button class="mt-3 mb-4 save-account-change">Save Changes</button>
-                <div class="succes_data_change text-success">@if(session()->has('modal_type') && session('modal_type')[0] == 'change_email') Your data changes successfuly @endif</div>
+                <div class="succes_data_change text-success">@if(session()->has('modal_type') && session('modal_type') == 'change_email') Your data changes successfuly @endif</div>
             </form>
         </div>
     </div>
