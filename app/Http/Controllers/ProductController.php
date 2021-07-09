@@ -31,9 +31,6 @@ class ProductController extends Controller
             'price' => 'required|numeric',
             'percent' => 'nullable|numeric',
             'gender' => 'nullable|numeric',
-            // 'size' => 'required',
-            // 'color' => 'required',
-            // 'material' => 'required',
             'files_capital' => 'required',
 
         ]);
@@ -646,8 +643,14 @@ class ProductController extends Controller
     }
 
     // ----------product page----------------------
-    public function product()
+    public function product(Request $request,$slug)
     {
-        return view('product.product-page');
+        $slug = $request->slug;
+        $slug_lang = 'slug_'.app()->getLocale();
+
+        $cur_product = Product::where($slug_lang,$slug)->where('status',1)->first();
+        $stores_products = Product::where('store_id',$cur_product->store_id)->where('id','!=',$cur_product->id)->get();
+//        dump($cur_product);
+        return view('product.product-page',compact('cur_product','stores_products'));
     }
 }

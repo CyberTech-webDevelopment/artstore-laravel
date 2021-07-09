@@ -34,7 +34,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/bestseller', [App\Http\Controllers\BestSellerController::class, 'best_seller'])->name('bestseller');
     Route::get('/hot-offer', [App\Http\Controllers\HotOfferController::class, 'hot_offer'])->name('hot-offer');
     Route::get('/policies', [App\Http\Controllers\PoliciesController::class, 'policies'])->name('policies');
-    Route::get('/product', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
+    Route::get('/product/{slug}', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
     Route::get('/questions', [App\Http\Controllers\QuestionsController::class, 'questions'])->name('questions');
 
     Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');

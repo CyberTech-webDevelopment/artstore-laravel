@@ -44,9 +44,15 @@
                                 <img src="{{asset('assets\images\flags/' .$locale.'.png')}}"
                                      class='flg-nav-img active-nav-lng'>
                                 <div class='hide hide-flags'>
+{{--                                    @php--}}
+
+
+
+{{--                                    @endphp--}}
                                     @foreach ($arr_lng as $value)
                                         @if ($value!=$locale)
-                                            <a href={{ route(Route::currentRouteName(),$value) }}><img
+{{--  route(Route::currentRouteName(),[ 'locale' => $value, 'slug' => Route::current()->parameters()['slug']])    its working variant and working variant to add ? in parametr web fail   --}}
+                                            <a href={{ URL::toRoute($cur = Route::current(), ['locale' => $value] + $cur->parameters(), true)}}><img
                                                     src="{{asset('assets\images\flags/'. $value.'.png')}}"
                                                     class='flg-nav-img mt-1' ></a>
                                             <br>
