@@ -54,6 +54,14 @@ section{
 .owl-prev{
     left: -4%
 }
+.product_carusel_image{
+
+    height: 20vh;
+}
+.shops_p_name a{
+
+    color: white!important;
+}
 /*---------------------------------*/
 .small-caps{
 	font-variant: small-caps;
@@ -75,6 +83,18 @@ h3{
 	color: #7D4747;
 	font-weight: bold;
 	height: 22px
+}
+.seller-name button{
+    font-size: 13px;
+    border: 1px solid #7D4747;
+    border-radius: 10px;
+    color: #7D4747;
+    font-weight: bold;
+    height: 22px
+}
+.modal-title_send_email{
+
+    color: #E0763B;
 }
 /*.star-cont div{
 	width: 26px;

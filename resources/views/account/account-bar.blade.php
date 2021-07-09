@@ -3,8 +3,10 @@
         <div
             class="row @if(Auth::user()->shop == false) section_active @else d-none @endif flex-nowrap acount-nav-head pt-3 pb-4 ml-0 mr-0 pl-1 pr-1"
              id="data-byer">
-            <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 acount-user-img pl-0 pr-0"><img
-                    src="/storage/{{Auth::user()->use_avatar()}}"></div>
+            <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 acount-user-img only_user_img pl-0 pr-0">
+                <input type="hidden" id="store_img_state" value="{{ Auth::user()->store->use_avatar }}">
+                <img src="/storage/{{Auth::user()->use_avatar()}}">
+            </div>
             <div class="col-lg-8 col-md-5 col-sm-4 col-xs-4 pr-0 user-info">
                 <div class="text-strong font-size-24">{{ str_cut(Auth::user()->use_name(),10) }}</div>
                 <div class="edit-profile font-size-20"><a href="">@lang('account_bar.bar.edit_profile') <span><img

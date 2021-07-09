@@ -3,6 +3,11 @@
 	padding: 20px 0
 
 }
+.product_name_inhead
+{
+    color: #373535!important;
+    cursor: pointer;
+}
 .img-div, .img-div>img{
 	width: 100%
 }

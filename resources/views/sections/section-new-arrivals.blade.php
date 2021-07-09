@@ -40,8 +40,9 @@
                                        </div>
                                    </div>
                                    <div class="description">
-                                          <p class="mb-0 mt-1">{{ str_cut($elem['name_'. app()->getLocale()],15) }}</p>
-                                          <p class="mb-1">{{ $elem->product_author()->name }}</p>
+                                       <a href="{{ route('product',[ 'locale' => app()->getLocale(), 'slug' => $elem['slug_'. app()->getLocale()]]) }}" class="product_name_inhead"><p class="mb-0 mt-1">{{ str_cut($elem['name_'. app()->getLocale()],15) }}</p></a>
+
+                                       <p class="mb-1">{{ $elem->product_author()->name }}</p>
                                            <div>
                                                <span><img src="{{ asset('assets/icons/vector-star.png') }}"></span>
                                                <span><img src="{{ asset('assets/icons/vector-star.png') }}"></span>

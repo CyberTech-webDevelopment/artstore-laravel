@@ -57,7 +57,7 @@
                         </div>
 
                         <!-- --------back if seller-> active class set seller------------------ -->
-                        <div class="tab-pane fade show @if(Auth::user()->shop == false && !session()->has('modal_type')) active @endif"
+                        <div class="tab-pane fade show @if(Auth::user()->shop == false && !session()->has('modal_type_account')) active @endif"
                              id="v-pills-welcome-seller" role="tabpanel"
                              aria-labelledby="v-pills-welcome-tab">
                             @include('account.account-welcome-seller')
@@ -70,7 +70,7 @@
                             @include('account.basket')
 
                         </div>
-                        <div class="tab-pane fade show @if(Auth::user()->shop == true) active @endif"
+                        <div class="tab-pane fade show @if(Auth::user()->shop == true && !session()->has('modal_type_account')) active @endif"
                              id="v-pills-products" role="tabpanel"
                              aria-labelledby="v-pills-products-tab">
                             @include('account.products')
@@ -102,7 +102,7 @@
 
                         </div>
 
-                        <div class="tab-pane  @if(session()->has('modal_type') && (session('modal_type') == 'change_email') || session('modal_type') == 'del_avatar')) active @else fade  @endif" id="v-pills-settings" role="tabpanel"
+                        <div class="tab-pane  @if(session()->has('modal_type_account') && (session('modal_type_account') == 'change_email') || session('modal_type_account') == 'del_avatar')) active @else fade  @endif" id="v-pills-settings" role="tabpanel"
                              aria-labelledby="v-pills-settings-tab">
                             @include('account.settings')
 

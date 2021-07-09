@@ -24,6 +24,9 @@ class CreateProductsTable extends Migration
             $table->string('detail_am');
             $table->string('detail_ru');
             $table->string('detail_en');
+            $table->string('slug_am');
+            $table->string('slug_ru');
+            $table->string('slug_en');
             $table->string('sub_cat');
             $table->string('quantity');
             $table->float('price');

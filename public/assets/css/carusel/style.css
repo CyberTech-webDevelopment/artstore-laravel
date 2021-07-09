@@ -6,6 +6,14 @@
     box-sizing: content-box;
     margin: 5px 10px;
 }
+#testimonials .testimonial-item_cur {
+    box-sizing: content-box;
+    margin: 5px 10px;
+}
+.testimonial-item_cur{
+
+    cursor: pointer;
+}
 .testimonial-item_min{
 
     width: fit-content;

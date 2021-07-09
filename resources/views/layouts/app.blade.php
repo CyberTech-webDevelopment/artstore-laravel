@@ -42,6 +42,7 @@
     @include('nav.mobile-navbar')
     {{--   *****  Modals *****  --}}
     @include('register-login.register-login-modals')
+    @include('product.product-message')
 
 
     <main>
