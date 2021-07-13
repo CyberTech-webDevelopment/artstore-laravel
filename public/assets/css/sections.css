@@ -1,4 +1,11 @@
+.add_basket{
 
+    cursor: pointer;
+}
+.add-cart:hover{
+
+    color: unset!important;
+}
 .sections{
 	padding: 20px 0
 

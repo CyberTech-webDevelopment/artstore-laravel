@@ -43,7 +43,7 @@
     {{--   *****  Modals *****  --}}
     @include('register-login.register-login-modals')
     @include('product.product-message')
-
+    <input type="hidden" id="add_basket_route" value="{{ route('add.basket',app()->getLocale()) }}">
 
     <main>
         @yield('content')
@@ -214,6 +214,7 @@
 <script src="{{asset('assets\js\register-login\sign-in.js')}}"></script>
 <script src="{{asset('assets\js\forgot-password\forgot-password.js')}}"></script>
 <script src="{{asset('assets\js\forgot-password\change-password.js')}}"></script>
+<script src="{{asset('assets\js\user_basket.js')}}"></script>
 
 @yield('scripts')
 </body>

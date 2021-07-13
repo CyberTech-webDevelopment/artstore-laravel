@@ -2,7 +2,7 @@
         data-target="#send_email" data-dismiss="modal" aria-label="Close">
     SIGN UP
 </button>
-<div class="modal fade" id="send_email" tabindex="-1" aria-labelledby="exampleModalLabel4" aria-hidden="true">
+<div class="modal fade" id="send_email" tabindex="-1" aria-labelledby="exampleModalLabel44" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -19,7 +19,7 @@
             <div class="row">
                 <div class="modal-body" id="new-password-changed">
 
-                    <form action="{{ route('change.password',app()->getLocale()) }}" method="POST">
+                    <form action="{{ route('index',app()->getLocale()) }}" method="POST">
                         @csrf
                         <div class="mt-3 mb-3 pt-4 pb-4">
 
@@ -29,7 +29,7 @@
                                 </label>
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control change-inp" name="name_email"
+                                    <input type="text" class="form-control change-inp_message" name="name_email"
                                            id="send_email_name"
                                            class="password"
                                            min="8" max="16" data-name='0' data-lng='{{ app()->getLocale() }}'>
@@ -43,7 +43,7 @@
                                 </label>
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
-                                    <input type="text" class="form-control change-inp" name="phone_email"
+                                    <input type="text" class="form-control change-inp_message" name="phone_email"
                                            id="send_email_phone"
                                            class="password"
                                            min="8" max="16" data-name='0' data-lng='{{ app()->getLocale() }}'>
@@ -58,7 +58,7 @@
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
 
-                                    <input type="password" class="form-control change-inp" name="email_send_email"
+                                    <input type="password" class="form-control change-inp_message" name="email_send_email"
                                            id="send_email_email"
                                            class="password" min="8" max="16" data-name='0'
                                            data-lng='{{ app()->getLocale() }}'>
@@ -74,7 +74,7 @@
                                 <span class="required hide"> &nbsp *</span>
                                 <div class="input-group">
 
-                                    <textarea type="password" class="form-control change-inp" name="message_email"
+                                    <textarea type="password" class="form-control change-inp_message" name="message_email"
                                            id="send_email_email"
                                            class="password"
                                            data-lng='{{ app()->getLocale() }}'>

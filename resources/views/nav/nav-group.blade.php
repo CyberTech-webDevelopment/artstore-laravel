@@ -110,9 +110,9 @@
                             <div>12</div>
                         </div>
                         <div class="btn-group">
-                            <button type="button" class="btn">
+                            <a href="{{ route('basket',app()->getLocale()) }}" type="button" class="btn basket_site">
                                 <img src="{{asset('assets\icons\vector-cart.png')}}">
-                            </button>
+                            </a>
                             <div>0</div>
                         </div>
                     </div>
