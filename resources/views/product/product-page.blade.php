@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
 @endsection
 @section('content')
-
+{{--@dump(Auth::check())--}}
     <section class="container-fluid pt-4 pb-4">
         <div class="row">
             Homepage > Jewelry > HandmadeName
@@ -62,7 +62,7 @@
                         @if($cur_product->setnNameForSizeRelation() != null)
                             <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">
                                 <label class="font-size-22">Size</label>
-                                <select>
+                                <select class="current_size">
                                     @foreach($cur_product->product_sizes as $size)
                                         <option value="{{ $size->id }}"
                                                 class="cur_product_sizes">{{ $size->size }}</option>
@@ -73,7 +73,7 @@
                         @if($cur_product->setnNameForMaterialRelation() != null)
                             <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">
                                 <label class="font-size-22">Material</label>
-                                <select>
+                                <select class="current_material">
                                     @foreach($cur_product->product_materials as $material)
                                         <option value="{{ $material->id }}"
                                                 class="cur_product_materials">{{ $material['material_'.app()->getLocale()] }}</option>
@@ -85,7 +85,7 @@
                         @if(count($cur_product->product_colors) > 0)
                             <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">
                                 <label class="font-size-22">Color</label>
-                                <select>
+                                <select class="current_color">
                                     @foreach($cur_product->product_colors as $color)
                                         <option value="{{ $color->id }}"
                                                 class="cur_product_colors">{{ $color['color_name_'.app()->getLocale()] }}</option>
@@ -93,15 +93,21 @@
                                 </select>
                             </div>
                         @endif
-                        <div class="d-flex justify-content-between col-xl-7 col-lg-10 col-md-7 pl-0 quantity">
-                            <label class="font-size-22">Quantity</label>
+                        <div class="d-flex flex-column justify-content-between col-xl-7 col-lg-10 col-md-7 pl-0 quantity">
+
                             <div class="d-flex mr-1">
-                                <input type="" name="">
-                                <div class="ml-4 pl-2 pt-2">Only {{ $cur_product->quantity }} available</div>
+                                <label class="font-size-22">Quantity</label>
+                                <input type="number" min="1" name="quantity_basket" class="adding_basket_quantity">
+                                <input type="hidden" id="current_count" value="{{ $cur_product->quantity }}">
+                                <div class="ml-4 pl-2">Only {{ $cur_product->quantity }} available</div>
+
+                            </div>
+                            <div class="current_invalid_count text-strong text-danger">
+
                             </div>
                         </div>
                         <div class="button-cont pt-4 d-flex justify-content-between">
-                            <button class="font-size-26">Add to Cart</button>
+                            <button class="font-size-26 add_basket" @if(Auth::check()) data-product-id="{{ $cur_product->id }}" @endif>Add to Cart</button>
                             <button class="font-size-26">Buy Now</button>
                         </div>
                     </div>
