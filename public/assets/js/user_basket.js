@@ -2,6 +2,7 @@ $(document).ready(function () {
 
     $('.add_basket').on('click', function (e) {
 
+        let element = $(this);
         let great_parent = $(this).parents('.product-info');
         console.log(great_parent);
         let size = null;
@@ -24,7 +25,7 @@ $(document).ready(function () {
             if (quantity == '' || quantity == undefined) {
                 quantity = 1;
                 $('.current_invalid_count').empty();
-                add_basket(product_id, quantity, size, material, color, url)
+                add_basket(product_id, quantity, size, material, color, url, element)
             } else {
                 if (quantity > $('#current_count').val() || quantity < 1) {
                     $('.current_invalid_count').html('The specified quantity is not available');
@@ -32,7 +33,7 @@ $(document).ready(function () {
 
                 } else {
                     $('.current_invalid_count').empty();
-                    add_basket(product_id, quantity, size, material, color, url)
+                    add_basket(product_id, quantity, size, material, color, url, element)
 
                 }
 
@@ -44,7 +45,53 @@ $(document).ready(function () {
         }
     })
 
-    function add_basket(product_id, quantity, size, material, color, url) {
+    $('.in_store_basket').on('input', function () {
+
+        // alert($(this).val());
+        let store_id = $(this).val();
+        let url = $('#single_store_basket').val();
+        let page = 1;
+        window.history.pushState('', '',url);
+        store_basket(store_id,url,page);
+
+    })
+    $(document).on('click', '.page-link', function(event){
+        event.preventDefault();
+        let page = $(this).attr('href').split('page=')[1];
+        let url = $('#single_store_basket').val();
+        store_basket(2,url,page);
+        // alert(page)
+        // fetch_data(page);
+    });
+    function store_basket(store_id,url,page)
+    {
+        $.ajax({
+            method: 'post',
+            url: url,
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+            data: {
+                store_id: store_id,
+                page:page,
+            },
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                if (res.view)
+                {
+                    // alert();
+                    $('#store_products').empty();
+                    $('#store_products').html(res.view);
+                    // var pageUrl = '?page=' + res.store_basket.current_page;
+                    // window.history.pushState('/singlestore', '', pageUrl);
+
+                }
+
+            }
+        })
+
+    }
+
+    function add_basket(product_id, quantity, size, material, color, url, element) {
         // alert(url);
         $.ajax({
             method: 'post',
@@ -59,7 +106,28 @@ $(document).ready(function () {
             },
             dataType: 'json',
             success: function (res) {
-               console.log(res);
+                console.log(res);
+                if (res.basket_error) {
+                    console.log(element)
+                    $('.current_invalid_count').empty();
+                    $('.current_invalid_count').html(res.basket_error);
+                    element.next().empty();
+                    element.next().text(res.basket_error);
+
+                }
+                if (res.basket) {
+                    $('.current_invalid_count').empty();
+                    $('.current_invalid_count').removeClass('text-danger');
+                    $('.current_invalid_count').addClass('text-success');
+                    $('.current_invalid_count').html(res.basket);
+                    element.next().empty();
+                    element.next().removeClass('text-danger');
+                    element.next().addClass('text-success');
+                    element.next().text(res.basket);
+                    $('.basket_count').empty();
+                    $('.basket_count').html(res.basket_count);
+
+                }
 
             }
         })

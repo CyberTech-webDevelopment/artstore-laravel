@@ -40,21 +40,21 @@
                                 @php
 
 
-                                @endphp
+                                    @endphp
                                 <img src="{{asset('assets\images\flags/' .$locale.'.png')}}"
                                      class='flg-nav-img active-nav-lng'>
                                 <div class='hide hide-flags'>
-{{--                                    @php--}}
+                                    {{--                                    @php--}}
 
 
 
-{{--                                    @endphp--}}
+                                    {{--                                    @endphp--}}
                                     @foreach ($arr_lng as $value)
                                         @if ($value!=$locale)
-{{--  route(Route::currentRouteName(),[ 'locale' => $value, 'slug' => Route::current()->parameters()['slug']])    its working variant and working variant to add ? in parametr web fail   --}}
+                                            {{--  route(Route::currentRouteName(),[ 'locale' => $value, 'slug' => Route::current()->parameters()['slug']])    its working variant and working variant to add ? in parametr web fail   --}}
                                             <a href={{ URL::toRoute($cur = Route::current(), ['locale' => $value] + $cur->parameters(), true)}}><img
                                                     src="{{asset('assets\images\flags/'. $value.'.png')}}"
-                                                    class='flg-nav-img mt-1' ></a>
+                                                    class='flg-nav-img mt-1'></a>
                                             <br>
                                         @endif
                                     @endforeach
@@ -78,7 +78,8 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="#">@lang('nav.nav.message')</a>
                                     <a class="dropdown-item" href="#">@lang('nav.nav.purchas')</a>
-                                    <a class="dropdown-item" href="{{ route('account',app()->getLocale()) }}">@lang('nav.nav.account_setting')</a>
+                                    <a class="dropdown-item"
+                                       href="{{ route('account',app()->getLocale()) }}">@lang('nav.nav.account_setting')</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item header_logo_menu"
                                        href="{{ route('logout',app()->getLocale()) }}"
@@ -110,10 +111,20 @@
                             <div>12</div>
                         </div>
                         <div class="btn-group">
-                            <a href="{{ route('basket',app()->getLocale()) }}" type="button" class="btn basket_site">
-                                <img src="{{asset('assets\icons\vector-cart.png')}}">
-                            </a>
-                            <div>0</div>
+                            @if(Auth::check())
+                                <a href="{{ route('basket',app()->getLocale()) }}" type="button"
+                                   class="btn basket_site">
+                                    <img src="{{asset('assets\icons\vector-cart.png')}}">
+                                </a>
+                            @else
+                                <a data-toggle="modal" data-target="#signUp" data-dismiss="modal" aria-label="Close"
+                                   type="button"
+                                   class="btn basket_site">
+                                    <img src="{{asset('assets\icons\vector-cart.png')}}">
+                                </a>
+                            @endif
+                            {{--                            @dd(Basket::user_basket_count())--}}
+                            <div class="basket_count">{{ Basket::user_basket_count() }}</div>
                         </div>
                     </div>
                 </div>
@@ -121,7 +132,7 @@
             </div>
         </div>
     </section>
-@include('nav.nav_menu')
+    @include('nav.nav_menu')
 </section>
 <section id="hidden">
     <div class="row h-100">

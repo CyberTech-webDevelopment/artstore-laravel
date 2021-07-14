@@ -53,6 +53,7 @@
                                         </a>
 
                                         <p class="mb-1">{{ $elem->product_store->name }}</p>
+
                                         <div>
                                             <span><img src="{{ asset('assets/icons/vector-star.png') }}"></span>
                                             <span><img src="{{ asset('assets/icons/vector-star.png') }}"></span>
@@ -83,7 +84,7 @@
                                                     </div>
                                             @endif
 
-
+                                                <p class="mb-1 index_basket_errors text-danger font-weight-bolder"></p>
                                         </div>
 
                                     </div>

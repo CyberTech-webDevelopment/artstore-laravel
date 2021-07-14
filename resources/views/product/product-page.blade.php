@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
 @endsection
 @section('content')
-{{--@dump(Auth::check())--}}
+    {{--@dump(Auth::check())--}}
     <section class="container-fluid pt-4 pb-4">
         <div class="row">
             Homepage > Jewelry > HandmadeName
@@ -93,11 +93,12 @@
                                 </select>
                             </div>
                         @endif
-                        <div class="d-flex flex-column justify-content-between col-xl-7 col-lg-10 col-md-7 pl-0 quantity">
+                        <div
+                            class="d-flex flex-column justify-content-between col-xl-7 col-lg-10 col-md-7 pl-0 quantity">
 
-                            <div class="d-flex mr-1">
-                                <label class="font-size-22">Quantity</label>
-                                <input type="number" min="1" name="quantity_basket" class="adding_basket_quantity">
+                            <div class="d-flex justify-content-between">
+                                <label class="mr-5 font-size-22">Quantity</label>
+                                <input type="number" min="1" name="quantity_basket" class="ml-4 adding_basket_quantity">
                                 <input type="hidden" id="current_count" value="{{ $cur_product->quantity }}">
                                 <div class="ml-4 pl-2">Only {{ $cur_product->quantity }} available</div>
 
@@ -107,7 +108,9 @@
                             </div>
                         </div>
                         <div class="button-cont pt-4 d-flex justify-content-between">
-                            <button class="font-size-26 add_basket" @if(Auth::check()) data-product-id="{{ $cur_product->id }}" @endif>Add to Cart</button>
+                            <button class="font-size-26 add_basket"
+                                    @if(Auth::check()) data-product-id="{{ $cur_product->id }}" @endif>Add to Cart
+                            </button>
                             <button class="font-size-26">Buy Now</button>
                         </div>
                     </div>
@@ -452,127 +455,7 @@
                                 <img src="/storage/product/{{$product->product_head_images()}}">
                             </div>
                         @endforeach
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center  justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana2.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana1.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/ho3.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana3.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana2.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana1.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/ho3.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana3.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana2.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div ">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/andrijana1.png') }}">--}}
-                        {{--                        </div>--}}
-                        {{--                        <div>--}}
-                        {{--                            <div class="transparent-div">--}}
-                        {{--                                <div class="d-flex transparent-div ">--}}
-                        {{--                                    <div class="d-flex align-items-center justify-content-center">--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-search-wh.png') }}"></div>--}}
-                        {{--                                        <div><img src="{{ asset('assets/icons/vector-heart-wh.png') }}"></div>--}}
-                        {{--                                    </div>--}}
-                        {{--                                </div>--}}
-                        {{--                            </div>--}}
-                        {{--                            <img src="{{ asset('assets/images/ho3.png') }}">--}}
-                        {{--                        </div>--}}
+
                     </div>
             </div>
 
