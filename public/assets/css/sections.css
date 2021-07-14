@@ -30,6 +30,10 @@
 	color: #3D2006;
 	font-family: 'Sedan SC 400'
 }
+.index_basket_errors{
+
+    font-size: 13px;
+}
 .border-bottom{
 	width: 100%;
    border-bottom: 1px solid #9D8167 !important;

@@ -6,7 +6,7 @@
             @if ($paginator->onFirstPage())
 
              <li class="page-item disabled">
-                <a class="page-link"
+                <a class="page-link">
 
                     <span>«</span>
                 </a>
@@ -55,7 +55,7 @@
                 @else
                    <li class="page-item disabled">
 
-                      <a class="page-link"
+                      <a class="page-link">
 
                          <span>»</span>
 

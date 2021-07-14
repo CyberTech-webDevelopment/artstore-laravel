@@ -32,6 +32,11 @@ td{
   font-family: 'Sedan SC 400';
   font-size: 18px
 }
+.site-basket-container{
+
+    min-height: 33vh;
+}
+
 .product-info div{
     height: 46px;
     width: 310px;
