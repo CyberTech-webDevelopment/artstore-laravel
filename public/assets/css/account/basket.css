@@ -1,87 +1,193 @@
-thead{
-	background: #FFF4E6;
+thead {
+    background: #FFF4E6;
 }
-thead tr th{
-	border: none !important;
+
+thead tr th {
+    border: none !important;
 
 }
-th{
-	border: none !important;
-	font-size: 20px;
-	font-weight: 700
+
+th {
+    border: none !important;
+    font-size: 20px;
+    font-weight: 700
 
 }
-tr{
-	border-bottom: 1px solid  #F1E1D2;
-}
-td{
 
-	vertical-align: middle !important;
+tr {
+    border-bottom: 1px solid #F1E1D2;
 }
-.product-img{
-	width: 64px;
-	height: 64px
+
+td {
+
+    vertical-align: middle !important;
 }
-.product-img img{
-	width: 100%
+
+.product-img {
+    width: 64px;
+    height: 64px
 }
-.product-info{
-	/*width: 70%*/
+
+.product-img img {
+    width: 100%
 }
-.product-info p{
-  font-family: 'Sedan SC 400';
-  font-size: 18px
+
+.product-info {
+    /*width: 70%*/
 }
-.site-basket-container{
+
+.product-info p {
+    font-family: 'Sedan SC 400';
+    font-size: 18px
+}
+
+.site-basket-container {
 
     min-height: 33vh;
 }
 
-.product-info div{
+.product-info div {
     height: 46px;
     width: 310px;
     font-size: 14px;
-   /*
-    text-overflow: ellipsis;
-  white-space: nowrap;*/
-  overflow: hidden;
+    /*
+     text-overflow: ellipsis;
+   white-space: nowrap;*/
+    overflow: hidden;
 }
-.sml-caps{
-	font-variant: small-caps;
+
+.sml-caps {
+    font-variant: small-caps;
 }
-.minus, .plus{
-	width: 20px;
-	height: 24px;
-	font-weight: 700;
-	border: 1px solid #000;
-	border-radius: 2px;
-	background: none;
-	outline: none;
+
+.minus, .plus {
+    width: 20px;
+    height: 24px;
+    font-weight: 700;
+    border: 1px solid #000;
+    border-radius: 2px;
+    background: none;
+    outline: none;
 }
-.total-cont{
-	width: 100%
+
+.total-cont {
+    width: 100%
 }
-.total-cont>div{
-	font-size: 18px;
-	font-weight: 700;
-	position: relative;
-	right: 0
+
+.total-cont > div {
+    font-size: 18px;
+    font-weight: 700;
+    position: relative;
+    right: 0
 }
-#select-pay{
-	width: 150px;
+
+#select-pay {
+    width: 150px;
     height: 22px;
     text-align: end;
     border-radius: 10px;
     border: 1px solid #000;
     color: #000
 }
-.p-checkout{
-	width: 240px;
-	height: 40px;
-	color: #fff;
-	border-radius: 10px;
-	font-weight: 700;
-	border: none;
-	font-size: 20px;
-	background: #E0763B;
+
+.p-checkout {
+    width: 240px;
+    height: 40px;
+    color: #fff;
+    border-radius: 10px;
+    font-weight: 700;
+    border: none;
+    font-size: 20px;
+    background: #E0763B;
 }
+
+/* page-link basket style */
+
+#basket-pages{
+
+    background-color: unset!important;
+}
+.page-link-basket {
+    position: relative;
+    display: block;
+    padding: .5rem .75rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #007bff;
+    background-color: #fff;
+    border: 1px solid #dee2e6
+}
+
+.page-link-basket:hover {
+    z-index: 2;
+    color: #0056b3;
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6
+}
+
+.page-link-basket:focus {
+    z-index: 3;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(0, 123, 255, .25)
+}
+
+.page-item:first-child .page-link-basket {
+    margin-left: 0;
+    border-top-left-radius: .25rem;
+    border-bottom-left-radius: .25rem
+}
+
+.page-item:last-child .page-link-basket {
+    border-top-right-radius: .25rem;
+    border-bottom-right-radius: .25rem
+}
+
+.page-item.active .page-link-basket {
+    z-index: 3;
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff
+}
+
+.page-item.disabled .page-link-basket {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: auto;
+    background-color: #fff;
+    border-color: #dee2e6
+}
+
+.pagination-lg .page-link-basket {
+    padding: .75rem 1.5rem;
+    font-size: 1.25rem;
+    line-height: 1.5
+}
+
+.pagination-lg .page-item:first-child .page-link-basket {
+    border-top-left-radius: .3rem;
+    border-bottom-left-radius: .3rem
+}
+
+.pagination-lg .page-item:last-child .page-link-basket {
+    border-top-right-radius: .3rem;
+    border-bottom-right-radius: .3rem
+}
+
+.pagination-sm .page-link-basket {
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5
+}
+
+.pagination-sm .page-item:first-child .page-link-basket {
+    border-top-left-radius: .2rem;
+    border-bottom-left-radius: .2rem
+}
+
+.pagination-sm .page-item:last-child .page-link-basket {
+    border-top-right-radius: .2rem;
+    border-bottom-right-radius: .2rem
+}
+
+/* end page link basket style*/
