@@ -93,7 +93,8 @@ class BasketController extends Controller
                 } else {
                     $basket_content->quantity = $general_count;
                     $basket_content->save();
-                    return response()->json(['basket' => 'Product quantity successfuly changed']);
+                    $basket_count = Basket::where('user_id', Auth::user()->id)->count();
+                    return response()->json(['basket' => 'Product quantity successfuly changed','basket_count' => $basket_count]);
 
                 }
 

@@ -39,7 +39,6 @@
                 </td>
 
 
-
                 @if($elem->basket_product($elem->product_id)->percent != null)
                     <td class="text-success text-strong">Available</td>
                     <td class="text-strong">{{ $elem->basket_product($elem->product_id)->discounted_price() }}</td>
@@ -58,7 +57,7 @@
         </tbody>
     </table>
 
-    {{ $store_basket->links('vendor.pagination.pagination') }}
+    {{ $store_basket->links('vendor.pagination.pagination-basket') }}
     <div class="total-cont d-flex justify-content-between">
         <div></div>
         <div class="col-5 d-flex flex-wrap justify-content-end">
