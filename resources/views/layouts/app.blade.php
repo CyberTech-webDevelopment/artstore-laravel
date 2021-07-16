@@ -44,6 +44,7 @@
     @include('register-login.register-login-modals')
     @include('product.product-message')
     <input type="hidden" id="add_basket_route" value="{{ route('add.basket',app()->getLocale()) }}">
+    <input type="hidden" id="current_route" value="{{ Route::currentRouteName() }}">
 
     <main>
         @yield('content')

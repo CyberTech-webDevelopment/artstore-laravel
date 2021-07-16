@@ -15,7 +15,9 @@
         </thead>
 
         <tbody>
-
+     <div class="row justify-content-center">
+         <p class="font-weight-bold text-danger" id="basket_action_message"></p>
+     </div>
 
         @foreach ($store_basket as $elem)
             {{--        @dd($elem->basket_product($elem->product_id)->name_am)--}}
@@ -33,9 +35,10 @@
                     </div>
                 </td>
                 <td>
-                    <button class="minus">-</button>
+                    <input type="hidden" name="count_basket" value="{{$elem->quantity}}" id="product_count_basket">
+                    <button class="minus_basket">-</button>
                     <span class="pl-2 pr-2 quantity">{{ $elem->quantity }}</span>
-                    <button class="plus">+</button>
+                    <button class="plus_basket">+</button>
                 </td>
 
 
@@ -48,10 +51,29 @@
                     <td class="text-strong">{{ $elem->basket_product($elem->product_id)->price }}</td>
                     <td class="text-strong">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->price) }}</td>
                 @endif
-                <td><img src="{{ asset('assets/icons/edit.png') }}"></td>
+
+                <td>
+                    <div class="dropdown">
+                        <button class="dropdown-toggle" id="action_cart" type="button" data-toggle="dropdown">
+                            <img src="{{ asset('assets/icons/edit.png') }}">
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu" id="basket_action">
+
+                            <li class="edit_basket" data-route-id="{{ route('edit.basket',app()->getLocale()) }}"
+                                value="{{ $elem->id }}"><a>Edit</a>
+                            </li>
+                            <li class="delete_basket" data-route-id="{{ route('delete.basket', app()->getLocale()) }}"
+                                value="{{ $elem->id }}"><a>Delete</a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+                </td>
 
 
             </tr>
+
         @endforeach
 
         </tbody>

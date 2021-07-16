@@ -50,14 +50,13 @@ class IndexController extends Controller
 
         $new_arrivals = Product::where(
             'created_at', '>=', Carbon::now()->subDays(30)->toDateTimeString()
-        )->where('status',1)->orderBy('created_at', 'desc')->take(4)->get();
+        )->where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
         $stores = Shop::all();
-        if(count($new_arrivals) == 0)
-        {
+        if (count($new_arrivals) == 0) {
 
-            $new_arrivals = Product::where('status',1)->orderBy('created_at', 'desc')->take(4)->get();
+            $new_arrivals = Product::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
         }
-        return view('index',compact('new_arrivals','stores'));
+        return view('index', compact('new_arrivals', 'stores'));
 
     }
 
