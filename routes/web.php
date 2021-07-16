@@ -55,6 +55,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/basket', [App\Http\Controllers\BasketController::class, 'index'])->name('basket');
     Route::post('/addbasket', [App\Http\Controllers\BasketController::class, 'add_basket'])->name('add.basket');
     Route::post('/singlestore', [App\Http\Controllers\BasketController::class, 'single_store_products'])->name('basket.single.store');
+    Route::post('/delete-basket', [App\Http\Controllers\BasketController::class, 'delete_basket'])->name('delete.basket');
+    Route::post('/edit-basket', [App\Http\Controllers\BasketController::class, 'edit_basket'])->name('edit.basket');
 
 
 

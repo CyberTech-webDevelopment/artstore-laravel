@@ -169,16 +169,11 @@ h3 {
 }
 
 .transparent-div_min {
-    width: 18vw;
-    height: 26vh;
+    width: 12vw;
+    height: 25vh;
     position: absolute;
     background: #0000007a;
     display: none;
-}
-
-.transparent-div_min  img {
-    height: 28vh;
-
 }
 
 .transparent-div > div {

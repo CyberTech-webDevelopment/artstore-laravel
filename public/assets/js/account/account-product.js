@@ -62,9 +62,6 @@ $(document).ready(function () {
                             array_images_edit_pr.push(e.target.result)
                             array_has_images.push(e.target.result)
                             let capital_image = $("[name='files_edit_capital[]']").val()
-                            // console.log(array_has_images);
-                            // console.log($("[name='files_edit_pr[]']").length)
-
                             $("[name='files_edit_pr[]']").each(function () {
 
                                 $(this).remove();
@@ -81,12 +78,9 @@ $(document).ready(function () {
 
                             });
                             console.log($("[name='files_edit_pr[]']").val());
-                            // $('#editproduct_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files_edit_pr[]" value="' + e.target.result + '">');
 
                         }
 
-
-                        // console.log(c);
                     }
                     if (array_has_images.length == 3) {
                         $('.uploade-image_edit_pr').css('display', 'none')
@@ -947,13 +941,6 @@ $(document).ready(function () {
                         if (curr_page != false) {
                             redirect_url = $('#account_route').val() + current_page
                         }
-
-
-                        console.log(res.products.current_page);
-                        console.log(redirect_url);
-                        console.log(curr_page);
-                        console.log(res);
-
 
                         window.location.href = redirect_url;
 

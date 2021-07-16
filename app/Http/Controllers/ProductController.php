@@ -643,7 +643,7 @@ class ProductController extends Controller
     }
 
     // ----------product page----------------------
-    public function product(Request $request,$slug)
+    public function product(Request $request)
     {
         $slug = $request->slug;
         $slug_lang = 'slug_'.app()->getLocale();

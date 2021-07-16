@@ -176,7 +176,9 @@
             You are dont have products
 
         </div>
-        <button class="add-new-product text-strong" data-toggle="modal" data-target=".add-product-modal">Add New Product
+        <button class="add-new-product text-strong" @if(Auth::user()->shop == true)  data-toggle="modal" data-target=".add-product-modal"
+                @else href="#v-pills-welcome-seller" data-toggle="pill" aria-selected="false" role="tab"
+                aria-controls="v-pills-welcome-seller" @endif>Add New Product
             +
         </button>
 
