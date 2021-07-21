@@ -22,7 +22,6 @@ class Basket extends Model
 
         }
 
-
     }
 
     public static function user_basket_stores()
@@ -54,7 +53,6 @@ class Basket extends Model
                 $in_product_count += intval($q);
 
             }
-
 
         }
         return $in_product_count;

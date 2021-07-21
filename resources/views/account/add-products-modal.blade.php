@@ -16,8 +16,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('add.product',app()->getLocale()) }}" method="post" enctype="multipart/form-data"
-                      id="product_form">
+                <form enctype="multipart/form-data" id="product_form">
+
                     @csrf
                     @if(isset(Auth::user()->store))
                         <input type="hidden" name="store_id" value="{{ Auth::user()->store->id }}">
@@ -73,58 +73,37 @@
                             {{--                        <input type="" name="" placeholder="Detail 2" class="pt-3">--}}
                             {{--                        <input type="" name="" placeholder="Detail 3" class="pt-3">--}}
                         </div>
-                        <div class="row pl-0 pr-0 mt-3 select-group-1">
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.category')</label>
-                                <input type="hidden" id="sel_cat_route"
-                                       value="{{route('menu.submenu',app()->getLocale())}}">
-                                <input type="hidden" id="sel_sub_cat_route"
-                                       value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
-                                <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
-                                <input type="hidden" id="add_product_url"
-                                       value="{{ route('add.product',app()->getLocale()) }}">
+                        <input type="hidden" id="sel_cat_route"
+                               value="{{route('menu.submenu',app()->getLocale())}}">
+                        <input type="hidden" id="sel_sub_cat_route"
+                               value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
+                        <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
+                        <input type="hidden" id="add_categories_section"
+                               value="{{ route('add_categories.section',app()->getLocale()) }}">
+                        <input type="hidden" id="options_section_route"
+                               value="{{ route('add_option.section',app()->getLocale()) }}">
+                        <input type="hidden" id="add_product_url"
+                               value="{{ route('add.product',app()->getLocale()) }}">
+                        {{--    Start type section    --}}
+                        <div class="row types_container">
 
-                                <select id="select-menu">
-                                    <option class="add_product_menu">@lang('add-product.product.sel_cat')</option>
-                                    @foreach($menu as $m)
-                                        <option name="menu" class="add_product_menu"
-                                                data-menu-id='{{ $m['id'] }}'>{{ $m['menu_name_' . app()->getLocale()] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.sub_cat')</label>
-                                <div class="button-group">
-                                    <button class="dropdown-toggle product_white_button justify-content-between"
-                                            data-toggle="dropdown"><span
-                                            class="caret">@lang('add-product.product.sel_sub_cat')</span></button>
-                                    <ul class="dropdown-menu" id="list_sub_menu">
-
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.type')</label>
-                                <input type="hidden" id="selesct_default_lang" value="@lang('add-product.product.sel_type')">
-                                <select id="select_sub_category" name="type">
-                                    <option class="add_product_menu" value="">@lang('add-product.product.sel_type')</option>
-
-                                </select>
-                            </div>
+                            @include('account.categories-section')
 
                         </div>
+
                         <div class="row pl-0 pr-0 mt-4 justify-content-around align-items-end select-group-2 ">
-                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 text-center">
-                                <label>@lang('add-product.product.quantity')</label>
-                                <div class="d-flex text-center">
-                                    <div class="ml-auto d-flex mr-auto">
-                                        <div class="minus_p">-</div>
-                                        <span class="pl-2 pr-2 quantity">1</span>
-                                        <div class="plus_p">+</div>
-                                        <input type="hidden" name="count" value="1" id="product_count">
-                                    </div>
-                                </div>
+                            <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 custom_material_container">
+                                <label>@lang('add-product.product.custom_material')</label>
+                                <input type="text" id="custom_material" name="custom_material">
+                                {{--                                <label>@lang('add-product.product.quantity')</label>--}}
+                                {{--                                <div class="d-flex text-center">--}}
+                                {{--                                    <div class="ml-auto d-flex mr-auto">--}}
+                                {{--                                        <div class="minus_p">-</div>--}}
+                                {{--                                        <span class="pl-2 pr-2 quantity">1</span>--}}
+                                {{--                                        <div class="plus_p">+</div>--}}
+                                {{--                                        <input type="hidden" name="count" value="1" id="product_count">--}}
+                                {{--                                    </div>--}}
+                                {{--                                </div>--}}
                             </div>
                             {{-- last row product_add --}}
 
@@ -133,23 +112,25 @@
                                 <label>@lang('add-product.product.by_gender')</label>
 
                                 <select id="select_gender" name="gender">
-                                    <option class="add_product_menu" value="0">@lang('add-product.product.by_gender')</option>
+                                    <option class="add_product_menu"
+                                            value="0">@lang('add-product.product.by_gender')</option>
                                     @foreach ($genders as $g)
 
-                                       <option class="add_product_menu" value="{{ $g->id }}">{{ $g['name_'.app()->getLocale()] }}</option>
+                                        <option class="add_product_menu"
+                                                value="{{ $g->id }}">{{ $g['name_'.app()->getLocale()] }}</option>
 
                                     @endforeach
-
 
 
                                 </select>
                             </div>
                             <div class="p-0 col-lg-3 col-md-3 col-sm-6 col-xs-10 d-flex align-items-center">
                                 <div class="form-check-input_gift">
-                                   <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1" id="gift_check">
-                                   <label class="form-check-label" for="gift_check">
-                                       @lang('add-product.product.gift_for')
-                                   </label>
+                                    <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1"
+                                           id="gift_check">
+                                    <label class="form-check-label" for="gift_check">
+                                        @lang('add-product.product.gift_for')
+                                    </label>
                                 </div>
                             </div>
                             <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10">
@@ -173,117 +154,12 @@
                                 <span class="prices_cost"></span>
                             </div>
                         </div>
-                        <div class="row pl-0 pr-0 mt-4">
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.size')</label>
+                        <div class="row options_container">
 
-                                <!-- --------------------select with checkbox------------ -->
+                            @include('account.options-section')
 
-
-                                <div class="dropdown">
-                                    <div
-                                        class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
-                                        id="size_all_content">
-                                        <div class="w-100 mr-1"
-                                             id="sizes_opening">@lang('add-product.product.size')</div>
-                                        <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class=" dropdown-menu hide menu-first-item pt-0 pb-0 sizes"
-                                         style="position: relative;">
-                                        @foreach($all_sizes as $k => $v)
-                                            <div class="dropdown-item single_size_group">
-                                                <div
-                                                    class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0"
-                                                    id="size_second_item">
-                                                    <div class="single_key">{{ $k }}</div>
-                                                    <div class="single_key"><i class="fa fa-angle-right"
-                                                                               aria-hidden="true"></i></div>
-                                                </div>
-                                                <div class=" dropdown-menu hide menu-second-item sizes_content"
-                                                     style="position: relative;">
-                                                    @foreach($v as $el)
-                                                        <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
-                                                            tabIndex="-1">
-                                                            <input type="checkbox" name="size[{{$k}}][]"
-                                                                   value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
-
-
-                                                    @endforeach
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-
-
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.color')</label>
-                                <div class="button-group">
-                                    <button class="dropdown-toggle justify-content-between product_white_button"
-                                            data-toggle="dropdown"><span
-                                            class="caret">@lang('add-product.product.sel_color')</span></button>
-                                    <ul class="dropdown-menu" id="list_colors">
-                                        @foreach($all_colors as $c)
-                                            <li class="small d-flex align-items-center" tabIndex="-1"><input
-                                                    value="{{ $c['id'] }}"
-                                                    name="color[]" class="mr-1 color_check"
-                                                    type="checkbox"/>
-                                                {{ $c['color_name_' . app()->getLocale()] }}
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.material')</label>
-                                <div class="dropdown">
-                                    <div
-                                        class="dropdown-item dropdown-first-item text-strong d-flex justify-content-between pl-0 pr-1 pb-0 pt-0"
-                                        id="size_all_content">
-                                        <div class="w-100 mr-1"
-                                             id="sizes_opening">@lang('add-product.product.material')</div>
-                                        <div id="sizes_slack"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-                                    </div>
-                                    <div class="dropdown-menu hide menu-first-item pt-0 pb-0"
-                                         style="position: relative;">
-                                        @foreach($all_materials as $k => $v)
-                                            <div class="dropdown-item single_size_group">
-                                                <div
-                                                    class="dropdown-item dropdown-second-item text-strong d-flex justify-content-between pt-0 pb-0 pl-0 pr-0"
-                                                    id="size_second_item">
-                                                    <div class="single_key">{{ $k }}</div>
-                                                    <div class="single_key"><i class="fa fa-angle-right"
-                                                                               aria-hidden="true"></i></div>
-                                                </div>
-                                                <div class="w-100 dropdown-menu hide menu-second-item"
-                                                     style="position: relative;" id="sizes_content">
-                                                    @foreach($v as $el)
-                                                        <li class="mr-1 small sizes_small" data-table-name="{{ $k }}"
-                                                            tabIndex="-1">
-                                                            <input
-                                                                type="checkbox" name="material[{{$k}}][]"
-                                                                value="{{ $el['id'] }}"/>{{ $el['material_'. app()->getLocale()] }}
-                                                        </li>
-
-
-                                                    @endforeach
-
-                                                </div>
-                                            </div>
-                                        @endforeach
-
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-10">
-                                <label>@lang('add-product.product.custom_material')</label>
-                                <input type="text" id="custom_material" name="custom_material">
-                            </div>
                         </div>
+
 
                     </div>
                     <div class="row">

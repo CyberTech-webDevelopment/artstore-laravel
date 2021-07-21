@@ -346,7 +346,12 @@ $(document).ready(function () {
 
 
     })
-    $(document).on('click', '.edit_check', function (e) {
+    $('.edit_check').on('click', function (e) {
+
+        e.stopPropagation();
+
+    });
+    $('body').on('click', '.edit_check', function (e) {
 
         e.stopPropagation();
 

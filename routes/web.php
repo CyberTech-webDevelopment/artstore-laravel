@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 |
 */
 
-
 Route::get('/', function () {
     return redirect(app()->getLocale());
 });
@@ -36,7 +35,6 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::get('/policies', [App\Http\Controllers\PoliciesController::class, 'policies'])->name('policies');
     Route::get('/product/{slug}', [App\Http\Controllers\ProductController::class, 'product'])->name('product');
     Route::get('/questions', [App\Http\Controllers\QuestionsController::class, 'questions'])->name('questions');
-
     Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');
     Route::post('/get_menu', [App\Http\Controllers\CategoryController::class, 'menu_in_sub_menu'])->name('menu.submenu');
     Route::get('/blog', [App\Http\Controllers\BlogController::class, 'blog'])->name('blog');
@@ -57,6 +55,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::post('/singlestore', [App\Http\Controllers\BasketController::class, 'single_store_products'])->name('basket.single.store');
     Route::post('/delete-basket', [App\Http\Controllers\BasketController::class, 'delete_basket'])->name('delete.basket');
     Route::post('/edit-basket', [App\Http\Controllers\BasketController::class, 'edit_basket'])->name('edit.basket');
+    Route::get('/add-categories-section', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');
+    Route::get('/add-options-section', [App\Http\Controllers\ProductController::class, 'add_options_section'])->name('add_option.section');
 
 
 

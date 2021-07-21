@@ -11,9 +11,6 @@
 @endsection
 
 @section('content')
-
-
-
     @include('carusel.carusel')
     @include('sections.section-new-arrivals')
     @include('sections.section-hot-offers')

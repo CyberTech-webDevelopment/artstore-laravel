@@ -13,6 +13,10 @@
 	outline: none;
     cursor: pointer;
 }
+.types_container{
+
+    padding: 0;
+}
 .prices_cost_short{
 
     position: absolute;
