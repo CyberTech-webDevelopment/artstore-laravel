@@ -126,6 +126,12 @@ class Product extends Model
 
     }
 
+    public function product_type()
+    {
+        return $this->belongsToMany(Sub_categories::class, 'products_sub_categories', 'product_id', 'type_id');
+
+
+    }
     public function product_sizes()
     {
         return $this->belongsToMany($this->setnNameForSizeRelation(), "products_" . $this->size_type, 'product_id', 'size_id');

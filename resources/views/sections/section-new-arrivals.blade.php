@@ -75,16 +75,18 @@
 
                                             @endif
                                             @if($elem->setnNameForMaterialRelation() != null || $elem->setnNameForSizeRelation() != null || count($elem->product_colors) > 0)
-                                                <a href="{{ route('product',[ 'locale' => app()->getLocale(), 'slug' => $elem['slug_'. app()->getLocale()]]) }}" class="add-cart mr-2">Add to cart</a>
+                                                <a href="{{ route('product',[ 'locale' => app()->getLocale(), 'slug' => $elem['slug_'. app()->getLocale()]]) }}"
+                                                   class="add-cart mr-2">Add to cart</a>
 
 
                                             @else
-                                                    <div class="add-cart add_basket mr-2"
-                                                         @if(Auth::check()) data-product-id="{{ $elem->id }}" @endif>Add to cart
-                                                    </div>
+                                                <div class="add-cart add_basket mr-2"
+                                                     @if(Auth::check()) data-product-id="{{ $elem->id }}" @endif>Add to
+                                                    cart
+                                                </div>
                                             @endif
 
-                                                <p class="mb-1 index_basket_errors text-danger font-weight-bolder"></p>
+                                            <p class="mb-1 index_basket_errors text-danger font-weight-bolder"></p>
                                         </div>
 
                                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Sub_categories;
 use App\Models\Sub_menu;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class ProductController extends Controller
 {
     public function add_product(Request $request)
     {
-// dd($request->all());
+ dd($request->all());
         $validator = Validator::make($request->all(), [
             'name_en' => 'required|max:255',
             'name_ru' => 'required|max:255',
@@ -26,7 +27,8 @@ class ProductController extends Controller
             'detail_en' => 'required|min:6|max:255',
             'detail_ru' => 'required|min:6|max:255',
             'detail_am' => 'required|min:6|max:255',
-            'type' => 'required',
+            'type.*' => 'required|sometimes',
+//            'type' => 'required|sometimes',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
             'percent' => 'nullable|numeric',
@@ -134,6 +136,7 @@ class ProductController extends Controller
             $product->material_type = $material_table;
         }
 
+
         $product->name_am = $request->name_am;
         $product->name_ru = $request->name_ru;
         $product->name_en = $request->name_en;
@@ -143,8 +146,8 @@ class ProductController extends Controller
         $product->detail_am = $request->detail_am;
         $product->detail_ru = $request->detail_ru;
         $product->detail_en = $request->detail_en;
-        $product->sub_cat = $request->type;
-        $product->quantity = $request->count;
+//        $product->sub_cat = $request->type;
+//        $product->quantity = $request->count;
         $product->price = $request->price;
         $product->gender_id = $request->gender;
         $product->gift = $request->gift;
@@ -153,6 +156,17 @@ class ProductController extends Controller
         $product->store_id = $request->store_id;
         $product->user_id = Auth::user()->id;
         $product->save();
+        foreach ($request->type as $type) {
+
+            DB::table('products_sub_categories')->insert([
+                'product_id' => $product->id,
+                'type_id' => $type,
+                'created_at'=>Carbon::now(),
+                'updated_at'=>Carbon::now(),
+
+            ]);
+
+        }
 
         if (!empty($sizes)) {
             foreach ($sizes as $s) {
@@ -226,6 +240,15 @@ class ProductController extends Controller
 
 
         return response()->json(['ok']);
+    }
+
+
+    public function add_options_section(Request $request)
+    {
+        return response()
+            ->json([
+                'view' => view('account.options-section')->render(),
+            ]);
     }
 
     function getModels($path, $condition)

@@ -21,21 +21,23 @@ $(".input-file-trigger").on('drop', function (e) {
     readURL(file);
 });
 
-$('.plus_p').click(function () {
+$('body').on('click','.plus_p',function () {
     let quantity = $(this).parent().find('.quantity').html() * 1
     quantity++
     $(this).parent().find('.quantity').html(quantity)
-    $('#product_count').val(quantity);
+    $(this).parent().find('.product_count').val(quantity)
+    // $('#product_count').val(quantity);
 
 })
-$('.minus_p').click(function () {
+$('body').on('click','.minus_p',function () {
     let quantity = $(this).parent().find('.quantity').html() * 1
     quantity--
     if (quantity < 1) {
         quantity = 1
     }
     $(this).parent().find('.quantity').html(quantity)
-    $('#product_count').val(quantity);
+    $(this).parent().find('.product_count').val(quantity)
+    // $('#product_count').val(quantity);
 
 })
 
@@ -60,15 +62,13 @@ function readURL(file) {
                 if (array_images.length < 3) {
                     for (let i = 0; i < array_images.length; ++i) {
                         // console.log(array_images[i])
-                        if (array_images[i] == e.target.result)
-                        {
+                        if (array_images[i] == e.target.result) {
                             unique_image = false;
                             break;
                         }
                     }
                     console.log(unique_image)
-                    if (unique_image == true)
-                    {
+                    if (unique_image == true) {
                         c++;
                         $('#image-cont').append('<div class="image-cont-item mx-1"><img src="' + e.target.result + '"></div>');
                         $src_icon = $('.delete-image').find('img').attr('src');
@@ -78,10 +78,9 @@ function readURL(file) {
                         array_images.push(e.target.result)
                         $('#product_form').append('<input type="hidden" class="img_inp" data-inp-id="' + c + '"  name="files[]" value="' + e.target.result + '">');
 
-                        if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
-                        {
+                        if ($("[name='files[]']").length == 1 && $("[name='files_capital[]']").length == 0) {
                             let image_hidden_val = $("[name='files[]']").val();
-                            $("[name='files[]']").attr('name','files_capital[]');
+                            $("[name='files[]']").attr('name', 'files_capital[]');
                             $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
 
                         }
@@ -162,10 +161,9 @@ $('#crop-image').click(function (e) {
         $('.canvas-cont').addClass('hide')
         $('.canvas-cont').removeClass('d-flex')
 
-        if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
-        {
+        if ($("[name='files[]']").length == 1 && $("[name='files_capital[]']").length == 0) {
             let image_hidden_val = $("[name='files[]']").val();
-            $("[name='files[]']").attr('name','files_capital[]');
+            $("[name='files[]']").attr('name', 'files_capital[]');
             $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
 
         }
@@ -215,10 +213,9 @@ $(document).on('click', '.drop-image', function () {
         $('.uploade-image').show();
 
     }
-    if($("[name='files[]']").length  == 1 && $("[name='files_capital[]']").length  == 0)
-    {
+    if ($("[name='files[]']").length == 1 && $("[name='files_capital[]']").length == 0) {
         let image_hidden_val = $("[name='files[]']").val();
-        $("[name='files[]']").attr('name','files_capital[]');
+        $("[name='files[]']").attr('name', 'files_capital[]');
         $(`[data-image-name='${image_hidden_val}']`).prop('checked', true);
 
     }
@@ -233,12 +230,11 @@ $(document).on('input', '.set_capital_img_add', function () {
     let capital_img = $(this).data('image-name');
     if ($(this).is(':checked')) {
 
-         $("[name='files_capital[]']").attr('name','files[]')
+        $("[name='files_capital[]']").attr('name', 'files[]')
         $("[name='files[]']").each(function () {
 
-            if ($(this).val() == capital_img)
-            {
-                $(this).attr('name','files_capital[]')
+            if ($(this).val() == capital_img) {
+                $(this).attr('name', 'files_capital[]')
 
             }
 
@@ -252,11 +248,14 @@ $(document).on('input', '.set_capital_img_add', function () {
 })
 
 // -----------select categories--------------------------
-$('#select-menu').change(function () {
-    let select_menu_id = $(this).find("option:selected").attr('data-menu-id')
+$(document).on('change','.select-menu',function () {
+    let select_menu_id = $(this).find("option:selected").attr('data-menu-id');
+    let elem = $(this);
+    elem.closest('.select-group-1').find('.list_sub_menu').empty();
+    elem.closest('.select-group-1').find('.select_sub_category').empty();
     let url = $('#sel_cat_route').val()
-    $('#list_sub_menu').empty()
-    $('#select_sub_category').empty()
+    // $('#list_sub_menu').empty()
+    // $('#select_sub_category').empty()
     // let sel_id=$(this).attr('id')
     console.log(select_menu_id)
     $.ajax({
@@ -269,34 +268,41 @@ $('#select-menu').change(function () {
 
             $lang_name_menu = "sub_menu_name_" + $('#cur_lang').val();
 
-            $('#list_sub_menu').empty();
+            elem.closest('.select-group-1').find('.list_sub_menu').empty();
 
             for ($i = 0; $i < res.sub_menu.length; $i++) {
 
-                $('#list_sub_menu').append(`<li class="small d-flex align-items-center" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
+                elem.closest('.select-group-1').find('.list_sub_menu').append(`<li class="small d-flex align-items-center" tabIndex="-1"><input value="` + res.sub_menu[$i].id + `"  data-menu-id="` + res.sub_menu[$i].id + `"
                     name="sub_menu[]" class="mr-1 sub_menu_check" type="checkbox"/>` + res.sub_menu[$i][$lang_name_menu] + `</li>`)
 
             }
 
-            console.log(res)
         }
     })
 })
 $(document).on('click', '.sub_menu_check', function () {
     $checkeds = [];
-    $('#select_sub_category').empty();
+    $is_request = true;
+    let elem = $(this);
+    // $('#select_sub_category').empty();
+    elem.closest('.select-group-1').find('.select_sub_category').empty();
     let url = $('#sel_sub_cat_route').val()
-    $('.sub_menu_check').each(function () {
+    elem.closest('.select-group-1').find('.sub_menu_check').each(function () {
         if ($(this).is(":checked")) {
-            if ($checkeds.length < 4) {
+            if ($checkeds.length < 1) {
                 $checkeds.push($(this).attr('data-menu-id'))
-                console.log($checkeds)
 
+
+            } else {
+                $is_request = false;
+                // $('.sub_menu_check').prop('checked', false);
+                elem.closest('.select-group-1').find('.sub_menu_check').prop('checked', false);
+                elem.closest('.select-group-1').find('.select_sub_category').empty();
             }
 
         }
     })
-    if ($checkeds.length < 4) {
+    if ($is_request) {
         $.ajax({
             method: 'post',
             url: url,
@@ -305,13 +311,13 @@ $(document).on('click', '.sub_menu_check', function () {
             dataType: 'json',
             success: function (res) {
                 $lang_name_cat = "name_category_" + $('#cur_lang').val();
-                console.log(res.sub_cat)
+
 
                 let options_text = '';
-                $('#select_sub_category').empty();
-                $('#select_sub_category').prepend('<option>Select Type</option>');
+                elem.closest('.select-group-1').find('.select_sub_category').empty();
+                elem.closest('.select-group-1').find('.select_sub_category').prepend('<option>Select Type</option>');
                 for (let $i in res.sub_cat) {
-                    // console.log($i)
+
                     options_text += "<optgroup label='" + $i + "'>"
 
 
@@ -321,7 +327,7 @@ $(document).on('click', '.sub_menu_check', function () {
                     }
                     options_text += "</optgroup>"
                 }
-                $('#select_sub_category').append(options_text);
+                elem.closest('.select-group-1').find('.select_sub_category').append(options_text);
 
 
             }
@@ -331,6 +337,180 @@ $(document).on('click', '.sub_menu_check', function () {
 
 
 })
+// the added options accordion custom logic
+$('.dropdown-first-item').on('click',function (){
+
+    $(this).next().toggleClass('hide')
+})
+$('body').on('click','.dropdown-first-item',function (e){
+       // e.stopPropagation();
+       // $(this).toggleClass('hide')
+       // $(this).next().toggleClass('hide')
+       if ($(this).next().hasClass('hide'))
+       {
+           $(this).next().removeClass('hide')
+           $(this).next().css('display','block');
+       }
+       else
+       {
+           $(this).next().addClass('hide')
+           $(this).next().css('display','none');
+
+       }
+
+})
+$('.single_size_group').on('click', function () {
+
+    if (!$(this).find('.sizes_content').hasClass('hide')) {
+// alert()
+        $('.sizes_content').each(function () {
+
+            $(this).addClass('hide');
+            $(this).css('display', 'none');
+        })
+
+    } else {
+        $('.sizes_content').each(function () {
+
+            $(this).addClass('hide');
+            $(this).css('display', 'none');
+        })
+        $(this).find('.sizes_content').removeClass('hide');
+        $(this).find('.dropdown-menu').css('display', 'block');
+
+    }
+
+
+})
+$('body').on('click', '.single_size_group', function () {
+// alert()
+    if (!$(this).find('.sizes_content').hasClass('hide')) {
+
+        $('.sizes_content').each(function () {
+
+            $(this).addClass('hide');
+            $(this).css('display', 'none');
+        })
+
+    } else {
+
+        $('.sizes_content').each(function () {
+
+            $(this).addClass('hide');
+            $(this).css('display', 'none');
+        })
+        // alert()
+        $(this).find('.sizes_content').removeClass('hide');
+        $(this).find('.dropdown-menu').css('display', 'block');
+
+    }
+
+
+})
+
+// end this
+
+$(document).on('click', '.type_plus', function () {
+
+    let select_type = $(this).prev().val();
+    let url = $('#add_categories_section').val();
+    if (select_type == "" || select_type == null)
+    {
+
+    }
+    else
+    {
+       add_section(url,'types_container');
+
+    }
+
+})
+function only_checked(parent_class,check_class,element)
+{
+    let parent_row = element.closest('.'+parent_class);
+    let checked = parent_row.find('.'+check_class+':checked');
+    if (checked.length > 1){
+        $('.'+check_class).prop('checked',false);
+    }
+    element.prop('checked',true);
+
+}
+$(document).on('click','.size_check',function (){
+
+    only_checked('select-group-3','size_check',$(this));
+})
+$(document).on('click','.material_check',function (){
+
+    only_checked('select-group-3','material_check',$(this));
+})
+$(document).on('click','.color_check',function (){
+
+    only_checked('select-group-3','color_check',$(this));
+})
+function select_current_options(element)
+{
+
+    let parent_row = element.closest('.select-group-3');
+    let size = parent_row.find('.size_check:checked').val();
+    let size_type = parent_row.find('.size_check:checked').parent().data('table-name');
+    let color = parent_row.find('.color_check:checked').val();
+    let material = parent_row.find('.material_check:checked').val();
+    let material_type = parent_row.find('.material_check:checked').parent().data('table-name');
+    let quantity = parent_row.find('.product_count').val();
+    if (size != undefined || color != undefined || material != undefined)
+    {
+        let array_options = {
+            'size' : size,
+            'size_type' : size_type,
+            'material' : material,
+            'material_type' : material_type,
+            'color' : color,
+            'quantity':quantity,
+
+        };
+        console.log(array_options)
+        // $('#product_form').append('<input type="hidden" class="options_inp" name="options[]" value="' + array_options + '">');
+        return array_options;
+    }
+    else
+    {
+
+        return false;
+    }
+}
+$(document).on('click','.options_plus',function (){
+
+    let res = select_current_options($(this));
+
+    if (res)
+    {
+
+        let url = $('#options_section_route').val();
+        console.log(url);
+       add_section(url,'options_container');
+    }
+    console.log(res);
+
+})
+function add_section(url,parent_class)
+{
+    $.ajax({
+        method: 'get',
+        url: url,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        dataType: 'json',
+        cache: false,
+        processData: false,
+        async: false,
+        success: function (res) {
+            console.log(res)
+
+            $('.'+parent_class).append(res.view);
+
+        }
+    })
+
+}
 $('#add-product-a').on('click', function () {
 
     $('.acount-bar-item').each(function () {
@@ -360,14 +540,28 @@ $('#add-product-a').on('click', function () {
 
 $('#add-product').on('click', function (e) {
     e.preventDefault()
+    let option_data = [];
+    $('.options_plus').each(function (){
+
+        option_data.push(select_current_options($(this)))
+    })
+    console.log(option_data)
     let url = $('#add_product_url').val();
     var data = $('#product_form').serialize();
+    var all_properties = new FormData();
+    all_properties.append ('forma', data);
+    // for (let i=0;i<option_data.length;i++)
+    // {
+    //
+    //
+    // }
+    all_properties.append ('options', option_data);
 
     $.ajax({
         method: 'post',
         url: url,
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: data,
+        data: all_properties,
         dataType: 'json',
         cache: false,
         processData: false,
@@ -415,20 +609,20 @@ $('.percent').on('input', function () {
     if ($price != '') {
         $sale_percent = ($price * $percent) / 100;
         $sale_price = $price - $sale_percent;
-        $(this).parent().parent().parent().css('margin-bottom','-23px')
+        $(this).parent().parent().parent().css('margin-bottom', '-23px')
         $('.prices_cost').text($sale_price);
         if ($sale_price < 0 || isNaN($sale_price)) {
 
             $('.prices_cost').text('');
             $(this).val('');
-            $(this).parent().parent().parent().css('margin-bottom','0px')
+            $(this).parent().parent().parent().css('margin-bottom', '0px')
 
         }
 
     }
     if ($percent == "") {
         $('.prices_cost').empty();
-        $(this).parent().parent().parent().css('margin-bottom','0px')
+        $(this).parent().parent().parent().css('margin-bottom', '0px')
     }
 
 })
@@ -440,48 +634,53 @@ $('.price').on('input', function () {
         $sale_price = $price - $sale_percent;
         $sale_price = parseInt($sale_price);
         $('.prices_cost').text($sale_price);
-        $('.percent').parent().parent().parent().css('margin-bottom','-23px');
+        $('.percent').parent().parent().parent().css('margin-bottom', '-23px');
         if ($sale_price < 0 || isNaN($sale_price)) {
             $('.prices_cost').text('');
             $(this).val('');
-            $('.percent').parent().parent().parent().css('margin-bottom','0px');
+            $('.percent').parent().parent().parent().css('margin-bottom', '0px');
         }
     }
     if ($price == "") {
 
         $('.prices_cost').empty();
-        $('.percent').parent().parent().parent().css('margin-bottom','0px');
+        $('.percent').parent().parent().parent().css('margin-bottom', '0px');
     }
 
 })
 
-$('.go-to-product').on('click',function(){
+$('.go-to-product').on('click', function () {
 
     let redirect_url_go = $('#account_route').val()
     window.location.href = redirect_url_go;
 })
-$('.again-add-product').on('click',function(e){
+$('.again-add-product').on('click', function (e) {
 
     e.preventDefault();
     $('#product_form')[0].reset();
     $('#image-cont').empty();
-    $('.uploade-image').css('display','block');
+    $('.uploade-image').css('display', 'block');
     $('#product_form').find('#product_count').val(1);
     $('#product_form').find('.quantity').text(1);
-    $('#list_sub_menu').empty();
-    $('#select_sub_category').empty();
+    $('.list_sub_menu').empty();
+    $('.select_sub_category').empty();
+
     var default_select = $('#selesct_default_lang').val();
-    $('#select_sub_category').append("<option class='default_select' value=''></option>")
+    $('.select_sub_category').append("<option class='default_select' value=''></option>")
     $('.default_select').text(default_select);
+    $('.types_container').empty();
+    $('.type_plus').trigger('click');
+    let url_type_section = $('#add_categories_section').val();
+    add_type_section(url_type_section);
     // $('#product_count').val(1);
 
-    $("[name='files[]']").each(function (){
+    $("[name='files[]']").each(function () {
 
         $(this).remove();
 
     })
     $("[name='files_capital[]']").remove();
-    while(array_images.length > 0) {
+    while (array_images.length > 0) {
         array_images.pop();
     }
     $('.product_errors').empty();

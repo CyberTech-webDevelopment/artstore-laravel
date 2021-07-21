@@ -23,19 +23,28 @@ class CategoryController extends Controller
         $sub_categories = [];
         $elems_array = [];
         $checked_sub_menus = $request->post('sub_menu_ids');
-        foreach ($checked_sub_menus as $el){
+        foreach ($checked_sub_menus as $el) {
             $cur_sub_m = Sub_menu::find($el);
             $res = $cur_sub_m->sub_categories;
-            foreach ($res as $el){
+            foreach ($res as $el) {
 
-                array_push($elems_array,$el);
+                array_push($elems_array, $el);
             }
 
-           $sub_categories[$cur_sub_m['sub_menu_name_'.app()->getLocale()]] = $elems_array;
-           $elems_array = [];
+            $sub_categories[$cur_sub_m['sub_menu_name_' . app()->getLocale()]] = $elems_array;
+            $elems_array = [];
         }
         return response()->json(['sub_cat' => $sub_categories,]);
-//        dd($request->all());
+
+
+    }
+
+    public function add_categories_section(Request $request)
+    {
+        return response()
+            ->json([
+                'view' => view('account.categories-section')->render(),
+            ]);
 
 
     }

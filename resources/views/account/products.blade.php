@@ -33,7 +33,7 @@
         <tbody>
 
         @foreach ($products as $elem)
-
+{{--             @dd($elem->product_type)--}}
             <tr id="product_{{$elem['id']}}">
                 <th scope="row"><input type="checkbox" class="current_del" value="{{$elem['id']}}"></th>
                 <td class="d-flex flex-nowrap ">
