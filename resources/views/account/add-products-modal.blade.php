@@ -124,13 +124,24 @@
 
                                 </select>
                             </div>
-                            <div class="p-0 col-lg-3 col-md-3 col-sm-6 col-xs-10 d-flex align-items-center">
+                            <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10 d-flex align-items-center">
                                 <div class="form-check-input_gift">
                                     <input class="form-check-input_gift_check" name="gift" type="checkbox" value="1"
                                            id="gift_check">
                                     <label class="form-check-label" for="gift_check">
                                         @lang('add-product.product.gift_for')
                                     </label>
+                                </div>
+                            </div>
+                            <div class="p-0 col-lg-1 col-md-1 col-sm-6 col-xs-10">
+                                <label>@lang('add-product.product.quantity')</label>
+                                <div class="d-flex text-center">
+                                    <div class="ml-auto d-flex mr-auto">
+                                        <div class="minus_p">-</div>
+                                        <span class="pl-2 pr-2 quantity">1</span>
+                                        <div class="plus_p">+</div>
+                                        <input type="hidden" name="count" value="1" class="product_count">
+                                    </div>
                                 </div>
                             </div>
                             <div class="p-0 col-lg-2 col-md-2 col-sm-6 col-xs-10">

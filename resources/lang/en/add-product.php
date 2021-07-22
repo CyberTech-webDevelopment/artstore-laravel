@@ -34,7 +34,7 @@ return [
                     the Artstore moderator. You will receive a message about that.',
         'marketing_tools' => 'Marketing Tools',
         'by_gender' => 'By gender',
-        'gift_for' => 'Gift for',
+        'gift_for' => 'Gift',
 
     ]
 ];

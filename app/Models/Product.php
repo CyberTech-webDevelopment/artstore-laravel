@@ -112,6 +112,17 @@ class Product extends Model
         return $this->hasOne(Shop::class, 'id', 'store_id');
     }
 
+    public function product_type()
+    {
+        return $this->belongsToMany(Sub_categories::class, 'products_sub_categories', 'product_id', 'type_id');
+
+
+    }
+
+    public function product_options()
+    {
+        return $this->hasMany(Product_Options::class,'product_id','id');
+    }
 
     public function setnNameForSizeRelation()
     {
@@ -125,18 +136,21 @@ class Product extends Model
         }
 
     }
-
-    public function product_type()
+    public function size_all_option()
     {
-        return $this->belongsToMany(Sub_categories::class, 'products_sub_categories', 'product_id', 'type_id');
-
-
+        return $this->hasManyThrough('product_options', 'Product', 'size', 'id');
     }
     public function product_sizes()
     {
-        return $this->belongsToMany($this->setnNameForSizeRelation(), "products_" . $this->size_type, 'product_id', 'size_id');
+        return $this->belongsToMany($this->setnNameForSizeRelation(), "products_options", 'product_id', 'size');
 
     }
+
+//    public function product_sizes()
+//    {
+//        return $this->belongsToMany($this->setnNameForSizeRelation(), "products_" . $this->size_type, 'product_id', 'size_id');
+//
+//    }
 
     public function setnNameForMaterialRelation()
     {
@@ -152,13 +166,13 @@ class Product extends Model
 
     public function product_materials()
     {
-        return $this->belongsToMany($this->setnNameForMaterialRelation(), "products_" . $this->material_type, 'product_id', 'materials_id');
+        return $this->belongsToMany($this->setnNameForMaterialRelation(), "products_options", 'product_id', 'material');
 
     }
 
     public function product_colors()
     {
-        return $this->belongsToMany(Colors::class, 'products_colors', 'product_id', 'color_id');
+        return $this->belongsToMany(Colors::class, 'products_options', 'product_id', 'color');
     }
 
     public function product_gender()

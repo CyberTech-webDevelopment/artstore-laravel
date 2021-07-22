@@ -33,7 +33,10 @@
         <tbody>
 
         @foreach ($products as $elem)
-{{--             @dd($elem->product_type)--}}
+{{--            @dd($elem->product_options[1]->size_option)--}}
+{{--             @foreach($elem->product_options as $e)--}}
+{{--              --}}
+{{--             @endforeach--}}
             <tr id="product_{{$elem['id']}}">
                 <th scope="row"><input type="checkbox" class="current_del" value="{{$elem['id']}}"></th>
                 <td class="d-flex flex-nowrap ">
@@ -61,7 +64,7 @@
                             @else class="inactive-product active_variant text-strong" @endif>Active
                     </button>
                     <button value="0" data-productid="product_{{$elem['id']}}"
-                            @if($elem['status'] == 0 || $elem['quantity'] == 0) class="active-product active_variant text-strong"
+                            @if($elem['status'] == 0 || $elem['total_count'] == 0) class="active-product active_variant text-strong"
                             name="active" @else class="inactive-product active_variant text-strong" @endif>Inactive
                     </button>
                 </td>

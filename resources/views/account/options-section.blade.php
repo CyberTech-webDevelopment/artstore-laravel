@@ -32,7 +32,7 @@
                                     data-table-name="{{ $k }}"
                                     tabIndex="-1">
 {{--                                    name="size[{{$k}}][]"--}}
-                                    <input type="checkbox" class="size_check edit_check"
+                                    <input type="checkbox" class="size_check"
                                            value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
 
 
@@ -97,7 +97,7 @@
 {{--                                    name="material[{{$k}}][]"--}}
                                     <input
                                         type="checkbox"
-                                        class="material_check edit_check"
+                                        class="material_check"
                                         value="{{ $el['id'] }}"/>{{ $el['material_'. app()->getLocale()] }}
                                 </li>
 
@@ -121,7 +121,7 @@
                 <div class="minus_p">-</div>
                 <span class="pl-2 pr-2 quantity">1</span>
                 <div class="plus_p">+</div>
-                <input type="hidden" name="count" value="1" class="product_count">
+                <input type="hidden" value="1" class="product_count">
             </div>
         </div>
 
