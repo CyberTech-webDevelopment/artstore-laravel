@@ -38,6 +38,16 @@ $(document).ready(function () {
         store_basket(localStorage.getItem('store_id'), localStorage.getItem('url'), localStorage.getItem('page_basket'));
     }
 
+    $('.current_options').on('change',function () {
+
+        if ($(this).val() != 0)
+        {
+            let cur_count_option =  $(this).find('.cur_option_quantity').val();
+            $('#current_count').val(cur_count_option);
+            $('.curr_count_visible').html(cur_count_option);
+        }
+
+    })
     $('.add_basket').on('click', function (e) {
 
         let element = $(this);

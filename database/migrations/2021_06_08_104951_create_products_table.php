@@ -28,7 +28,7 @@ class CreateProductsTable extends Migration
             $table->string('slug_ru');
             $table->string('slug_en');
 //            $table->string('sub_cat');
-//            $table->string('quantity');
+            $table->string('total_count');
             $table->float('price');
             $table->integer('percent')->nullable();
             $table->string('size_type')->nullable();

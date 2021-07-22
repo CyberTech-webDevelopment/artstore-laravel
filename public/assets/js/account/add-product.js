@@ -435,9 +435,11 @@ function only_checked(parent_class,check_class,element)
     element.prop('checked',true);
 
 }
+
 $(document).on('click','.size_check',function (){
 
     only_checked('select-group-3','size_check',$(this));
+
 })
 $(document).on('click','.material_check',function (){
 
@@ -541,27 +543,56 @@ $('#add-product-a').on('click', function () {
 $('#add-product').on('click', function (e) {
     e.preventDefault()
     let option_data = [];
+    let options_count = 0;
     $('.options_plus').each(function (){
 
-        option_data.push(select_current_options($(this)))
+        let current_options = select_current_options($(this));
+        // $('#product_form').append('<input type="hidden" class="options_inp" name="options[]" value="' + current_options + '">');
+
+        option_data.push(current_options);
     })
     console.log(option_data)
     let url = $('#add_product_url').val();
+
+
+    // var all_properties = new FormData();
+    // all_properties.append ('forma', data);
+    // option_data.forEach((option_data, i) => all_properties.append(`options[${i}]`, option_data));
+
+    for (let i = 0; i < option_data.length; i++) {
+        for (let key of Object.keys(option_data[i])) {
+
+            $('#product_form').append('<input type="hidden" class="options_inp" name="options['+i+']['+key+']"  value= "' + option_data[i][key] + '">');
+
+        }
+    }
+    if (option_data[0] != false)
+    {
+        for (let i = 0; i < option_data.length; i++) {
+            for (let key of Object.keys(option_data[i])) {
+                if (key == 'quantity')
+                {
+                    options_count += parseInt(option_data[i][key]);
+
+                }
+            }
+        }
+        $("[name='count']").val(options_count)
+        console.log($("[name='count']").val())
+    }
+    else
+    {
+
+        console.log($("[name='count']").val())
+    }
+
     var data = $('#product_form').serialize();
-    var all_properties = new FormData();
-    all_properties.append ('forma', data);
-    // for (let i=0;i<option_data.length;i++)
-    // {
-    //
-    //
-    // }
-    all_properties.append ('options', option_data);
 
     $.ajax({
         method: 'post',
         url: url,
         headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        data: all_properties,
+        data: data,
         dataType: 'json',
         cache: false,
         processData: false,
