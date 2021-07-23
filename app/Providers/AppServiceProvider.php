@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Models\Colors;
 use App\Models\Gender;
 use App\Models\Menu;
+use App\Models\Sub_menu;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\View;
@@ -52,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
 
 
         $menu = Menu::all();
+//        $sub_menus = Sub_menu::all();
         $all_colors = Colors::all();
         $genders = Gender::all();
 

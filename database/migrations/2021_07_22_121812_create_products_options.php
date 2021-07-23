@@ -17,9 +17,9 @@ class CreateProductsOptions extends Migration
             $table->id();
             $table->integer('product_id')->unsigned()->index();
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->integer('size');
-            $table->integer('material');
-            $table->integer('color');
+            $table->integer('size')->nullable();
+            $table->integer('material')->nullable();
+            $table->integer('color')->nullable();
             $table->integer('quantity');
             $table->timestamps();
         });

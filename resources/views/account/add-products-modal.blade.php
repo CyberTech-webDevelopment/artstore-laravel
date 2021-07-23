@@ -95,15 +95,7 @@
                             <div class="col-lg-2 col-md-2 col-sm-6 col-xs-10 custom_material_container">
                                 <label>@lang('add-product.product.custom_material')</label>
                                 <input type="text" id="custom_material" name="custom_material">
-                                {{--                                <label>@lang('add-product.product.quantity')</label>--}}
-                                {{--                                <div class="d-flex text-center">--}}
-                                {{--                                    <div class="ml-auto d-flex mr-auto">--}}
-                                {{--                                        <div class="minus_p">-</div>--}}
-                                {{--                                        <span class="pl-2 pr-2 quantity">1</span>--}}
-                                {{--                                        <div class="plus_p">+</div>--}}
-                                {{--                                        <input type="hidden" name="count" value="1" id="product_count">--}}
-                                {{--                                    </div>--}}
-                                {{--                                </div>--}}
+
                             </div>
                             {{-- last row product_add --}}
 
@@ -212,8 +204,7 @@
 
                 </div>
                 <div class="text-center mt-4 mb-4">
-                    <button class="again-add-product text-strong" data-toggle="modal" data-target=".add-product-modal"
-                            data-dismiss="modal" aria-label="Close">@lang('add-product.product.add_title')
+                    <button class="again-add-product text-strong">@lang('add-product.product.add_title')
                     </button>
                 </div>
                 <div class="go-to-product text-strong" data-toggle="modal" data-dismiss="modal" aria-label="Close">

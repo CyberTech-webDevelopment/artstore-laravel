@@ -18,10 +18,8 @@ class CreateBasketsTable extends Migration
             $table->integer('product_id');
             $table->integer('store_id');
             $table->integer('user_id');
+            $table->integer('options_id')->nullable();
             $table->integer('quantity');
-            $table->integer('size')->nullable();
-            $table->integer('material')->nullable();
-            $table->integer('color')->nullable();
             $table->timestamps();
         });
     }

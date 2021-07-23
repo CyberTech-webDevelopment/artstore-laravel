@@ -1,5 +1,16 @@
 // -------------drag drop image-----------------------
 
+if ($('#current_route').val() == "account" && localStorage.getItem('add_modal') == 1)
+{
+    window.localStorage.removeItem('add_modal');
+    $('.again-add-product').attr('data-toggle','modal');
+    $('.again-add-product').attr('data-target','.add-product-modal');
+    $('.again-add-product').attr('data-dismiss','modal');
+    $('.again-add-product').attr('aria-label','Close');
+    $('.again-add-product').trigger('click');
+
+
+}
 var image
 let array_images = []
 let c = 0;
@@ -21,7 +32,7 @@ $(".input-file-trigger").on('drop', function (e) {
     readURL(file);
 });
 
-$('body').on('click','.plus_p',function () {
+$('body').on('click', '.plus_p', function () {
     let quantity = $(this).parent().find('.quantity').html() * 1
     quantity++
     $(this).parent().find('.quantity').html(quantity)
@@ -29,7 +40,7 @@ $('body').on('click','.plus_p',function () {
     // $('#product_count').val(quantity);
 
 })
-$('body').on('click','.minus_p',function () {
+$('body').on('click', '.minus_p', function () {
     let quantity = $(this).parent().find('.quantity').html() * 1
     quantity--
     if (quantity < 1) {
@@ -248,7 +259,7 @@ $(document).on('input', '.set_capital_img_add', function () {
 })
 
 // -----------select categories--------------------------
-$(document).on('change','.select-menu',function () {
+$(document).on('change', '.select-menu', function () {
     let select_menu_id = $(this).find("option:selected").attr('data-menu-id');
     let elem = $(this);
     elem.closest('.select-group-1').find('.list_sub_menu').empty();
@@ -338,25 +349,22 @@ $(document).on('click', '.sub_menu_check', function () {
 
 })
 // the added options accordion custom logic
-$('.dropdown-first-item').on('click',function (){
+$('.dropdown-first-item').on('click', function () {
 
     $(this).next().toggleClass('hide')
 })
-$('body').on('click','.dropdown-first-item',function (e){
-       // e.stopPropagation();
-       // $(this).toggleClass('hide')
-       // $(this).next().toggleClass('hide')
-       if ($(this).next().hasClass('hide'))
-       {
-           $(this).next().removeClass('hide')
-           $(this).next().css('display','block');
-       }
-       else
-       {
-           $(this).next().addClass('hide')
-           $(this).next().css('display','none');
+$('body').on('click', '.dropdown-first-item', function (e) {
+    // e.stopPropagation();
+    // $(this).toggleClass('hide')
+    // $(this).next().toggleClass('hide')
+    if ($(this).next().hasClass('hide')) {
+        $(this).next().removeClass('hide')
+        $(this).next().css('display', 'block');
+    } else {
+        $(this).next().addClass('hide')
+        $(this).next().css('display', 'none');
 
-       }
+    }
 
 })
 $('.single_size_group').on('click', function () {
@@ -414,44 +422,41 @@ $(document).on('click', '.type_plus', function () {
 
     let select_type = $(this).prev().val();
     let url = $('#add_categories_section').val();
-    if (select_type == "" || select_type == null)
-    {
+    if (select_type == "" || select_type == null) {
 
-    }
-    else
-    {
-       add_section(url,'types_container');
+    } else {
+        add_section(url, 'types_container');
 
     }
 
 })
-function only_checked(parent_class,check_class,element)
-{
-    let parent_row = element.closest('.'+parent_class);
-    let checked = parent_row.find('.'+check_class+':checked');
-    if (checked.length > 1){
-        $('.'+check_class).prop('checked',false);
+
+function only_checked(parent_class, check_class, element) {
+    let parent_row = element.closest('.' + parent_class);
+    let checked = parent_row.find('.' + check_class + ':checked');
+    if (checked.length > 1) {
+        parent_row.find('.' + check_class).prop('checked', false);
     }
-    element.prop('checked',true);
+    element.prop('checked', true);
 
 }
 
-$(document).on('click','.size_check',function (){
+$(document).on('click', '.size_check', function () {
 
-    only_checked('select-group-3','size_check',$(this));
+    only_checked('select-group-3', 'size_check', $(this));
 
 })
-$(document).on('click','.material_check',function (){
+$(document).on('click', '.material_check', function () {
 
-    only_checked('select-group-3','material_check',$(this));
+    only_checked('select-group-3', 'material_check', $(this));
 })
-$(document).on('click','.color_check',function (){
+$(document).on('click', '.color_check', function () {
 
-    only_checked('select-group-3','color_check',$(this));
+    only_checked('select-group-3', 'color_check', $(this));
 })
-function select_current_options(element)
-{
 
+function select_current_options(element) {
+    // alert()
     let parent_row = element.closest('.select-group-3');
     let size = parent_row.find('.size_check:checked').val();
     let size_type = parent_row.find('.size_check:checked').parent().data('table-name');
@@ -459,43 +464,40 @@ function select_current_options(element)
     let material = parent_row.find('.material_check:checked').val();
     let material_type = parent_row.find('.material_check:checked').parent().data('table-name');
     let quantity = parent_row.find('.product_count').val();
-    if (size != undefined || color != undefined || material != undefined)
-    {
+    if (size != undefined || color != undefined || material != undefined) {
         let array_options = {
-            'size' : size,
-            'size_type' : size_type,
-            'material' : material,
-            'material_type' : material_type,
-            'color' : color,
-            'quantity':quantity,
+            'size': size,
+            'size_type': size_type,
+            'material': material,
+            'material_type': material_type,
+            'color': color,
+            'quantity': quantity,
 
         };
         console.log(array_options)
         // $('#product_form').append('<input type="hidden" class="options_inp" name="options[]" value="' + array_options + '">');
         return array_options;
-    }
-    else
-    {
+    } else {
 
         return false;
     }
 }
-$(document).on('click','.options_plus',function (){
+
+$(document).on('click', '.options_plus', function () {
 
     let res = select_current_options($(this));
 
-    if (res)
-    {
+    if (res) {
 
         let url = $('#options_section_route').val();
         console.log(url);
-       add_section(url,'options_container');
+        add_section(url, 'options_container');
     }
     console.log(res);
 
 })
-function add_section(url,parent_class)
-{
+
+function add_section(url, parent_class) {
     $.ajax({
         method: 'get',
         url: url,
@@ -507,12 +509,13 @@ function add_section(url,parent_class)
         success: function (res) {
             console.log(res)
 
-            $('.'+parent_class).append(res.view);
+            $('.' + parent_class).append(res.view);
 
         }
     })
 
 }
+
 $('#add-product-a').on('click', function () {
 
     $('.acount-bar-item').each(function () {
@@ -531,9 +534,6 @@ $('#add-product-a').on('click', function () {
 
         }
 
-        // console.log($new_src);
-
-
     })
 })
 
@@ -544,45 +544,29 @@ $('#add-product').on('click', function (e) {
     e.preventDefault()
     let option_data = [];
     let options_count = 0;
-    $('.options_plus').each(function (){
-
+    $('.options_plus').each(function () {
         let current_options = select_current_options($(this));
-        // $('#product_form').append('<input type="hidden" class="options_inp" name="options[]" value="' + current_options + '">');
-
         option_data.push(current_options);
     })
     console.log(option_data)
     let url = $('#add_product_url').val();
-
-
-    // var all_properties = new FormData();
-    // all_properties.append ('forma', data);
-    // option_data.forEach((option_data, i) => all_properties.append(`options[${i}]`, option_data));
-
     for (let i = 0; i < option_data.length; i++) {
         for (let key of Object.keys(option_data[i])) {
 
-            $('#product_form').append('<input type="hidden" class="options_inp" name="options['+i+']['+key+']"  value= "' + option_data[i][key] + '">');
+            $('#product_form').append('<input type="hidden" class="options_inp" name="options[' + i + '][' + key + ']"  value= "' + option_data[i][key] + '">');
 
         }
     }
-    if (option_data[0] != false)
-    {
+    if (option_data[0] != false) {
         for (let i = 0; i < option_data.length; i++) {
             for (let key of Object.keys(option_data[i])) {
-                if (key == 'quantity')
-                {
+                if (key == 'quantity') {
                     options_count += parseInt(option_data[i][key]);
 
                 }
             }
         }
         $("[name='count']").val(options_count)
-        console.log($("[name='count']").val())
-    }
-    else
-    {
-
         console.log($("[name='count']").val())
     }
 
@@ -622,6 +606,22 @@ $('#add-product').on('click', function (e) {
                 }
 
 
+            } else{
+                if (res.size_error)
+                {
+                    $('.product_errors').html("");
+                    $('.product_errors').html(res.size_error);
+                }
+                else if (res.material_error)
+                {
+                    $('.product_errors').html("");
+                    $('.product_errors').html(res.material_error);
+                }
+                else if (res.model_found)
+                {
+                    $('.product_errors').html("");
+                    $('.product_errors').html("Invalid statements");
+                }
             }
             if (res == "ok") {
 
@@ -688,34 +688,37 @@ $('.go-to-product').on('click', function () {
 $('.again-add-product').on('click', function (e) {
 
     e.preventDefault();
-    $('#product_form')[0].reset();
-    $('#image-cont').empty();
-    $('.uploade-image').css('display', 'block');
-    $('#product_form').find('#product_count').val(1);
-    $('#product_form').find('.quantity').text(1);
-    $('.list_sub_menu').empty();
-    $('.select_sub_category').empty();
+    localStorage.setItem('add_modal',1);
+    location.reload();
 
-    var default_select = $('#selesct_default_lang').val();
-    $('.select_sub_category').append("<option class='default_select' value=''></option>")
-    $('.default_select').text(default_select);
-    $('.types_container').empty();
-    $('.type_plus').trigger('click');
-    let url_type_section = $('#add_categories_section').val();
-    add_type_section(url_type_section);
-    // $('#product_count').val(1);
-
-    $("[name='files[]']").each(function () {
-
-        $(this).remove();
-
-    })
-    $("[name='files_capital[]']").remove();
-    while (array_images.length > 0) {
-        array_images.pop();
-    }
-    $('.product_errors').empty();
-    console.log(array_images.length)
+    // $('#product_form')[0].reset();
+    // $('#image-cont').empty();
+    // $('.uploade-image').css('display', 'block');
+    // $('#product_form').find('#product_count').val(1);
+    // $('#product_form').find('.quantity').text(1);
+    // $('.list_sub_menu').empty();
+    // $('.select_sub_category').empty();
+    //
+    // var default_select = $('#selesct_default_lang').val();
+    // $('.select_sub_category').append("<option class='default_select' value=''></option>")
+    // $('.default_select').text(default_select);
+    // $('.types_container').empty();
+    // $('.type_plus').trigger('click');
+    // let url_type_section = $('#add_categories_section').val();
+    // add_type_section(url_type_section);
+    // // $('#product_count').val(1);
+    //
+    // $("[name='files[]']").each(function () {
+    //
+    //     $(this).remove();
+    //
+    // })
+    // $("[name='files_capital[]']").remove();
+    // while (array_images.length > 0) {
+    //     array_images.pop();
+    // }
+    // $('.product_errors').empty();
+    // console.log(array_images.length)
 
 })
 

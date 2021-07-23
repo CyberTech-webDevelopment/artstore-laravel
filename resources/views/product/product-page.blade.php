@@ -64,10 +64,10 @@
                             <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">
                                 <label class="font-size-22">Options</label>
                                 <select class="current_options">
-                                    <input type="hidden" class="cur_option_quantity" value="{{ $option->quantity }}">
                                     <option value="0">Select Options</option>
                                     @foreach($cur_product->product_options as $option)
                                         <option value="{{ $option->id }}"
+                                                data-cur-count="{{$option->quantity}}"
                                                 class="cur_product_options">{{ $option->size_option->size }}
                                             /{{ $option->material_option['material_'.app()->getLocale()] }}
                                             /{{ $option->color_option['color_name_'.app()->getLocale()] }}</option>
@@ -76,40 +76,7 @@
                             </div>
 
                         @endif
-                        {{--                        @if($cur_product->setnNameForSizeRelation() != null)--}}
-                        {{--                            <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">--}}
-                        {{--                                <label class="font-size-22">Size</label>--}}
-                        {{--                                <select class="current_size">--}}
-                        {{--                                    @foreach($cur_product->product_sizes as $size)--}}
-                        {{--                                        <option value="{{ $size->id }}"--}}
-                        {{--                                                class="cur_product_sizes">{{ $size->size }}</option>--}}
-                        {{--                                    @endforeach--}}
-                        {{--                                </select>--}}
-                        {{--                            </div>--}}
-                        {{--                        @endif--}}
-                        {{--                        @if($cur_product->setnNameForMaterialRelation() != null)--}}
-                        {{--                            <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">--}}
-                        {{--                                <label class="font-size-22">Material</label>--}}
-                        {{--                                <select class="current_material">--}}
-                        {{--                                    @foreach($cur_product->product_materials as $material)--}}
-                        {{--                                        <option value="{{ $material->id }}"--}}
-                        {{--                                                class="cur_product_materials">{{ $material['material_'.app()->getLocale()] }}</option>--}}
-                        {{--                                    @endforeach--}}
-                        {{--                                </select>--}}
-                        {{--                            </div>--}}
-                        {{--                        @endif--}}
-                        {{--                                                @dd($cur_product->product_colors)--}}
-                        {{--                        @if(count($cur_product->product_colors) > 0)--}}
-                        {{--                            <div class="d-flex justify-content-between col-md-5 pl-0 pb-1">--}}
-                        {{--                                <label class="font-size-22">Color</label>--}}
-                        {{--                                <select class="current_color">--}}
-                        {{--                                    @foreach($cur_product->product_colors as $color)--}}
-                        {{--                                        <option value="{{ $color->id }}"--}}
-                        {{--                                                class="cur_product_colors">{{ $color['color_name_'.app()->getLocale()] }}</option>--}}
-                        {{--                                    @endforeach--}}
-                        {{--                                </select>--}}
-                        {{--                            </div>--}}
-                        {{--                        @endif--}}
+
                         <div
                             class="d-flex flex-column justify-content-between col-xl-7 col-lg-10 col-md-7 pl-0 quantity">
 
@@ -118,7 +85,9 @@
                                 <input type="number" min="1" name="quantity_basket" class="ml-4 adding_basket_quantity">
                                 @if(count($cur_product->product_options) == 0)
                                     <input type="hidden" id="current_count" value="{{ $cur_product->total_count  }}">
-                                    <div class="ml-4 pl-2 curr_count_visible">Only {{ $cur_product->total_count }} available</div>
+                                    <div class="ml-4 pl-2 curr_count_visible">Only {{ $cur_product->total_count }}
+                                        available
+                                    </div>
                                 @else
                                     <input type="hidden" id="current_count" value="">
                                     <div class="ml-4 pl-2 curr_count_visible"></div>

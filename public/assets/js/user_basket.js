@@ -38,13 +38,16 @@ $(document).ready(function () {
         store_basket(localStorage.getItem('store_id'), localStorage.getItem('url'), localStorage.getItem('page_basket'));
     }
 
-    $('.current_options').on('change',function () {
+    $('.current_options').on('change', function () {
 
-        if ($(this).val() != 0)
-        {
-            let cur_count_option =  $(this).find('.cur_option_quantity').val();
+        if ($(this).val() != 0) {
+            let cur_count_option = $(this).find("option:selected").data('cur-count');
             $('#current_count').val(cur_count_option);
-            $('.curr_count_visible').html(cur_count_option);
+            $('.curr_count_visible').html("Only" + " " + cur_count_option + " " + "available");
+        } else {
+
+            $('#current_count').val("");
+            $('.curr_count_visible').html("");
         }
 
     })
@@ -53,18 +56,17 @@ $(document).ready(function () {
         let element = $(this);
         let great_parent = $(this).parents('.product-info');
         console.log(great_parent);
-        let size = null;
-        let material = null;
-        let color = null;
+        let option_id = null;
         if (great_parent.length > 0) {
             size = great_parent.find('.current_size').val();
-            material = great_parent.find('.current_material').val();
-            color = great_parent.find('.current_color').val();
+            option_id = great_parent.find('.current_options').val();
+            // alert(option_id)
 
         }
         let url = $('#add_basket_route').val();
+        console.log($(this))
         if ($(this).data('product-id') == '' || $(this).data('product-id') == undefined) {
-
+            // alert($(this).data('product-id'))
             $('#sign-up').trigger('click');
         } else {
 
@@ -73,7 +75,7 @@ $(document).ready(function () {
             if (quantity == '' || quantity == undefined) {
                 quantity = 1;
                 $('.current_invalid_count').empty();
-                add_basket(product_id, quantity, size, material, color, url, element)
+                add_basket(product_id, option_id, quantity, url, element)
             } else {
                 if (quantity > $('#current_count').val() || quantity < 1) {
                     $('.current_invalid_count').html('The specified quantity is not available');
@@ -83,7 +85,7 @@ $(document).ready(function () {
 
                 } else {
                     $('.current_invalid_count').empty();
-                    add_basket(product_id, quantity, size, material, color, url, element)
+                    add_basket(product_id, option_id, quantity, url, element)
 
                 }
 
@@ -249,7 +251,7 @@ $(document).ready(function () {
 
     }
 
-    function add_basket(product_id, quantity, size, material, color, url, element) {
+    function add_basket(product_id, option_id,quantity, url, element) {
         // alert(url);
         $.ajax({
             method: 'post',
@@ -257,10 +259,9 @@ $(document).ready(function () {
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: {
                 product_id: product_id,
+                option_id: option_id,
                 quantity: quantity,
-                size: size,
-                material: material,
-                color: color,
+
             },
             dataType: 'json',
             success: function (res) {

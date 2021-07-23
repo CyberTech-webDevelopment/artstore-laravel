@@ -486,7 +486,34 @@ $(document).ready(function () {
     $(document).on('click', '#edit-product', function (e) {
 
         e.preventDefault()
+        let option_data = [];
+        let options_count = 0;
+        $('.options_plus').each(function () {
+            let current_options = select_current_options($(this));
+            option_data.push(current_options);
+        })
+        console.log(option_data)
         let url = $('#more_post_edit').val();
+        for (let i = 0; i < option_data.length; i++) {
+            for (let key of Object.keys(option_data[i])) {
+
+                $('#editproduct_form').append('<input type="hidden" class="options_inp" name="options[' + i + '][' + key + ']"  value= "' + option_data[i][key] + '">');
+
+            }
+        }
+        if (option_data[0] != false) {
+            for (let i = 0; i < option_data.length; i++) {
+                for (let key of Object.keys(option_data[i])) {
+                    if (key == 'quantity') {
+                        options_count += parseInt(option_data[i][key]);
+
+                    }
+                }
+            }
+            $("[name='count']").val(options_count)
+            console.log($("[name='count']").val())
+        }
+
         var data = $('#editproduct_form').serialize();
 
         $.ajax({
@@ -523,6 +550,17 @@ $(document).ready(function () {
                     }
 
 
+                } else {
+                    if (res.size_error) {
+                        $('.product_errors').html("");
+                        $('.product_errors').html(res.size_error);
+                    } else if (res.material_error) {
+                        $('.product_errors').html("");
+                        $('.product_errors').html(res.material_error);
+                    } else if (res.model_found) {
+                        $('.product_errors').html("");
+                        $('.product_errors').html("Invalid statements");
+                    }
                 }
                 if (res == "ok") {
 
@@ -645,7 +683,7 @@ $(document).ready(function () {
         let quantity = $(this).parent().find('.quantity').html() * 1
         quantity++
         $(this).parent().find('.quantity').html(quantity)
-        $('#product_count_edit').val(quantity);
+        $('.product_count_edit').val(quantity);
 
     })
     $(document).on('click', '.minus_edit', function () {
@@ -656,7 +694,7 @@ $(document).ready(function () {
             quantity = 1
         }
         $(this).parent().find('.quantity').html(quantity)
-        $('#product_count_edit').val(quantity);
+        $('.product_count_edit').val(quantity);
 
     })
 

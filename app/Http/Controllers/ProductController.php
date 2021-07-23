@@ -16,77 +16,67 @@ class ProductController extends Controller
 {
     public function add_product(Request $request)
     {
-// dd($request->all());
+//        dd($request->options);
+        $validator = Validator::make($request->all(), [
+            'name_en' => 'required|max:255',
+            'name_ru' => 'required|max:255',
+            'name_am' => 'required|max:255',
+            'desc_en' => 'required|min:25|max:255',
+            'desc_ru' => 'required|min:25|max:255',
+            'desc_am' => 'required|min:25|max:255',
+            'detail_en' => 'required|min:6|max:255',
+            'detail_ru' => 'required|min:6|max:255',
+            'detail_am' => 'required|min:6|max:255',
+            'type.*' => 'required|sometimes',
+            'count' => 'required|numeric',
+            'price' => 'required|numeric',
+            'percent' => 'nullable|numeric',
+            'gender' => 'nullable|numeric',
+            'files_capital' => 'required',
 
-//        $validator = Validator::make($request->all(), [
-//            'name_en' => 'required|max:255',
-//            'name_ru' => 'required|max:255',
-//            'name_am' => 'required|max:255',
-//            'desc_en' => 'required|min:25|max:255',
-//            'desc_ru' => 'required|min:25|max:255',
-//            'desc_am' => 'required|min:25|max:255',
-//            'detail_en' => 'required|min:6|max:255',
-//            'detail_ru' => 'required|min:6|max:255',
-//            'detail_am' => 'required|min:6|max:255',
-//            'type.*' => 'required|sometimes',
-////            'type' => 'required|sometimes',
-//            'count' => 'required|numeric',
-//            'price' => 'required|numeric',
-//            'percent' => 'nullable|numeric',
-//            'gender' => 'nullable|numeric',
-//            'files_capital' => 'required',
-//
-//        ]);
-//        if ($validator->fails()) {
-//            $errors = $validator->failed();
-////            dump($errors);
-//            $fields_array = [];
-//            foreach ($errors as $err => $value) {
-//                foreach ($value as $key => $v) {
-//                    if ($key == 'Required') {
-//                        return response()->json(['product_error' => 'Please fill all required fields']);
-//                    }
-//                    if ($key == 'Numeric') {
-//
-//                        $message_error = "Invalid value in the numeric field (s)";
-//                        return response()->json(['product_error' => $message_error]);
-//
-//                    }
-//                    if ($key == 'Min') {
-//
-//                        array_push($fields_array, $err);
-//                        $message_error = "field length " . $key;
-//                        foreach ($v as $el) {
-//                            $message_error = $message_error . ":" . $el;
-//
-//                        }
-//
-//                    }
-//                    if ($key == 'Max') {
-//
-//                        array_push($fields_array, $err);
-//                        $message_error = "field length " . $key;
-//                        foreach ($v as $el) {
-//                            $message_error = $message_error . ":" . $el;
-//
-//                        }
-//
-//                    }
-//                }
-//
-//            }
-//            return response()->json(['product_error' => $message_error, 'field' => $fields_array]);
-//
-//        }
-//        $sizes = [];
-//        $materials = [];
-//        $colors = [];
+        ]);
+        if ($validator->fails()) {
+            $errors = $validator->failed();
+//            dump($errors);
+            $fields_array = [];
+            foreach ($errors as $err => $value) {
+                foreach ($value as $key => $v) {
+                    if ($key == 'Required') {
+                        return response()->json(['product_error' => 'Please fill all required fields']);
+                    }
+                    if ($key == 'Numeric') {
+
+                        $message_error = "Invalid value in the numeric field (s)";
+                        return response()->json(['product_error' => $message_error]);
+
+                    }
+                    if ($key == 'Min') {
+
+                        array_push($fields_array, $err);
+                        $message_error = "field length " . $key;
+                        foreach ($v as $el) {
+                            $message_error = $message_error . ":" . $el;
+
+                        }
+
+                    }
+                    if ($key == 'Max') {
+
+                        array_push($fields_array, $err);
+                        $message_error = "field length " . $key;
+                        foreach ($v as $el) {
+                            $message_error = $message_error . ":" . $el;
+
+                        }
+
+                    }
+                }
+
+            }
+            return response()->json(['product_error' => $message_error, 'field' => $fields_array]);
+
+        }
         $product = new Product();
-//        if (isset($request->color)) {
-//            foreach ($request->color as $color) {
-//                array_push($colors, $color);
-//            }
-//        }
         $path = app_path() . "/Models";
         if (isset($request->options)) {
             $arr_type_size = [];
@@ -96,23 +86,26 @@ class ProductController extends Controller
                     if ($key == "size_type" && $value != "undefined") {
                         array_push($arr_type_size, $value);
                         $unique_size_type = (count(array_unique($arr_type_size)) === 1);
+                        $size_table = strtolower($options['size_type']);
+                        $size_type = $options['size_type'];
+
                     }
                     if ($key == "material_type" && $value != "undefined") {
                         array_push($arr_type_material, $value);
                         $unique_material_type = (count(array_unique($arr_type_material)) === 1);
-
+                        $material_table = strtolower($options['material_type']);
+                        $material_type = $options['material_type'];
                     }
 
                 }
             }
 
-
             if ($unique_size_type == false) {
                 return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
 
             } else {
-                $size_table = strtolower($request->options[0]['size_type']);
-                $find_model_size = $this->getModels($path, $request->options[0]['size_type']);
+
+                $find_model_size = $this->getModels($path, $size_type);
                 if (!$find_model_size) {
                     return response()->json(['model_found' => 'Model not found']);
                 }
@@ -122,67 +115,15 @@ class ProductController extends Controller
                 return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
 
             } else {
-                $material_table = strtolower($request->options[0]['material_type']);
-                $find_model_size = $this->getModels($path, $request->options[0]['material_type']);
+
+                $find_model_size = $this->getModels($path, $material_type);
                 if (!$find_model_size) {
                     return response()->json(['model_found' => 'Model not found']);
                 }
             }
-//            dump($size_table);
-//            dump($material_table);
             $product->size_type = $size_table;
             $product->material_type = $material_table;
         }
-
-//        if (isset($request->size)) {
-//            $size_length = count($request->size);
-//
-//
-//            if ($size_length > 1) {
-//                return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
-//
-//            } else {
-//                foreach ($request->size as $key => $value) {
-//                    $size_table = strtolower($key);
-//                    $find_model_size = $this->getModels($path, $key);
-//                    if (!$find_model_size) {
-//                        return response()->json(['model_found' => 'Model not found']);
-//                    }
-//                    foreach ($value as $el) {
-//                        array_push($sizes, $el);
-//
-//                    }
-//
-//                }
-//
-//            }
-//            $product->size_type = $size_table;
-//        }
-//        if (isset($request->material)) {
-//            $material_length = count($request->material);
-//            if ($material_length > 1) {
-//
-//                return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
-//            } else {
-//
-//                foreach ($request->material as $key => $value) {
-//                    $material_table = strtolower($key);
-//                    $find_model_material = $this->getModels($path, $key);
-//                    if (!$find_model_material) {
-//                        return response()->json(['model_found' => 'Model not found']);
-//                    }
-//                    foreach ($value as $el) {
-//
-//                        array_push($materials, $el);
-//
-//                    }
-//
-//                }
-//
-//            }
-//            $product->material_type = $material_table;
-//        }
-
 
         $product->name_am = $request->name_am;
         $product->name_ru = $request->name_ru;
@@ -193,7 +134,6 @@ class ProductController extends Controller
         $product->detail_am = $request->detail_am;
         $product->detail_ru = $request->detail_ru;
         $product->detail_en = $request->detail_en;
-//        $product->sub_cat = $request->type;
         $product->total_count = $request->count;
         $product->price = $request->price;
         $product->gender_id = $request->gender;
@@ -214,71 +154,33 @@ class ProductController extends Controller
             ]);
 
         }
-        foreach ($request->options as $opt)
-        {
-            foreach ($opt as $k => $v)
-            {
-                if ($v == "undefined")
-                {
-                    $v = null;
+        if (isset($request->options)) {
+            foreach ($request->options as $opt) {
+                foreach ($opt as $k => $v) {
+                    if ($v == "undefined") {
+
+                        $opt[$k] = null;
+
+                    }
+
                 }
 
+                DB::table('products_options')->insert([
+                    'product_id' => $product->id,
+                    'size' => $opt['size'],
+                    'material' => $opt['material'],
+                    'color' => $opt['color'],
+                    'quantity' => $opt['quantity'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+
+                ]);
+
             }
-            DB::table('products_options')->insert([
-                'product_id' => $product->id,
-                'size' => $opt['size'],
-                'material' => $opt['material'],
-                'color' => $opt['color'],
-                'quantity' => $opt['quantity'],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-
-            ]);
-
         }
-//        if (!empty($sizes)) {
-//            foreach ($sizes as $s) {
-//
-//                DB::table('products_' . $size_table)->insert([
-//                    'product_id' => $product->id,
-//                    'size_id' => $s,
-//                    'created_at' => Carbon::now(),
-//                    'updated_at' => Carbon::now(),
-//
-//
-//                ]);
-//
-//            }
-//
-//        }
-
-//        if (!empty($materials)) {
-//            foreach ($materials as $m) {
-//
-//                DB::table('products_' . $material_table)->insert([
-//                    'product_id' => $product->id,
-//                    'materials_id' => $m,
-//
-//                ]);
-//
-//            }
-//        }
-//        if (!empty($colors)) {
-//            foreach ($colors as $c) {
-//
-//                DB::table('products_colors')->insert([
-//                    'product_id' => $product->id,
-//                    'color_id' => $c,
-//
-//                ]);
-//
-//            }
-//        }
-//        @dd($product->id);
 
         $product_images = $request->input('files');
         $product_capital = $request->input('files_capital');
-        // dump($product_capital[0]);
         $img_c = str_replace('data:image/png;base64,', '', $product_capital[0]);
         $img_c = str_replace(' ', '+', $img_c);
         $imageName_c = uniqid() . '.' . 'png';
@@ -305,7 +207,6 @@ class ProductController extends Controller
 
 
             }
-
 
         }
 
@@ -351,11 +252,9 @@ class ProductController extends Controller
 
         //   dd($request->all());
         $validator = Validator::make($request->all(), [
-            'quantity' => 'required|numeric',
             'status' => 'required|numeric',
             'price' => 'required|numeric',
             'percent' => 'nullable|numeric',
-
         ]);
 
         if ($validator->fails()) {
@@ -377,7 +276,6 @@ class ProductController extends Controller
         }
         if (isset($request->product_id)) {
             $product = Product::find($request->product_id);
-            $product->quantity = $request->input('quantity');
             $product->status = $request->status;
             $product->price = $request->price;
             $product->percent = $request->percent;
@@ -415,8 +313,7 @@ class ProductController extends Controller
     public
     function edit_morepost(Request $request)
     {
-
-
+//       dd($request->all());
         $validator = Validator::make($request->all(), [
             'name_en' => 'required|max:255',
             'name_ru' => 'required|max:255',
@@ -427,7 +324,7 @@ class ProductController extends Controller
             'detail_en' => 'required|min:6|max:255',
             'detail_ru' => 'required|min:6|max:255',
             'detail_am' => 'required|min:6|max:255',
-            'type' => 'required',
+            'type.*' => 'required|sometimes',
             'count' => 'required|numeric',
             'price' => 'required|numeric',
             'percent' => 'nullable|numeric',
@@ -476,68 +373,53 @@ class ProductController extends Controller
 
         $product_id = $request->product_id;
         $product = Product::find($product_id);
-        $sizes = [];
-        $materials = [];
-        $colors = [];
 
-        if (isset($request->color)) {
-            foreach ($request->color as $color) {
-                array_push($colors, $color);
-            }
-        }
         $path = app_path() . "/Models";
-        if (isset($request->size)) {
+        if (isset($request->options)) {
+            $arr_type_size = [];
+            $arr_type_material = [];
+            foreach ($request->options as $options) {
+                foreach ($options as $key => $value) {
+                    if ($key == "size_type" && $value != "undefined") {
+                        array_push($arr_type_size, $value);
+                        $unique_size_type = (count(array_unique($arr_type_size)) === 1);
+                        $size_table = strtolower($options['size_type']);
+                        $size_type = $options['size_type'];
+                    }
+                    if ($key == "material_type" && $value != "undefined") {
+                        array_push($arr_type_material, $value);
+                        $unique_material_type = (count(array_unique($arr_type_material)) === 1);
+                        $material_table = strtolower($options['material_type']);
+                        $material_type = $options['material_type'];
+                    }
 
-            $db_size_type = $product->size_type;
-            // dd($db_size_type);
-            $size_length = count($request->size);
+                }
 
 
-            if ($size_length > 1) {
+            }
+            if ($unique_size_type == false) {
                 return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
 
             } else {
-                foreach ($request->size as $key => $value) {
-                    $size_table = strtolower($key);
-                    $find_model_size = $this->getModels($path, $key);
-                    if (!$find_model_size) {
-                        return response()->json(['model_found' => 'Model not found']);
-                    }
-                    foreach ($value as $el) {
-                        array_push($sizes, $el);
 
-                    }
 
+                $find_model_size = $this->getModels($path, $size_type);
+                if (!$find_model_size) {
+                    return response()->json(['model_found' => 'Model not found']);
                 }
-
             }
-            $product->size_type = $size_table;
-        }
 
-        if (isset($request->material)) {
-
-            $db_material_type = $product->material_type;
-            $material_length = count($request->material);
-            if ($material_length > 1) {
-
+            if ($unique_material_type == false) {
                 return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
+
             } else {
 
-                foreach ($request->material as $key => $value) {
-                    $material_table = strtolower($key);
-                    $find_model_material = $this->getModels($path, $key);
-                    if (!$find_model_material) {
-                        return response()->json(['model_found' => 'Model not found']);
-                    }
-                    foreach ($value as $el) {
-
-                        array_push($materials, $el);
-
-                    }
-
+                $find_model_size = $this->getModels($path, $material_type);
+                if (!$find_model_size) {
+                    return response()->json(['model_found' => 'Model not found']);
                 }
-
             }
+            $product->size_type = $size_table;
             $product->material_type = $material_table;
         }
 
@@ -550,8 +432,7 @@ class ProductController extends Controller
         $product->detail_am = $request->detail_am;
         $product->detail_ru = $request->detail_ru;
         $product->detail_en = $request->detail_en;
-        $product->sub_cat = $request->type;
-        $product->quantity = $request->count;
+        $product->total_count = $request->count;
         $product->price = $request->price;
         $product->gender_id = $request->gender;
         $product->gift = $request->gift;
@@ -560,56 +441,44 @@ class ProductController extends Controller
         $product->store_id = $request->store_id;
         $product->user_id = Auth::user()->id;
         $product->save();
+        DB::table('products_sub_categories')->where('product_id', $product->id)->delete();
+        foreach ($request->type as $type) {
 
-        if (!empty($sizes)) {
-            if ($db_size_type != null) {
+            DB::table('products_sub_categories')->insert([
+                'product_id' => $product->id,
+                'type_id' => $type,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
 
-                DB::table('products_' . $db_size_type)->where('product_id', $product_id)->delete();
+            ]);
 
-            }
+        }
+        if (isset($request->options)) {
+            DB::table('products_options')->where('product_id', $product->id)->delete();
+            foreach ($request->options as $opt) {
 
-            foreach ($sizes as $s) {
+                foreach ($opt as $k => $v) {
+                    if ($v == "undefined") {
+                        $opt[$k] = null;
+                    }
 
-                DB::table('products_' . $size_table)->insert([
+                }
+                DB::table('products_options')->insert([
                     'product_id' => $product->id,
-                    'size_id' => $s,
+                    'size' => $opt['size'],
+                    'material' => $opt['material'],
+                    'color' => $opt['color'],
+                    'quantity' => $opt['quantity'],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
 
                 ]);
 
             }
-
+        } else {
+            DB::table('products_options')->where('product_id', $product->id)->delete();
         }
 
-        if (!empty($materials)) {
-
-            if ($db_material_type != null) {
-
-                DB::table('products_' . $db_material_type)->where('product_id', $product_id)->delete();
-            }
-
-            foreach ($materials as $m) {
-
-                DB::table('products_' . $material_table)->insert([
-                    'product_id' => $product->id,
-                    'materials_id' => $m,
-
-                ]);
-
-            }
-        }
-        if (!empty($colors)) {
-
-            DB::table('products_colors')->where('product_id', $product_id)->delete();
-            foreach ($colors as $c) {
-
-                DB::table('products_colors')->insert([
-                    'product_id' => $product->id,
-                    'color_id' => $c,
-
-                ]);
-
-            }
-        }
 
         $db_images = $product->product_images();
         $db_capital_image = $product->product_head_images();
