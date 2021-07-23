@@ -59,6 +59,10 @@
 	color: #fff;
 	background: #C4C4C4;
 }
+.account-section{
+
+    width: 100%;
+}
 .acount-type:focus{
 	outline: none;
 }

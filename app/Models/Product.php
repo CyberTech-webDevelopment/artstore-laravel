@@ -136,21 +136,16 @@ class Product extends Model
         }
 
     }
-    public function size_all_option()
-    {
-        return $this->hasManyThrough('product_options', 'Product', 'size', 'id');
-    }
+//    public function size_all_option()
+//    {
+//        return $this->hasManyThrough('product_options', 'Product', 'size', 'id');
+//    }
     public function product_sizes()
     {
         return $this->belongsToMany($this->setnNameForSizeRelation(), "products_options", 'product_id', 'size');
 
     }
 
-//    public function product_sizes()
-//    {
-//        return $this->belongsToMany($this->setnNameForSizeRelation(), "products_" . $this->size_type, 'product_id', 'size_id');
-//
-//    }
 
     public function setnNameForMaterialRelation()
     {
@@ -191,12 +186,6 @@ class Product extends Model
     {
         $discount = ($this->price * $this->percent) / 100;
         return $this->price - $discount;
-
-    }
-
-    public function product_sub_cat()
-    {
-        return Sub_categories::find($this->sub_cat);
 
     }
 

@@ -43,10 +43,31 @@ class Basket extends Model
         return $this->quantity * $price;
     }
 
-    public static function basket_product_count($product_id)
+    public static function get_added_option($option_id)
     {
-        $quantities = self::where('product_id', $product_id)->pluck('quantity')->toArray();
+        return Product_Options::find($option_id);
+
+    }
+    public static function basket_product_count($product_id,$product,$option_id)
+    {
+        if ($option_id != null && count($product->product_options) > 0){
+
+            foreach ($product->product_options as $options)
+            {
+                if ($options->id = $option_id)
+                {
+                    $quantities = self::where('product_id', $product_id)->where('options_id',$option_id)->pluck('quantity')->toArray();
+                }
+            }
+
+        }
+        else
+        {
+            $quantities = self::where('product_id', $product_id)->pluck('quantity')->toArray();
+        }
+
         $in_product_count = 0;
+//        dd(count($quantities));
         if (count($quantities) > 0) {
 
             foreach ($quantities as $q) {

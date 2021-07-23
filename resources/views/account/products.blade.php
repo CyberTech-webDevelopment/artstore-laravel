@@ -19,7 +19,7 @@
         <tr>
             <th scope="col"><input type="checkbox" class="all_del"></th>
             <th scope="col" class="">Product</th>
-            <th scope="col" class="text-center">Quantity</th>
+{{--            <th scope="col" class="text-center">Quantity</th>--}}
             <th scope="col" class="text-center">Status</th>
             <th scope="col" class="text-center pl-0 pr-0">Basic Price</th>
             <th scope="col" class="text-center">Sale</th>
@@ -49,15 +49,15 @@
                         </div>
                     </div>
                 </td>
-                <td class="text-strong">
-                    <div class="d-flex">
-                        <button class="minus_short" data-prodid="{{$elem['id']}}">-</button>
-                        <span class="pl-2 pr-2 quantity_short_edit">{{ $elem['quantity'] }}</span>
-                        <button class="plus_short" data-prodid="{{$elem['id']}}">+</button>
-                        <input type="hidden" name="count_short" value="{{ $elem['quantity'] }}"
-                               class="product_count_short_edit">
-                    </div>
-                </td>
+{{--                <td class="text-strong">--}}
+{{--                    <div class="d-flex">--}}
+{{--                        <button class="minus_short" data-prodid="{{$elem['id']}}">-</button>--}}
+{{--                        <span class="pl-2 pr-2 quantity_short_edit">{{ $elem['quantity'] }}</span>--}}
+{{--                        <button class="plus_short" data-prodid="{{$elem['id']}}">+</button>--}}
+{{--                        <input type="hidden" name="count_short" value="{{ $elem['quantity'] }}"--}}
+{{--                               class="product_count_short_edit">--}}
+{{--                    </div>--}}
+{{--                </td>--}}
                 <td class="text-center text-strong">
                     <button value="1" data-productid="product_{{$elem['id']}}"
                             @if($elem['status'] == 1) class="active-product active_variant text-strong" name="active"

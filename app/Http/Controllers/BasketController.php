@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -20,12 +21,11 @@ class BasketController extends Controller
 
     public function add_basket(Request $request)
     {
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'product_id' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'size' => 'nullable|numeric',
-            'material' => 'nullable|numeric',
-            'color' => 'nullable|numeric',
+            'option_id' => 'numeric|nullable',
+            'quantity' => 'required|numeric'
         ]);
 
         if ($validator->fails()) {
@@ -51,42 +51,45 @@ class BasketController extends Controller
 
         }
         if ($product != null) {
-            if ($request->size != null) {
-                $valid_sizes = $product->product_sizes->pluck('id')->toArray();
-                if (!in_array($request->size, $valid_sizes)) {
-                    return response()->json(['basket_error' => 'Invalid statements']);
+//            if ($request->size != null) {
+//                $valid_sizes = $product->product_sizes->pluck('id')->toArray();
+//                if (!in_array($request->size, $valid_sizes)) {
+//                    return response()->json(['basket_error' => 'Invalid statements']);
+//
+//                }
+//            }
 
-                }
-            }
-            if ($request->material != null) {
-                $valid_materials = $product->product_materials->pluck('id')->toArray();
-                if (!in_array($request->material, $valid_materials)) {
-                    return response()->json(['basket_error' => 'Invalid statements']);
-
-                }
-            }
-            if ($request->color != null) {
-                $valid_colors = $product->product_colors->pluck('id')->toArray();
-                if (!in_array($request->color, $valid_colors)) {
-                    return response()->json(['basket_error' => 'Invalid statements']);
-
-                }
-            }
-            $basket_contents_count = Basket::basket_product_count($request->product_id);
+            $basket_contents_count = Basket::basket_product_count($request->product_id, $product, $request->option_id);
             $basket_content = Basket::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)
-                ->where('size', $request->size)->where('material', $request->material)->where('color', $request->color)
-                ->first();
+                ->where('options_id', $request->option_id)->where('options_id','!=',null)->first();
+            $basket_content_without = Basket::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)
+                ->where('options_id', null)->first();
             $added_product = Product::find($request->product_id);
             if ($basket_contents_count != null) {
                 $general_count = $basket_contents_count + $request->quantity;
-                if ($general_count > $added_product->quantity) {
+                $added_option_in_basket_count = $added_product->total_count;
+                if (count($added_product->product_options) > 0) {
+                    $added_option_in_basket_count = Basket::get_added_option($request->option_id)->quantity;
+
+                }
+
+                if ($general_count > $added_option_in_basket_count) {
                     return response()->json(['basket_error' => 'The specified quantity is not available']);
                 } else {
+
                     if ($basket_content != null) {
                         $basket_content->quantity = $general_count;
                         $basket_content->save();
                         $basket_count = Basket::where('user_id', Auth::user()->id)->count();
                         return response()->json(['basket' => 'Product quantity successfuly changed', 'basket_count' => $basket_count]);
+                    }
+                    else
+                    {
+                        if($basket_content_without != null)
+                        {
+                            dd($basket_content_without);
+                            $basket_content_without->delete();
+                        }
                     }
 
                 }
@@ -96,12 +99,12 @@ class BasketController extends Controller
                 'product_id' => $request->product_id,
                 'store_id' => $product->product_store->id,
                 'user_id' => Auth::user()->id,
+                'options_id' => $request->option_id,
                 'quantity' => $request->quantity,
-                'size' => $request->size,
-                'material' => $request->material,
-                'color' => $request->color,
-
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
             ]);
+
             $basket_count = Basket::where('user_id', Auth::user()->id)->count();
             return response()->json(['basket' => 'Product successfuly added', 'basket_count' => $basket_count]);
         } else {
