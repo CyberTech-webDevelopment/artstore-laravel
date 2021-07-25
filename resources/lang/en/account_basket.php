@@ -12,7 +12,8 @@ return [
                 'ogut' => 'Ogut',
                 'shipping' => 'Shipping',
                 'how_pay' => 'How you’ll pay',
-                'porceed_checkout' => 'Porceed to Checkout'
+                'porceed_checkout' => 'Porceed to Checkout',
+                'options' => 'Properties',
     ]
 ];
 

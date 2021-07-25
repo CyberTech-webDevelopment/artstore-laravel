@@ -68,9 +68,9 @@
                                     @foreach($cur_product->product_options as $option)
                                         <option value="{{ $option->id }}"
                                                 data-cur-count="{{$option->quantity}}"
-                                                class="cur_product_options">{{ $option->size_option->size }}
-                                            /{{ $option->material_option['material_'.app()->getLocale()] }}
-                                            /{{ $option->color_option['color_name_'.app()->getLocale()] }}</option>
+                                                class="cur_product_options">@if($option->size_option != null){{ $option->size_option->size }}
+                                            /@endif @if($option->material_option != null){{ $option->material_option['material_'.app()->getLocale()] }}
+                                            /@endif @if($option->color_option != null){{ $option->color_option['color_name_'.app()->getLocale()] }} @endif</option>
                                     @endforeach
                                 </select>
                             </div>

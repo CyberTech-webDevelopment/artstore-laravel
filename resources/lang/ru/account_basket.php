@@ -12,7 +12,8 @@ return [
         'ogut' => 'Расход',
         'shipping' => 'Доставка',
         'how_pay' => 'Как вы будете платить',
-        'porcend_checkout' => 'Принято к оплате'
+        'porcend_checkout' => 'Принято к оплате',
+        'options' => 'Характеристики',
     ]
 ];
 

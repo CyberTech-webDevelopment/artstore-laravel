@@ -9,19 +9,21 @@
             <th scope="col">@lang('account_basket.basket.status')</th>
             <th scope="col">@lang('account_basket.basket.price')</th>
             <th scope="col">@lang('account_basket.basket.total')</th>
+            <th scope="col">@lang('account_basket.basket.options')</th>
             <th scope="col">@lang('account_basket.basket.edit')</th>
 
         </tr>
         </thead>
 
         <tbody>
-     <div class="row justify-content-center">
-         <p class="font-weight-bold text-danger" id="basket_action_message"></p>
-     </div>
+        <div class="row justify-content-center">
+            <p class="font-weight-bold text-danger" id="basket_action_message"></p>
+        </div>
 
         @foreach ($store_basket as $elem)
-            {{--        @dd($elem->basket_product($elem->product_id)->name_am)--}}
+            {{--                    @dump($elem);--}}
             <tr>
+
                 <th scope="row"><input type="checkbox" value="{{ $elem->id }}" name=""></th>
                 <td class="d-flex flex-nowrap ">
                     <div class="product-img"><img
@@ -45,13 +47,26 @@
                 @if($elem->basket_product($elem->product_id)->percent != null)
                     <td class="text-success text-strong">Available</td>
                     <td class="text-strong">{{ $elem->basket_product($elem->product_id)->discounted_price() }}</td>
-                    <td class="text-strong">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->discounted_price()) }}</td>
+                    <td class="text-strong total_price">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->discounted_price()) }}</td>
                 @else
                     <td class="text-danger text-strong">Not Available</td>
                     <td class="text-strong">{{ $elem->basket_product($elem->product_id)->price }}</td>
-                    <td class="text-strong">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->price) }}</td>
+                    <td class="text-strong total_price">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->price) }}</td>
                 @endif
+                <td>
+{{--                                        @dd($elem)--}}
+                    @if($elem->options_id != null)
+                    <select disabled class="current_basket_option">
+                        <option value="{{ $elem->product_basket_option()->id }}"
+                                class="cur_basket_option">@if($elem->product_basket_options()['size'] != null){{ $elem->product_basket_options()['size'] }}
+                            /@endif @if($elem->product_basket_options()['material'] != null){{ $elem->product_basket_options()['material'] }}
+                            /@endif @if($elem->product_basket_options()['color'] != null){{ $elem->product_basket_options()['color'] }} @endif
+                        </option>
 
+                    </select>
+                    @endif
+
+                </td>
                 <td>
                     <div class="dropdown">
                         <button class="dropdown-toggle" id="action_cart" type="button" data-toggle="dropdown">
@@ -60,10 +75,10 @@
                         <ul class="dropdown-menu" id="basket_action">
 
                             <li class="edit_basket" data-route-id="{{ route('edit.basket',app()->getLocale()) }}"
-                                value="{{ $elem->id }}"><a>Edit</a>
+                                value="{{ $elem->id }}" data-option-id="{{ $elem->options_id }}"><a>Edit</a>
                             </li>
                             <li class="delete_basket" data-route-id="{{ route('delete.basket', app()->getLocale()) }}"
-                                value="{{ $elem->id }}"><a>Delete</a>
+                                value="{{ $elem->id }}" data-option-id="{{ $elem->options_id }}"><a>Delete</a>
                             </li>
 
                         </ul>
@@ -80,43 +95,9 @@
     </table>
 
     {{ $store_basket->links('vendor.pagination.pagination-basket') }}
-    <div class="total-cont d-flex justify-content-between">
-        <div></div>
-        <div class="col-5 d-flex flex-wrap justify-content-end">
-            <div class="flex-wrap col-7 mr-0  ">
-                <div class="d-flex justify-content-between">
-                    <span>@lang('account_basket.basket.total_price'):</span>
-                    <span>$140</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span>@lang('account_basket.basket.ogut'):</span>
-                    <span>$140</span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <span>@lang('account_basket.basket.shipping'):</span>
-                    <span>$20</span>
-                </div>
-            </div>
-            <div class="col-12 d-flex flex-wrap justify-content-end mt-3">
-                <div class="d-flex justify-content-between">
-                    <span>@lang('account_basket.basket.how_pay')</span>
-                    <button id="select-pay" class="btn dropdown-toggle pt-0 ml-2" type="button"
-                            data-toggle="dropdown"
-                            aria-haspopup="true" aria-expanded="false"></button>
-                    <div class="dropdown-menu">
-                        <div class="pl-2"><input type="radio" name="card"><label class="pl-2">Credit Card</label>
-                        </div>
-                        <div class="pl-2"><input type="radio" name="card"><label class="pl-2">Cash</label></div>
-                        <div class="pl-2"><input type="radio" name="card"><label class="pl-2">PayPal</label></div>
-                        <div class="pl-2"><input type="radio" name="card"><label class="pl-2">IDram</label></div>
-                    </div>
-                </div>
-                <div class="mt-3 justify-content-end ml-0 mb-4">
-                    <button class="p-checkout">@lang('account_basket.basket.porcend_checkout')</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    @include("basket-order-info")
+
+
 @endif
 
 {{--    </div>--}}

@@ -24,6 +24,22 @@ class Basket extends Model
 
     }
 
+    //voroshel arka producti opcia uni ete opciai ete che @ndhanur qanak@
+     public static function basket_product_original_count($product,$option_id)
+     {
+         $product_count = 0;
+         if (count($product->product_options) > 0)
+         {
+             $product_count = Product_Options::find($option_id);
+             $product_count = $product_count->quantity;
+
+         }
+         else
+         {
+             $product_count = $product->total_count;
+         }
+         return $product_count;
+     }
     public static function user_basket_stores()
     {
         $stores_ids = self::where('user_id', Auth::user()->id)->pluck('store_id')->toArray();
@@ -48,22 +64,26 @@ class Basket extends Model
         return Product_Options::find($option_id);
 
     }
-    public static function basket_product_count($product_id,$product,$option_id)
-    {
-        if ($option_id != null && count($product->product_options) > 0){
 
-            foreach ($product->product_options as $options)
-            {
-                if ($options->id = $option_id)
-                {
-                    $quantities = self::where('product_id', $product_id)->where('options_id',$option_id)->pluck('quantity')->toArray();
+    public static function basket_product_count($product_id, $product, $option_id)
+    {
+        if ($option_id != null && count($product->product_options) > 0) {
+
+            foreach ($product->product_options as $options) {
+
+                if ($options->id = $option_id) {
+                    $quantities = self::where('product_id', $product_id)->where('options_id', $option_id)->pluck('quantity')->toArray();
+                    break;
+                } else {
+
+                    return false;
                 }
             }
 
-        }
-        else
-        {
+        } else {
+
             $quantities = self::where('product_id', $product_id)->pluck('quantity')->toArray();
+
         }
 
         $in_product_count = 0;
@@ -76,8 +96,42 @@ class Basket extends Model
             }
 
         }
+
         return $in_product_count;
 
+    }
+
+    public function product_basket_option()
+    {
+        return Product_Options::find($this->options_id);
+    }
+
+    public function product_basket_options()
+    {
+
+        $this_option = [
+            'size' => null,
+            'material' => null,
+            'color' => null,
+        ];
+        $options = Product_Options::find($this->options_id);
+        if ($options->size_option != null) {
+
+            $this_option['size'] = $options->size_option['size'];
+
+        }
+        if ($options->material_option != null) {
+
+            $this_option['material'] = $options->material_option['material_' . app()->getLocale()];
+
+        }
+
+        if ($options->color_option != null) {
+
+            $this_option['color'] = $options->color_option['color_name_' . app()->getLocale()];
+
+        }
+        return $this_option;
     }
 
 }

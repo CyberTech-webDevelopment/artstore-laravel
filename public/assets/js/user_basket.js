@@ -140,7 +140,9 @@ $(document).ready(function () {
     $(document).on('click', '.edit_basket, .delete_basket', function () {
 
         let basket_id = $(this).val();
+        let option_id = $(this).data('option-id');
         let url = $(this).data('route-id');
+        let elem = $(this);
         if ($(this).hasClass('edit_basket')) {
 
             let quantity = $('#product_count_basket').val();
@@ -150,6 +152,7 @@ $(document).ready(function () {
                 headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
                 data: {
                     basket_id: basket_id,
+                    option_id: option_id,
                     quantity: quantity,
                 },
                 dataType: 'json',
@@ -160,14 +163,22 @@ $(document).ready(function () {
                         $('#basket_action_message').removeClass('text-success');
                         $('#basket_action_message').addClass('text-danger');
                         $('#basket_action_message').html(res.edit_basket_error);
-                        $('#product_count_basket').parent().find('.quantity').text(res.quantity);
+                        elem.closest("td").parent().find('.quantity').text(res.quantity);
 
                     }
                     if (res.success_edit) {
                         $('#basket_action_message').removeClass('text-danger');
                         $('#basket_action_message').addClass('text-success');
                         $('#basket_action_message').html(res.success_edit);
+                        // console.log($('#product_count_basket').parent().parent().find('.total_price'))
+                        // $('#product_count_basket').parent().find('.total_price').html('')
+                        // $('#product_count_basket').parent().find('.total_price').html(res.total_price);
+                        // elem.closest("td").parent().find('.total_price').html(res.total_price);
+                        // location.reload();
+                        setTimeout(function () {
+                            store_basket(localStorage.getItem('store_id'), localStorage.getItem('url'), localStorage.getItem('page_basket'));
 
+                        }, 1500);
                     }
                     setTimeout(function () {
                         $('#basket_action_message').empty();
