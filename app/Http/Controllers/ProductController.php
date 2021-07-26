@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Basket;
 use App\Models\Product;
 use App\Models\Sub_categories;
 use App\Models\Sub_menu;
@@ -401,8 +402,6 @@ class ProductController extends Controller
                 return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
 
             } else {
-
-
                 $find_model_size = $this->getModels($path, $size_type);
                 if (!$find_model_size) {
                     return response()->json(['model_found' => 'Model not found']);
@@ -413,7 +412,6 @@ class ProductController extends Controller
                 return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
 
             } else {
-
                 $find_model_size = $this->getModels($path, $material_type);
                 if (!$find_model_size) {
                     return response()->json(['model_found' => 'Model not found']);
@@ -558,7 +556,7 @@ class ProductController extends Controller
 
             }
         }
-
+        Basket::where('product_id', $product->id)->delete();
 
         return response()->json(['ok']);
 
