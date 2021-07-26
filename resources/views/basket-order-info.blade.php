@@ -1,4 +1,4 @@
-<div class="total-cont d-flex justify-content-between">
+{{--<div class="total-cont d-flex justify-content-between">--}}
     <div></div>
     <div class="col-5 d-flex flex-wrap justify-content-end">
         <div class="flex-wrap col-7 mr-0  ">
@@ -30,8 +30,8 @@
                 </div>
             </div>
             <div class="mt-3 justify-content-end ml-0 mb-4">
-                <button class="p-checkout">@lang('account_basket.basket.porcend_checkout')</button>
+                <button class="p-checkout" data-current-store="{{ $store_id }}">@lang('account_basket.basket.porcend_checkout')</button>
             </div>
         </div>
     </div>
-</div>
+{{--</div>--}}

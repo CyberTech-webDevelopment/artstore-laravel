@@ -46,20 +46,11 @@ class BasketController extends Controller
         }
 
         $product = Product::find($request->product_id);
-//        if (count($product->product_options) > 0 && $request->option_id == null )
         if ($product->product_store->user_id == Auth::user()->id) {
             return response()->json(['basket_error' => 'The product belongs to your store']);
 
         }
         if ($product != null) {
-//            if ($request->size != null) {
-//                $valid_sizes = $product->product_sizes->pluck('id')->toArray();
-//                if (!in_array($request->size, $valid_sizes)) {
-//                    return response()->json(['basket_error' => 'Invalid statements']);
-//
-//                }
-//            }
-
             $basket_contents_count = Basket::basket_product_count($request->product_id, $product, $request->option_id);
             $basket_content = Basket::where('product_id', $request->product_id)->where('user_id', Auth::user()->id)
                 ->where('options_id', $request->option_id)->where('options_id', '!=', null)->first();
@@ -122,29 +113,49 @@ class BasketController extends Controller
     public function single_store_products(Request $request)
     {
         $store_id = $request->store_id;
-        $store_basket = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->paginate(2);
+        $store_basket_all = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->get();
+        $store_basket = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->paginate(1);
         $basket_order_cost = 0;
-        foreach ($store_basket as $b)
-         {
+        foreach ($store_basket_all as $b) {
 
-            if ($b->basket_product($b->product_id)->percent != null)
-            {
+            if ($b->basket_product($b->product_id)->percent != null) {
                 $basket_order_cost += $b->product_total_price($b->basket_product($b->product_id)->discounted_price());
-            }
-            else
-            {
+            } else {
                 $basket_order_cost += $b->product_total_price($b->basket_product($b->product_id)->price);
             }
 
-         }
-        //        $store_basket->setPath('/singlestore');
-//                     dd($basket_order_cost);
+        }
         return response()
             ->json([
-                'view' => view('site-basket', compact('store_basket','basket_order_cost'))->render(),
+                'view' => view('site-basket', compact('store_basket', 'basket_order_cost','store_id'))->render(),
                 'store_basket' => $store_basket,
                 'basket_order_cost' => $basket_order_cost,
+                'store_id' => $store_id,
             ]);
+
+    }
+
+    public function single_store_checkeds(Request $request)
+    {
+//        dd($request->all());
+        $store_id = $request->store_id;
+        $store_basket_checkeds = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->whereIn('id', $request->checked)->get();
+        $basket_order_cost = 0;
+        foreach ($store_basket_checkeds as $b) {
+            if ($b->basket_product($b->product_id)->percent != null) {
+                $basket_order_cost += $b->product_total_price($b->basket_product($b->product_id)->discounted_price());
+            } else {
+                $basket_order_cost += $b->product_total_price($b->basket_product($b->product_id)->price);
+            }
+
+        }
+        return response()
+            ->json([
+                'view' => view('basket-order-info', compact('basket_order_cost','store_id'))->render(),
+                'basket_order_cost' => $basket_order_cost,
+                'store_id' => $store_id,
+            ]);
+//        dd($store_basket_checkeds);
 
     }
 
@@ -162,16 +173,13 @@ class BasketController extends Controller
                     return response()->json(['edit_basket_error' => 'The specified quantity is not available', 'quantity' => $basket_product->quantity]);
                 } else {
                     $basket_product->quantity = $request->quantity;
-                    if ($product->percent != null)
-                    {
+                    if ($product->percent != null) {
                         $edited_total_price = $request->quantity * $product->discounted_price();
-                    }
-                    else
-                    {
+                    } else {
                         $edited_total_price = $request->quantity * $product->price;
                     }
                     $basket_product->save();
-                    return response()->json(['success_edit' => 'Product is changed successfuly','total_price' => $edited_total_price]);
+                    return response()->json(['success_edit' => 'Product is changed successfuly', 'total_price' => $edited_total_price]);
                 }
 
             } else {

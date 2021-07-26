@@ -24,7 +24,8 @@
             {{--                    @dump($elem);--}}
             <tr>
 
-                <th scope="row"><input type="checkbox" value="{{ $elem->id }}" name=""></th>
+                <th scope="row"><input type="checkbox" class="select_basket_product"
+                                       data-store-id="{{ $elem->store_id }}" value="{{ $elem->id }}" name=""></th>
                 <td class="d-flex flex-nowrap ">
                     <div class="product-img"><img
                             src="/storage/product/{{$elem->basket_product($elem->product_id)->product_head_images()}}">
@@ -54,16 +55,16 @@
                     <td class="text-strong total_price">{{ $elem->product_total_price($elem->basket_product($elem->product_id)->price) }}</td>
                 @endif
                 <td>
-{{--                                        @dd($elem)--}}
+                    {{--                                        @dd($elem)--}}
                     @if($elem->options_id != null)
-                    <select disabled class="current_basket_option">
-                        <option value="{{ $elem->product_basket_option()->id }}"
-                                class="cur_basket_option">@if($elem->product_basket_options()['size'] != null){{ $elem->product_basket_options()['size'] }}
-                            /@endif @if($elem->product_basket_options()['material'] != null){{ $elem->product_basket_options()['material'] }}
-                            /@endif @if($elem->product_basket_options()['color'] != null){{ $elem->product_basket_options()['color'] }} @endif
-                        </option>
+                        <select disabled class="current_basket_option">
+                            <option value="{{ $elem->product_basket_option()->id }}"
+                                    class="cur_basket_option">@if($elem->product_basket_options()['size'] != null){{ $elem->product_basket_options()['size'] }}
+                                /@endif @if($elem->product_basket_options()['material'] != null){{ $elem->product_basket_options()['material'] }}
+                                /@endif @if($elem->product_basket_options()['color'] != null){{ $elem->product_basket_options()['color'] }} @endif
+                            </option>
 
-                    </select>
+                        </select>
                     @endif
 
                 </td>
@@ -95,8 +96,9 @@
     </table>
 
     {{ $store_basket->links('vendor.pagination.pagination-basket') }}
-    @include("basket-order-info")
-
+    <div class="total-cont d-flex justify-content-between">
+        @include("basket-order-info")
+    </div>
 
 @endif
 
