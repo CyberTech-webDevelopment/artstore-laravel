@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use App\Models\Basket;
 use App\Models\Product_Options;
 use App\Models\Shop;
+use App\Notifications\OrderNotification;
+use App\Events\Ordered;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
+    use Notifiable;
     public function __construct()
     {
         $this->middleware('auth');
@@ -21,6 +25,8 @@ class OrderController extends Controller
 //        dd($request->all());
         $store = Shop::find($request->store_id);
         if ($store != null) {
+            $sending_user = $store->shops_author;
+//            dd($sending_user);
             if ($request->has('checkeds')) {
 
                 $ordered = Basket::whereIn('id', $request->checkeds)->where('user_id', Auth::user()->id)
@@ -44,6 +50,11 @@ class OrderController extends Controller
 
 
                 }
+//                dd($order->basket_product($order->product_id));
+                $order_notify = [
+                    'name'=> $order->basket_product($order->product_id)['name_am'],
+                    'quantity'=> $order->quantity,
+                ];
                 Basket::destroy($order->id);
                 DB::table('orders')->insert([
                     'product_id' => $order->product_id,
@@ -55,6 +66,9 @@ class OrderController extends Controller
                     'updated_at' => Carbon::now(),
                 ]);
             }
+//dd($order_notify);
+//            $sending_user->notify(new Ordernotification($order_notify,$sending_user->id));
+            event(new Ordered($order_notify,$sending_user->id));
             return response()->json(['success_order'=>'Product(s) is ordered successfully']);
 
         } else {

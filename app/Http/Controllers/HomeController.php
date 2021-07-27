@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Users;
+use App\Events\OrderEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 
@@ -38,6 +39,8 @@ class HomeController extends Controller
 
             $new_arrivals = Product::where('status',1)->orderBy('created_at', 'desc')->take(4)->get();
         }
+
+//        event(new OrderEvent('alooo notify'));
         return view('index',compact('new_arrivals','stores'));
 
     }

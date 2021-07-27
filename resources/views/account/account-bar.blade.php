@@ -78,12 +78,7 @@
                 <div class="font-size-16"><img src="{{asset('assets/icons/messages.png')}}">
                     <span class="pl-2">@lang('account_bar.bar.messages')</span></div>
                 <span class="new-int">14</span></a>
-            <a class="nav-link d-flex justify-content-between acount-bar-item acount-bar-type-item" data-type="byer"
-               data-name="last-views" id="v-pills-last-views-tab" data-toggle="pill" href="#v-pills-last-views"
-               role="tab" aria-controls="v-pills-last-views" aria-selected="false">
-                <div class="font-size-16"><img src="{{asset('assets/icons/last-views.png')}}">
-                    <span class="pl-2">@lang('account_bar.bar.last_views')</span></div>
-            </a>
+
             <a class="nav-link d-flex justify-content-between acount-bar-item acount-bar-type-item" data-type="byer"
                data-name="purchase" id="v-pills-purchases-tab" data-toggle="pill" href="#v-pills-purchases" role="tab"
                aria-controls="v-pills-purchase" aria-selected="false">
@@ -108,6 +103,12 @@
                role="tab" aria-controls="v-pills-seller-settings" aria-selected="false">
                 <div class="font-size-16"><img src="{{asset('assets/icons/settings.png')}}">
                     <span class="pl-2">@lang('account_bar.bar.account_settings')</span></div>
+            </a>
+            <a class="nav-link d-flex justify-content-between acount-bar-item acount-bar-type-item" data-type="seller"
+               data-name="last-views" id="v-pills-last-views-tab" data-toggle="pill" href="#v-pills-last-views"
+               role="tab" aria-controls="v-pills-last-views" aria-selected="false">
+                <div class="font-size-16"><img src="{{asset('assets/icons/last-views.png')}}">
+                    <span class="pl-2">@lang('account_bar.bar.last_views')</span></div>
             </a>
             <a class="nav-link d-flex justify-content-between acount-bar-item" data-name="wallet"
                id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab"
