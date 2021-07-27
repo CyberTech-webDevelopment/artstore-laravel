@@ -30,10 +30,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-
         $all_sizes = [];
         $all_materials = [];
-
         $array_models = ['App\Models\Cloths_sizes', 'App\Models\Gloves_sizes', 'App\Models\Ring_sizes', 'App\Models\Shoes_sizes'];
         $array_models_material = ['App\Models\Bag_materials', 'App\Models\Cloth_materials', 'App\Models\Decoration_materials', 'App\Models\Photo_materials', 'App\Models\Sculpture_materials', 'App\Models\Shoes_materials',];
         foreach ($array_models as $model) {
@@ -41,19 +39,14 @@ class AppServiceProvider extends ServiceProvider
             $model_key = explode("\\", $model);
 
             $all_sizes[$model_key[2]] = $size;
-
         }
         foreach ($array_models_material as $m) {
             $material = $m::all();
             $m_key = explode("\\", $m);
 
             $all_materials[$m_key[2]] = $material;
-
         }
-
-
         $menu = Menu::all();
-//        $sub_menus = Sub_menu::all();
         $all_colors = Colors::all();
         $genders = Gender::all();
 

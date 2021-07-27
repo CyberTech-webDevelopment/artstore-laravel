@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Shop;
 use App\Models\Users;
+use App\Events\OrderEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\App;
@@ -14,6 +15,7 @@ class IndexController extends Controller
 {
     public function index(Request $request)
     {
+
         if ($request->has('code')) {
 
             $verification_code = $request->get('code');
@@ -56,6 +58,7 @@ class IndexController extends Controller
 
             $new_arrivals = Product::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
         }
+
         return view('index', compact('new_arrivals', 'stores'));
 
     }

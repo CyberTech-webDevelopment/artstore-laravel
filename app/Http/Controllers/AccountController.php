@@ -4,11 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Users;
+use App\Notifications\OrderNotification;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
 {
+
     /**
      * Create a new controller instance.
      *
@@ -37,7 +40,19 @@ class AccountController extends Controller
         }
         $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(2);
         // dd($products[0]->product_sizes);
-        return view('account.account',compact('products'));
+        $notifications = auth()->user()->unreadNotifications;
+        return view('account.account',compact('products','notifications'));
 
+    }
+    public function markNotification(Request $request)
+    {
+        auth()->user()
+            ->unreadNotifications
+            ->when($request->input('id'), function ($query) use ($request) {
+                return $query->where('id', $request->input('id'));
+            })
+            ->markAsRead();
+
+        return response()->noContent();
     }
 }

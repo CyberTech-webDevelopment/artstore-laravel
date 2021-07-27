@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/', function () {
+
     return redirect(app()->getLocale());
 });
 Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'middleware' => 'setLocale'], function () {
@@ -50,17 +51,20 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::post('/delete-current', [App\Http\Controllers\ProductController::class, 'delete_current'])->name('delete.current');
     Route::post('/change-data', [App\Http\Controllers\UserController::class, 'change_data'])->name('change.data');
     Route::get('/delete-avatar', [App\Http\Controllers\UserController::class, 'delete_avatar'])->name('delete.avatar');
-    Route::get('/basket', [App\Http\Controllers\BasketController::class, 'index'])->name('basket');
-    Route::post('/addbasket', [App\Http\Controllers\BasketController::class, 'add_basket'])->name('add.basket');
-    Route::post('/singlestore', [App\Http\Controllers\BasketController::class, 'single_store_products'])->name('basket.single.store');
-    Route::post('/checked-store', [App\Http\Controllers\BasketController::class, 'single_store_checkeds'])->name('basket.checkeds.product');
-    Route::post('/delete-basket', [App\Http\Controllers\BasketController::class, 'delete_basket'])->name('delete.basket');
-    Route::post('/edit-basket', [App\Http\Controllers\BasketController::class, 'edit_basket'])->name('edit.basket');
-    Route::post('/order', [App\Http\Controllers\OrderController::class, 'add_order'])->name('add.order');
+    Route::group(['middleware' => 'auth'], function () {
+
+        Route::get('/basket', [App\Http\Controllers\BasketController::class, 'index'])->name('basket');
+        Route::post('/addbasket', [App\Http\Controllers\BasketController::class, 'add_basket'])->name('add.basket');
+        Route::post('/singlestore', [App\Http\Controllers\BasketController::class, 'single_store_products'])->name('basket.single.store');
+        Route::post('/checked-store', [App\Http\Controllers\BasketController::class, 'single_store_checkeds'])->name('basket.checkeds.product');
+        Route::post('/delete-basket', [App\Http\Controllers\BasketController::class, 'delete_basket'])->name('delete.basket');
+        Route::post('/edit-basket', [App\Http\Controllers\BasketController::class, 'edit_basket'])->name('edit.basket');
+        Route::post('/order', [App\Http\Controllers\OrderController::class, 'add_order'])->name('add.order');
+        Route::post('/mark-as-read', [App\Http\Controllers\AccountController::class, 'markNotification'])->name('markNotification');
+    });
+
     Route::get('/add-categories-section', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');
     Route::get('/add-options-section', [App\Http\Controllers\ProductController::class, 'add_options_section'])->name('add_option.section');
-
-
 
 
 });
