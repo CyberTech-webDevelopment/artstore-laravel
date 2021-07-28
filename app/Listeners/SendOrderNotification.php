@@ -28,8 +28,9 @@ class SendOrderNotification
      */
     public function handle($event)
     {
-        $sending_user = Users::find($event->sending_user_id);
-        $sending_user->notify(new OrderNotification($event->order,$event->sending_user_id));
+        return $event;
+//        $sending_user = Users::find($event->sending_user_id);
+//        $sending_user->notify(new OrderNotification($event->order,$event->sending_user_id));
 //        Notification::send($sending_user,new OrderNotification($event->order,$event->sending_user_id));
     }
 }

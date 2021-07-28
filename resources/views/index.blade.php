@@ -21,13 +21,7 @@
 @endsection
 
 @section('scripts')
-    <script>
 
-        // window.Echo.channel('order-channel')
-        //     .listen('.ordered', (e) => {
-        //         console.log(e.order);
-        //     });
-    </script>
 
     <!--====== Index Scripts ======-->
     <script src="{{asset('assets\js\carusel\owl.carousel.min.js')}}"></script>

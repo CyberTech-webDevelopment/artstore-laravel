@@ -58,7 +58,7 @@ class IndexController extends Controller
 
             $new_arrivals = Product::where('status', 1)->orderBy('created_at', 'desc')->take(4)->get();
         }
-
+//        event(new Ordered($order_notify,$sending_user->id));
         return view('index', compact('new_arrivals', 'stores'));
 
     }

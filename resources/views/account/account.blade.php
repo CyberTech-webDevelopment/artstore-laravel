@@ -129,19 +129,23 @@
 @section('scripts')
 
     <!--====== Account Scripts ======-->
+{{--    <script src="{{ asset('js/app.js') }}"></script>--}}
     <script src="{{asset('assets\js\account\basket.js')}}"></script>
     <script src="{{asset('assets\js\account\seller-setting.js')}}"></script>
 
     @if(Auth::check() && Auth::user()->shop == true)
         <script src="{{asset('assets\js\account\add-product.js')}}"></script>
+
     @endif
     @if(Auth::check() && Auth::user()->shop == false)
         <script src="{{asset('assets\js\account\account-welcome-seller.js')}}"></script>
+
     @endif
     <script src="{{asset('assets\js\account\account-settings-address.js')}}"></script>
     <script src="{{asset('assets\js\account\account-bar.js')}}"></script>
     <script src="{{asset('assets\js\account\account-product.js')}}"></script>
     <script src="{{asset('assets\js\account\account-user-settings.js')}}"></script>
+
     <script>
         $('.h5-click').click(function () {
             $('#store-style').toggleClass('hide-style')
@@ -157,10 +161,18 @@
         })
 
     </script>
+
+{{--    <script>--}}
+{{--        window.Echo.channel('order-channel')--}}
+{{--            .listen('.ordered', (e) => {--}}
+{{--                $('.order_count').text(e.order.quantity)--}}
+{{--                console.log(e.order);--}}
+{{--            });--}}
+{{--    </script>--}}
     <!-- -----------select with checkbox----------------- -->
 
     <script>
-        var options = [];
+        // var options = [];
 
         $('.dropdown-menu a').on('click', function (event) {
 
@@ -187,6 +199,7 @@
             return false;
         });
     </script>
+
     <script>
         function sendMarkRequest(id = null) {
             return $.ajax("{{ route('markNotification',app()->getLocale()) }}", {
@@ -213,3 +226,4 @@
         });
     </script>
 @endsection
+@stack('scripts_echo')
