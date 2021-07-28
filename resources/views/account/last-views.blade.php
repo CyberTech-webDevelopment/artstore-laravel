@@ -1,419 +1,406 @@
 <div class="container-fluid">
 
-{{--    <!-- ----------------row-------------bazayi jamanak grel ciklov----------------------------- -->--}}
-{{--    <div class="row pt-3 pr-0">--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1 ">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    notifies--}}
+    {{--    <!-- ----------------row-------------bazayi jamanak grel ciklov----------------------------- -->--}}
+    {{--    <div class="row pt-3 pr-0">--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1 ">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+    {{--    notifies--}}
 
-    <div class="row">
+    <div class="row notifications_row" id="notifications">
 
-        @forelse($notifications as $notification)
-            <div class="alert alert-success" role="alert">
-                [{{ $notification->created_at }}] User {{ $notification->data['name'] }} ({{ $notification->data['quantity'] }}) has just ordered.
-                <a href="#" class="float-right mark-as-read" data-id="{{ $notification->id }}">
-                    Mark as read
-                </a>
-            </div>
 
-            @if($loop->last)
-                <a href="#" id="mark-all">
-                    Mark all as read
-                </a>
-            @endif
-        @empty
-            There are no new notifications
-        @endforelse
+        {{--        @include('account.notifications-content');--}}
+
     </div>
-{{--    end notifies--}}
-    <!-- ------------------------------end row--------------------------------- -->
-{{--    <div class="row pt-3 pr-0 ">--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1 ">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--    <div class="row mt-3 pr-0 ">--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
-{{--            <div >--}}
-{{--                <div class="transparent-bg-div d-flex" >--}}
-{{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
-{{--                    <div class="icon-heart-red">--}}
-{{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
-{{--                    </div>--}}
-{{--                    <div class="hover-icons d-flex align-items-center">--}}
-{{--                        <div class="div-icons d-flex justify-content-center">--}}
-{{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
-{{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--                <div class="description">--}}
-{{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
-{{--                    <p class="mb-1">Product owner name</p>--}}
-{{--                    <div>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
-{{--                        <span>(48)</span>--}}
-{{--                    </div>--}}
-{{--                    <div class="d-flex justify-content-between mt-2">--}}
-{{--                        <div class="price">$120</div>--}}
-{{--                        <div class="add-cart mr-2">Add to cart</div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
+    {{--    end notifies--}}
+<!-- ------------------------------end row--------------------------------- -->
+    {{--    <div class="row pt-3 pr-0 ">--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1 ">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
+    {{--    <div class="row mt-3 pr-0 ">--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 br-1">--}}
+    {{--            <div >--}}
+    {{--                <div class="transparent-bg-div d-flex" >--}}
+    {{--                    <img src="{{asset('assets/images/andrijana2.png')}}" class="ps-abs-image">--}}
+    {{--                    <div class="icon-heart-red">--}}
+    {{--                        <img src="{{asset('assets/icons/heart-red.png')}}">--}}
+    {{--                    </div>--}}
+    {{--                    <div class="hover-icons d-flex align-items-center">--}}
+    {{--                        <div class="div-icons d-flex justify-content-center">--}}
+    {{--                            <span class=""><img src="{{asset('assets/icons/vector-search-wh.png')}}"></span>--}}
+    {{--                            <span class="ml-3 "><img src="{{asset('assets/icons/vector-heart-wh.png')}}"></span>--}}
+    {{--                        </div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--                <div class="description">--}}
+    {{--                    <p class="mb-0 mt-1">Handmade Name</p>--}}
+    {{--                    <p class="mb-1">Product owner name</p>--}}
+    {{--                    <div>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span><img src="{{asset('assets/icons/vector-star-tr.png')}}"></span>--}}
+    {{--                        <span>(48)</span>--}}
+    {{--                    </div>--}}
+    {{--                    <div class="d-flex justify-content-between mt-2">--}}
+    {{--                        <div class="price">$120</div>--}}
+    {{--                        <div class="add-cart mr-2">Add to cart</div>--}}
+    {{--                    </div>--}}
+    {{--                </div>--}}
+    {{--            </div>--}}
+    {{--        </div>--}}
+    {{--    </div>--}}
 </div>
 
 

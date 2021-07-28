@@ -1,5 +1,6 @@
 <div class="col-lg-3 col-sm-12 col-xs-12 acount-nav mt-3">
     <div>
+        <input type="hidden" id="auth_id" value="{{Auth::user()->id}}">
         <div
             class="row @if(Auth::user()->shop == false) section_active @else d-none @endif flex-nowrap acount-nav-head pt-3 pb-4 ml-0 mr-0 pl-1 pr-1"
              id="data-byer">
@@ -109,6 +110,7 @@
                role="tab" aria-controls="v-pills-last-views" aria-selected="false">
                 <div class="font-size-16"><img src="{{asset('assets/icons/last-views.png')}}">
                     <span class="pl-2">@lang('account_bar.bar.last_views')</span></div>
+                    <span class="new-int order_count"></span>
             </a>
             <a class="nav-link d-flex justify-content-between acount-bar-item" data-name="wallet"
                id="v-pills-wallet-tab" data-toggle="pill" href="#v-pills-wallet" role="tab"
@@ -135,5 +137,20 @@
         </div>
     </div>
 </div>
+@push('scripts_echo')
 
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        {{--window.Laravel = {--}}
+        {{--    'csrfToken': '{{ csrf_token() }}',--}}
+        {{--    'user': '{{Auth::user()->id}}'--}}
+        {{--};--}}
+        // var userId = document.getElementById('auth_id').value;
+        window.Echo.channel('order-channel')
+            .listen('.ordered', (e) => {
+                $('.order_count').text(e.order.quantity)
+                console.log(e.order);
+            });
+    </script>
+@endpush
 

@@ -61,6 +61,7 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/edit-basket', [App\Http\Controllers\BasketController::class, 'edit_basket'])->name('edit.basket');
         Route::post('/order', [App\Http\Controllers\OrderController::class, 'add_order'])->name('add.order');
         Route::post('/mark-as-read', [App\Http\Controllers\AccountController::class, 'markNotification'])->name('markNotification');
+        Route :: get ('/ notifications', [App\Http\Controllers\UserController::class, 'notifications']);
     });
 
     Route::get('/add-categories-section', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');

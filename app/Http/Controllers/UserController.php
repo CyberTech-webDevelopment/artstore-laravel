@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\OrderNotification;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -19,7 +21,17 @@ class UserController extends Controller
     {
         $this->middleware('auth');
     }
+    public function notifications()
+    {
+        $notifications = auth()->user()->unreadNotifications;
+        return response()
+            ->json([
 
+                'view' => view('account.notifications-content', compact('notifications'))->render(),
+                'notifications' => $notifications,
+
+            ]);
+    }
     public function change_data(Request $request)
     {
         $validator = Validator::make($request->all(), [

@@ -15,16 +15,17 @@ class Ordered implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $order;
-    public $sending_user_id;
+//    public $sending_user_id;
+    public $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($order,$sending_user_id)
+    public function __construct($order,$user)
     {
         $this->order =$order;
-        $this->sending_user_id = $sending_user_id;
+        $this->user = $user;
     }
 
     /**
@@ -34,6 +35,10 @@ class Ordered implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('channel-name');
+        return new Channel('order-channel');
+    }
+    public function broadcastAs()
+    {
+        return 'ordered';
     }
 }
