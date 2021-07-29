@@ -54,6 +54,7 @@ class OrderController extends Controller
                 $order_notify = [
                     'name'=> $order->basket_product($order->product_id)['name_am'],
                     'quantity'=> $order->quantity,
+                    'user_id' => $sending_user->id,
 
                 ];
                 Basket::destroy($order->id);
@@ -70,7 +71,7 @@ class OrderController extends Controller
 //dd($order_notify);
 //            $sending_user->notify(new OrderNotification($order_notify,$sending_user->id));
 //            dd($sending_user);
-            event(new Ordered($order_notify,$sending_user));
+            event(new Ordered($order_notify));
 
             return response()->json(['success_order'=>'Product(s) is ordered successfully']);
 

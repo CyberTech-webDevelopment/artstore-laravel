@@ -16,16 +16,16 @@ class Ordered implements ShouldBroadcast
 
     public $order;
 //    public $sending_user_id;
-    public $user;
+//    public $user;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct($order,$user)
+    public function __construct($order)
     {
         $this->order =$order;
-        $this->user = $user;
+
     }
 
     /**
@@ -35,7 +35,7 @@ class Ordered implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('order-channel');
+        return new Channel('order.'.$this->order['user_id']);
     }
     public function broadcastAs()
     {

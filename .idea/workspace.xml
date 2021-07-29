@@ -2,26 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1fb620a4-3f99-476d-ba88-e407a668f834" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/resources/views/account/notifications-content.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/js/assets/js/account-bar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Events/Ordered.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Events/Ordered.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/IndexController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Listeners/SendOrderNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Listeners/SendOrderNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Notifications/OrderNotification.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Notifications/OrderNotification.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/assets/css/account/account-bar.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/css/account/account-bar.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/account/account-bar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/account-bar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/account/account.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/account.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/account/last-views.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/last-views.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/account/products.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/products.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/channels.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/channels.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +24,13 @@
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -180,7 +180,7 @@
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="3157da9f-8995-41c7-adc8-ba3ef28030e7" name="Default Changelist" comment="" />
+      <changelist id="1fb620a4-3f99-476d-ba88-e407a668f834" name="Default Changelist" comment="" />
       <created>1627113118465</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -189,6 +189,7 @@
       <workItem from="1627201869681" duration="13473000" />
       <workItem from="1627381431714" duration="14784000" />
       <workItem from="1627394776564" duration="18914000" />
+      <workItem from="1627550828572" duration="9005000" />
     </task>
     <servers />
   </component>

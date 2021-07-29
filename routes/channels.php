@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Broadcast;
 
 /*
@@ -14,8 +15,13 @@ use Illuminate\Support\Facades\Broadcast;
 */
 
 Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
-    return (int) $user->id === (int) $id;
+    return (int)$user->id === (int)$id;
 });
-Broadcast::channel('order-channel', function ($user, $id) {
-    return true;
+Broadcast::channel('order.{id}', function ($user, $id) {
+//    if (Auth::user()->id == $id) {
+        return true;
+//    }
+
+//      return (int) $user->id === (int) $userId;
 });
+
