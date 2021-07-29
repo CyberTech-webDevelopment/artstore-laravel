@@ -27,6 +27,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets\css\mobile-navbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets\css\footer.css') }}">
     <link rel="stylesheet" href="{{ asset('assets\css\register-login\modal.css') }}">
+    {{--    <link rel="stylesheet" href="{{ asset('css\app.css') }}">--}}
 
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
 
@@ -201,9 +202,9 @@
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
-        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+{{--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"--}}
+{{--        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"--}}
+{{--        crossorigin="anonymous"></script>--}}
 <script
     src="https://code.jquery.com/jquery-3.5.1.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
@@ -216,7 +217,28 @@
 <script src="{{asset('assets\js\forgot-password\forgot-password.js')}}"></script>
 <script src="{{asset('assets\js\forgot-password\change-password.js')}}"></script>
 <script src="{{asset('assets\js\user_basket.js')}}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+@if(Auth::check())
+    <script>
+        {{--window.Laravel = {--}}
+        {{--    'csrfToken': '{{ csrf_token() }}',--}}
+        {{--    'user': '{{Auth::user()->id}}'--}}
+        {{--};--}}
+        // var userId = document.getElementById('auth_id').value;
+        // 'order-channel'
 
+        {{--window.Laravel = {--}}
+        {{--    'csrfToken': '{{ csrf_token() }}',--}}
+        {{--    'user': '{{Auth::user()->id}}'--}}
+        {{--};--}}
+
+        window.Echo.channel(`order.{{Auth::user()->id}}`)
+            .listen('.ordered', (e) => {
+                $('.order_count').text(e.order.quantity)
+                console.log(e.order);
+            });
+    </script>
+@endif
 @yield('scripts')
 </body>
 </html>
