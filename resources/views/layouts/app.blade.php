@@ -234,7 +234,9 @@
 
         window.Echo.channel(`order.{{Auth::user()->id}}`)
             .listen('.ordered', (e) => {
-                $('.order_count').text(e.order.quantity)
+                let available_orders_count = parseInt($('.order_count').text());
+                let new_count = available_orders_count + parseInt(e.order.quantity)
+                $('.order_count').text(new_count);
                 console.log(e.order);
             });
     </script>

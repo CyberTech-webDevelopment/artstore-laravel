@@ -97,6 +97,7 @@
 
     {{ $store_basket->links('vendor.pagination.pagination-basket') }}
     <div class="total-cont d-flex justify-content-between">
+{{--        @dump($basket_order_cost)--}}
         @include("basket-order-info")
     </div>
 

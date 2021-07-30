@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Order;
 use App\Models\Users;
 use App\Notifications\OrderNotification;
 use Illuminate\Notifications\Notifiable;
@@ -23,10 +24,13 @@ class AccountController extends Controller
     }
     public function index(Request $request)
     {
+        $user = Users::find(Auth::user()->id);
+
+
         if($request->has('code_change')) {
 
             $changed_email = $request->get('email');
-            $user = Users::find(Auth::user()->id);
+
             if ($request->get('code_change') == $user->verification_code)
             {
 
@@ -38,10 +42,22 @@ class AccountController extends Controller
 
 
         }
-        $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(2);
+        if($user->store == null){
+            $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(2);
+            return view('account.account',compact('products'));
+
+        }
+        else
+        {
+            $users_store_id = $user->store->id;
+            $products = Product::where('user_id',Auth::user()->id)->orderBy('created_at','desc')->paginate(2);
+            $stores_unread_orders_count = Order::where('store_id',$users_store_id)->where('read_at',0)->orderBy('created_at','desc')->count();
+            return view('account.account',compact('products','stores_unread_orders_count'));
+
+        }
+//        $stores_unread_orders_count = Order::where('store_id',$users_store_id)->where('read_at',0)->orderBy('created_at','desc')->count();
         // dd($products[0]->product_sizes);
-        $notifications = auth()->user()->unreadNotifications;
-        return view('account.account',compact('products','notifications'));
+//        $notifications = auth()->user()->unreadNotifications;
 
     }
     public function markNotification(Request $request)

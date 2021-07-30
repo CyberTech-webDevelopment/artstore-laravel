@@ -25,21 +25,19 @@ class Basket extends Model
     }
 
     //voroshel arka producti opcia uni ete opciai ete che @ndhanur qanak@
-     public static function basket_product_original_count($product,$option_id)
-     {
-         $product_count = 0;
-         if (count($product->product_options) > 0)
-         {
-             $product_count = Product_Options::find($option_id);
-             $product_count = $product_count->quantity;
+    public static function basket_product_original_count($product, $option_id)
+    {
+        $product_count = 0;
+        if (count($product->product_options) > 0) {
+            $product_count = Product_Options::find($option_id);
+            $product_count = $product_count->quantity;
 
-         }
-         else
-         {
-             $product_count = $product->total_count;
-         }
-         return $product_count;
-     }
+        } else {
+            $product_count = $product->total_count;
+        }
+        return $product_count;
+    }
+
     public static function user_basket_stores()
     {
         $stores_ids = self::where('user_id', Auth::user()->id)->pluck('store_id')->toArray();
@@ -85,9 +83,7 @@ class Basket extends Model
             $quantities = self::where('product_id', $product_id)->pluck('quantity')->toArray();
 
         }
-
         $in_product_count = 0;
-//        dd(count($quantities));
         if (count($quantities) > 0) {
 
             foreach ($quantities as $q) {

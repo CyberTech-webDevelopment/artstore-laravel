@@ -9,6 +9,7 @@
         <input type="hidden" id="single_store_basket" value="{{ route('basket.single.store',app()->getLocale()) }}">
         <input type="hidden" id="checked_basket_url" value="{{ route('basket.checkeds.product',app()->getLocale()) }}">
         <input type="hidden" id="in_order_route" value="{{ route('add.order',app()->getLocale()) }}">
+        <input type="hidden" id="basket_route" value="{{ route('basket',app()->getLocale()) }}">
         @if(count($baskets_stores) > 0)
             <div class="row">
 
