@@ -115,6 +115,7 @@ class BasketController extends Controller
         $store_id = $request->store_id;
         $store_basket_all = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->get();
         $store_basket = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->paginate(1);
+        $store_basket_count = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->count();
         $basket_order_cost = 0;
         foreach ($store_basket_all as $b) {
 
@@ -127,10 +128,11 @@ class BasketController extends Controller
         }
         return response()
             ->json([
-                'view' => view('site-basket', compact('store_basket', 'basket_order_cost','store_id'))->render(),
+                'view' => view('site-basket', compact('store_basket', 'basket_order_cost','store_id','store_basket_count'))->render(),
                 'store_basket' => $store_basket,
                 'basket_order_cost' => $basket_order_cost,
                 'store_id' => $store_id,
+                'store_basket_count'=>$store_basket_count,
             ]);
 
     }

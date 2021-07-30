@@ -137,7 +137,16 @@ td {
 }
 
 /* page-link basket style */
+.my-active{
 
+    z-index: 2;
+
+    text-decoration: none;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+    font-size: 20px;
+    font-weight: 700;
+}
 #basket-pages {
 
     background-color: unset !important;
