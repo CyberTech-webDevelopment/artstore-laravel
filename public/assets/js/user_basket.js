@@ -73,13 +73,13 @@ function selected_basket_products(checked_basket, url, store_id) {
 function localstorage_checkeds(checked_basket) {
     // alert(checked_basket)
     if (localStorage.hasOwnProperty("store_id") && localStorage.hasOwnProperty("order_checked")) {
-        alert()
+        // alert()
         $('.select_basket_product').each(function () {
-
-            for (let i = 0; i < localStorage.getItem('order_checked').length; i++) {
-                console.log(localStorage.getItem('order_checked')[i])
+            console.log(JSON.parse(localStorage.getItem('order_checked')))
+            for (let i = 0; i < JSON.parse(localStorage.getItem('order_checked')).length; i++) {
+                console.log(JSON.parse(localStorage.getItem('order_checked'))[i])
                 console.log($(this).val())
-                if (localStorage.getItem('order_checked')[i] == $(this).val() && localStorage.getItem('store_id') == $(this).data('store-id')) {
+                if (JSON.parse(localStorage.getItem('order_checked'))[i] == $(this).val() && localStorage.getItem('store_id') == $(this).data('store-id')) {
 
                     // alert($(this).data('store-id'))
                     $(this).prop('checked', true);
@@ -364,16 +364,13 @@ $(document).ready(function () {
                     // window.history.pushState('/singlestore', '', pageUrl);
 
                 } else {
-                    // alert()
+
                     window.localStorage.removeItem('order_checked');
-                    localStorage.setItem('page_basket',1);
-                    if (res.store_basket_count == 0)
-                    {
+                    localStorage.setItem('page_basket', 1);
+                    if (res.store_basket_count == 0) {
                         window.localStorage.removeItem('store_id');
                         window.localStorage.removeItem('url');
                         window.localStorage.removeItem('page_basket');
-
-
 
 
                     }
@@ -507,7 +504,7 @@ $(document).ready(function () {
         if (localStorage.hasOwnProperty("order_checked")) {
             checked_product = JSON.parse(localStorage.getItem('order_checked'));
         }
-
+        window.localStorage.removeItem('order_checked');
         in_order(url, store_id, checked_product);
 
     })

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
 @endsection
 @section('content')
-    {{--@dump(Auth::check())--}}
+{{--                                        @dd($cur_product->product_options[0]->material)--}}
     <section class="container-fluid pt-4 pb-4">
         <div class="row">
             Homepage > Jewelry > HandmadeName
@@ -66,11 +66,12 @@
                                 <select class="current_options">
                                     <option value="0">Select Options</option>
                                     @foreach($cur_product->product_options as $option)
+
                                         <option value="{{ $option->id }}"
                                                 data-cur-count="{{$option->quantity}}"
-                                                class="cur_product_options">@if($option->size_option != null){{ $option->size_option->size }}
-                                            /@endif @if($option->material_option != null){{ $option->material_option['material_'.app()->getLocale()] }}
-                                            /@endif @if($option->color_option != null){{ $option->color_option['color_name_'.app()->getLocale()] }} @endif</option>
+                                                class="cur_product_options">@if($option->size != null){{ $option->size_option->size }}
+                                            /@endif @if($option->material != null){{ $option->material_option['material_'.app()->getLocale()] }}
+                                            /@endif @if($option->color != null){{ $option->color_option['color_name_'.app()->getLocale()] }} @endif</option>
                                     @endforeach
                                 </select>
                             </div>
