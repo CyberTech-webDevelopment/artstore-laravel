@@ -21,6 +21,7 @@
         </div>
 
         @foreach ($store_basket as $elem)
+{{--            @dd($elem->product_basket_option()['material'])--}}
             {{--                    @dump($elem);--}}
             <tr>
 
@@ -58,10 +59,11 @@
                     {{--                                        @dd($elem)--}}
                     @if($elem->options_id != null)
                         <select disabled class="current_basket_option">
+
                             <option value="{{ $elem->product_basket_option()->id }}"
-                                    class="cur_basket_option">@if($elem->product_basket_options()['size'] != null){{ $elem->product_basket_options()['size'] }}
-                                /@endif @if($elem->product_basket_options()['material'] != null){{ $elem->product_basket_options()['material'] }}
-                                /@endif @if($elem->product_basket_options()['color'] != null){{ $elem->product_basket_options()['color'] }} @endif
+                                    class="cur_basket_option">@if($elem->product_basket_option()['size'] != null){{ $elem->product_basket_option()->size_option['size'] }}
+                                /@endif @if($elem->product_basket_option()['material'] != null){{ $elem->product_basket_option()->material_option['material'] }}
+                                /@endif @if($elem->product_basket_option()['color'] != null){{ $elem->product_basket_option()->color_option['color'] }} @endif
                             </option>
 
                         </select>
