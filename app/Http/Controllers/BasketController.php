@@ -114,7 +114,7 @@ class BasketController extends Controller
     {
         $store_id = $request->store_id;
         $store_basket_all = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->get();
-        $store_basket = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->paginate(1);
+        $store_basket = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->paginate(2);
         $store_basket_count = Basket::where('user_id', Auth::user()->id)->where('store_id', $store_id)->count();
         $basket_order_cost = 0;
         foreach ($store_basket_all as $b) {
@@ -202,8 +202,8 @@ class BasketController extends Controller
         if ($basket_product != null) {
             $success_del = $basket_product->delete();
             if ($success_del) {
-
-                return response()->json(['success_delete' => 'Product deleted successfuly']);
+                $basket_count = Basket::user_basket_count();
+                return response()->json(['success_delete' => 'Product deleted successfuly','basket_count'=>$basket_count]);
             } else {
                 return response()->json(['error_delete' => 'Product is not found']);
             }

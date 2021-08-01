@@ -3,9 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="1fb620a4-3f99-476d-ba88-e407a668f834" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/BasketController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/BasketController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_07_26_112317_create_orders_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_07_26_112317_create_orders_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/assets/js/user_basket.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/assets/js/user_basket.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/product/product-page.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/product/product-page.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/account/options-section.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/options-section.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/account/settings/shop-order-history.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/account/settings/shop-order-history.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/site-basket.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/site-basket.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -160,7 +163,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../creative_shop" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RunManager">
@@ -184,6 +187,8 @@
       <workItem from="1627550828572" duration="9005000" />
       <workItem from="1627624109430" duration="25769000" />
       <workItem from="1627655370186" duration="5718000" />
+      <workItem from="1627732113591" duration="3976000" />
+      <workItem from="1627828656431" duration="1548000" />
     </task>
     <servers />
   </component>

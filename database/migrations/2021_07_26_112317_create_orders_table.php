@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->integer('options_id')->nullable();
             $table->integer('quantity');
             $table->integer('read_at')->default(0);
+            $table->integer('status')->default(0);
             $table->timestamps();
         });
     }

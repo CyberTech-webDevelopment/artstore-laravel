@@ -34,9 +34,11 @@
                                         <li class="mr-1 small sizes_small"
                                             data-table-name="{{ $k }}"
                                             tabIndex="-1">
-                                            {{--                                    name="size[{{$k}}][]"--}}
+
                                             <input type="checkbox" class="size_check"
-                                                   @if($option->size_option != null && $el['id'] == $option->size_option->id && $k == ucfirst($product->size_type)) checked @endif
+{{--                                                   @dd($k)--}}
+                                                   @if($option->size != null && $el['id'] == $option->size_option->id && $k == ucfirst($product->size_type)) checked
+                                                   @endif
                                                    value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
 
 
@@ -60,8 +62,8 @@
                     <ul class="dropdown-menu list_colors">
                         @foreach($all_colors as $c)
                             <li class="small d-flex align-items-center" tabIndex="-1"><input
-                                    @if($option->color_option != null && $c['id'] == $option->color_option->id) checked @endif
-                                    value="{{ $c['id'] }}"
+                                    @if($option->color != null && $c['id'] == $option->color_option->id) checked @endif
+                                value="{{ $c['id'] }}"
                                     class="mr-1 color_check"
                                     type="checkbox"/>
                                 {{ $c['color_name_' . app()->getLocale()] }}
@@ -103,8 +105,9 @@
                                             <input
                                                 type="checkbox"
                                                 class="material_check"
-{{--                                                @dd($option->material_option )--}}
-                                                @if($option->material_option != null && $el['id'] == $option->material_option->id && $k == ucfirst($product->material_type)) checked @endif
+
+                                                @if($option->material != null && $el['id'] == $option->material_option->id && $k == ucfirst($product->material_type)) checked
+                                                @endif
                                                 value="{{ $el['id'] }}"/>{{ $el['material_'. app()->getLocale()] }}
                                         </li>
 
