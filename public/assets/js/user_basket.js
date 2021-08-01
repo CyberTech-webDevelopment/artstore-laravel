@@ -312,7 +312,8 @@ $(document).ready(function () {
                         $('#basket_action_message').removeClass('text-danger');
                         $('#basket_action_message').addClass('text-success');
                         $('#basket_action_message').html(res.success_delete);
-
+                        // alert(res.basket_count)
+                        $('.basket_count').html(res.basket_count)
                         setTimeout(function () {
                             store_basket(localStorage.getItem('store_id'), localStorage.getItem('url'), localStorage.getItem('page_basket'));
 

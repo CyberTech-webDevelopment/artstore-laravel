@@ -401,26 +401,33 @@ class ProductController extends Controller
 
 
             }
-            if ($unique_size_type == false) {
-                return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
+            if (isset($unique_size_type)) {
+                if ($unique_size_type == false) {
+                    return response()->json(['size_error' => 'Specify size(s) belonging to only one category']);
 
-            } else {
-                $find_model_size = $this->getModels($path, $size_type);
-                if (!$find_model_size) {
-                    return response()->json(['model_found' => 'Model not found']);
+                } else {
+                    $find_model_size = $this->getModels($path, $size_type);
+                    if (!$find_model_size) {
+                        return response()->json(['model_found' => 'Model not found']);
+                    }
                 }
+                $product->size_type = $size_table;
             }
 
-            if ($unique_material_type == false) {
-                return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
+            if (isset($unique_material_type)) {
+                if ($unique_material_type == false) {
+                    return response()->json(['material_error' => 'Specify material(s) belonging to only one category']);
 
-            } else {
-                $find_model_size = $this->getModels($path, $material_type);
-                if (!$find_model_size) {
-                    return response()->json(['model_found' => 'Model not found']);
+                } else {
+                    $find_model_size = $this->getModels($path, $material_type);
+                    if (!$find_model_size) {
+                        return response()->json(['model_found' => 'Model not found']);
+                    }
                 }
+                $product->material_type = $material_table;
             }
-            $product->size_type = $size_table;
+
+
             $product->material_type = $material_table;
         }
 
