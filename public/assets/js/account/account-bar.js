@@ -81,6 +81,7 @@ $('.acount-type').click(function () {
     $('[data-type="' + $type + '"]').addClass('d-flex')
     $('[data-type="' + $type + '"]').show()
 })
+
 function store_orders(store_id, route, page) {
 
     $.ajax({
@@ -108,6 +109,35 @@ function store_orders(store_id, route, page) {
     })
 
 }
+
+function user_orders(route, page) {
+
+    $.ajax({
+        method: 'post',
+        url: route,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            // store_id: store_id,
+            page: page,
+        },
+        dataType: 'json',
+        success: function (res) {
+
+            if (res.view) {
+
+                $('.account-history_user').empty()
+                $('.account-history_user').append(res.view)
+
+            } else {
+
+                $('.account-history_user').empty()
+            }
+
+        }
+    })
+
+}
+
 $(document).on('click', '.page-link-order', function (event) {
     event.preventDefault();
     let page = $(this).attr('href').split('page=')[1];
@@ -117,6 +147,29 @@ $(document).on('click', '.page-link-order', function (event) {
     store_orders(store_id, route, page);
 
 });
+$(document).on('click', '.page-link-user-order', function (event) {
+    event.preventDefault();
+    let page = $(this).attr('href').split('page=')[1];
+    let route = $('#route-user-order').val();
+    // alert(route);
+    // let store_id = $('#v-pills-last-views-tab').data('store-id');
+    // localStorage.setItem('page_basket', page);
+    user_orders(route, page);
+
+});
+$('#v-pills-purchases-tab').on('click', function (e) {
+
+    e.preventDefault();
+    // let store_id = $(this).data('store-id');
+    let page = 1;
+    let route = $('#route-user-order').val();
+    let href = $(this).attr('href');
+    $(this).attr('href', "");
+    $(this).attr('href', href);
+    user_orders(route, page);
+
+
+})
 $('#v-pills-last-views-tab').on('click', function (e) {
 
     e.preventDefault();
@@ -128,37 +181,122 @@ $('#v-pills-last-views-tab').on('click', function (e) {
     if (!$.isNumeric(store_id)) {
         $(this).attr('href', '#v-pills-welcome-seller');
 
-    }
-    else
-    {
+    } else {
         $(this).attr('href', href);
         store_orders(store_id, route, page);
-        // $.ajax({
-        //     method: 'get',
-        //     url: route,
-        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //     data: {store_id: store_id},
-        //     dataType: 'json',
-        //     success: function (res) {
-        //         console.log(res)
-        //         if (res.view) {
-        //             $('.account-history_store').empty()
-        //             $('.account-history_store').append(res.view)
-        //             // $('#drag-photo-logo-e').hide();
-        //             // $('#drag-photo-e-back').hide();
-        //             // $('#image-cont_store_e').append('<div class="drop-image_e col-sm-8 col-8 col-lg-8 col-md-8"><img src="/storage/store_logo/' + res.store.logo + '"  style="width: 100%"></div>')
-        //             // $('#image-cont_store_e').append('<div class="drop-image-e-store"><img src="/assets/icons/close.png"></div>')
-        //             //
-        //             // $('#img-cont-back-e').append('<div class="drop-image_e_back col-4 col-sm-4 col-md-4 col-lg-4"><img src="/storage/store_back/' + res.store.background + '"style="width: 100%"></div>')
-        //             // $('#img-cont-back-e').append('<div class="drop-image-e-store_back"><img src="/assets/icons/close.png"></div>')
-        //             // canvas = new fabric.Canvas('canvas_store_e');
-        //             // can = document.getElementById('canvas_store_e')
-        //         }
-        //     },
-        //     error: function () {
-        //         alert('ajax error')
-        //
-        //     }
-        // })
+
     }
+})
+// Shop orders delete
+
+let deleting_checked_order = [];
+console.log(deleting_checked_order)
+$(document).on('input', '.store_order_check', function () {
+
+    let el = $(this);
+    if ($(this).is(':checked')) {
+
+        deleting_checked_order.push($(this).val());
+        $('#delete-history').prop('disabled', false);
+
+    } else {
+        $(deleting_checked_order).each(function (index, value) {
+
+            if (value == el.val()) {
+
+                deleting_checked_order.splice(index, 1)
+            }
+        });
+
+        $('#delete-history').prop('disabled', true);
+        $('.store_order_check').each(function () {
+
+            if ($(this).is(':checked')) {
+
+                $('.delete-all-products').prop('disabled', false);
+
+            }
+
+
+        })
+    }
+    if (deleting_checked_order.length == 0) {
+        $('.all_store_order').prop('checked', false);
+    }
+    // else
+    // {
+    //     $('.all_store_order').prop('checked',true);
+    // }
+    console.log(deleting_checked_order);
+    $('.delete_text_order').show();
+    $('.delete_text_current').hide();
+})
+
+$(document).on('input', '.all_store_order', function () {
+
+    if ($(this).is(':checked')) {
+
+        $('.store_order_check').each(function () {
+
+            $(this).prop('checked', true);
+            deleting_checked_order.push($(this).val());
+
+        })
+
+
+        $('#delete-history').prop('disabled', false);
+        $('.delete_text_order').show();
+        $('.delete_text_all').hide();
+        $('.delete_text_current').hide();
+    } else {
+
+        $('.store_order_check').each(function () {
+
+            $(this).prop('checked', false);
+            deleting_checked_order.pop();
+        })
+
+
+        $('#delete-history').prop('disabled', true);
+        $('.delete_text_all').hide();
+        $('.delete_text_order').hide();
+        $('.delete_text_current').show();
+    }
+    console.log(deleting_checked_order)
+})
+$(document).on('click', '#delete-history', function () {
+    $('.delete-product').trigger('click');
+    $('.delete-multi').attr('id', 'selected_order')
+
+
+})
+$(document).on('click', '#selected_order', function () {
+
+    let orders_id = deleting_checked_order;
+    let url = $('#selected_delete_order').val()
+    $.ajax({
+        method: 'post',
+        url: url,
+        headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+        data: {
+            orders_id: orders_id,
+        },
+        dataType: 'json',
+        success: function (res) {
+            console.log(res);
+            if (res.res == 0) {
+                $('#close_del').trigger('click');
+                alert("Order(s) is not found")
+                location.reload();
+
+            } else {
+
+                $('#v-pills-last-views-tab').trigger('click');
+                $('#close_del').trigger('click');
+
+            }
+
+        }
+    })
+
 })

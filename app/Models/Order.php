@@ -30,4 +30,8 @@ class Order extends Model
         return $cost;
 
     }
+    public function product_order_option()
+    {
+        return Product_Options::find($this->options_id);
+    }
 }

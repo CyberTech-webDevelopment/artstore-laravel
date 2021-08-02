@@ -51,6 +51,8 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
     Route::post('/delete-current', [App\Http\Controllers\ProductController::class, 'delete_current'])->name('delete.current');
     Route::post('/change-data', [App\Http\Controllers\UserController::class, 'change_data'])->name('change.data');
     Route::get('/delete-avatar', [App\Http\Controllers\UserController::class, 'delete_avatar'])->name('delete.avatar');
+    Route::post('/delete-order', [App\Http\Controllers\OrderController::class, 'delete_order'])->name('delete.order');
+
     Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/basket', [App\Http\Controllers\BasketController::class, 'index'])->name('basket');
@@ -62,9 +64,12 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/order', [App\Http\Controllers\OrderController::class, 'add_order'])->name('add.order');
         Route::post('/mark-as-read', [App\Http\Controllers\AccountController::class, 'markNotification'])->name('markNotification');
         Route::post('/store-order', [App\Http\Controllers\OrderController::class, 'store_orders'])->name('store.orders');
+        Route::post('/user-order', [App\Http\Controllers\OrderController::class, 'user_orders'])->name('user.orders');
     });
 
     Route::get('/add-categories-section', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');
+    Route::post('/category-page/{name}', [App\Http\Controllers\CategoryController::class, 'category_page'])->name('category.page');
+
     Route::get('/add-options-section', [App\Http\Controllers\ProductController::class, 'add_options_section'])->name('add_option.section');
 
 

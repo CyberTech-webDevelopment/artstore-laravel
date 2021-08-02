@@ -30,6 +30,7 @@
     @include('account.store_edit_successfuly')
     @include('account.add-products-modal')
     @include('account.check_email_change')
+    @include('approval-modal')
     <div class="row" id="edit_prod_modal">
 
         @include('account.edit-products-modal')

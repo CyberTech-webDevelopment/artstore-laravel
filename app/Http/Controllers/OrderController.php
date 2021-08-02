@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Basket;
+use App\Models\Product;
 use App\Models\Product_Options;
 use App\Models\Shop;
 use App\Models\Order;
@@ -88,7 +89,6 @@ class OrderController extends Controller
 
     public function store_orders(Request $request)
     {
-//        dd($request->all());
         DB::table('orders')->where('read_at', 0)
             ->where('store_id', $request->store_id)
             ->lazyById()->each(function ($order) {
@@ -96,11 +96,35 @@ class OrderController extends Controller
                     ->where('id', $order->id)
                     ->update(['read_at' => 1]);
             });
-        $store_orders = Order::where('store_id', $request->store_id)->orderBy('created_at', 'desc')->paginate(1);
+        $store_orders = Order::where('store_id', $request->store_id)->orderBy('created_at', 'desc')->paginate(3);
         return response()
             ->json([
                 'view' => view('account.settings.shop-order-history', compact('store_orders'))->render(),
                 'store_orders' => $store_orders,
             ]);
+    }
+    public function user_orders(Request $request)
+    {
+        $user_orders = Order::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc')->paginate(3);
+        return response()
+            ->json([
+                'view' => view('account.settings.user-order-history', compact('user_orders'))->render(),
+                'user_orders' => $user_orders,
+            ]);
+    }
+
+    public function delete_order(Request $request)
+    {
+//        dd($request->all());
+        $del_order = Order::whereIn('id', $request->orders_id)->delete();
+        if ($del_order)
+        {
+            return response()->json(['res' => $del_order]);
+        }
+        else
+        {
+            return response()->json(['res' => 0]);
+        }
+
     }
 }

@@ -12,8 +12,18 @@
                         role="tablist">
                         @foreach($menu as $elem)
                             {{--                            @dd($elem->sub_menues)--}}
-                            <li class='d-flex nav-item justify-content-center align-items-center'><a
-                                    class='nav-link first-nav-link' id="list-{{$elem['id']}}-list" data-toggle='list'
+                            <li class='d-flex nav-item justify-content-center align-items-center'>
+                                <form
+                                    action="{{ route('category.page',['name'=>$elem['menu_name_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                    method="post">
+                                    @csrf
+                                    <input type="hidden" value="{{ $elem['id'] }}" name="cat_id">
+
+                                </form>
+                                <a
+                                    data-cat-id="{{ $elem['id'] }}"
+                                    class='nav-link first-nav-link cur_category_page' id="list-{{$elem['id']}}-list"
+                                    data-toggle='list'
                                     href='#list-{{ $elem['id'] }}'
                                     role='tab' aria-controls='home'>
                                     {{ $elem['menu_name_' . app()->getLocale()]   }}
@@ -36,8 +46,17 @@
 
 
                                         <li class='d-flex nav-item nav-second-li justify-content-center align-items-center'>
+                                            <form
+                                                action="{{ route('category.page',['name'=>$sub_el['sub_menu_name_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                                method="post">
+                                                @csrf
+                                                <input type="hidden" value="{{ $sub_el['id'] }}" name="cat_id">
+
+                                            </form>
                                             <a
-                                                class='nav-link' id="list-sub-{{ $sub_el['id'] }}-list" data-toggle='list'
+                                                data-cat-id="{{ $sub_el['id'] }}"
+                                                class='nav-link second-nav-link cur_category_page'
+                                                id="list-sub-{{ $sub_el['id'] }}-list" data-toggle='list'
                                                 href='#list-sub-{{$sub_el['id']}}'
                                                 role='tab'
                                                 aria-controls='home'>{{ $sub_el['sub_menu_name_' . app()->getLocale()] }}</a>
@@ -52,7 +71,8 @@
                                 $left = 0;
                             @endphp
                             @foreach($el->sub_menues as $sub_el)
-                                <div style="left: {{$left . '%'}}" class="tab-pane fade sub-categories sub-categories-div"
+                                <div style="left: {{$left . '%'}}"
+                                     class="tab-pane fade sub-categories sub-categories-div"
                                      id="list-sub-{{$sub_el['id']}}" role="tabpanel"
                                      aria-labelledby="list-sub-{{$sub_el['id']}}-list">
                                     <div class="" id="navbarNavDropdown1">
@@ -69,8 +89,17 @@
                                                         @php
                                                             $count++;
                                                         @endphp
+                                                        <form
+                                                            action="{{ route('category.page',['name'=>$sub_cat['name_category_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                                            method="post">
+                                                            @csrf
+                                                            <input type="hidden" value="{{ $sub_cat['id'] }}"
+                                                                   name="cat_id">
+
+                                                        </form>
                                                         <div
-                                                            class="mt-1 mb-1 text-strong">{{$sub_cat['name_category_' . app()->getLocale()]}}
+                                                            data-cat-id="{{ $sub_cat['id'] }}"
+                                                            class="mt-1 mb-1 third-nav-link cur_category_page text-strong">{{$sub_cat['name_category_' . app()->getLocale()]}}
                                                         </div>
 
                                                         @if($count == 6)

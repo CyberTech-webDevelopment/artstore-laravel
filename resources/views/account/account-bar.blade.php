@@ -6,6 +6,8 @@
             id="data-byer">
             <div class="col-lg-4 col-md-3 col-sm-2 col-xs-2 acount-user-img only_user_img pl-0 pr-0">
                 <input type="hidden" id="route-store-order" value="{{ route('store.orders',app()->getLocale()) }}">
+                <input type="hidden" id="route-user-order" value="{{ route('user.orders',app()->getLocale()) }}">
+                <input type="hidden" id="selected_delete_order" value="{{ route('delete.order', app()->getLocale()) }}">
                 <input type="hidden" id="store_img_state"
                        @if(Auth::user()->store != null) value="{{ Auth::user()->store->use_avatar }}" @endif>
                 <img src="/storage/{{Auth::user()->use_avatar()}}">
@@ -54,10 +56,11 @@
             <button id="seller"
                     class="acount-type @if(Auth::user()->shop == true) acount-type-active @endif ">@lang('account_bar.bar.sell')</button>
         </div>
+{{--        data-toggle="pill" role="tab" aria-controls="v-pills-basket" aria-selected="true"--}}
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
             <a class="nav-link d-flex justify-content-between acount-bar-item acount-bar-type-item" data-type="byer"
-               data-name="basket" id="v-pills-basket-tab" data-toggle="pill" href="#v-pills-basket" role="tab"
-               aria-controls="v-pills-basket" aria-selected="true">
+               data-name="basket" id="v-pills-basket-tab"  href="{{ route('basket',app()->getLocale()) }}">
+
                 <div class="font-size-16"><img src="{{asset('assets/icons/basket.png')}}">
                     <span class="pl-2">@lang('account_bar.bar.basket')</span></div>
                 <span class="new-int">20</span></a>
