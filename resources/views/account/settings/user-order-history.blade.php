@@ -1,4 +1,4 @@
-@if(isset($store_orders) && count($store_orders) > 0)
+@if(isset($user_orders) && count($user_orders) > 0)
     <table class="table">
         <thead class="thead-lightorange">
         <tr>
@@ -18,7 +18,7 @@
 
         <tbody>
 
-        @foreach($store_orders as $order)
+        @foreach($user_orders as $order)
             {{--            @dd($order->order_product)--}}
             <tr>
                 <th scope="row"><input type="checkbox" class="store_order_check" name="store_order"
@@ -60,6 +60,7 @@
 
         </tbody>
     </table>
-    {{ $store_orders->links('vendor.pagination.pagination-order') }}
+    {{ $user_orders->links('vendor.pagination.pagination-user-order') }}
 @endif
+<!-- ------------pagination--------------------------- -->
 

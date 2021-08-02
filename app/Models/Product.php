@@ -121,7 +121,7 @@ class Product extends Model
 
     public function product_options()
     {
-        return $this->hasMany(Product_Options::class,'product_id','id');
+        return $this->hasMany(Product_Options::class, 'product_id', 'id');
     }
 
     public function setnNameForSizeRelation()
@@ -207,5 +207,43 @@ class Product extends Model
 
         return $image_obj->image;
 
+    }
+
+    public static function products_filtrs($products, $category_type)
+    {
+        $filter_option = [
+            'percent' => null,
+            'sub_menu' => null,
+            'sub_cat' => null,
+            'color' => null,
+            'material' => null,
+            'size' => null,
+            'gender' => null,
+        ];
+        if ($category_type == 1) {
+            $filter_option['sub_menu'] = true;
+            $filter_option['sub_cat'] = true;
+        }
+        if ($category_type == 2) {
+            $filter_option['sub_cat'] = true;
+        }
+        foreach ($products as $item) {
+            if ($item->percent != null) {
+                $filter_option['percent'] = true;
+            }
+            if ($item->size_type != null) {
+                $filter_option['size'] = true;
+            }
+            if ($item->material_type != null) {
+                $filter_option['material'] = true;
+            }
+            if (count($item->product_colors) > 0) {
+                $filter_option['color'] = true;
+            }
+            if ($item->gender_id != 0) {
+                $filter_option['gender'] = true;
+            }
+        }
+        return $filter_option;
     }
 }

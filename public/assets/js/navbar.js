@@ -62,3 +62,26 @@ $('.nav-second-li a').on('click', function(){
      let th_id=$('.active-border').find('a').attr('href')
          $(''+th_id+'').css('left', scroll_active_border_left+'px')
   })
+
+$('.cur_category_page').on('dblclick',function (){
+
+
+    if ($(this).hasClass('first-nav-link'))
+    {
+        let cat_type = 1;
+        $(this).prev().append('<input type="hidden" name="cat_type" value="'+ cat_type +'">')
+        $(this).prev().submit();
+    }
+    if ($(this).hasClass('second-nav-link'))
+    {
+        let cat_type = 2;
+        $(this).prev().append('<input type="hidden" name="cat_type" value="'+ cat_type +'">')
+        $(this).prev().submit();
+    }
+    if ($(this).hasClass('third-nav-link'))
+    {
+        let cat_type = 3;
+        $(this).prev().append('<input type="hidden" name="cat_type" value="'+ cat_type +'">')
+        $(this).prev().submit();
+    }
+})

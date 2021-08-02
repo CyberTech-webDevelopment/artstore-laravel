@@ -872,7 +872,10 @@ $(document).ready(function () {
 
             })
         }
-
+        if (array_deleting_checked.length == 0)
+        {
+            $('.all_del').prop('checked',false);
+        }
         console.log(array_deleting_checked);
         $('.delete_text_all').hide();
         $('.delete_text_current').show();

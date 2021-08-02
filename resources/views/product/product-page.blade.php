@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/product.css') }}">
 @endsection
 @section('content')
-{{--                                        @dd($cur_product->product_options[0]->material)--}}
+{{--                                        @dd($cur_product->product_sizes)--}}
     <section class="container-fluid pt-4 pb-4">
         <div class="row">
             Homepage > Jewelry > HandmadeName

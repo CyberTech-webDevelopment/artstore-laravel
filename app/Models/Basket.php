@@ -102,32 +102,32 @@ class Basket extends Model
         return Product_Options::find($this->options_id);
     }
 
-    public function product_basket_options()
-    {
-
-        $this_option = [
-            'size' => null,
-            'material' => null,
-            'color' => null,
-        ];
-        $options = Product_Options::find($this->options_id);
-        if ($options->size_option != null) {
-
-            $this_option['size'] = $options->size_option['size'];
-
-        }
-        if ($options->material_option != null) {
-
-            $this_option['material'] = $options->material_option['material_' . app()->getLocale()];
-
-        }
-
-        if ($options->color_option != null) {
-
-            $this_option['color'] = $options->color_option['color_name_' . app()->getLocale()];
-
-        }
-        return $this_option;
-    }
+//    public function product_basket_options()
+//    {
+//
+//        $this_option = [
+//            'size' => null,
+//            'material' => null,
+//            'color' => null,
+//        ];
+//        $options = Product_Options::find($this->options_id);
+//        if ($options->size_option != null) {
+//
+//            $this_option['size'] = $options->size_option['size'];
+//
+//        }
+//        if ($options->material_option != null) {
+//
+//            $this_option['material'] = $options->material_option['material_' . app()->getLocale()];
+//
+//        }
+//
+//        if ($options->color_option != null) {
+//
+//            $this_option['color'] = $options->color_option['color_name_' . app()->getLocale()];
+//
+//        }
+//        return $this_option;
+//    }
 
 }
