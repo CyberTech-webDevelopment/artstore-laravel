@@ -1,7 +1,7 @@
 @if(isset($product) && count($product->product_type) > 0)
 {{--    @dd($sub_menus)--}}
     @foreach($product->product_type as $type)
-        {{--        @dd($type->sub_menus[0])--}}
+{{--                @dd($type->sub_menus[0])--}}
         <div class="row pl-0 pr-0 mt-3 select-group-1">
             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
                 <label>@lang('add-product.product.category')</label>
@@ -31,8 +31,6 @@
                 <input type="hidden" id="selesct_default_lang"
                        value="@lang('add-product.product.sel_type')">
                 <select class="select_sub_category" name="type[]">
-{{--                    <option class="add_product_menu"--}}
-{{--                            value="">@lang('add-product.product.sel_type')</option>--}}
                     <option value='{{ $type->id }}'>{{$type['name_category_' . app()->getLocale()]}} </option>
                 </select>
                 <span class="type_plus">

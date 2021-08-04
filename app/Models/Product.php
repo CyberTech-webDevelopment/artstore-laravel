@@ -209,6 +209,10 @@ class Product extends Model
 
     }
 
+    public function filtring_products()
+    {
+        $query = Product::where('status',1);
+    }
     public static function products_filtrs($products, $category_type)
     {
         $filter_option = [
@@ -219,6 +223,7 @@ class Product extends Model
             'material' => null,
             'size' => null,
             'gender' => null,
+            'cat_type'=> $category_type,
         ];
         if ($category_type == 1) {
             $filter_option['sub_menu'] = true;

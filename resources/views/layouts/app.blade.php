@@ -46,6 +46,9 @@
     @include('product.product-message')
     <input type="hidden" id="add_basket_route" value="{{ route('add.basket',app()->getLocale()) }}">
     <input type="hidden" id="current_route" value="{{ Route::currentRouteName() }}">
+    <input type="hidden" id="sel_sub_cat_route"
+           value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
+    <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
 
     <main>
         @yield('content')
@@ -217,6 +220,7 @@
 <script src="{{asset('assets\js\forgot-password\forgot-password.js')}}"></script>
 <script src="{{asset('assets\js\forgot-password\change-password.js')}}"></script>
 <script src="{{asset('assets\js\user_basket.js')}}"></script>
+<script src="{{asset('assets\js\filter.js')}}"></script>
 <script src="{{ asset('js/app.js') }}"></script>
 @if(Auth::check())
     <script>
