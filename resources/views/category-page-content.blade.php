@@ -3,7 +3,7 @@
 </div>
 
 <div class="subs-caption">
-    <div class="caps">bestseller</div>
+    <div class="caps">{{ $page_name }}</div>
 </div>
 <!-- sort by -->
 <div class="sortby mb-5 pb-5">
@@ -43,9 +43,13 @@
 <!--Main Flex part -->
 
 <div class="main-flex d-flex justify-content-between mt-3">
-    <div class="main-flex-item-color">
-        <!-- should be completed -->
+    <div class="filtr_content d-flex flex-column">
+        @include('sections.page-filtr')
+        <input type="hidden" id="page_route" value="{{ route('category.page',['name'=>$page_name,'locale'=>app()->getLocale()])  }}">
+        <button type="button" class="btn btn-primary filtr_button btn-sm">Search</button>
     </div>
+
+
     <div class="d-flex bigflex flex-wrap">
     @if(count($products) > 0)
         <!-- item -->
@@ -63,8 +67,8 @@
 
                         </div>
                         <div class="img-add">
-                            <div class='bold-hov1'>Handmade Name</div>
-                            <div class='hov-owner1'>Product-owner-Name</div>
+                            <div class='bold-hov1'>{{str_cut($product['name_'.app()->getLocale()],20)}}</div>
+                            <div class='hov-owner1'>{{ $product->product_store->name }}</div>
                             <div class='hov-stars1'>
                                 <img src="{{ asset('assets/icons/vector-star.png') }}" alt="" style='display:inline;'>
                                 <img src="{{ asset('assets/icons/vector-star.png') }}" alt="" style='display:inline;'>
@@ -75,7 +79,14 @@
                                      style='display:inline;'>
                                 <span class='num-stars1'>(48)</span>
                                 <div class='cart'>
-                                    <span class='bold-hov2'>120$</span>
+                                    @if($product->percent == null)
+                                        <span class='bold-hov2'>{{ $product->price }}</span>
+                                    @else
+                                        <del>{{ $product->price }}</del>
+                                        <span class='bold-hov2'>{{ $product->discounted_price() }}</span>
+                                    @endif
+
+
                                     <span class="addToCart1">Add to Cart</span>
                                 </div>
                             </div>

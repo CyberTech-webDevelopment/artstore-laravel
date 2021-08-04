@@ -75,9 +75,6 @@
                         </div>
                         <input type="hidden" id="sel_cat_route"
                                value="{{route('menu.submenu',app()->getLocale())}}">
-                        <input type="hidden" id="sel_sub_cat_route"
-                               value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
-                        <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">
                         <input type="hidden" id="add_categories_section"
                                value="{{ route('add_categories.section',app()->getLocale()) }}">
                         <input type="hidden" id="options_section_route"

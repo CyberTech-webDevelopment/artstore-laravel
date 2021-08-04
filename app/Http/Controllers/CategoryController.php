@@ -25,6 +25,8 @@ class CategoryController extends Controller
         $sub_categories = [];
         $elems_array = [];
         $checked_sub_menus = $request->post('sub_menu_ids');
+//        dd($checked_sub_menus);
+
         foreach ($checked_sub_menus as $el) {
             $cur_sub_m = Sub_menu::find($el);
             $res = $cur_sub_m->sub_categories;
@@ -53,11 +55,19 @@ class CategoryController extends Controller
 
     public function category_page(Request $request)
     {
+
+        if (request()->ajax())
+        {
+//            dump($request->filtr_options);
+            dd($request->filtr_options);
+        }
         $products = [];
         $filtr_products = [];
         $current_sub_menues = [];
+        $current_sub_cats = [];
         if ($request->cat_type == 1) {
             $menu = Menu::find($request->cat_id);
+            $current_sub_menues = $menu->sub_menues;
             $page_name = $menu['menu_name_' . app()->getLocale()];
             $category_ids = $menu->sub_categories->pluck('id');
             $sub_categories = Sub_categories::whereIn('id', $category_ids)->get();
@@ -71,17 +81,13 @@ class CategoryController extends Controller
             }
         }
         if ($request->cat_type == 2) {
-
             $submenu = Sub_menu::find($request->cat_id);
-            $parent_menu = Menu::find($submenu->menu_id);
-            $current_sub_menues = $parent_menu->sub_menues;
-//            @dump($current_sub_menues);
+            $current_sub_cats = $submenu->sub_categories;
             $page_name = $submenu['sub_menu_name_' . app()->getLocale()];
             $category_ids = $submenu->sub_categories->pluck('id');
             $sub_categories = Sub_categories::whereIn('id', $category_ids)->get();
             foreach ($sub_categories as $el) {
                 if (count($el->type_products) > 0) {
-//                    dump($el->type_products);
                     foreach ($el->type_products as $item) {
                         array_push($products, $item);
                     }
@@ -93,15 +99,13 @@ class CategoryController extends Controller
             $page_name = $subcategory['name_category_' . app()->getLocale()];
             $products = $subcategory->type_products;
         }
-//        dd($products);
-        if (count($products) > 0)
-        {
-           $filtr_products = Product::products_filtrs($products,$request->cat_type);
+
+        if (count($products) > 0) {
+            $filtr_products = Product::products_filtrs($products, $request->cat_type);
         }
-//        dump($products);
-//        dump($filtr_products);
-        return view('current-category-page', compact('products','filtr_products','page_name','current_sub_menues'));
-//        return redirect()->route('cur.cat.products');
+
+        return view('current-category-page', compact('products', 'filtr_products', 'page_name','current_sub_cats','current_sub_menues'));
+
     }
 
 }

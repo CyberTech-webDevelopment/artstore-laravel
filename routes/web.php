@@ -66,9 +66,10 @@ Route::group(['prefix' => '{locale}', 'where' => ['locale' => '[a-zA-Z]{2}'], 'm
         Route::post('/store-order', [App\Http\Controllers\OrderController::class, 'store_orders'])->name('store.orders');
         Route::post('/user-order', [App\Http\Controllers\OrderController::class, 'user_orders'])->name('user.orders');
     });
+//    Route::get('/filters', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');
 
     Route::get('/add-categories-section', [App\Http\Controllers\CategoryController::class, 'add_categories_section'])->name('add_categories.section');
-    Route::post('/category-page/{name}', [App\Http\Controllers\CategoryController::class, 'category_page'])->name('category.page');
+    Route::any('/category-page/{name}', [App\Http\Controllers\CategoryController::class, 'category_page'])->name('category.page');
 
     Route::get('/add-options-section', [App\Http\Controllers\ProductController::class, 'add_options_section'])->name('add_option.section');
 
