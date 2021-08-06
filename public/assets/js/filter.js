@@ -75,6 +75,7 @@ $(document).ready(function () {
         let options_filtr = {
             'percent': $('input[name="filter_discount"]:checked').val(),
             'cat_type': $('#cat_type_filtr').val(),
+            'cat_id' : $('#cat_id_filtr').val(),
             'sub_menu': $('#filtr_sub_menu').val(),
             'sub_cat': $('#filtr_type').val(),
             'color': $('#filtr_color').val(),
@@ -85,6 +86,7 @@ $(document).ready(function () {
             'end_cost':$('#end_cost').val(),
             'size_type': $('input[name="size_filtr"]:checked').parent().data('table-name'),
         };
+
         return options_filtr;
     }
 
