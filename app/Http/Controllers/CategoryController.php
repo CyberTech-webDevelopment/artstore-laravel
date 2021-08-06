@@ -56,10 +56,10 @@ class CategoryController extends Controller
     public function category_page(Request $request)
     {
 
-        if (request()->ajax())
-        {
-//            dump($request->filtr_options);
-            dd($request->filtr_options);
+        if (request()->ajax()) {
+
+            $products = Product::filtring_products($request->filtr_options[0]);
+            dd($products);
         }
         $products = [];
         $filtr_products = [];
@@ -102,9 +102,10 @@ class CategoryController extends Controller
 
         if (count($products) > 0) {
             $filtr_products = Product::products_filtrs($products, $request->cat_type);
+            $cat_id = $request->cat_id;
         }
 
-        return view('current-category-page', compact('products', 'filtr_products', 'page_name','current_sub_cats','current_sub_menues'));
+        return view('current-category-page', compact('products', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'));
 
     }
 

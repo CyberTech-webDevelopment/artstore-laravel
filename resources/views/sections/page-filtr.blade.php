@@ -1,6 +1,7 @@
 @if(count($filtr_products) > 0)
     <div class="main-flex-item-color">
         <input type="hidden" id="cat_type_filtr" value="{{$filtr_products['cat_type']}}">
+        <input type="hidden" id="cat_id_filtr" value="{{$cat_id}}">
         <!-- should be completed -->
         {{--   Filtr Percent Type     --}}
         {{--                        @dd($filtr_products)--}}
