@@ -1,3 +1,6 @@
+{{--@if(isset($filtr_options['percent']))--}}
+{{--    @dump($filtr_options)--}}
+{{--@endif--}}
 @if(count($filtr_products) > 0)
     <div class="main-flex-item-color">
         <input type="hidden" id="cat_type_filtr" value="{{$filtr_products['cat_type']}}">
@@ -36,7 +39,7 @@
                             name="filtr_sub_menu">
                         <option class="add_product_menu" value="0">@lang('add-product.product.sel_cat')</option>
                         @foreach($current_sub_menues as $m)
-                            <option name="menu" value="{{ $m['id'] }}" class="add_product_menu"
+                            <option name="menu" @if(isset($filtr_options['sub_menu']) && $filtr_options['sub_menu'] == $m['id']) selected @endif value="{{ $m['id'] }}" class="add_product_menu"
                                     data-menu-id='{{ $m['id'] }}'>{{ $m['sub_menu_name_' . app()->getLocale()] }}</option>
                         @endforeach
                     </select>

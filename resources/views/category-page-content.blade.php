@@ -45,7 +45,9 @@
 <div class="main-flex d-flex justify-content-between mt-3">
     <div class="filtr_content d-flex flex-column">
         @include('sections.page-filtr')
-        <input type="hidden" id="page_route" value="{{ route('category.page',['name'=>$page_name,'locale'=>app()->getLocale()])  }}">
+        {{--        @dd($page_name)--}}
+        <input type="hidden" id="page_route"
+               value="{{ route('category.page',['name'=>$page_name,'locale'=>app()->getLocale()])  }}">
         <button type="button" class="btn btn-primary filtr_button btn-sm">Search</button>
     </div>
 
@@ -94,6 +96,7 @@
                     </div>
                 </div>
             @endforeach
+            {{ $products->links('vendor.pagination.pagination-current-page') }}
         @else
 
             <h3>Not A Product</h3>
@@ -104,25 +107,25 @@
 
 
 <!-- ---------------------pagination------------ -->
-<div class="col-md-12 pb-2 pt-5 mb-5 pagination-cont">
-    <nav>
-        <ul class="pagination">
-            <li class="page-item prev">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
-            </li>
-            <li class="page-item active"><a class=" page-link" href="">1</a></li>
-            <li class="page-item"><a class="page-link" href="#">2</a></li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item"><a class="page-link" href="#">4</a></li>
-            <li class="page-item"><a class="page-link" href="#">5</a></li>
+{{--<div class="col-md-12 pb-2 pt-5 mb-5 pagination-cont">--}}
+{{--    <nav>--}}
+{{--        <ul class="pagination">--}}
+{{--            <li class="page-item prev">--}}
+{{--                <a class="page-link" href="#" aria-label="Previous">--}}
+{{--                    <span aria-hidden="true">&laquo;</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--            <li class="page-item active"><a class=" page-link" href="">1</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">2</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">3</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">4</a></li>--}}
+{{--            <li class="page-item"><a class="page-link" href="#">5</a></li>--}}
 
-            <li class="page-item next">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
-</div>
+{{--            <li class="page-item next">--}}
+{{--                <a class="page-link" href="#" aria-label="Next">--}}
+{{--                    <span aria-hidden="true">&raquo;</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
+{{--        </ul>--}}
+{{--    </nav>--}}
+{{--</div>--}}
