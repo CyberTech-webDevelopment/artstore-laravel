@@ -214,9 +214,16 @@ class Product extends Model
         $query = Product::where('status',1);
         if ($filtrs['sub_menu'] == 0 && $filtrs['cat_type'] == 1)
         {
+
             $menu = Menu::find($filtrs['cat_id']);
             $category_ids = $menu->sub_categories->pluck('id');
-            $query = $query->type_products->whereIn('type_id', $category_ids);
+//            dd($category_ids);
+            $query->when($category_ids, function ($q) use ($category_ids) {
+                $q->whereHas('product_type', function ($q) use ($category_ids) {
+                    $q->whereIn('products_sub_categories.type_id', $category_ids);
+                });
+            });
+//            $query = $query->type_products->whereIn('type_id', $category_ids);
 
         }
         if ($filtrs['sub_menu'] != 0 && $filtrs['cat_type'] == 1)
@@ -232,7 +239,7 @@ class Product extends Model
 //            $query = $query->type_products->whereIn('type_id', $category_ids);
 
         }
-        $query = $query->get();
+        $query = $query->paginate(1);
         return $query;
     }
     public static function products_filtrs($products, $category_type)
