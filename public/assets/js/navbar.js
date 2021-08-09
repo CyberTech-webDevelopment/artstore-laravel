@@ -84,4 +84,6 @@ $('.cur_category_page').on('dblclick',function (){
         $(this).prev().append('<input type="hidden" name="cat_type" value="'+ cat_type +'">')
         $(this).prev().submit();
     }
+    // window.category_page_id = $(this).data('cat-id');
+
 })

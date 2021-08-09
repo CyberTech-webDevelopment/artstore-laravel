@@ -46,6 +46,7 @@
     @include('product.product-message')
     <input type="hidden" id="add_basket_route" value="{{ route('add.basket',app()->getLocale()) }}">
     <input type="hidden" id="current_route" value="{{ Route::currentRouteName() }}">
+{{--    <input type="hidden" id="category_page_route" value="{{route()}}">--}}
     <input type="hidden" id="sel_sub_cat_route"
            value="{{ route('sub_menu.sub_cat',app()->getLocale()) }}">
     <input type="hidden" id="cur_lang" value="{{ app()->getLocale() }}">

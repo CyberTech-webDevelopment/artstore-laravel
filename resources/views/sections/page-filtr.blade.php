@@ -1,25 +1,27 @@
 {{--@if(isset($filtr_options['percent']))--}}
 {{--    @dump($filtr_options)--}}
 {{--@endif--}}
+{{--@dump(Request::get('sub_menu'))--}}
 @if(count($filtr_products) > 0)
+    @dump('ka filtr products')
     <div class="main-flex-item-color">
         <input type="hidden" id="cat_type_filtr" value="{{$filtr_products['cat_type']}}">
         <input type="hidden" id="cat_id_filtr" value="{{$cat_id}}">
         <!-- should be completed -->
         {{--   Filtr Percent Type     --}}
         {{--                        @dd($filtr_products)--}}
-        @if($filtr_products['percent'] != null)
+        @if($filtr_products['percent'] == null)
             <div class="row mt-2">
                 <div class="col-sm-10 col-lg-10 col-10 col-md-10">
                     <label class="text-strong text-uppercase"><u>Price Type</u></label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="1" name="filter_discount" id="discount">
+                        <input class="form-check-input filtr_option" type="radio" value="1" name="filter_discount" id="discount">
                         <label class="form-check-label text-strong" for="discount">
                             Discounted
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" value="0" name="filter_discount"
+                        <input class="form-check-input filtr_option" type="radio" value="2" name="filter_discount"
                                id="none_discount"
                         >
                         <label class="form-check-label text-strong" for="none_discount">
@@ -35,7 +37,7 @@
             <div class="row mt-2">
                 <div class="col-12 col-md-12 col-lg-12">
                     <label class="text-strong text-uppercase"><u>@lang('add-product.product.category')</u></label>
-                    <select class="select-menu filtr_catergory_select list_sub_menu" id="filtr_sub_menu"
+                    <select class="select-menu filtr_option filtr_catergory_select list_sub_menu" id="filtr_sub_menu"
                             name="filtr_sub_menu">
                         <option class="add_product_menu" value="0">@lang('add-product.product.sel_cat')</option>
                         @foreach($current_sub_menues as $m)
@@ -55,7 +57,7 @@
 
                 <div class="col-12 d-flex flex-column col-md-12 col-lg-12">
                     <label class="text-strong text-uppercase"><u>@lang('add-product.product.type')</u></label>
-                    <select class="filtr_catergory_select" id="filtr_type" name="filtr_type">
+                    <select class="filtr_catergory_select filtr_option" id="filtr_type" name="filtr_type">
                         <option value="0">@lang('add-product.product.sel_type')</option>
                         @if(count($current_sub_cats) > 0)
                             @foreach($current_sub_cats as $cats)
@@ -104,7 +106,7 @@
                                             <li class="mr-1 small sizes_small"
                                                 data-table-name="{{ $k }}"
                                                 tabIndex="-1">
-                                                <input type="checkbox" class="size_check size_filtr"
+                                                <input type="checkbox" class="filtr_option size_check size_filtr"
                                                        name="size_filtr"
                                                        value="{{ $el['id'] }}"/>{{ $el['size'] }}</li>
 
@@ -159,7 +161,7 @@
                                             <li class="mr-1 small sizes_small"
                                                 data-table-name="{{ $k }}"
                                                 tabIndex="-1">
-                                                <input type="checkbox" class="material_check material_filtr"
+                                                <input type="checkbox" class="filtr_option material_check material_filtr"
                                                        name="material_filtr"
                                                        value="{{ $el['id'] }}"/>
                                                 {{ $el['material_'.app()->getLocale()] }}
@@ -187,7 +189,7 @@
 
                 <div class="col-12 d-flex flex-column col-md-12 col-lg-12">
                     <label class="text-strong text-uppercase"><u>@lang('add-product.product.color')</u></label>
-                    <select class="filtr_catergory_select" id="filtr_color" name="filtr_color">
+                    <select class="filtr_catergory_select filtr_option" id="filtr_color" name="filtr_color">
                         <option value="0">@lang('add-product.product.sel_color')</option>
                         @foreach($all_colors as $c)
                             <option
@@ -201,13 +203,13 @@
 
         {{--            End Filtr Color--}}
         {{--            Filtr Gender --}}
-        @if($filtr_products['gender'] != null)
+        @if($filtr_products['gender'] == null)
             <div class="row mt-2">
                 <div class="col-sm-12 col-lg-12 col-12 col-md-12">
                     <label class="text-strong text-uppercase"><u>@lang('add-product.product.by_gender')</u></label>
                     @foreach($genders as $g)
                         <div class="form-check">
-                            <input class="form-check-input" type="radio" value="{{ $g->id }}" name="filter_gender"
+                            <input class="form-check-input filtr_option" type="radio" value="{{ $g->id }}" name="filter_gender"
                                    @if($g->id == 1) id="male"
                                    @elseif($g['id'] == 2)  id="female" @else id="child" @endif>
                             <label class="form-check-label text-strong" @if($g->id == 1) for="male"
@@ -226,9 +228,9 @@
             <div class="col-12 col-sm-12 col-md-12 col-lg-12 d-flex flex-column">
                 <label class="text-strong text-uppercase"><u>Price</u></label>
                 <div style="width:100%" class="d-flex">
-                    <input type="text" name="start_cost" id="start_cost" class="form-control"> -
+                    <input type="text" name="start_cost" id="start_cost" class="form-control filtr_option"> -
 
-                    <input type="text" name="end_cost" id="end_cost" class="form-control">
+                    <input type="text" name="end_cost" id="end_cost" class="form-control filtr_option">
 
                 </div>
 

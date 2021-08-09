@@ -211,32 +211,32 @@ class Product extends Model
 
     public static function filtring_products($filtrs)
     {
+//        dd($filtrs);
         $query = Product::where('status',1);
-        if ($filtrs['sub_menu'] == 0 && $filtrs['cat_type'] == 1)
+        if (isset($filtrs['sub_menu']) && isset($filtrs['cat_type']) && $filtrs['sub_menu'] == 0 && $filtrs['cat_type'] == 1)
         {
 
             $menu = Menu::find($filtrs['cat_id']);
             $category_ids = $menu->sub_categories->pluck('id');
-//            dd($category_ids);
             $query->when($category_ids, function ($q) use ($category_ids) {
                 $q->whereHas('product_type', function ($q) use ($category_ids) {
                     $q->whereIn('products_sub_categories.type_id', $category_ids);
                 });
             });
-//            $query = $query->type_products->whereIn('type_id', $category_ids);
 
         }
-        if ($filtrs['sub_menu'] != 0 && $filtrs['cat_type'] == 1)
+        if (isset($filtrs['sub_menu']) && isset($filtrs['cat_type']) && $filtrs['sub_menu'] != 0 && $filtrs['cat_type'] == 1)
         {
 
+//            @dump($filtrs['sub_menu']);
             $sub_menu = Sub_menu::find($filtrs['sub_menu']);
             $category_ids = $sub_menu->sub_categories->pluck('id');
+
             $query->when($category_ids, function ($q) use ($category_ids) {
                 $q->whereHas('product_type', function ($q) use ($category_ids) {
                     $q->whereIn('products_sub_categories.type_id', $category_ids);
                 });
             });
-//            $query = $query->type_products->whereIn('type_id', $category_ids);
 
         }
         $query = $query->paginate(1);

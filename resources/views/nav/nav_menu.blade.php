@@ -14,7 +14,7 @@
                             {{--                            @dd($elem->sub_menues)--}}
                             <li class='d-flex nav-item justify-content-center align-items-center'>
                                 <form
-                                    action="{{ route('category.page',['name'=>$elem['menu_name_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                    action="{{ route('category.page',['id'=>$elem->id,'locale'=>app()->getLocale()]) }}"
                                     method="post">
                                     @csrf
                                     <input type="hidden" value="{{ $elem['id'] }}" name="cat_id">
@@ -47,7 +47,7 @@
 
                                         <li class='d-flex nav-item nav-second-li justify-content-center align-items-center'>
                                             <form
-                                                action="{{ route('category.page',['name'=>$sub_el['sub_menu_name_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                                action="{{ route('category.page',['id'=>$sub_el->id,'locale'=>app()->getLocale()]) }}"
                                                 method="post">
                                                 @csrf
                                                 <input type="hidden" value="{{ $sub_el['id'] }}" name="cat_id">
@@ -90,7 +90,7 @@
                                                             $count++;
                                                         @endphp
                                                         <form
-                                                            action="{{ route('category.page',['name'=>$sub_cat['name_category_' . app()->getLocale()],'locale'=>app()->getLocale()]) }}"
+                                                            action="{{ route('category.page',['id'=>$sub_cat->id,'locale'=>app()->getLocale()]) }}"
                                                             method="post">
                                                             @csrf
                                                             <input type="hidden" value="{{ $sub_cat['id'] }}"
