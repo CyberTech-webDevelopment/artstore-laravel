@@ -1,5 +1,7 @@
 $(document).ready(function () {
-
+    var global_url = window.location.pathname;
+    var id = global_url.substring(global_url.lastIndexOf('/') + 1);
+    // alert(id);
     $(document).on('change', '#filtr_sub_menu', function () {
         let sub_menu_id = [$(this).val()];
         let url = $('#sel_sub_cat_route').val()
@@ -35,11 +37,12 @@ $(document).ready(function () {
             }
         })
     })
-    function filtr_ajax(url,data,page)
+    function filtr_ajax(data,page)
     {
+        let lang =  $('#cur_lang').val();
         $.ajax({
             method:'get',
-            url: url,
+            url: '/' + lang + '/category-page' + '/' +id,
             headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
             data: data + "&page=" + page,
             dataType: 'json',
@@ -77,7 +80,7 @@ $(document).ready(function () {
             }
         }
         var data = $('#filtr_options').serialize();
-        filtr_ajax(url,data,page)
+        filtr_ajax(data,page)
         // console.log(getfiltrs_options());
 
     })
@@ -100,7 +103,7 @@ $(document).ready(function () {
         // alert(route);
         // let store_id = $('#v-pills-last-views-tab').data('store-id');
         // localStorage.setItem('page_basket', page);
-        filtr_ajax(url,data,page);
+        filtr_ajax(data,page);
 
     });
     function getfiltrs_options(page) {
@@ -115,6 +118,7 @@ $(document).ready(function () {
             'color': $('#filtr_color').val(),
             'size': $('input[name="size_filtr"]:checked').val(),
             'material': $('input[name="material_filtr"]:checked').val(),
+            'gender': $('input[name="filter_gender"]:checked').val(),
             'material_type': $('input[name="material_filtr"]:checked').parent().data('table-name'),
             'start_cost':$('#start_cost').val(),
             'end_cost':$('#end_cost').val(),
@@ -129,11 +133,11 @@ $(document).ready(function () {
         }
         if (options_filtr['sub_menu'] !== '0' && options_filtr['sub_menu'] !== undefined) {
 
-            q += `${q === '' ? '?' : '&'}menu=${options_filtr['sub_menu']}`
+            q += `${q === '' ? '?' : '&'}sub_menu=${options_filtr['sub_menu']}`
         }
         if (options_filtr['sub_cat'] !== '0' && options_filtr['sub_cat'] !== undefined) {
 
-            q += `${q === '' ? '?' : '&'}type=${options_filtr['sub_cat']}`
+            q += `${q === '' ? '?' : '&'}sub_cat=${options_filtr['sub_cat']}`
         }
         if (options_filtr['color'] !== '0' && options_filtr['color'] !== undefined) {
             q += `${q === '' ? '?' : '&'}color=${options_filtr['color']}`
@@ -145,10 +149,16 @@ $(document).ready(function () {
             q += `${q === '' ? '?' : '&'}material=${options_filtr['material']}`
         }
         if (options_filtr['start_cost'] !== '' && options_filtr['start_cost'] !== null) {
-            q += `${q === '' ? '?' : '&'}s_cost=${options_filtr['start_cost']}`
+            q += `${q === '' ? '?' : '&'}start_cost=${options_filtr['start_cost']}`
         }
         if (options_filtr['end_cost'] !== '' && options_filtr['end_cost'] !== null) {
-            q += `${q === '' ? '?' : '&'}e_cost=${options_filtr['end_cost']}`
+            q += `${q === '' ? '?' : '&'}end_cost=${options_filtr['end_cost']}`
+        }
+        if (options_filtr['gender'] !== '0' && options_filtr['gender'] !== undefined) {
+            q += `${q === '' ? '?' : '&'}gender=${options_filtr['gender']}`
+        }
+        if (options_filtr['cat_type'] !== '0' && options_filtr['cat_type'] !== undefined) {
+            q += `${q === '' ? '?' : '&'}cat_type=${options_filtr['cat_type']}`
         }
         q += `${q === '' ? '?' : '&'}page=${page}`
 
@@ -176,4 +186,5 @@ console.log(options_filtr['start_cost'])
 
         only_checked('option_content_filtr', 'material_filtr', $(this));
     })
+
 })

@@ -1,7 +1,7 @@
 @if ($paginator->hasPages())
     <div class="row mt-5 mb-5 page-row">
 
-        <nav aria-label="Page navigation example ml-auto mr-auto" id="comment-pages">
+        <nav aria-label="Page navigation example ml-auto mr-auto" id="current-pages">
             <ul class="pagination d-flex justify-content-center">
                 @if ($paginator->onFirstPage())
 

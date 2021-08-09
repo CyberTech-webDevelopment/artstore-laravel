@@ -1,28 +1,30 @@
 <div class="back-home pt-2">
-    Homepage &gt; <span class='top-und'>{{ $page_name }}</span>
+{{--    Homepage &gt; <span class='top-und'>{{ $page_name }}</span>--}}
 </div>
 
 <div class="subs-caption">
-    <div class="caps">{{ $page_name }}</div>
+{{--    <div class="caps">{{ $page_name }}</div>--}}
 </div>
 <!-- sort by -->
-<div class="sortby mb-5 pb-5">
-    <div class="abs-sortby">
-        <div class="sortby-text mr-2">Sort by</div>
-        <div class="sortby-select">
-            <div class='abs-checked none'><i class="fas fa-check-circle"></i></div>
-            <select class="select-sortby">
-                <option value='Highest Price'>Highest Price</option>
-                <option value='Lowest Price'>Lowest Price</option>
-                <option value='Most Recent'>Most Recent</option>
-                <option value='A to Z'>A to Z</option>
-                <option value='Z to A' selected>Z to A</option>
-                <option value='Rating'>Rating</option>
-            </select>
-        </div>
+@if(count($products) > 0)
+    <div class="sortby mb-5 pb-5">
+        <div class="abs-sortby">
+            <div class="sortby-text mr-2">Sort by</div>
+            <div class="sortby-select">
+                <div class='abs-checked none'><i class="fas fa-check-circle"></i></div>
+                <select class="select-sortby">
+                    <option value='Highest Price'>Highest Price</option>
+                    <option value='Lowest Price'>Lowest Price</option>
+                    <option value='Most Recent'>Most Recent</option>
+                    <option value='A to Z'>A to Z</option>
+                    <option value='Z to A' selected>Z to A</option>
+                    <option value='Rating'>Rating</option>
+                </select>
+            </div>
 
+        </div>
     </div>
-</div>
+@endif
 <script>
     $('.select-sortby').on('click', function () {
         var selval = $(this).val();
@@ -46,9 +48,11 @@
     <div class="filtr_content d-flex flex-column">
         @include('sections.page-filtr')
         {{--        @dd($page_name)--}}
-        <input type="hidden" id="page_route"
-               value="{{ route('category.page',['name'=>$page_name,'locale'=>app()->getLocale()])  }}">
-        <button type="button" class="btn btn-primary filtr_button btn-sm">Search</button>
+{{--        <input type="hidden" id="page_route"--}}
+{{--               value="{{ route('category.page',['name'=>$page_name,'locale'=>app()->getLocale()])  }}">--}}
+        @if(count($filtr_products) > 0)
+            <button type="button" class="btn btn-primary filtr_button btn-sm">Search</button>
+        @endif
     </div>
 
 
@@ -99,7 +103,7 @@
             {{ $products->links('vendor.pagination.pagination-current-page') }}
         @else
 
-            <h3>Not A Product</h3>
+            <h3 class="mt-2 not_product_title">Not A Product</h3>
         @endif
     </div>
 

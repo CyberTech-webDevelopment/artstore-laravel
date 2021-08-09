@@ -52,104 +52,123 @@ class CategoryController extends Controller
 
 
     }
-public function in_cat_type($category_ids)
-{
-    $products = Product::where('status',1);
-    $products->when($category_ids, function ($q) use ($category_ids) {
-        $q->whereHas('product_type', function ($q) use ($category_ids) {
-            $q->whereIn('products_sub_categories.type_id', $category_ids);
+
+    public function in_cat_type($category_ids)
+    {
+        $products = Product::where('status', 1);
+        $products->when($category_ids, function ($q) use ($category_ids) {
+            $q->whereHas('product_type', function ($q) use ($category_ids) {
+                $q->whereIn('products_sub_categories.type_id', $category_ids);
+            });
         });
-    });
-    $products =  $products->paginate(1);
-//    $sub_categories = Sub_categories::whereIn('id', $category_ids)->get();
-//    foreach ($sub_categories as $el) {
-//        if (count($el->type_products) > 0) {
-////                    dump($el->type_products);
-//            foreach ($el->type_products as $item) {
-//                array_push($products, $item);
-//            }
-//        }
-//    }
-    return $products;
-}
-    public function category_page(Request $request)
+        $products = $products->paginate(1);
+        return $products;
+    }
+
+    public function in_cat_type_all($category_ids)
+    {
+        $products = Product::where('status', 1);
+        $products->when($category_ids, function ($q) use ($category_ids) {
+            $q->whereHas('product_type', function ($q) use ($category_ids) {
+                $q->whereIn('products_sub_categories.type_id', $category_ids);
+            });
+        });
+        $products = $products->get();
+        return $products;
+    }
+
+    public function category_page(Request $request, $id)
     {
         $products = [];
         $filtr_products = [];
         $current_sub_menues = [];
         $current_sub_cats = [];
         if (request()->ajax()) {
-            dd($request->all());
             $filtr_options = $request->filtr_options[0];
-            $products = Product::filtring_products($request->filtr_options[0]);
-             if ($request->filtr_options[0]['cat_type'] == 1)
-             {
-                 $menu = Menu::find($request->filtr_options[0]['cat_id']);
-                 $current_sub_menues = $menu->sub_menues;
-                 $page_name = $menu['menu_name_' . app()->getLocale()];
-                 $category_ids = $menu->sub_categories->pluck('id');
-                 $products_all = $this->in_cat_type($category_ids);
-             }
-             if ($request->filtr_options[0]['cat_type'] == 2)
-             {
-                 $submenu = Sub_menu::find($request->filtr_options[0]['cat_id']);
-                 $current_sub_cats = $submenu->sub_categories;
-                 $page_name = $submenu['sub_menu_name_' . app()->getLocale()];
-                 $category_ids = $submenu->sub_categories->pluck('id');
-                 $products_all = $this->in_cat_type($category_ids);
-             }
-             if ($request->filtr_options[0]['cat_type'] == 3)
-             {
-                 $subcategory = Sub_categories::find($request->filtr_options[0]['cat_id']);
-                 $page_name = $subcategory['name_category_' . app()->getLocale()];
-                 $products_all = $subcategory->type_products;
-             }
-            if (count($products_all) > 0) {
+
+            if ($request->filtr_options[0]['cat_type'] == 1) {
+                $menu = Menu::find($request->id);
+                $current_sub_menues = $menu->sub_menues;
+                $page_name = $menu['menu_name_' . app()->getLocale()];
+                $category_ids = $menu->sub_categories->pluck('id');
+                $products_all = $this->in_cat_type_all($category_ids);
+                $products = $this->in_cat_type($category_ids);
+            }
+            if ($request->filtr_options[0]['cat_type'] == 2) {
+                $submenu = Sub_menu::find($request->filtr_options[0]['cat_id']);
+                $current_sub_cats = $submenu->sub_categories;
+                $page_name = $submenu['sub_menu_name_' . app()->getLocale()];
+                $category_ids = $submenu->sub_categories->pluck('id');
+                $products_all = $this->in_cat_type_all($category_ids);
+                $products = $this->in_cat_type($category_ids);
+            }
+            if ($request->filtr_options[0]['cat_type'] == 3) {
+                $subcategory = Sub_categories::find($request->filtr_options[0]['cat_id']);
+                $page_name = $subcategory['name_category_' . app()->getLocale()];
+                $products_all = $subcategory->type_products()->where('status', 1)->get();
+                $products = $subcategory->type_products()->where('status', 1)->paginate(1);
+            }
+            if (count($products) > 0) {
+//                @dump($products_all);
                 $filtr_products = Product::products_filtrs($products_all, $request->filtr_options[0]['cat_type']);
                 $cat_id = $request->filtr_options[0]['cat_id'];
             }
-//            dd($products);
+            $products = Product::filtring_products($request->filtr_options[0]);
             return response()
                 ->json([
-                    'view' => view('category-page-content', compact('products', 'filtr_options','filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'))->render(),
-                    'products'=>$products,
+                    'view' => view('category-page-content', compact('products', 'filtr_options', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'))->render(),
+                    'products' => $products,
                 ]);
         }
-        dump($request->all());
         if ($request->cat_type == 1) {
-            $menu = Menu::find($request->cat_id);
+            $menu = Menu::find($request->id);
             $current_sub_menues = $menu->sub_menues;
             $page_name = $menu['menu_name_' . app()->getLocale()];
             $category_ids = $menu->sub_categories->pluck('id');
-            $products =  $this->in_cat_type($category_ids);
+            $products_all = $this->in_cat_type_all($category_ids);
+            $products = $this->in_cat_type($category_ids);
         }
         if ($request->cat_type == 2) {
             $submenu = Sub_menu::find($request->cat_id);
             $current_sub_cats = $submenu->sub_categories;
             $page_name = $submenu['sub_menu_name_' . app()->getLocale()];
             $category_ids = $submenu->sub_categories->pluck('id');
+            $products_all = $this->in_cat_type_all($category_ids);
             $products = $this->in_cat_type($category_ids);
-//            $sub_categories = Sub_categories::whereIn('id', $category_ids)->get();
-//            foreach ($sub_categories as $el) {
-//                if (count($el->type_products) > 0) {
-//                    foreach ($el->type_products as $item) {
-//                        array_push($products, $item);
-//                    }
-//                }
-//            }
         }
         if ($request->cat_type == 3) {
             $subcategory = Sub_categories::find($request->cat_id);
             $page_name = $subcategory['name_category_' . app()->getLocale()];
-            $products = $subcategory->type_products->where('status',1);
+            $products_all = $subcategory->type_products()->where('status', 1)->get();
+            $products = $subcategory->type_products()->where('status', 1)->paginate(1);
         }
-
         if (count($products) > 0) {
-            $filtr_products = Product::products_filtrs($products, $request->cat_type);
+
+            $filtr_products = Product::products_filtrs($products_all, $request->cat_type);
             $cat_id = $request->cat_id;
+            $filtr_options_no_ajax = [
+             'percent' => isset($request->percent) ? $request->percent : "undefined",
+             'cat_type' => isset($request->cat_type) ? $request->cat_type : "undefined",
+             'cat_id' => isset($request->cat_id) ? $request->cat_id : "undefined",
+             'sub_menu' => isset($request->sub_menu) ? $request->sub_menu : "0",
+             'sub_cat' => isset($request->sub_cat) ? $request->sub_cat : "0",
+             'color' => isset($request->color) ? $request->sub_cat : "undefined",
+             'size' => isset($request->size) ? $request->size : "undefined",
+             'material' => isset($request->material) ? $request->material : "undefined",
+             'gender' => isset($request->gender) ? $request->gender : "undefined",
+             'material_type' => isset($request->material_type) ? $request->material_type : "undefined",
+             'start_cost' => isset($request->start_cost) ? $request->start_cost : "undefined",
+             'end_cost' => isset($request->end_cost) ? $request->end_cost : "undefined",
+             'size_type' => isset($request->size_type) ? $request->size_type : "undefined",
+            ];
+            $products = Product::filtring_products($filtr_options_no_ajax);
+            return view('current-category-page', compact('products', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'));
+        } else {
+//            dd($request->all());
+            return view('current-category-page', compact('products', 'filtr_products', 'current_sub_cats', 'current_sub_menues'));
+
         }
 
-        return view('current-category-page', compact('products', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'));
 
     }
 
