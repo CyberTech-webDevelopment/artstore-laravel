@@ -1,21 +1,17 @@
-{{--@if(isset($filtr_options['percent']))--}}
-{{--    @dump($filtr_options)--}}
-{{--@endif--}}
-@dump(Request::get('sub_menu'))
+{{--@dump(Request::get('sub_menu'))--}}
 @if(count($filtr_products) > 0)
-{{--    @dump($filtr_products)--}}
     <div class="main-flex-item-color">
         <input type="hidden" id="cat_type_filtr" value="{{$filtr_products['cat_type']}}">
         <input type="hidden" id="cat_id_filtr" value="{{$cat_id}}">
-        <!-- should be completed -->
+
         {{--   Filtr Percent Type     --}}
-        {{--                        @dd($filtr_products)--}}
         @if($filtr_products['percent'] == null)
             <div class="row mt-2">
                 <div class="col-sm-10 col-lg-10 col-10 col-md-10">
                     <label class="text-strong text-uppercase"><u>Price Type</u></label>
                     <div class="form-check">
-                        <input class="form-check-input filtr_option" type="radio" value="1" name="filter_discount" id="discount">
+                        <input class="form-check-input filtr_option" type="radio" value="1" name="filter_discount"
+                               id="discount">
                         <label class="form-check-label text-strong" for="discount">
                             Discounted
                         </label>
@@ -41,7 +37,9 @@
                             name="filtr_sub_menu">
                         <option class="add_product_menu" value="0">@lang('add-product.product.sel_cat')</option>
                         @foreach($current_sub_menues as $m)
-                            <option name="menu" @if((isset($filtr_options['sub_menu']) && $filtr_options['sub_menu'] == $m['id']) || (Request::get('sub_menu') != null && Request::get('sub_menu') == $m['id'])) selected @endif value="{{ $m['id'] }}" class="add_product_menu"
+                            <option name="menu"
+                                    @if((isset($filtr_options['sub_menu']) && $filtr_options['sub_menu'] == $m['id']) || (Request::get('sub_menu') != null && Request::get('sub_menu') == $m['id'])) selected
+                                    @endif value="{{ $m['id'] }}" class="add_product_menu"
                                     data-menu-id='{{ $m['id'] }}'>{{ $m['sub_menu_name_' . app()->getLocale()] }}</option>
                         @endforeach
                     </select>
@@ -161,7 +159,8 @@
                                             <li class="mr-1 small sizes_small"
                                                 data-table-name="{{ $k }}"
                                                 tabIndex="-1">
-                                                <input type="checkbox" class="filtr_option material_check material_filtr"
+                                                <input type="checkbox"
+                                                       class="filtr_option material_check material_filtr"
                                                        name="material_filtr"
                                                        value="{{ $el['id'] }}"/>
                                                 {{ $el['material_'.app()->getLocale()] }}
@@ -209,7 +208,8 @@
                     <label class="text-strong text-uppercase"><u>@lang('add-product.product.by_gender')</u></label>
                     @foreach($genders as $g)
                         <div class="form-check">
-                            <input class="form-check-input filtr_option" type="radio" value="{{ $g->id }}" name="filter_gender"
+                            <input class="form-check-input filtr_option" type="radio" value="{{ $g->id }}"
+                                   name="filter_gender"
                                    @if($g->id == 1) id="male"
                                    @elseif($g['id'] == 2)  id="female" @else id="child" @endif>
                             <label class="form-check-label text-strong" @if($g->id == 1) for="male"
