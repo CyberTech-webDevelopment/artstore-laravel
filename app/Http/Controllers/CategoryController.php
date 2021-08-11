@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Sub_categories;
 use App\Models\Sub_menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class CategoryController extends Controller
 {
@@ -113,13 +114,16 @@ class CategoryController extends Controller
                 $filtr_products = Product::products_filtrs($products_all, $request->filtr_options[0]['cat_type']);
                 $cat_id = $request->filtr_options[0]['cat_id'];
             }
-            $products = Product::filtring_products($request->filtr_options[0]);
+            $filtr_options['cat_id'] = $request->id;
+//            dd($filtr_options);
+            $products = Product::filtring_products($filtr_options);
             return response()
                 ->json([
                     'view' => view('category-page-content', compact('products', 'filtr_options', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'))->render(),
                     'products' => $products,
                 ]);
         }
+//        Session::put('somekey', 'somevalue');
         if ($request->cat_type == 1) {
             $menu = Menu::find($request->id);
             $current_sub_menues = $menu->sub_menues;
@@ -147,20 +151,21 @@ class CategoryController extends Controller
             $filtr_products = Product::products_filtrs($products_all, $request->cat_type);
             $cat_id = $request->cat_id;
             $filtr_options_no_ajax = [
-             'percent' => isset($request->percent) ? $request->percent : "undefined",
-             'cat_type' => isset($request->cat_type) ? $request->cat_type : "undefined",
-             'cat_id' => isset($request->cat_id) ? $request->cat_id : "undefined",
-             'sub_menu' => isset($request->sub_menu) ? $request->sub_menu : "0",
-             'sub_cat' => isset($request->sub_cat) ? $request->sub_cat : "0",
-             'color' => isset($request->color) ? $request->sub_cat : "undefined",
-             'size' => isset($request->size) ? $request->size : "undefined",
-             'material' => isset($request->material) ? $request->material : "undefined",
-             'gender' => isset($request->gender) ? $request->gender : "undefined",
-             'material_type' => isset($request->material_type) ? $request->material_type : "undefined",
-             'start_cost' => isset($request->start_cost) ? $request->start_cost : "undefined",
-             'end_cost' => isset($request->end_cost) ? $request->end_cost : "undefined",
-             'size_type' => isset($request->size_type) ? $request->size_type : "undefined",
+                'percent' => isset($request->percent) ? $request->percent : "undefined",
+                'cat_type' => isset($request->cat_type) ? $request->cat_type : "undefined",
+                'cat_id' => isset($request->cat_id) ? $request->cat_id : $request->id,
+                'sub_menu' => isset($request->sub_menu) ? $request->sub_menu : "0",
+                'sub_cat' => isset($request->sub_cat) ? $request->sub_cat : "0",
+                'color' => isset($request->color) ? $request->sub_cat : "undefined",
+                'size' => isset($request->size) ? $request->size : "undefined",
+                'material' => isset($request->material) ? $request->material : "undefined",
+                'gender' => isset($request->gender) ? $request->gender : "undefined",
+                'material_type' => isset($request->material_type) ? $request->material_type : "undefined",
+                'start_cost' => isset($request->start_cost) ? $request->start_cost : "undefined",
+                'end_cost' => isset($request->end_cost) ? $request->end_cost : "undefined",
+                'size_type' => isset($request->size_type) ? $request->size_type : "undefined",
             ];
+//            dump($filtr_options_no_ajax);
             $products = Product::filtring_products($filtr_options_no_ajax);
             return view('current-category-page', compact('products', 'filtr_products', 'page_name', 'cat_id', 'current_sub_cats', 'current_sub_menues'));
         } else {
